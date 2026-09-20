@@ -140,6 +140,155 @@
     return code === 'PC' ? groupByPassage(list) : list;
   }
 
+  // ---------------- adaptive selection ----------------
+
+  /* Ability estimate, 1-5, starting at the middle of the band. A real CAT runs
+     item-response theory over a calibrated pool; nothing here is calibrated, so
+     this is a deliberately simple step rule and the UI never calls it an IRT
+     ability. It moves the draw toward questions that are the right size for the
+     student, which is the part that actually helps. */
+  var ABILITY_START = 3;
+  var ABILITY_STEP = 0.5;
+
+  function updateAbility(est, correct) {
+    var next = est + (correct ? ABILITY_STEP : -ABILITY_STEP);
+    return Math.max(1, Math.min(5, next));
+  }
+
+  function abilityFrom(results) {
+    var est = ABILITY_START;
+    (results || []).forEach(function (r) { est = updateAbility(est, r.correct); });
+    return est;
+  }
+
+  /* Draw the next unadministered item nearest the ability estimate. The
+     randomisation window is what keeps two sittings at the same ability from
+     being the same exam: everything within half a difficulty band of the best
+     candidate is an equally good fit, so one is taken at random. */
+  function drawAdaptive(plan, results, used, r) {
+    var est = abilityFrom(results);
+    var taken = {};
+    (plan.administered || []).forEach(function (id) { taken[id] = true; });
+
+    var pool = [];
+    (plan.poolIds || []).forEach(function (id) {
+      if (taken[id] || used[id]) return;
+      var rec = bankdata.byId(id);
+      if (rec) pool.push(rec);
+    });
+    if (!pool.length) return null;
+
+    var scored = pool.map(function (rec) {
+      var seen = state ? state.timesSeen(rec.id) : 0;
+      var memo = state && state.isLikelyMemorized(rec.id) ? 1 : 0;
+      return { rec: rec, gap: Math.abs((rec.difficulty || 3) - est), seen: seen, memo: memo };
+    }).sort(function (a, b) {
+      if (a.memo !== b.memo) return a.memo - b.memo;
+      if (a.seen !== b.seen) return a.seen - b.seen;
+      return a.gap - b.gap;
+    });
+
+    var best = scored[0];
+    var window = scored.filter(function (x) {
+      return x.memo === best.memo && x.seen === best.seen && x.gap <= best.gap + 0.5;
+    });
+    var pick = window[r.int(0, window.length - 1)] || best;
+
+    plan.administered = (plan.administered || []).concat([pick.rec.id]);
+    used[pick.rec.id] = true;
+    return items.render(pick.rec, 0);
+  }
+
+  /* Non-adaptive draw for paper-and-pencil: a fixed set stratified across
+     topics and difficulty, decided up front because the paper test cannot
+     react to anything. */
+  function drawFixed(plan, used, r) {
+    var pool = [];
+    (plan.poolIds || []).forEach(function (id) {
+      if (used[id]) return;
+      var rec = bankdata.byId(id);
+      if (rec) pool.push(rec);
+    });
+    var byBand = {};
+    pool.forEach(function (rec) {
+      var b = Math.max(1, Math.min(5, Math.round(rec.difficulty || 3)));
+      (byBand[b] = byBand[b] || []).push(rec);
+    });
+    Object.keys(byBand).forEach(function (b) {
+      byBand[b] = rankCandidates(byBand[b], b, r);
+    });
+    // Walk the bands in turn so a section is not all easy or all hard.
+    var order = [3, 2, 4, 1, 5], out = [], round = 0, guard = 0;
+    while (out.length < plan.n && guard++ < 500) {
+      var added = false;
+      for (var i = 0; i < order.length && out.length < plan.n; i++) {
+        var bucket = byBand[order[i]];
+        if (bucket && bucket.length > round) {
+          var rec = bucket[round];
+          if (used[rec.id]) continue;
+          used[rec.id] = true;
+          var it = items.render(rec, 0);
+          if (it) { out.push(it); added = true; }
+        }
+      }
+      if (!added) break;
+      round++;
+    }
+    return plan.code === 'PC' ? groupByPassage(out) : out;
+  }
+
+  /* A section's candidate pool, ranked once. An adaptive section draws from it
+     as it goes; a fixed one is filled straight away. */
+  function planSection(profile, section, used, r) {
+    var codes = data.poolsFor(section);
+    var pool = [];
+    codes.forEach(function (c) {
+      (drawable(c, { allowAmbiguous: !profile.adaptive }) || []).forEach(function (rec) {
+        if (!used[rec.id]) pool.push(rec);
+      });
+    });
+    var ranked = rankCandidates(pool, difficultyTarget(section.code), r);
+    return {
+      code: section.code,
+      name: data.sectionName(section.code),
+      seconds: section.minutes * 60,
+      n: section.items,
+      scored: section.scored === undefined ? section.items : section.scored,
+      adaptive: !!profile.adaptive,
+      poolIds: ranked.map(function (x) { return x.id; }),
+      administered: []
+    };
+  }
+
+  /* Build an exam from a named format profile. */
+  function buildExam(profileId, seed, opts) {
+    opts = opts || {};
+    var profile = data.profile(profileId);
+    if (!profile) return null;
+    var r = rng.make('exam:' + profile.id + ':' + (seed || Date.now()));
+    var used = {};
+
+    var sections = profile.sections.map(function (sec) {
+      var plan = planSection(profile, sec, used, r);
+      plan.items = plan.adaptive ? [] : drawFixed(plan, used, r);
+      if (!plan.adaptive) plan.administered = plan.items.map(function (i) { return i.template_id; });
+      return plan;
+    });
+
+    return {
+      mode: opts.mode || 'simulation',
+      profileId: profile.id,
+      profileName: profile.name,
+      adaptive: !!profile.adaptive,
+      lockAnswers: !!profile.lock_answers,
+      allowFlag: !!profile.allow_flag,
+      created: new Date().toISOString(),
+      sections: sections,
+      totalItems: profile.total_items,
+      totalSeconds: profile.total_minutes * 60
+    };
+  }
+
   // ---------------- modes ----------------
 
   function orderedSubtests() {
@@ -281,6 +430,8 @@
   }
 
   return {
+    buildExam: buildExam, drawAdaptive: drawAdaptive, abilityFrom: abilityFrom,
+    updateAbility: updateAbility,
     fullSimulation: fullSimulation, diagnostic: diagnostic, practice: practice,
     drill: drill, review: review, renderOne: renderOne, rehydrate: rehydrate,
     itemRef: itemRef, lessonPractice: lessonPractice,

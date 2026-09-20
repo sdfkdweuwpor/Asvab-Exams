@@ -387,3 +387,32 @@ textarea.io {
   padding: 6px;
 }
 .notice-card { border-left: 3px solid var(--accent, #4a9); }
+
+/* Question navigator: paper-and-pencil only, where skipping and returning is
+   allowed. A CAT sitting never shows this because there is nothing to return to. */
+.navgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+.navcell {
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+.navcell.answered { background: var(--good, #2e7d5b); color: #fff; border-color: transparent; }
+.navcell.blank { opacity: .75; }
+.navcell.flagged { box-shadow: inset 0 0 0 2px var(--warn, #c98a12); }
+.navcell.current { outline: 2px solid var(--accent, #4a9); outline-offset: 2px; }
+
+/* Format profile picker */
+.profile-row { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; }
+.profile-row + .profile-row { border-top: 1px solid var(--line); }
+.profile-row input { margin-top: 4px; flex: none; }
+.profile-src { font-size: .78rem; opacity: .72; margin-top: 2px; }

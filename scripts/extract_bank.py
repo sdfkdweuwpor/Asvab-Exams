@@ -448,23 +448,119 @@ def tag(rec, rules):
 
 # -------------------------------------------------------------- difficulty
 
-def difficulty(rec):
-    """1-5 bootstrap. Refined later from real response data."""
+# Common English, for a crude vocabulary-rarity signal on Word Knowledge. A
+# word outside this list is treated as the harder kind of item.
+COMMON_WORDS = set("""
+about above accept across act add admit agree allow almost alone along already also always
+amount anger angry animal answer appear apply area argue arm arrive art ask attack attempt
+avoid back bad bag ball bank base beat beautiful become begin behind believe below best better
+big bill bird bit black blood blow blue board boat body book born both box boy break bring
+brother build burn business buy call calm car care carry case catch cause center certain chance
+change charge cheap check child choose city claim clean clear close cold collect color come
+common company compare complete concern condition consider contain continue control cook copy
+correct cost count country couple course cover create cross crowd cut dark date day dead deal
+death decide deep degree depend describe design desire destroy detail develop die difference
+difficult direct discover discuss divide do doctor dog door doubt down draw dream dress drink
+drive drop dry early earth easy eat edge effect effort element else empty end enemy enough
+enter equal escape even event ever exact example expect explain express eye face fact fail fall
+false family far fast father fear feed feel few field fight fill final find fine finish fire
+first fit fix flat floor flow fly follow food foot force forget form forward free fresh friend
+front full future game general get girl give glass go gold good govern great green ground group
+grow guard guess guide hair half hand hang happen happy hard head hear heart heat heavy help
+high hold hole home hope horse hot hour house how human hundred hurt idea imagine important
+increase indeed inside instead interest into iron join joy judge jump just keep key kill kind
+king know land large last late laugh law lay lead learn leave left leg length less let letter
+level lie life lift light like limit line list listen little live local long look lose lot loud
+love low machine main major make man many mark market match matter may mean measure meet member
+memory mention method middle might mind minute miss mix modern moment money month moon more
+morning most mother mountain mouth move much music must name nation nature near necessary need
+never new news next nice night none north note nothing notice now number object occur ocean
+offer office often oil old once only open order other out over own page pain paint pair paper
+part pass past pay peace people perfect perhaps period person pick picture piece place plan
+plant play please point poor position possible power practice prepare present press pretty
+prevent price print probable problem produce program promise prove provide public pull purpose
+push put quality question quick quiet quite race raise reach read ready real reason receive
+record red reduce refuse regard remain remember remove repeat reply report represent require
+rest result return rich ride right ring rise river road rock roll room round rule run safe sail
+same save say school science sea search season seat second secret see seem sell send sense
+separate serious serve set settle several shake shape share sharp she ship shoot short should
+show side sign silence similar simple since sing single sister sit size skin sky sleep slow
+small smell smile snow social soft soldier solid some son song soon sort sound south space
+speak special speed spend spirit spot spread spring square stand star start state station stay
+step stick still stone stop store story straight strange street strength strike strong student
+study subject succeed such sudden suffer suggest summer sun supply support suppose sure
+surprise system table take talk teach team tell term test than thank that theory there thick
+thin thing think third though thought thousand threat throw thus time tire today together too
+top total touch toward town trade train travel treat tree trouble true trust try turn type
+understand unit until up use usual value various very view visit voice wait walk wall want war
+warm wash watch water way weak wear weather week weight well west what wheel when where whether
+which while white who whole why wide wife wild will win wind window wish with woman wonder wood
+word work world worry would write wrong year yes yet young
+""".split())
+
+MULTISTEP = re.compile(
+    r'\b(then|after|remaining|left over|in total|altogether|combined|each of|'
+    r'per (?:hour|mile|week|month|year|day)|how much more|how many more|'
+    r'difference between|average of)\b', re.I)
+NEGATION = re.compile(r'\b(EXCEPT|NOT|least likely|never|incorrect)\b')
+
+
+def hardness(rec):
+    """A relative score, not a level. Difficulty is assigned by rank within a
+    subtest afterwards, because an absolute rule produces no spread at all:
+    scored absolutely, four fifths of this bank lands on the same level and
+    adaptive selection has nothing to choose between."""
     stem = rec['stem'] or ''
-    d = 2
-    words = len(stem.split())
-    if words > 55:
-        d += 1
-    if words > 110:
-        d += 1
-    steps = len(re.findall(r'[\+\-\*/=×÷]', stem))
-    if steps >= 4:
-        d += 1
-    if re.search(r'\bEXCEPT\b|\bNOT\b|least likely', stem):
-        d += 1
-    if words < 18 and steps == 0:
-        d -= 1
-    return max(1, min(5, d))
+    opts = list(rec['options'].values())
+    words = stem.split()
+    score = 0.0
+
+    score += min(len(words), 140) / 28.0                       # length
+    score += min(len(re.findall(r'[+\-*/=×÷]', stem)), 8) * 0.55   # arithmetic
+    score += min(len(re.findall(r'\d+(?:\.\d+)?', stem)), 8) * 0.30  # quantities
+    if MULTISTEP.search(stem):
+        score += 1.1
+    if NEGATION.search(stem):
+        score += 0.9
+    if len(re.findall(r'[.?!]', stem)) >= 3:                    # several clauses
+        score += 0.6
+
+    # Long or widely varying options take longer to work through.
+    if opts:
+        lens = [len(str(o)) for o in opts]
+        score += min(sum(lens) / max(len(lens), 1), 90) / 45.0
+        score += min(max(lens) - min(lens), 60) / 60.0
+
+    # Word Knowledge has no arithmetic to measure, so rarity carries it.
+    if rec['subtest'] == 'WK':
+        pool = [str(o).lower() for o in opts] + [w.lower().strip('.,;:') for w in words]
+        rare = [w for w in pool if w.isalpha() and len(w) > 3 and w not in COMMON_WORDS]
+        score += min(len(rare), 8) * 0.45
+        longest = max([len(w) for w in pool if w.isalpha()] or [0])
+        score += min(longest, 14) / 5.0
+
+    # A long explanation usually means a long road to the answer.
+    score += min(len(rec['explanation'] or ''), 600) / 300.0
+    return score
+
+
+def assign_difficulty(records):
+    """Rank within subtest, then cut into five bands. Ranking guarantees a
+    spread for adaptive selection to work across; the bands are 20/25/25/20/10
+    rather than even fifths because a real test has fewer very hard items."""
+    CUTS = [(0.20, 1), (0.45, 2), (0.70, 3), (0.90, 4), (1.01, 5)]
+    by_sub = defaultdict(list)
+    for rec in records:
+        by_sub[rec['subtest']].append(rec)
+    for sub, group in by_sub.items():
+        scored = sorted(group, key=lambda r: hardness(r))
+        n = len(scored)
+        for i, rec in enumerate(scored):
+            q = (i + 0.5) / n
+            for edge, level in CUTS:
+                if q < edge:
+                    rec['difficulty'] = level
+                    break
 
 
 # ------------------------------------------------------- explanation shift
@@ -543,6 +639,7 @@ def build(doc):
             'page': r['page'],
         })
 
+    assign_difficulty(records)
     nfig = extract_figures(doc, records)
     shared, npsg = group_passages(records)
     nshift = flag_explanation_shift(records)
@@ -550,7 +647,6 @@ def build(doc):
     rules = load_tag_rules()
     for rec in records:
         rec['topics'] = tag(rec, rules)
-        rec['difficulty'] = difficulty(rec)
         if rec['figure']:
             rec['flags'].append('has_figure')
         if not rec['topics']:

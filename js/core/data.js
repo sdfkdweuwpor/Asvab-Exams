@@ -5,7 +5,8 @@
   else { root.ASVAB = root.ASVAB || {}; root.ASVAB.data = factory(root.ASVAB_DATA); }
 })(typeof self !== 'undefined' ? self : this, function (DATA) {
   'use strict';
-  DATA = DATA || { config: { subtests: [] }, templates: [], banks: {}, passages: [], lessons: [] };
+  DATA = DATA || { config: { subtests: [] }, formats: { profiles: [] }, templates: [], banks: {}, passages: [], lessons: [] };
+  DATA.formats = DATA.formats || { profiles: [], default: null };
 
   var byId = {};
   DATA.templates.forEach(function (t) { byId[t.id] = t; });
@@ -13,6 +14,18 @@
   DATA.lessons.forEach(function (l) { lessonById[l.id] = l; });
   var subtestByCode = {};
   DATA.config.subtests.forEach(function (s) { subtestByCode[s.code] = s; });
+  var profileById = {};
+  (DATA.formats.profiles || []).forEach(function (p) { profileById[p.id] = p; });
+
+  // Paper-and-pencil scores Auto and Shop as one subtest; the CAT splits them.
+  // A section can therefore name the pools it draws from, defaulting to itself.
+  function poolsFor(section) { return section.pools || [section.code]; }
+
+  function sectionName(code) {
+    if (code === 'AS') return 'Auto & Shop Information';
+    var s = subtestByCode[code];
+    return s ? s.name : code;
+  }
 
   function templatesFor(code) {
     return DATA.templates.filter(function (t) { return t.subtest === code; });
@@ -22,6 +35,12 @@
   return {
     raw: DATA,
     config: DATA.config,
+    formats: DATA.formats,
+    profiles: DATA.formats.profiles || [],
+    profile: function (id) { return profileById[id] || profileById[DATA.formats.default] || null; },
+    defaultProfileId: DATA.formats.default,
+    poolsFor: poolsFor,
+    sectionName: sectionName,
     templates: DATA.templates,
     banks: DATA.banks,
     passages: DATA.passages,

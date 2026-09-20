@@ -632,6 +632,178 @@ head('Exam construction');
     : fail('exam', 'diagnostic built ' + diag.totalItems + ', expected ' + dwant);
 }
 
+// ------------------------------------------------------------ exam formats
+head('Exam format profiles');
+{
+  const bankdata = require('./js/core/bankdata.js');
+  bankdata.ensure(null, () => { });
+  const exam = require('./js/core/exam.js');
+  const formats = data.formats;
+
+  if (!data.profile(formats.default)) fail('formats', 'default profile "' + formats.default + '" does not exist');
+  else pass('formats', 'default profile is ' + formats.default);
+
+  formats.profiles.forEach(p => {
+    const items = p.sections.reduce((a, s) => a + s.items, 0);
+    const mins = p.sections.reduce((a, s) => a + s.minutes, 0);
+    if (items !== p.total_items) fail('formats', p.id + ' sections sum to ' + items + ' items but total_items says ' + p.total_items);
+    if (mins !== p.total_minutes) fail('formats', p.id + ' sections sum to ' + mins + ' minutes but total_minutes says ' + p.total_minutes);
+    if (!p.source) fail('formats', p.id + ' has no source field');
+    if (!p.note) fail('formats', p.id + ' has no note field');
+
+    // Every pool a section draws from must exist in the bank.
+    p.sections.forEach(sec => {
+      data.poolsFor(sec).forEach(code => {
+        if (!bankdata.codes().includes(code)) fail('formats', p.id + '/' + sec.code + ' draws from unknown pool "' + code + '"');
+      });
+    });
+
+    // Part 9: the profile must build to exactly its configured shape.
+    const ex = exam.buildExam(p.id, 999);
+    if (!ex) return fail('formats', p.id + ' failed to build');
+    if (ex.sections.length !== p.sections.length) {
+      fail('formats', p.id + ' built ' + ex.sections.length + ' sections, expected ' + p.sections.length);
+    }
+    ex.sections.forEach((sec, i) => {
+      const want = p.sections[i];
+      if (sec.code !== want.code) fail('formats', p.id + ' section ' + i + ' is ' + sec.code + ', expected ' + want.code);
+      if (sec.seconds !== want.minutes * 60) fail('formats', p.id + '/' + sec.code + ' budget is ' + sec.seconds + 's, expected ' + want.minutes * 60);
+      if (sec.n !== want.items) fail('formats', p.id + '/' + sec.code + ' plans ' + sec.n + ' items, expected ' + want.items);
+      // A fixed profile fills up front; an adaptive one draws as it goes.
+      if (!p.adaptive && sec.items.length !== want.items) {
+        fail('formats', p.id + '/' + sec.code + ' prebuilt ' + sec.items.length + ' items, expected ' + want.items);
+      }
+      if (sec.poolIds.length < want.items) {
+        fail('formats', p.id + '/' + sec.code + ' pool holds ' + sec.poolIds.length + ' for ' + want.items + ' items');
+      }
+    });
+    pass('formats', p.id + ': ' + p.total_items + ' items, ' + p.total_minutes + ' min, ' + p.sections.length + ' sections');
+  });
+
+  // An adaptive section drawn to completion must fill exactly, never repeat,
+  // and must move with the student rather than ignoring them.
+  {
+    const ex = exam.buildExam('cat_135', 4242);
+    const sec = ex.sections[1];                       // Arithmetic Reasoning
+    const plan = { code: sec.code, n: sec.n, poolIds: sec.poolIds, administered: [] };
+    const used = {}, drawn = [];
+    const r = rng.make('adaptive-test');
+    let results = [];
+    for (let i = 0; i < sec.n; i++) {
+      const it = exam.drawAdaptive(plan, results, used, r);
+      if (!it) break;
+      drawn.push(it);
+      results.push({ correct: true });               // answer everything right
+    }
+    drawn.length === sec.n ? pass('formats', 'adaptive AR section draws its full ' + sec.n + ' items')
+      : fail('formats', 'adaptive AR drew ' + drawn.length + ' of ' + sec.n);
+    const ids = drawn.map(i => i.template_id);
+    new Set(ids).size === ids.length ? pass('formats', 'adaptive draw never repeats an item')
+      : fail('formats', 'adaptive draw repeated an item');
+
+    // All-correct should climb; all-wrong should fall.
+    const up = exam.abilityFrom(new Array(10).fill({ correct: true }));
+    const down = exam.abilityFrom(new Array(10).fill({ correct: false }));
+    (up === 5 && down === 1) ? pass('formats', 'ability estimate climbs to ' + up + ' on all-correct and falls to ' + down + ' on all-wrong')
+      : fail('formats', 'ability estimate did not track performance: up=' + up + ' down=' + down);
+
+    const hard = drawn.slice(-5).reduce((a, i) => a + i.difficulty, 0) / 5;
+    const easy = drawn.slice(0, 5).reduce((a, i) => a + i.difficulty, 0) / 5;
+    hard >= easy ? pass('formats', 'answering correctly moves the draw harder (' + easy.toFixed(1) + ' -> ' + hard.toFixed(1) + ')')
+      : warn('formats', 'difficulty did not rise with correct answers: ' + easy.toFixed(1) + ' -> ' + hard.toFixed(1));
+  }
+
+  // Two sittings of the same profile must differ, or the randomisation window
+  // is not doing its job.
+  {
+    const a = exam.buildExam('pp_225', 1).sections[0].items.map(i => i.template_id).join(',');
+    const b = exam.buildExam('pp_225', 2).sections[0].items.map(i => i.template_id).join(',');
+    a !== b ? pass('formats', 'two sittings of the same profile draw different questions')
+      : warn('formats', 'two sittings drew an identical first section');
+  }
+
+  // The P&P Auto & Shop section is the only place ambiguous items belong.
+  {
+    const pp = exam.buildExam('pp_225', 77);
+    const as = pp.sections.find(s => s.code === 'AS');
+    const codes = new Set(as.items.map(i => i.subtest));
+    codes.has('AI') || codes.has('SI')
+      ? pass('formats', 'P&P Auto & Shop pools ' + [...codes].sort().join('+'))
+      : fail('formats', 'P&P Auto & Shop drew from ' + [...codes].join(','));
+  }
+}
+
+// ------------------------------------------------------- scoring invariants
+head('Scoring invariants');
+{
+  const scoring = require('./js/core/scoring.js');
+  const codes = ['GS', 'AR', 'WK', 'PC', 'MK', 'EI', 'AI', 'SI', 'MC', 'AO'];
+  const mk = (correctFrac) => {
+    const t = {};
+    codes.forEach(c => { t[c] = { correct: Math.round(15 * correctFrac), total: 15 }; });
+    return t;
+  };
+
+  const perfect = scoring.score(mk(1), 600);
+  const zero = scoring.score(mk(0), 600);
+  perfect.afqt && perfect.afqt.percentile >= 93
+    ? pass('scoring', 'all-correct reaches AFQT ' + perfect.afqt.percentile + ' (category I is 93-99)')
+    : fail('scoring', 'all-correct gives AFQT ' + (perfect.afqt && perfect.afqt.percentile) + ', expected 93+');
+  zero.afqt && zero.afqt.percentile <= 9
+    ? pass('scoring', 'all-incorrect reaches AFQT ' + zero.afqt.percentile + ' (category V is 1-9)')
+    : fail('scoring', 'all-incorrect gives AFQT ' + (zero.afqt && zero.afqt.percentile) + ', expected 9 or less');
+
+  // Part 9: AFQT must not depend on the order questions were answered in.
+  const rows = [];
+  codes.forEach(c => {
+    for (let i = 0; i < 15; i++) rows.push({ subtest: c, correct: i % 3 !== 0 });
+  });
+  const shuffled = rows.slice().sort(() => Math.random() - 0.5);
+  const a = scoring.score(scoring.tally(rows), 600);
+  const b = scoring.score(scoring.tally(shuffled), 600);
+  a.afqt.percentile === b.afqt.percentile && a.afqt.raw === b.afqt.raw
+    ? pass('scoring', 'AFQT is invariant to question order (' + a.afqt.percentile + ')')
+    : fail('scoring', 'AFQT changed with order: ' + a.afqt.percentile + ' vs ' + b.afqt.percentile);
+
+  // Monotonic: more correct must never score lower.
+  let mono = true, last = -1;
+  for (let f = 0; f <= 1.0001; f += 0.1) {
+    const p = scoring.score(mk(f), 600).afqt.percentile;
+    if (p < last) mono = false;
+    last = p;
+  }
+  mono ? pass('scoring', 'AFQT rises monotonically with the number correct')
+    : fail('scoring', 'AFQT fell as the number correct rose');
+}
+
+// ------------------------------------------------- repeat across sittings
+head('Repetition across sittings');
+{
+  const bankdata = require('./js/core/bankdata.js');
+  bankdata.ensure(null, () => { });
+  const exam = require('./js/core/exam.js');
+
+  // Two consecutive P&P sittings are fixed draws, so overlap is measurable
+  // directly. The pool is far larger than one sitting, so it should be small.
+  const a = exam.buildExam('pp_225', 101);
+  const b = exam.buildExam('pp_225', 202);
+  const ids = ex => { const o = []; ex.sections.forEach(s => s.items.forEach(i => o.push(i.template_id))); return o; };
+  const A2 = new Set(ids(a)), B2 = ids(b);
+  const overlap = B2.filter(id => A2.has(id)).length;
+  const pct = 100 * overlap / B2.length;
+
+  // 225 of 1884 per sitting: some overlap is arithmetic, not a bug. What
+  // matters is that it is nowhere near a repeat of the same exam.
+  pct < 40 ? pass('repeat', 'consecutive sittings share ' + overlap + ' of ' + B2.length + ' questions (' + pct.toFixed(0) + '%)')
+    : fail('repeat', 'consecutive sittings share ' + pct.toFixed(0) + '% of their questions');
+
+  // Within one sitting, nothing may repeat at all.
+  const within = ids(a);
+  new Set(within).size === within.length
+    ? pass('repeat', 'no repeat within a 225-question sitting')
+    : fail('repeat', 'a question repeated inside one sitting');
+}
+
 // ---------------------------------------------------------------- summary
 console.log('\n' + '-'.repeat(64));
 console.log(failures === 0

@@ -21,6 +21,7 @@
     { re: /^\/lesson\/(.+)$/, view: function (id) { return A.lessons.detail(id); }, title: 'Lesson', tab: '/lessons', back: '#/lessons' },
     { re: /^\/progress$/, view: progressView, title: 'Progress', tab: '/progress' },
     { re: /^\/data$/, view: dataView, title: 'Your data', tab: '/data' },
+    { re: /^\/formats$/, view: formatsView, title: 'Exam format', tab: '/', back: '#/start' },
     { re: /^\/settings$/, view: settingsView, title: 'Settings', tab: '/', back: '#/' }
   ];
 
@@ -231,17 +232,42 @@
 
   // ---------------- start menu ----------------
 
+  function currentProfile() {
+    return A.data.profile(A.state.settings().profileId || A.data.defaultProfileId);
+  }
+
   function startMenu() {
-    var cat = A.state.settings().catRules;
     var box = el('div');
+    var prof = currentProfile();
 
     d.append(box, el('div', { class: 'card stack' }, [
       el('strong', 'Full simulation'),
       el('p', { class: 'muted small', style: 'margin:0' },
-        A.data.config.subtests.reduce(function (a, s) { return a + s.items; }, 0) + ' questions, ' +
-        A.data.config.total_minutes + ' minutes, all ten subtests timed section by section. ' +
-        'No feedback until the end.'),
-      el('button', { class: 'btn block', type: 'button', onclick: startSimulation }, 'Start full simulation')
+        prof.total_items + ' questions, ' + prof.total_minutes + ' minutes, ' +
+        prof.sections.length + ' subtests timed section by section. No feedback until the end.'),
+      el('p', { class: 'tiny muted', style: 'margin:0' }, 'Format: ' + prof.name),
+      el('button', { class: 'btn block', type: 'button', onclick: function () { startProfile(prof.id, 'simulation'); } },
+        'Start ' + prof.short),
+      el('a', { class: 'btn ghost block small', href: '#/formats' }, 'Change format')
+    ]));
+
+    d.append(box, el('div', { class: 'card stack' }, [
+      el('strong', 'AFQT only'),
+      el('p', { class: 'muted small', style: 'margin:0' },
+        'Arithmetic Reasoning, Mathematics Knowledge, Word Knowledge and Paragraph ' +
+        'Comprehension at real timing. Half the sitting, and the only score that ' +
+        'decides whether you can enlist.'),
+      el('button', { class: 'btn block', type: 'button', onclick: function () { startProfile('afqt_only', 'simulation'); } },
+        'Start AFQT-only exam')
+    ]));
+
+    d.append(box, el('div', { class: 'card stack' }, [
+      el('strong', 'Paper-and-pencil ASVAB'),
+      el('p', { class: 'muted small', style: 'margin:0' },
+        '225 questions, 149 minutes, nine subtests. You can skip, flag and return ' +
+        'within a subtest until its time is called.'),
+      el('button', { class: 'btn ghost block', type: 'button', onclick: function () { startProfile('pp_225', 'simulation'); } },
+        'Start P&P exam')
     ]));
 
     d.append(box, el('div', { class: 'card stack' }, [
@@ -251,24 +277,55 @@
       el('a', { class: 'btn ghost block', href: '#/practice' }, 'Choose a subtest')
     ]));
 
-    d.append(box, el('div', { class: 'card' }, [
-      el('label', { class: 'switch' }, [
-        el('input', {
-          type: 'checkbox', checked: cat ? true : null,
-          onchange: function (e) { A.state.setSetting('catRules', e.target.checked); }
-        }),
-        el('span', { class: 'lbl' }, [
-          el('div', { style: 'font-weight:600' }, 'CAT rules'),
-          el('div', { class: 'tiny muted' },
-            'Matches the computer-adaptive test: once you answer, you cannot go back, and flagging is off.')
-        ])
-      ])
-    ]));
+    // The CAT-rules toggle is gone: whether answers lock is a property of the
+    // format, not a preference, and a CAT you can go back in is not a CAT.
+    d.append(box, el('p', { class: 'tiny muted center', style: 'margin-top:14px' },
+      prof.lock_answers
+        ? 'Under ' + prof.short + ', moving on from a question locks it — no going back, ' +
+          'no changing an answer. That is how the real computer-adaptive test works.'
+        : 'Under ' + prof.short + ' you may skip, flag and return within a subtest until ' +
+          'its time is called.'));
 
     if (!A.state.diagnostic()) {
       d.append(box, el('button', { class: 'btn ghost block', type: 'button', onclick: startDiagnostic },
         'Take the ' + A.data.config.diagnostic.items + '-question placement test'));
     }
+    return box;
+  }
+
+  /* Format picker. The published CAT numbers disagree between sources, so the
+     app does not pretend one is authoritative -- each profile shows where its
+     numbers come from and the result records which was used. */
+  function formatsView() {
+    var box = el('div');
+    var chosen = A.state.settings().profileId || A.data.defaultProfileId;
+
+    d.append(box, el('p', { class: 'banner info' },
+      'Published CAT-ASVAB numbers disagree between sources. Pick the convention ' +
+      'you want to practise against — every result records which one it used. ' +
+      'Treat the official ASVAB program materials or a recruiter as the tiebreaker, ' +
+      'not any option here.'));
+
+    var card = el('div', { class: 'card' });
+    A.data.profiles.forEach(function (p) {
+      var input = el('input', {
+        type: 'radio', name: 'profile', value: p.id,
+        checked: p.id === chosen ? true : null,
+        onchange: function () { A.state.setSetting('profileId', p.id); d.toast('Format set to ' + p.short); render(); }
+      });
+      d.append(card, el('label', { class: 'profile-row' }, [
+        input,
+        el('span', { class: 'grow' }, [
+          el('div', { style: 'font-weight:600' }, p.name),
+          el('div', { class: 'tiny muted' },
+            p.total_items + ' questions · ' + p.total_minutes + ' minutes · ' +
+            (p.adaptive ? 'adaptive, answers lock' : 'fixed, skip and return allowed')),
+          el('div', { class: 'profile-src', text: p.source }),
+          el('div', { class: 'profile-src', text: p.note })
+        ])
+      ]));
+    });
+    d.append(box, card);
     return box;
   }
 
@@ -300,11 +357,26 @@
 
   // ---------------- launchers ----------------
 
+  function startProfile(profileId, mode) {
+    var prof = A.data.profile(profileId);
+    if (!prof) { d.toast('That format is not available.'); return; }
+    d.toast('Building ' + prof.total_items + ' questions…');
+    var need = {};
+    prof.sections.forEach(function (sec) {
+      A.data.poolsFor(sec).forEach(function (c) { need[c] = true; });
+    });
+    A.bankdata.ensure(Object.keys(need), function () {
+      var ex = A.exam.buildExam(profileId, Date.now(), { mode: mode || 'simulation' });
+      if (!ex) { d.toast('Could not build that exam.'); return; }
+      A.runner.begin(ex, {});
+    });
+  }
+
   function startSimulation() {
     var n = A.data.config.subtests.reduce(function (a, s) { return a + s.items; }, 0);
     d.toast('Building ' + n + ' questions…');
     A.bankdata.ensure(null, function () {
-      A.runner.begin(A.exam.fullSimulation(), { catRules: A.state.settings().catRules });
+      A.runner.begin(A.exam.fullSimulation(), {});
     });
   }
   function startDiagnostic() {
@@ -501,17 +573,24 @@
   function settingsView() {
     var box = el('div');
     var st = A.state.settings();
-    d.append(box, el('div', { class: 'card' }, [
-      el('label', { class: 'switch' }, [
-        el('input', {
-          type: 'checkbox', checked: st.catRules ? true : null,
-          onchange: function (e) { A.state.setSetting('catRules', e.target.checked); }
-        }),
-        el('span', { class: 'lbl' }, [
-          el('div', { style: 'font-weight:600' }, 'CAT rules by default'),
-          el('div', { class: 'tiny muted' }, 'No going back to a previous question, and no flagging.')
-        ])
-      ])
+    var prof = currentProfile();
+
+    d.append(box, el('a', { class: 'card tight', href: '#/formats',
+                            style: 'display:block;text-decoration:none;color:inherit' }, [
+      el('div', { class: 'row between' }, [
+        el('strong', 'Exam format'),
+        el('span', { class: 'muted', text: '›' })
+      ]),
+      el('div', { class: 'tiny muted', style: 'margin-top:4px' },
+        prof.name + ' — ' + prof.total_items + ' questions, ' + prof.total_minutes + ' minutes')
+    ]));
+
+    d.append(box, el('div', { class: 'card stack' }, [
+      el('strong', 'Keyboard'),
+      el('p', { class: 'small muted', style: 'margin:0' },
+        '1–4 or A–D picks an answer, Enter moves on, F flags a question where the ' +
+        'format allows it. There is no calculator anywhere in this app, because there ' +
+        'is none on the real test — use the scratch pad instead.')
     ]));
     d.append(box, el('div', { class: 'card stack' }, [
       el('strong', 'About the scores'),

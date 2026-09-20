@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "note": "Published CAT-ASVAB numbers disagree between sources, so no single set is treated as authoritative. Each profile names its source and is selectable in Settings. The official ASVAB program materials or a recruiter are the tiebreaker, not any profile here.",
+  "default": "cat_135",
+  "profiles": [
+    {
+      "id": "cat_135",
+      "name": "CAT-ASVAB (135 questions)",
+      "short": "CAT 135",
+      "adaptive": true,
+      "lock_answers": true,
+      "allow_flag": false,
+      "total_items": 135,
+      "total_minutes": 198,
+      "source": "Widely published CAT-ASVAB structure: 135 items in 10 subtests over about 198 minutes.",
+      "note": "The most commonly cited breakdown. Auto and Shop are scored as two separate subtests, as the CAT does.",
+      "sections": [
+        { "code": "GS", "items": 15, "minutes": 12 },
+        { "code": "AR", "items": 15, "minutes": 55 },
+        { "code": "WK", "items": 15, "minutes": 9 },
+        { "code": "PC", "items": 10, "minutes": 27 },
+        { "code": "MK", "items": 15, "minutes": 31 },
+        { "code": "EI", "items": 15, "minutes": 10 },
+        { "code": "AI", "items": 10, "minutes": 7 },
+        { "code": "SI", "items": 10, "minutes": 7 },
+        { "code": "MC", "items": 15, "minutes": 22 },
+        { "code": "AO", "items": 15, "minutes": 18 }
+      ]
+    },
+    {
+      "id": "cat_126_scored",
+      "name": "CAT-ASVAB (126 scored + tryout)",
+      "short": "CAT 126+",
+      "adaptive": true,
+      "lock_answers": true,
+      "allow_flag": false,
+      "total_items": 145,
+      "total_minutes": 206,
+      "tryout_items": 19,
+      "source": "Accounts describing roughly 126 scored items plus about 19 unscored tryout items, around 206 minutes.",
+      "note": "Tryout items are administered but do not count. Here they are drawn and timed like any other question and then excluded from scoring, which is what makes this profile feel longer than its score suggests.",
+      "sections": [
+        { "code": "GS", "items": 15, "minutes": 12, "scored": 15 },
+        { "code": "AR", "items": 15, "minutes": 55, "scored": 15 },
+        { "code": "WK", "items": 17, "minutes": 10, "scored": 15 },
+        { "code": "PC", "items": 12, "minutes": 28, "scored": 10 },
+        { "code": "MK", "items": 17, "minutes": 33, "scored": 15 },
+        { "code": "EI", "items": 16, "minutes": 11, "scored": 14 },
+        { "code": "AI", "items": 11, "minutes": 8, "scored": 9 },
+        { "code": "SI", "items": 11, "minutes": 8, "scored": 9 },
+        { "code": "MC", "items": 16, "minutes": 23, "scored": 14 },
+        { "code": "AO", "items": 15, "minutes": 18, "scored": 10 }
+      ]
+    },
+    {
+      "id": "cat_current_app",
+      "name": "This app's original format",
+      "short": "Legacy 145",
+      "adaptive": true,
+      "lock_answers": false,
+      "allow_flag": true,
+      "total_items": 145,
+      "total_minutes": 154,
+      "source": "The structure this app shipped with, kept so results recorded before the format work stay comparable.",
+      "note": "Not a published convention. Retained only so your earlier attempts can be compared like with like.",
+      "sections": [
+        { "code": "GS", "items": 16, "minutes": 8 },
+        { "code": "AR", "items": 16, "minutes": 39 },
+        { "code": "WK", "items": 16, "minutes": 8 },
+        { "code": "PC", "items": 11, "minutes": 22 },
+        { "code": "MK", "items": 16, "minutes": 20 },
+        { "code": "EI", "items": 16, "minutes": 8 },
+        { "code": "AI", "items": 11, "minutes": 7 },
+        { "code": "SI", "items": 11, "minutes": 6 },
+        { "code": "MC", "items": 16, "minutes": 20 },
+        { "code": "AO", "items": 16, "minutes": 16 }
+      ]
+    },
+    {
+      "id": "pp_225",
+      "name": "Paper-and-pencil ASVAB",
+      "short": "P&P 225",
+      "adaptive": false,
+      "lock_answers": false,
+      "allow_flag": true,
+      "total_items": 225,
+      "total_minutes": 149,
+      "source": "Published P&P-ASVAB structure: 225 questions in 9 subtests over 149 minutes.",
+      "note": "Auto and Shop are ONE subtest on the paper test, which is where questions that cannot be cleanly split are used. You may skip, flag and return within a subtest until its time is called, and there is no guessing penalty.",
+      "sections": [
+        { "code": "GS", "items": 25, "minutes": 11 },
+        { "code": "AR", "items": 30, "minutes": 36 },
+        { "code": "WK", "items": 35, "minutes": 11 },
+        { "code": "PC", "items": 15, "minutes": 13 },
+        { "code": "MK", "items": 25, "minutes": 24 },
+        { "code": "EI", "items": 20, "minutes": 9 },
+        { "code": "AS", "items": 25, "minutes": 11, "pools": ["AI", "SI", "AS"] },
+        { "code": "MC", "items": 25, "minutes": 19 },
+        { "code": "AO", "items": 25, "minutes": 15 }
+      ]
+    },
+    {
+      "id": "afqt_only",
+      "name": "AFQT only",
+      "short": "AFQT",
+      "adaptive": true,
+      "lock_answers": true,
+      "allow_flag": false,
+      "total_items": 55,
+      "total_minutes": 122,
+      "source": "The four AFQT subtests at their cat_135 timings.",
+      "note": "AFQT = 2VE + AR + MK is the score that gates enlistment. Half the sitting, all of the qualifying score. No composite scores are produced from this format.",
+      "sections": [
+        { "code": "AR", "items": 15, "minutes": 55 },
+        { "code": "MK", "items": 15, "minutes": 31 },
+        { "code": "WK", "items": 15, "minutes": 9 },
+        { "code": "PC", "items": 10, "minutes": 27 }
+      ]
+    }
+  ]
+}

@@ -21,6 +21,7 @@ function readDir(dir) {
 
 function build() {
   const config = JSON.parse(fs.readFileSync(path.join(ROOT, 'config/test-config.json'), 'utf8'));
+  const formats = JSON.parse(fs.readFileSync(path.join(ROOT, 'config/exam_formats.json'), 'utf8'));
 
   const templates = [];
   for (const { file, json } of readDir('templates')) {
@@ -48,7 +49,7 @@ function build() {
     list.forEach(l => lessons.push(Object.assign({ _file: file }, l)));
   }
 
-  return { config, templates, banks, passages, lessons };
+  return { config, formats, templates, banks, passages, lessons };
 }
 
 function serialize(data) {
