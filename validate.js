@@ -204,7 +204,12 @@ head('Template render sweep (' + SEEDS + ' seeds each)');
         if (!engine.isClean(v, t.format || 'int')) fail('render', t.id + ' seed ' + seed + ' unclean answer ' + v + ' for format ' + (t.format || 'int'));
       }
       // no leftover interpolation, no banned phrasing, steps use real numbers
-      const prose = [item.stem].concat(item.solution_steps, [item.recognition_cue]).join(' ');
+      // Option error strings are shown verbatim in the review, so they are
+      // checked for leftover placeholders alongside the rest of the prose.
+      const prose = [item.stem]
+        .concat(item.solution_steps, [item.recognition_cue],
+                item.options.map(o => o.error || ''))
+        .join(' ');
       // A leftover placeholder is a lone identifier in braces or an unexpanded
       // "{=". Prose that legitimately contains braces, e.g. "{d, r, t}" written
       // as "{{d, r, t}}" in the source, is not a placeholder.
@@ -416,6 +421,63 @@ head('Assembling Objects generator');
   const worst = Math.max.apply(null, Object.values(letters)) / tot;
   worst <= 0.30 ? pass('ao', '200 items, both kinds, answer spread ' + Object.entries(letters).map(([k, v]) => k + ' ' + (100 * v / tot).toFixed(0) + '%').join(' '))
     : fail('ao', 'answer position skewed: ' + JSON.stringify(letters));
+}
+
+// ------------------------------------------------------------- app shell
+head('App shell');
+{
+  // Every script index.html loads must exist, and the service worker must
+  // precache exactly the files that are actually in the repository.
+  const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  const scripts = [...html.matchAll(/<script src="([^"]+)"/g)].map(m => m[1]);
+  scripts.forEach(src => {
+    if (!fs.existsSync(path.join(ROOT, src))) fail('shell', 'index.html loads missing script ' + src);
+  });
+  const links = [...html.matchAll(/(?:href|src)="((?!https?:|#)[^"]+)"/g)].map(m => m[1]);
+  links.forEach(href => {
+    if (!fs.existsSync(path.join(ROOT, href))) fail('shell', 'index.html references missing file ' + href);
+  });
+
+  const sw = fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8');
+  const pre = [...sw.matchAll(/'\.\/([^']*)'/g)].map(m => m[1]).filter(x => x !== '');
+  pre.forEach(f => {
+    if (!fs.existsSync(path.join(ROOT, f))) fail('shell', 'sw.js precaches missing file ' + f);
+  });
+  // The reverse direction matters more: a script added to index.html but not to
+  // the precache list silently breaks offline use.
+  scripts.concat(['styles.css', 'manifest.json']).forEach(f => {
+    if (!pre.includes(f)) fail('shell', f + ' is loaded by the app but not precached by sw.js — it would break offline');
+  });
+
+  const man = JSON.parse(fs.readFileSync(path.join(ROOT, 'manifest.json'), 'utf8'));
+  ['name', 'short_name', 'start_url', 'display', 'icons'].forEach(k => {
+    if (!man[k]) fail('shell', 'manifest.json missing "' + k + '"');
+  });
+  man.icons.forEach(ic => {
+    if (!fs.existsSync(path.join(ROOT, ic.src))) fail('shell', 'manifest icon missing: ' + ic.src);
+  });
+  if (!man.icons.some(i => (i.purpose || '').includes('maskable'))) {
+    fail('shell', 'manifest.json has no maskable icon — installed icons will be letterboxed');
+  }
+  if (!failures) pass('shell', scripts.length + ' scripts, ' + pre.length + ' precached files and ' + man.icons.length + ' icons all resolve');
+}
+
+// -------------------------------------------------- lesson practice supply
+head('Lesson practice');
+{
+  // Every lesson offers three practice items drawn live from its own subtopic,
+  // so each lesson's topic must actually have content behind it.
+  let thin = 0;
+  data.lessons.forEach(l => {
+    let supply = data.templatesFor(l.subtest).filter(t => t.topic === l.topic).length;
+    supply += (((data.banks[l.subtest] || {}).entries) || []).filter(e => e.topic === l.topic).length;
+    if (l.subtest === 'PC') supply += data.passages.reduce((a, p) => a + p.questions.filter(q => q.type === l.topic).length, 0);
+    if (l.subtest === 'AO') supply = Infinity;
+    if (supply === 0) fail('lessons', 'lesson ' + l.id + ' has no items for its topic, so its practice block would be empty');
+    else if (supply < 3) thin++;
+  });
+  if (thin) warn('lessons', thin + ' lesson(s) draw practice from fewer than 3 distinct items (templates still reseed, so questions differ)');
+  pass('lessons', 'every lesson has practice content for its subtopic');
 }
 
 // ------------------------------------------------------ depth for a full test

@@ -1,0 +1,25 @@
+{
+  "name": "ASVAB Practice Test",
+  "short_name": "ASVAB",
+  "description": "Full-length ASVAB practice test with worked solutions, topic analysis and targeted drills. Works offline.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f1720",
+  "theme_color": "#0f1720",
+  "categories": ["education", "productivity"],
+  "lang": "en",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-192-maskable.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Full simulation", "short_name": "Simulation", "url": "./index.html#/start" },
+    { "name": "Lessons", "short_name": "Lessons", "url": "./index.html#/lessons" },
+    { "name": "Progress", "short_name": "Progress", "url": "./index.html#/progress" }
+  ]
+}

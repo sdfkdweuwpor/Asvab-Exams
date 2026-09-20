@@ -244,7 +244,12 @@
         var di = 0;
         for (var s = 0; s < 4; s++) {
           if (s === slot) continue;
-          options[s] = { text: displays[di + 1], isCorrect: false, error: pool[di].error || null };
+          options[s] = {
+            text: displays[di + 1], isCorrect: false,
+            // Error descriptions are interpolated too: the review says "doubled
+            // 4 instead of squaring it", not "doubled {k}".
+            error: pool[di].error ? interpolate(pool[di].error, scope) : null
+          };
           di++;
         }
         options.forEach(function (o, i) { o.key = LETTERS[i]; });

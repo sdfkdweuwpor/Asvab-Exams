@@ -97,16 +97,29 @@
     var j1 = (i1 + 1 + r.int(0, a1.length - 3)) % a1.length;
     var j2 = (i2 + 1 + r.int(0, a2.length - 3)) % a2.length;
 
+    /* Label placement matters more than it looks: the whole problem is reading
+       WHERE the dot sits, so the letter is pushed outward along the line from
+       the shape's centre through the dot. That keeps it clear of the outline
+       whatever shape and vertex the draw picked. */
+    function labelFor(letter, shape, pt, origin) {
+      var c = centroid(shape);
+      var dx = pt.x - c.x, dy = pt.y - c.y;
+      var len = Math.hypot(dx, dy) || 1;
+      var lx = origin.x + pt.x + (dx / len) * 15;
+      var ly = origin.y + pt.y + (dy / len) * 15 + 4.5;
+      return '<text x="' + lx.toFixed(1) + '" y="' + ly.toFixed(1) + '" font-size="14" font-weight="700" ' +
+        'text-anchor="middle" stroke="none" fill="currentColor">' + letter + '</text>';
+    }
+
     function stemPanel() {
-      var L = { x: 78, y: 70 }, R = { x: 232, y: 70 };
+      var L = { x: 86, y: 78 }, R = { x: 250, y: 78 };
       var p1 = transform(s1, 0, L), p2 = transform(s2, 0, R);
       var m1 = add(a1[i1], L), m2 = add(a2[i2], R);
-      return wrap(310, 140,
+      return wrap(336, 160,
         '<path d="' + path(p1) + '"/><path d="' + path(p2) + '"/>' +
-        '<circle cx="' + m1.x.toFixed(1) + '" cy="' + m1.y.toFixed(1) + '" r="3.5" fill="currentColor"/>' +
-        '<circle cx="' + m2.x.toFixed(1) + '" cy="' + m2.y.toFixed(1) + '" r="3.5" fill="currentColor"/>' +
-        '<text x="' + m1.x.toFixed(1) + '" y="' + (m1.y - 9).toFixed(1) + '" font-size="13" text-anchor="middle" stroke="none" fill="currentColor">A</text>' +
-        '<text x="' + m2.x.toFixed(1) + '" y="' + (m2.y - 9).toFixed(1) + '" font-size="13" text-anchor="middle" stroke="none" fill="currentColor">B</text>',
+        '<circle cx="' + m1.x.toFixed(1) + '" cy="' + m1.y.toFixed(1) + '" r="4" fill="currentColor"/>' +
+        '<circle cx="' + m2.x.toFixed(1) + '" cy="' + m2.y.toFixed(1) + '" r="4" fill="currentColor"/>' +
+        labelFor('A', s1, a1[i1], L) + labelFor('B', s2, a2[i2], R),
         'Two shapes, each with a marked connection point');
     }
 

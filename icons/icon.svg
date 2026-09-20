@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ASVAB Practice">
+  <rect width="64" height="64" rx="14" fill="#16303f"/>
+  <rect x="14" y="11" width="36" height="42" rx="4" fill="#f4f7f8"/>
+  <g stroke="#16303f" stroke-width="3" stroke-linecap="round">
+    <path d="M21 23h12M21 31h18M21 39h14"/>
+  </g>
+  <circle cx="45" cy="45" r="11" fill="#c9a227" stroke="#16303f" stroke-width="3"/>
+  <path d="M40 45l3.5 3.5L50 41" stroke="#16303f" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

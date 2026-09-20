@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Full-length ASVAB practice test with worked solutions, topic analysis and targeted drills. Works offline.">
+<meta name="theme-color" content="#0f1720">
+<title>ASVAB Practice</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header id="topbar">
+  <button id="backBtn" class="icon-btn" hidden aria-label="Back">&#8592;</button>
+  <h1 id="topTitle">ASVAB Practice</h1>
+  <div id="timerWrap" hidden>
+    <span id="timer" role="timer" aria-live="off">--:--</span>
+    <span id="progressCount" class="muted"></span>
+  </div>
+  <button id="scratchBtn" class="icon-btn" hidden aria-label="Scratch pad">&#9998;</button>
+</header>
+
+<main id="main" tabindex="-1"></main>
+
+<!-- Scratch pad. No calculator anywhere in this app, by design. -->
+<div id="scratchPanel" class="sheet" hidden aria-label="Scratch pad">
+  <div class="sheet-head">
+    <strong>Scratch pad</strong>
+    <span class="muted small">Work it out here &mdash; there is no calculator on the real test.</span>
+    <button id="scratchClose" class="btn ghost small">Close</button>
+  </div>
+  <textarea id="scratchText" spellcheck="false" aria-label="Scratch pad notes"></textarea>
+  <div class="sheet-foot">
+    <button id="scratchClear" class="btn ghost small">Clear</button>
+  </div>
+</div>
+
+<nav id="tabbar" aria-label="Main">
+  <a href="#/" data-tab="/"><span class="tab-ico">&#9632;</span>Home</a>
+  <a href="#/lessons" data-tab="/lessons"><span class="tab-ico">&#9634;</span>Lessons</a>
+  <a href="#/progress" data-tab="/progress"><span class="tab-ico">&#9650;</span>Progress</a>
+  <a href="#/data" data-tab="/data"><span class="tab-ico">&#9679;</span>Data</a>
+</nav>
+
+<div id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="data/bundle.js"></script>
+<script src="js/core/rng.js"></script>
+<script src="js/core/expr.js"></script>
+<script src="js/core/figures.js"></script>
+<script src="js/core/engine.js"></script>
+<script src="js/core/data.js"></script>
+<script src="js/core/bank.js"></script>
+<script src="js/core/passage.js"></script>
+<script src="js/core/ao.js"></script>
+<script src="js/core/scoring.js"></script>
+<script src="js/core/state.js"></script>
+<script src="js/core/exam.js"></script>
+<script src="js/core/analytics.js"></script>
+<script src="js/app/dom.js"></script>
+<script src="js/app/runner.js"></script>
+<script src="js/app/report.js"></script>
+<script src="js/app/lessons.js"></script>
+<script src="js/app/app.js"></script>
+</body>
+</html>
