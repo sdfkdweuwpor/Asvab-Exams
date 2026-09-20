@@ -13,13 +13,14 @@
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) {
     module.exports = factory(require('./data.js'), require('./rng.js'),
-      require('./bankdata.js'), require('./items.js'), require('./state.js'));
+      require('./bankdata.js'), require('./items.js'), require('./state.js'),
+      require('./variants.js'));
   } else {
     root.ASVAB = root.ASVAB || {};
     root.ASVAB.exam = factory(root.ASVAB.data, root.ASVAB.rng,
-      root.ASVAB.bankdata, root.ASVAB.items, root.ASVAB.state);
+      root.ASVAB.bankdata, root.ASVAB.items, root.ASVAB.state, root.ASVAB.variants);
   }
-})(typeof self !== 'undefined' ? self : this, function (data, rng, bankdata, items, state) {
+})(typeof self !== 'undefined' ? self : this, function (data, rng, bankdata, items, state, variants) {
   'use strict';
 
   // Items the keyword split could not call Auto or Shop. The CAT scores those
@@ -109,7 +110,23 @@
     if (!pool.length) return [];
 
     var ranked = rankCandidates(pool, filters.difficulty || difficultyTarget(code), r);
-    var chosen = spreadByTopic(ranked, n);
+
+    /* Spreading across topics is right for a whole subtest and wrong for a
+       targeted draw: asked for ten rate-and-distance questions, spreading
+       hands back two, because an item can carry the requested topic as a
+       secondary tag and be ranked under its primary one. So a filtered draw
+       puts primary matches first and only then falls back to secondary ones. */
+    var chosen;
+    if (filters.topics && filters.topics.length) {
+      var primary = [], secondary = [];
+      ranked.forEach(function (rec) {
+        if (filters.topics.indexOf(topicOf(rec)) >= 0) primary.push(rec);
+        else secondary.push(rec);
+      });
+      chosen = primary.concat(secondary);
+    } else {
+      chosen = spreadByTopic(ranked, n);
+    }
 
     var out = [];
     for (var i = 0; i < chosen.length && out.length < n; i++) {
@@ -289,6 +306,73 @@
     };
   }
 
+  /* A full-length exam weighted toward the topics the student is weakest in:
+     60 per cent drawn from those topics, 40 per cent from the rest of the
+     subtest, so it is still a real sitting rather than a long drill. */
+  function weakSpotExam(profileId, weakSpots, seed) {
+    var profile = data.profile(profileId);
+    if (!profile) return null;
+    var r = rng.make('weak:' + profile.id + ':' + (seed || Date.now()));
+    var used = {};
+    var wanted = {};
+    (weakSpots || []).forEach(function (w) {
+      (wanted[w.subtest] = wanted[w.subtest] || []).push(w.topic);
+    });
+
+    var sections = profile.sections.map(function (sec) {
+      var plan = planSection(profile, sec, used, r);
+      plan.adaptive = false;                 // a targeted draw is decided up front
+      var topics = [];
+      data.poolsFor(sec).forEach(function (c) {
+        (wanted[c] || []).forEach(function (t) { topics.push(t); });
+      });
+      if (!topics.length) {
+        plan.items = drawFixed(plan, used, r);
+      } else {
+        var focusN = Math.round(sec.items * 0.6);
+        var focus = buildSection(sec.code, focusN, r, { topics: topics, allowAmbiguous: true }, used);
+        var restPlan = { code: sec.code, n: sec.items - focus.length, poolIds: plan.poolIds };
+        var rest = drawFixed(restPlan, used, r);
+        plan.items = focus.concat(rest).slice(0, sec.items);
+      }
+      plan.administered = plan.items.map(function (i) { return i.template_id; });
+      return plan;
+    });
+
+    return {
+      mode: 'weakspot', profileId: profile.id, profileName: profile.name + ' (weak spots)',
+      adaptive: false, lockAnswers: !!profile.lock_answers, allowFlag: !!profile.allow_flag,
+      created: new Date().toISOString(), sections: sections,
+      totalItems: sections.reduce(function (a, s) { return a + s.items.length; }, 0),
+      totalSeconds: sections.reduce(function (a, s) { return a + s.seconds; }, 0)
+    };
+  }
+
+  /* One subtest at its exact official timing, for practising pace on the
+     section that is actually costing points. */
+  function subtestSimulation(profileId, code, seed) {
+    var profile = data.profile(profileId);
+    if (!profile) return null;
+    var sec = null;
+    profile.sections.forEach(function (x) { if (x.code === code) sec = x; });
+    if (!sec) return null;
+
+    var r = rng.make('sub:' + profile.id + ':' + code + ':' + (seed || Date.now()));
+    var used = {};
+    var plan = planSection(profile, sec, used, r);
+    plan.items = plan.adaptive ? [] : drawFixed(plan, used, r);
+    if (!plan.adaptive) plan.administered = plan.items.map(function (i) { return i.template_id; });
+
+    return {
+      mode: 'subtest', subtest: code,
+      profileId: profile.id, profileName: profile.name + ' \u2014 ' + plan.name,
+      adaptive: !!profile.adaptive, lockAnswers: !!profile.lock_answers,
+      allowFlag: !!profile.allow_flag,
+      created: new Date().toISOString(), sections: [plan],
+      totalItems: sec.items, totalSeconds: sec.minutes * 60
+    };
+  }
+
   // ---------------- modes ----------------
 
   function orderedSubtests() {
@@ -358,6 +442,22 @@
       if (!more.length) break;
       list = list.concat(more);
     }
+    /* Opt-in remediation: for an AR or MK item the student has already missed,
+       a number-swapped variant forces the method to be redone rather than the
+       answer recalled. Drills only -- exams are 100 per cent real bank. */
+    if (variants && state && state.settings && state.settings().drillVariants) {
+      list = list.map(function (it) {
+        if (it.subtest !== 'AR' && it.subtest !== 'MK') return it;
+        var rec = bankdata.byId(it.template_id);
+        if (!rec || !variants.canVary(rec)) return it;
+        var missed = state.seenList().some(function (row) {
+          return row.template_id === it.template_id && !row.correct;
+        });
+        if (!missed) return it;
+        return variants.make(rec, r.int(1, 999999)) || it;
+      });
+    }
+
     return {
       mode: 'drill', created: new Date().toISOString(),
       focus: weakSpots.slice(0, 4),
@@ -430,7 +530,8 @@
   }
 
   return {
-    buildExam: buildExam, drawAdaptive: drawAdaptive, abilityFrom: abilityFrom,
+    buildExam: buildExam, weakSpotExam: weakSpotExam, subtestSimulation: subtestSimulation,
+    drawAdaptive: drawAdaptive, abilityFrom: abilityFrom,
     updateAbility: updateAbility,
     fullSimulation: fullSimulation, diagnostic: diagnostic, practice: practice,
     drill: drill, review: review, renderOne: renderOne, rehydrate: rehydrate,

@@ -26,6 +26,7 @@ var PRECACHE = [
   './js/core/data.js',
   './js/core/bankdata.js',
   './js/core/items.js',
+  './js/core/variants.js',
   './js/core/bank.js',
   './js/core/passage.js',
   './js/core/ao.js',

@@ -295,6 +295,17 @@
         'Start P&P exam')
     ]));
 
+    if (A.state.seenList().length >= 20) {
+      d.append(box, el('div', { class: 'card stack' }, [
+        el('strong', 'Weak-spot exam'),
+        el('p', { class: 'muted small', style: 'margin:0' },
+          'A full-length sitting weighted about 60/40 toward the topics you are ' +
+          'currently weakest in. Still a real exam, not a long drill.'),
+        el('button', { class: 'btn ghost block', type: 'button', onclick: startWeakSpotExam },
+          'Start weak-spot exam')
+      ]));
+    }
+
     d.append(box, el('div', { class: 'card stack' }, [
       el('strong', 'Practice one subtest'),
       el('p', { class: 'muted small', style: 'margin:0' },
@@ -354,16 +365,37 @@
     return box;
   }
 
+  var practiceTimed = false;
+
   function practiceMenu() {
     var box = el('div');
-    d.append(box, el('p', { class: 'muted small' }, 'Untimed, with instant feedback after each question.'));
+    var prof = currentProfile();
+
+    d.append(box, el('div', { class: 'card' }, [
+      el('label', { class: 'switch' }, [
+        el('input', {
+          type: 'checkbox', checked: practiceTimed ? true : null,
+          onchange: function (e) {
+            practiceTimed = e.target.checked;
+            var main = d.$('#main'); d.clear(main); d.append(main, practiceMenu());
+          }
+        }),
+        el('span', { class: 'lbl' }, [
+          el('div', { style: 'font-weight:600' }, 'Timed, at the real section length'),
+          el('div', { class: 'tiny muted' },
+            'Runs the subtest at its ' + prof.short + ' timing, with no feedback until the end. ' +
+            'Off, it is untimed with the answer after each question.')
+        ])
+      ])
+    ]));
     var wrap = el('div', { class: 'subtest-list' });
     A.data.subtests.forEach(function (s) {
       d.append(wrap, el('button', {
         class: 'subtest-row', type: 'button',
         onclick: function () {
+          if (practiceTimed) { startSubtestSim(s.code); return; }
           A.bankdata.ensure([s.code], function () {
-            A.runner.begin(A.exam.practice(s.code, s.items), { catRules: false });
+            A.runner.begin(A.exam.practice(s.code, s.items), {});
           });
         }
       }, [
@@ -393,6 +425,39 @@
     A.bankdata.ensure(Object.keys(need), function () {
       var ex = A.exam.buildExam(profileId, Date.now(), { mode: mode || 'simulation' });
       if (!ex) { d.toast('Could not build that exam.'); return; }
+      A.runner.begin(ex, {});
+    });
+  }
+
+  function weakSpots(limit) {
+    var rows = A.state.seenList();
+    if (rows.length < 20) return [];
+    return A.workon.workOn(rows, {
+      limit: limit || 6,
+      profile: A.data.profile(A.state.settings().profileId || A.data.defaultProfileId)
+    }).map(function (c) { return { subtest: c.subtest, topic: c.topic }; });
+  }
+
+  function startWeakSpotExam() {
+    var spots = weakSpots(6);
+    if (!spots.length) {
+      d.toast('Answer more questions first — there are no clear weak spots yet.');
+      return;
+    }
+    var pid = A.state.settings().profileId || A.data.defaultProfileId;
+    d.toast('Building a weighted exam…');
+    A.bankdata.ensure(null, function () {
+      var ex = A.exam.weakSpotExam(pid, spots, Date.now());
+      if (!ex || !ex.totalItems) { d.toast('Could not build that exam.'); return; }
+      A.runner.begin(ex, {});
+    });
+  }
+
+  function startSubtestSim(code) {
+    var pid = A.state.settings().profileId || A.data.defaultProfileId;
+    A.bankdata.ensure([code, 'AI', 'SI', 'AS'], function () {
+      var ex = A.exam.subtestSimulation(pid, code, Date.now());
+      if (!ex) { d.toast('That subtest is not in the current format.'); return; }
       A.runner.begin(ex, {});
     });
   }
@@ -648,6 +713,23 @@
         'is not cosmetic.')
     ]));
 
+    d.append(box, el('div', { class: 'card' }, [
+      el('label', { class: 'switch' }, [
+        el('input', {
+          type: 'checkbox', checked: st.drillVariants ? true : null,
+          onchange: function (e) { A.state.setSetting('drillVariants', e.target.checked); }
+        }),
+        el('span', { class: 'lbl' }, [
+          el('div', { style: 'font-weight:600' }, 'Number-swapped variants in drills'),
+          el('div', { class: 'tiny muted' },
+            'When you drill a maths question you have already missed, show it with ' +
+            'different numbers so you have to redo the method instead of recalling ' +
+            'the answer. Drills only — exams are always 100% real questions. ' +
+            'Only applies where the numbers can be swapped with certainty.')
+        ])
+      ])
+    ]));
+
     d.append(box, el('div', { class: 'card stack' }, [
       el('strong', 'Keyboard'),
       el('p', { class: 'small muted', style: 'margin:0' },
@@ -734,7 +816,8 @@
   A.app = {
     startDrillFrom: startDrillFrom, startReview: startReview,
     startSimulation: startSimulation, startProfile: startProfile,
-    drillTopic: drillTopic
+    drillTopic: drillTopic, startWeakSpotExam: startWeakSpotExam,
+    startSubtestSim: startSubtestSim
   };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

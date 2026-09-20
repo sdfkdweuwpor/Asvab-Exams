@@ -21210,9 +21210,11 @@
     "fractions_decimals"
    ],
    "difficulty": 2,
-   "flags": [],
+   "flags": [
+    "lost_exponent_notation"
+   ],
    "page": 271,
-   "excluded": false
+   "excluded": true
   },
   {
    "id": "MK-0004",
@@ -21356,9 +21358,11 @@
     "fractions_decimals"
    ],
    "difficulty": 2,
-   "flags": [],
+   "flags": [
+    "lost_exponent_notation"
+   ],
    "page": 273,
-   "excluded": false
+   "excluded": true
   },
   {
    "id": "MK-0010",
@@ -21554,10 +21558,11 @@
    ],
    "difficulty": 3,
    "flags": [
-    "tag_fallback"
+    "tag_fallback",
+    "lost_radical_notation"
    ],
    "page": 276,
-   "excluded": false
+   "excluded": true
   },
   {
    "id": "MK-0018",
@@ -23190,9 +23195,11 @@
     "fractions_decimals"
    ],
    "difficulty": 3,
-   "flags": [],
+   "flags": [
+    "lost_exponent_notation"
+   ],
    "page": 304,
-   "excluded": false
+   "excluded": true
   },
   {
    "id": "MK-0084",
@@ -23391,9 +23398,11 @@
     "fractions_decimals"
    ],
    "difficulty": 3,
-   "flags": [],
+   "flags": [
+    "lost_radical_notation"
+   ],
    "page": 306,
-   "excluded": false
+   "excluded": true
   },
   {
    "id": "MK-0092",
@@ -25489,9 +25498,11 @@
     "fractions_decimals"
    ],
    "difficulty": 2,
-   "flags": [],
+   "flags": [
+    "lost_exponent_notation"
+   ],
    "page": 339,
-   "excluded": false
+   "excluded": true
   },
   {
    "id": "MK-0176",

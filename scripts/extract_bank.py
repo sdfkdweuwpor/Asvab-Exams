@@ -256,6 +256,73 @@ def split_record(rec):
     }
 
 
+def _as_number(text):
+    if text is None:
+        return None
+    t = str(text).replace('\u2212', '-').replace(',', '').replace('$', '').strip()
+    m = re.fullmatch(r'(-?\d+)\s*/\s*(\d+)', t)
+    if m:
+        return int(m.group(1)) / int(m.group(2))
+    m = re.match(r'^-?\d*\.?\d+', t)
+    return float(m.group(0)) if m else None
+
+
+def lost_notation(rec):
+    """The source renders no superscript or radical glyph anywhere in 1,893
+    questions: it drops them or substitutes a base character. So "10 cubed"
+    prints as "103" and "the square root of 49" as "49".
+
+    A stem is only called corrupted when it does not work as written AND does
+    work once the notation is restored -- "2.5 x 33 = 67.5" is wrong as printed
+    (82.5) but exact as 2.5 x 3 cubed. That is proof, not a guess, and these
+    items are unusable: a student reading them computes the printed sum and is
+    marked wrong for being right."""
+    if rec['subtest'] not in ('AR', 'MK'):
+        return None
+    stem = ' '.join((rec['stem'] or '').split())
+    keyed = _as_number((rec['options'] or {}).get(rec['answer']))
+    if keyed is None:
+        return None
+
+    # "xx" is x-squared and x-cubed alike, with the exponent gone for good.
+    if re.search(r'\b([a-z])\1\b', stem):
+        return 'lost_exponent_notation'
+
+    m = re.match(r'^([\d.]+)\s*([×x*÷/])\s*([\d.]+)\s*=', stem)
+    if not m:
+        return None
+    a, op, b = m.group(1), m.group(2), m.group(3)
+    try:
+        av, bv = float(a), float(b)
+    except ValueError:
+        return None
+
+    def close(v):
+        return v is not None and abs(v - keyed) <= 0.01
+
+    literal = av * bv if op in '×x*' else (av / bv if bv else None)
+    if close(literal):
+        return None                      # reads correctly as printed
+
+    for split in range(1, len(b)):
+        base, exp = b[:split], b[split:]
+        if not base.isdigit() or not exp.isdigit() or len(exp) > 1:
+            continue
+        try:
+            v = float(base) ** int(exp)
+        except Exception:
+            continue
+        if close(av * v if op in '×x*' else (av / v if v else None)):
+            return 'lost_exponent_notation'
+
+    try:
+        if bv > 0 and close((av ** 0.5) * (bv ** 0.5) if op in '×x*' else (av ** 0.5) / (bv ** 0.5)):
+            return 'lost_radical_notation'
+    except Exception:
+        pass
+    return None
+
+
 def classify_auto_shop(text):
     t = text.lower()
     a = sum(1 for w in AUTO_TERMS if w in t)
@@ -672,10 +739,11 @@ def build(doc):
             bad.append('no_options')
         if not rec['answer']:
             bad.append('no_answer_key')
-        # Only meaningful in a maths stem: "xx" there is a lost exponent, but
-        # in PC prose a doubled letter is just a word.
-        if rec['subtest'] in ('AR', 'MK') and re.search(r'\b([a-z])\1\b', rec['stem'] or ''):
-            bad.append('lost_exponent_notation')
+        # The source stripped every superscript and radical; a stem that only
+        # resolves once they are restored cannot be shown as printed.
+        lost = lost_notation(rec)
+        if lost:
+            bad.append(lost)
         if bad:
             rec['excluded'] = True
             rec['flags'].extend(bad)

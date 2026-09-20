@@ -1,8 +1,8 @@
 {
  "version": 1,
- "total": 1884,
+ "total": 1878,
  "extracted": 1893,
- "excluded": 9,
+ "excluded": 15,
  "subtests": {
   "AI": {
    "file": "data/questions.AI.js",
@@ -55,9 +55,9 @@
   },
   "MK": {
    "file": "data/questions.MK.js",
-   "count": 224,
-   "bytes": 120601,
-   "with_explanation": 174,
+   "count": 218,
+   "bytes": 118168,
+   "with_explanation": 169,
    "with_figure": 33
   },
   "PC": {
