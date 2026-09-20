@@ -5,3 +5,5 @@ node_modules/
 # The source PDF stays tracked at source/asvab-source.pdf while the migration
 # runs, so extraction is reproducible. It is removed at M6, once the bank is
 # final -- the app never loads it.
+__pycache__/
+*.pyc

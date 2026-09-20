@@ -9,10 +9,13 @@
      "title": "How a Four-Stroke Engine Works",
      "questions": 29,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.31,
+     "difficulty_mean": 2.69,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -21,10 +24,13 @@
      "title": "The Ignition System",
      "questions": 18,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.28,
+     "difficulty_mean": 2.67,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -33,10 +39,13 @@
      "title": "The Fuel System",
      "questions": 12,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.33,
+     "difficulty_mean": 2.67,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -45,11 +54,13 @@
      "title": "The Cooling System",
      "questions": 11,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.55,
+     "difficulty_mean": 2.64,
      "difficulty_spread": [
       1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -58,10 +69,12 @@
      "title": "Brakes",
      "questions": 16,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.25,
+     "difficulty_mean": 2.38,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4
      ],
      "subtopics": []
     },
@@ -70,10 +83,13 @@
      "title": "Transmission and Driveline",
      "questions": 18,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.22,
+     "difficulty_mean": 2.89,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -82,11 +98,13 @@
      "title": "The Charging and Starting System",
      "questions": 19,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.32,
+     "difficulty_mean": 2.47,
      "difficulty_spread": [
       1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -95,11 +113,13 @@
      "title": "Reading Symptoms",
      "questions": 30,
      "tag_fallbacks": 23,
-     "difficulty_mean": 1.4,
+     "difficulty_mean": 2.77,
      "difficulty_spread": [
       1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     }
@@ -119,9 +139,10 @@
      "title": "Connection Problems",
      "questions": 20,
      "tag_fallbacks": 0,
-     "difficulty_mean": 2.0,
+     "difficulty_mean": 2.2,
      "difficulty_spread": [
-      2
+      2,
+      3
      ],
      "subtopics": []
     },
@@ -130,10 +151,13 @@
      "title": "Shape Assembly Problems",
      "questions": 148,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.66,
+     "difficulty_mean": 2.76,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     }
@@ -147,11 +171,13 @@
      "title": "Rate, Time and Distance",
      "questions": 54,
      "tag_fallbacks": 0,
-     "difficulty_mean": 2.15,
+     "difficulty_mean": 3.0,
      "difficulty_spread": [
       1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -160,11 +186,13 @@
      "title": "Percentages and Discounts",
      "questions": 73,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.99,
+     "difficulty_mean": 2.7,
      "difficulty_spread": [
       1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -173,11 +201,13 @@
      "title": "Ratios and Proportions",
      "questions": 31,
      "tag_fallbacks": 0,
-     "difficulty_mean": 2.13,
+     "difficulty_mean": 2.94,
      "difficulty_spread": [
       1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -186,10 +216,11 @@
      "title": "Simple Interest",
      "questions": 7,
      "tag_fallbacks": 0,
-     "difficulty_mean": 2.14,
+     "difficulty_mean": 3.0,
      "difficulty_spread": [
       2,
-      3
+      3,
+      4
      ],
      "subtopics": []
     },
@@ -198,11 +229,13 @@
      "title": "Work and Rate Problems",
      "questions": 28,
      "tag_fallbacks": 0,
-     "difficulty_mean": 2.14,
+     "difficulty_mean": 3.43,
      "difficulty_spread": [
       1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -211,10 +244,13 @@
      "title": "Averages",
      "questions": 18,
      "tag_fallbacks": 0,
-     "difficulty_mean": 2.11,
+     "difficulty_mean": 2.89,
      "difficulty_spread": [
+      1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -223,11 +259,13 @@
      "title": "Unit Conversion",
      "questions": 42,
      "tag_fallbacks": 0,
-     "difficulty_mean": 2.05,
+     "difficulty_mean": 2.71,
      "difficulty_spread": [
       1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -238,8 +276,9 @@
      "tag_fallbacks": 0,
      "difficulty_mean": 2.33,
      "difficulty_spread": [
+      1,
       2,
-      3
+      4
      ],
      "subtopics": []
     },
@@ -248,12 +287,13 @@
      "title": "Cost, Revenue and Profit",
      "questions": 84,
      "tag_fallbacks": 64,
-     "difficulty_mean": 2.01,
+     "difficulty_mean": 2.77,
      "difficulty_spread": [
       1,
       2,
       3,
-      4
+      4,
+      5
      ],
      "subtopics": []
     }
@@ -273,10 +313,13 @@
      "title": "Ohm's Law and Power",
      "questions": 92,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.24,
+     "difficulty_mean": 2.98,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -285,10 +328,11 @@
      "title": "Series and Parallel Circuits",
      "questions": 12,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.42,
+     "difficulty_mean": 3.92,
      "difficulty_spread": [
-      1,
-      2
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -297,10 +341,13 @@
      "title": "Components and Transformers",
      "questions": 84,
      "tag_fallbacks": 17,
-     "difficulty_mean": 1.25,
+     "difficulty_mean": 2.69,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -309,10 +356,11 @@
      "title": "Alternating and Direct Current",
      "questions": 10,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.1,
+     "difficulty_mean": 3.0,
      "difficulty_spread": [
-      1,
-      2
+      2,
+      3,
+      4
      ],
      "subtopics": []
     },
@@ -321,10 +369,13 @@
      "title": "Frequency and Wavelength",
      "questions": 21,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.1,
+     "difficulty_mean": 2.86,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -333,10 +384,13 @@
      "title": "Conductors and Insulators",
      "questions": 39,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.13,
+     "difficulty_mean": 2.54,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -345,10 +399,12 @@
      "title": "Reading Schematic Symbols",
      "questions": 21,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.19,
+     "difficulty_mean": 1.71,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      5
      ],
      "subtopics": []
     },
@@ -357,10 +413,13 @@
      "title": "Electrical Safety",
      "questions": 14,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.29,
+     "difficulty_mean": 2.86,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     }
@@ -380,11 +439,13 @@
      "title": "Cells, Bodies and Ecosystems",
      "questions": 107,
      "tag_fallbacks": 28,
-     "difficulty_mean": 1.15,
+     "difficulty_mean": 2.74,
      "difficulty_spread": [
       1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -393,10 +454,13 @@
      "title": "Earth, Weather and Space",
      "questions": 50,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.06,
+     "difficulty_mean": 2.58,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -405,10 +469,13 @@
      "title": "Basic Chemistry",
      "questions": 42,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.07,
+     "difficulty_mean": 2.9,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -417,10 +484,13 @@
      "title": "Basic Physics",
      "questions": 41,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.1,
+     "difficulty_mean": 2.9,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     }
@@ -434,10 +504,13 @@
      "title": "Levers",
      "questions": 26,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.42,
+     "difficulty_mean": 2.42,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -446,10 +519,13 @@
      "title": "Pulleys",
      "questions": 20,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.4,
+     "difficulty_mean": 2.45,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -458,10 +534,13 @@
      "title": "Gears",
      "questions": 45,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.38,
+     "difficulty_mean": 2.89,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -470,10 +549,13 @@
      "title": "Mechanical Advantage",
      "questions": 49,
      "tag_fallbacks": 19,
-     "difficulty_mean": 1.45,
+     "difficulty_mean": 2.78,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -482,11 +564,13 @@
      "title": "Force and Pressure",
      "questions": 64,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.52,
+     "difficulty_mean": 3.03,
      "difficulty_spread": [
       1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -495,10 +579,13 @@
      "title": "Hydraulics",
      "questions": 22,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.5,
+     "difficulty_mean": 2.5,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -507,10 +594,13 @@
      "title": "Springs",
      "questions": 17,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.24,
+     "difficulty_mean": 2.41,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -519,10 +609,12 @@
      "title": "Friction",
      "questions": 19,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.32,
+     "difficulty_mean": 2.21,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4
      ],
      "subtopics": []
     },
@@ -531,10 +623,12 @@
      "title": "Center of Gravity",
      "questions": 6,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.33,
+     "difficulty_mean": 3.0,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4
      ],
      "subtopics": []
     },
@@ -543,10 +637,12 @@
      "title": "Work, Energy and Power",
      "questions": 15,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.27,
+     "difficulty_mean": 2.6,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4
      ],
      "subtopics": []
     }
@@ -566,11 +662,13 @@
      "title": "Exponents and Roots",
      "questions": 39,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.97,
+     "difficulty_mean": 2.92,
      "difficulty_spread": [
       1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -579,11 +677,13 @@
      "title": "Factoring",
      "questions": 15,
      "tag_fallbacks": 0,
-     "difficulty_mean": 2.13,
+     "difficulty_mean": 3.4,
      "difficulty_spread": [
       1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -592,11 +692,13 @@
      "title": "Linear Equations",
      "questions": 42,
      "tag_fallbacks": 0,
-     "difficulty_mean": 2.33,
+     "difficulty_mean": 3.69,
      "difficulty_spread": [
       1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -605,10 +707,12 @@
      "title": "Inequalities",
      "questions": 7,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.86,
+     "difficulty_mean": 2.57,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4
      ],
      "subtopics": []
     },
@@ -617,11 +721,13 @@
      "title": "Area, Perimeter and Volume",
      "questions": 33,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.64,
+     "difficulty_mean": 2.45,
      "difficulty_spread": [
       1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -630,10 +736,12 @@
      "title": "Angles and Triangles",
      "questions": 24,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.29,
+     "difficulty_mean": 1.71,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4
      ],
      "subtopics": []
     },
@@ -642,22 +750,25 @@
      "title": "Sequences",
      "questions": 2,
      "tag_fallbacks": 0,
-     "difficulty_mean": 2.0,
+     "difficulty_mean": 3.5,
      "difficulty_spread": [
-      2
+      3,
+      4
      ],
      "subtopics": []
     },
     "fractions_decimals": {
      "lesson": "mk_fractions_decimals",
      "title": "Fractions and Decimals",
-     "questions": 104,
-     "tag_fallbacks": 48,
-     "difficulty_mean": 1.75,
+     "questions": 98,
+     "tag_fallbacks": 47,
+     "difficulty_mean": 2.72,
      "difficulty_spread": [
       1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -666,10 +777,11 @@
      "title": "Order of Operations",
      "questions": 14,
      "tag_fallbacks": 0,
-     "difficulty_mean": 2.43,
+     "difficulty_mean": 3.79,
      "difficulty_spread": [
-      2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     }
@@ -683,8 +795,10 @@
      "title": "Finding the Main Idea",
      "questions": 20,
      "tag_fallbacks": 0,
-     "difficulty_mean": 3.45,
+     "difficulty_mean": 3.25,
      "difficulty_spread": [
+      1,
+      2,
       3,
       4,
       5
@@ -696,8 +810,9 @@
      "title": "Answering Detail Questions",
      "questions": 92,
      "tag_fallbacks": 46,
-     "difficulty_mean": 3.07,
+     "difficulty_mean": 2.63,
      "difficulty_spread": [
+      1,
       2,
       3,
       4,
@@ -710,8 +825,9 @@
      "title": "Drawing an Inference",
      "questions": 31,
      "tag_fallbacks": 0,
-     "difficulty_mean": 3.29,
+     "difficulty_mean": 3.26,
      "difficulty_spread": [
+      1,
       2,
       3,
       4,
@@ -724,12 +840,12 @@
      "title": "Vocabulary in Context",
      "questions": 18,
      "tag_fallbacks": 0,
-     "difficulty_mean": 3.28,
+     "difficulty_mean": 2.33,
      "difficulty_spread": [
+      1,
       2,
       3,
-      4,
-      5
+      4
      ],
      "subtopics": []
     },
@@ -752,10 +868,13 @@
      "title": "Hand Tools",
      "questions": 40,
      "tag_fallbacks": 9,
-     "difficulty_mean": 1.23,
+     "difficulty_mean": 2.52,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -764,9 +883,10 @@
      "title": "Power Tools",
      "questions": 3,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.0,
+     "difficulty_mean": 3.0,
      "difficulty_spread": [
-      1
+      1,
+      4
      ],
      "subtopics": []
     },
@@ -775,10 +895,13 @@
      "title": "Fasteners",
      "questions": 31,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.26,
+     "difficulty_mean": 2.58,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -787,9 +910,12 @@
      "title": "Materials",
      "questions": 10,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.0,
+     "difficulty_mean": 3.2,
      "difficulty_spread": [
-      1
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -798,10 +924,13 @@
      "title": "Measuring Tools",
      "questions": 17,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.29,
+     "difficulty_mean": 2.94,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -810,11 +939,13 @@
      "title": "Joining and Working",
      "questions": 17,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.29,
+     "difficulty_mean": 3.06,
      "difficulty_spread": [
       1,
       2,
-      3
+      3,
+      4,
+      5
      ],
      "subtopics": []
     }
@@ -828,10 +959,13 @@
      "title": "Synonyms Without Context",
      "questions": 215,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.08,
+     "difficulty_mean": 2.51,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
@@ -840,10 +974,13 @@
      "title": "Words in Context",
      "questions": 110,
      "tag_fallbacks": 0,
-     "difficulty_mean": 1.1,
+     "difficulty_mean": 3.23,
      "difficulty_spread": [
       1,
-      2
+      2,
+      3,
+      4,
+      5
      ],
      "subtopics": []
     },
