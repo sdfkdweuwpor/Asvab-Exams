@@ -16,13 +16,13 @@
 <a class="skip" href="#main">Skip to content</a>
 
 <header id="topbar">
-  <button id="backBtn" class="icon-btn" hidden aria-label="Back">&#8592;</button>
+  <button id="backBtn" class="icon-btn" hidden aria-label="Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
   <h1 id="topTitle">ASVAB Practice</h1>
   <div id="timerWrap" hidden>
     <span id="timer" role="timer" aria-live="off">--:--</span>
     <span id="progressCount" class="muted"></span>
   </div>
-  <button id="scratchBtn" class="icon-btn" hidden aria-label="Scratch pad">&#9998;</button>
+  <button id="scratchBtn" class="icon-btn" hidden aria-label="Scratch pad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20.5h16"/><path d="M14.6 4.4a2 2 0 0 1 2.8 2.8L8.8 15.8l-3.6.9.9-3.6z"/></svg></button>
 </header>
 
 <main id="main" tabindex="-1"></main>
@@ -41,10 +41,10 @@
 </div>
 
 <nav id="tabbar" aria-label="Main">
-  <a href="#/" data-tab="/"><span class="tab-ico">&#9632;</span>Home</a>
-  <a href="#/lessons" data-tab="/lessons"><span class="tab-ico">&#9634;</span>Lessons</a>
-  <a href="#/progress" data-tab="/progress"><span class="tab-ico">&#9650;</span>Progress</a>
-  <a href="#/data" data-tab="/data"><span class="tab-ico">&#9679;</span>Data</a>
+  <a href="#/" data-tab="/"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.2 12 3l9 7.2"/><path d="M5 9.6V20h14V9.6"/><path d="M9.5 20v-5.5h5V20"/></svg><span>Home</span></a>
+  <a href="#/lessons" data-tab="/lessons"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5h6a2.5 2.5 0 0 1 2.5 2.5v13A2 2 0 0 0 10.5 18H4z"/><path d="M20 4.5h-6A2.5 2.5 0 0 0 11.5 7v13A2 2 0 0 1 13.5 18H20z"/></svg><span>Lessons</span></a>
+  <a href="#/progress" data-tab="/progress"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5h16"/><path d="M6.5 19.5v-6"/><path d="M11.5 19.5V8"/><path d="M16.5 19.5v-9"/></svg><span>Progress</span></a>
+  <a href="#/data" data-tab="/data"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3V6"/><path d="M4.5 12v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg><span>Data</span></a>
 </nav>
 
 <div id="toast" role="status" aria-live="polite" hidden></div>

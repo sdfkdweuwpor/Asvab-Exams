@@ -250,8 +250,8 @@
     ]));
 
     d.append(box, el('p', { class: 'tiny muted center', style: 'margin-top:18px' },
-      'All questions in this app are original, written to the published content outline for each ' +
-      'subtest. Scores are estimates only — take real scores to a recruiter.'));
+      'Questions come from a published ASVAB practice set, not the real exam. ' +
+      'Scores are estimates only — take real scores to a recruiter.'));
     return box;
   }
 
