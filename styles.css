@@ -416,3 +416,22 @@ textarea.io {
 .profile-row + .profile-row { border-top: 1px solid var(--line); }
 .profile-row input { margin-top: 4px; flex: none; }
 .profile-src { font-size: .78rem; opacity: .72; margin-top: 2px; }
+
+/* Results headline */
+.afqt-num { font-size: 3rem; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.chip.good { background: var(--good, #2e7d5b); color: #fff; }
+.chip.lev { background: var(--accent, #4a9); color: #fff; font-weight: 600; }
+
+/* Per-subtest bars on the results page */
+.sbar-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+.sbar-code { width: 32px; font-size: .8rem; font-weight: 600; opacity: .8; }
+.sbar { flex: 1; height: 12px; border-radius: 6px; background: var(--line); overflow: hidden; display: flex; }
+.sbar-fill { background: var(--good, #2e7d5b); height: 100%; }
+.sbar-unreached { background: var(--line); opacity: .55; height: 100%; }
+.sbar-num { width: 54px; text-align: right; font-size: .8rem; font-variant-numeric: tabular-nums; opacity: .8; }
+
+/* Work On cards: the bar shows mastery, the paler overlay its confidence band,
+   so a topic judged on four answers never looks as settled as one on forty. */
+.workon .mbar { position: relative; height: 10px; border-radius: 5px; background: var(--line); overflow: hidden; margin-top: 8px; }
+.workon .mbar-fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent, #4a9); }
+.workon .mbar-band { position: absolute; top: 0; bottom: 0; background: rgba(255,255,255,.28); }

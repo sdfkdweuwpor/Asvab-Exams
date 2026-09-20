@@ -18,6 +18,135 @@
 
   // ---------------- score report ----------------
 
+  /* The headline: where you are, against where you want to be and where you
+     were last time. Everything is labelled an estimate, because the official
+     conversion tables are not published and pretending otherwise would be the
+     most damaging thing this app could do. */
+  function afqtHeadline(att) {
+    var sc = att.scores || {};
+    var box = el('div', { class: 'card stack' });
+    if (!sc.afqt) {
+      d.append(box, el('p', { class: 'muted' },
+        'Not enough of the AFQT subtests were answered to estimate a score.'));
+      return box;
+    }
+    var st = A.state.settings();
+    var target = st.targetAfqt || null;
+    var credential = st.credential || 'diploma';
+
+    var prev = null;
+    var hist = A.state.attempts().filter(function (a) {
+      return a.scores && a.scores.afqt && a.id !== att.id &&
+             new Date(a.date) < new Date(att.date);
+    });
+    if (hist.length) prev = hist[hist.length - 1].scores.afqt.percentile;
+
+    var pct = sc.afqt.percentile;
+    var delta = prev === null ? null : pct - prev;
+
+    d.append(box, el('div', { class: 'row between' }, [
+      el('span', [
+        el('div', { class: 'afqt-num', text: String(pct) }),
+        el('div', { class: 'tiny muted', text: 'AFQT estimate \u00b1' + sc.afqt.band })
+      ]),
+      el('span', { style: 'text-align:right' }, [
+        sc.afqt.category ? el('div', { style: 'font-weight:600', text: sc.afqt.category.label }) : null,
+        delta === null
+          ? el('div', { class: 'tiny muted', text: 'first scored attempt' })
+          : el('div', { class: 'tiny', style: 'color:' + (delta >= 0 ? 'var(--good)' : 'var(--bad)') },
+              (delta >= 0 ? '+' : '') + delta + ' vs last attempt'),
+        target ? el('div', { class: 'tiny muted', text: 'target ' + target }) : null
+      ])
+    ]));
+
+    if (target) {
+      var gap = target - pct;
+      d.append(box, el('p', { class: 'small', style: 'margin:0' },
+        gap <= 0
+          ? 'You are at or above your target of ' + target + '.'
+          : 'You are ' + gap + ' point' + (gap === 1 ? '' : 's') + ' below your target of ' + target + '.'));
+    }
+
+    if (sc.eligibility) {
+      var wrap = el('div', { class: 'row', style: 'margin-top:4px' });
+      sc.eligibility.forEach(function (b) {
+        d.append(wrap, el('span', {
+          class: 'chip' + (b.meets ? ' good' : ''),
+          title: b.name + ': ' + b.diploma + ' with a diploma, ' + b.ged + ' with a GED'
+        }, b.name + ' ' + b.need + (b.meets ? ' \u2713' : ' \u2212' + b.gap)));
+      });
+      d.append(box, wrap);
+      d.append(box, el('p', { class: 'tiny muted', style: 'margin:0' },
+        'Minimums shown for ' + (credential === 'ged' ? 'a GED' : 'a high-school diploma') +
+        '. GED minimums are much higher — Air Force is 65 rather than 36. ' +
+        'Change this in Settings.'));
+    }
+
+    d.append(box, el('p', { class: 'tiny muted', style: 'margin:0' },
+      'An estimate, not a prediction. ' + sc.afqt.basis));
+    return box;
+  }
+
+  /* One Work On card: what the topic is, how sure we are, what fixing it is
+     worth, one plain sentence about what is actually wrong, and three ways to
+     act on it. */
+  function workOnCard(c) {
+    var card = el('div', { class: 'card stack workon' });
+    d.append(card, el('div', { class: 'row between' }, [
+      el('strong', c.label),
+      c.leverage >= 1
+        ? el('span', { class: 'chip lev', text: '+' + Math.round(c.leverage) + ' est. AFQT pts' })
+        : (c.paceProblem ? el('span', { class: 'chip', text: 'pace' }) : null)
+    ]));
+    d.append(card, el('div', { class: 'tiny muted' },
+      c.subtestName + ' \u00b7 ' + c.correct + '/' + c.total + ' over ' +
+      c.sessions + ' session' + (c.sessions === 1 ? '' : 's')));
+
+    var pct = Math.round(c.mastery * 100);
+    var bar = el('div', { class: 'mbar' });
+    d.append(bar, el('div', { class: 'mbar-fill', style: 'width:' + pct + '%' }));
+    d.append(bar, el('div', {
+      class: 'mbar-band',
+      style: 'left:' + Math.round(c.lo * 100) + '%;width:' + Math.round((c.hi - c.lo) * 100) + '%'
+    }));
+    d.append(card, bar);
+    d.append(card, el('div', { class: 'tiny muted', text: pct + '% mastery \u00b1' + c.band + ' points' }));
+    d.append(card, el('p', { class: 'small', style: 'margin:6px 0 0', text: c.diagnosis }));
+
+    var actions = el('div', { class: 'row', style: 'margin-top:8px' });
+    d.append(actions, el('button', {
+      class: 'btn small', type: 'button',
+      onclick: function () { A.app.drillTopic(c.subtest, c.topic, 10); }
+    }, 'Drill 10'));
+    if (c.lesson && A.data.lesson(c.lesson)) {
+      d.append(actions, el('a', { class: 'btn ghost small', href: '#/lesson/' + c.lesson }, 'Open lesson'));
+    }
+    d.append(actions, el('a', {
+      class: 'btn ghost small',
+      href: '#/review/' + (A.state.attempts().length ? A.state.attempts()[A.state.attempts().length - 1].id : '') +
+            '?topic=' + c.topic
+    }, 'Review missed'));
+    d.append(card, actions);
+    return card;
+  }
+
+  function workOnList(limit) {
+    var rows = A.state.seenList();
+    if (rows.length < 10) return null;
+    var list = A.workon.workOn(rows, {
+      limit: limit || 5,
+      profile: A.data.profile(A.state.settings().profileId || A.data.defaultProfileId)
+    });
+    if (!list.length) return null;
+    var box = el('div');
+    d.append(box, el('div', { class: 'row between', style: 'margin:18px 0 8px' }, [
+      el('h2', { style: 'margin:0' }, 'Work on'),
+      el('span', { class: 'tiny muted' }, 'ranked by estimated score gain')
+    ]));
+    list.forEach(function (c) { d.append(box, workOnCard(c)); });
+    return box;
+  }
+
   function scoreReport(attemptId) {
     var att = A.state.attempt(attemptId);
     if (!att) return el('p', { class: 'muted' }, 'That attempt could not be found.');
@@ -27,20 +156,20 @@
     var correct = (att.per_item_results || []).filter(function (r) { return r.correct; }).length;
     var total = (att.per_item_results || []).length;
 
+    /* Order matters here: the headline score against the target and the last
+       attempt, then how each subtest went, then what to do about it, and only
+       then the question-by-question review. A results page that opens with 145
+       rows of questions buries the one number the student came for. */
     if (sc.afqt) {
-      d.append(box, el('div', { class: 'card score-hero' }, [
-        el('div', { class: 'muted small', text: 'AFQT score — ESTIMATE' }),
-        el('div', { class: 'big', text: String(sc.afqt.percentile) }),
-        el('div', { class: 'band' }, '±' + sc.afqt.band + ', based on ' + sc.afqt.sample + ' questions answered'),
-        el('div', { class: 'estimate-note' },
-          'This is an estimate, not a predicted official score. ' + sc.afqt.basis)
-      ]));
+      d.append(box, afqtHeadline(att));
     } else {
       d.append(box, el('div', { class: 'card score-hero' }, [
         el('div', { class: 'big', text: correct + '/' + total }),
         el('div', { class: 'band', text: d.pct(total ? correct / total : 0) + ' correct' }),
         el('p', { class: 'muted small', style: 'margin-bottom:0' },
-          'An AFQT estimate needs Word Knowledge, Paragraph Comprehension, Arithmetic Reasoning and Mathematics Knowledge. Take a full simulation to get one.')
+          'An AFQT estimate needs Word Knowledge, Paragraph Comprehension, Arithmetic ' +
+          'Reasoning and Mathematics Knowledge. Take a full simulation or the AFQT-only ' +
+          'exam to get one.')
       ]));
     }
 
@@ -51,17 +180,26 @@
       ]),
       el('div', { class: 'row', style: 'margin-top:8px' }, [
         el('span', { class: 'chip', text: att.mode }),
+        att.profileName ? el('span', { class: 'chip', text: att.profileName }) : null,
         el('span', { class: 'chip', text: correct + '/' + total + ' correct' }),
         el('span', { class: 'chip', text: d.fmtDuration(att.durationSec || 0) }),
-        att.catRules ? el('span', { class: 'chip', text: 'CAT rules' }) : null
-      ])
+        att.catRules ? el('span', { class: 'chip', text: 'answers locked' }) : null
+      ]),
+      att.profileName ? el('p', { class: 'tiny muted', style: 'margin:6px 0 0' },
+        'Scored against the ' + att.profileName + ' format. Published CAT numbers differ ' +
+        'between sources — the format is recorded so results stay comparable.') : null
     ]));
+
+    d.append(box, subtestBars(att));
+
+    var wo = workOnList(5);
+    if (wo) d.append(box, wo);
 
     if (sc.composites) d.append(box, compositesCard(sc));
     d.append(box, progressCard());
 
     d.append(box, el('div', { class: 'card stack' }, [
-      el('strong', 'Work on it'),
+      el('strong', 'Everything else'),
       el('a', { class: 'btn block', href: '#/review/' + attemptId }, 'Review every question'),
       el('a', { class: 'btn ghost block', href: '#/analysis/' + attemptId }, 'Topic and timing analysis'),
       el('button', {
@@ -72,6 +210,41 @@
     ]));
 
     return box;
+  }
+
+  /* How each subtest went, as a bar per subtest. Unreached questions are drawn
+     separately from wrong ones: running out of time and not knowing the answer
+     are different problems. */
+  function subtestBars(att) {
+    var rows = att.per_item_results || [];
+    var by = {};
+    rows.forEach(function (r) {
+      if (!r.subtest) return;
+      var c = by[r.subtest] = by[r.subtest] || { total: 0, correct: 0, unreached: 0 };
+      c.total++;
+      if (r.correct) c.correct++;
+      if (r.notReached) c.unreached++;
+    });
+    var card = el('div', { class: 'card' });
+    d.append(card, el('strong', 'By subtest'));
+    Object.keys(by).sort().forEach(function (code) {
+      var c = by[code];
+      var pct = c.total ? Math.round(100 * c.correct / c.total) : 0;
+      var un = c.total ? Math.round(100 * c.unreached / c.total) : 0;
+      d.append(card, el('div', { class: 'sbar-row' }, [
+        el('span', { class: 'sbar-code', text: code }),
+        el('span', { class: 'sbar' }, [
+          el('span', { class: 'sbar-fill', style: 'width:' + pct + '%' }),
+          un ? el('span', { class: 'sbar-unreached', style: 'width:' + un + '%' }) : null
+        ]),
+        el('span', { class: 'sbar-num', text: c.correct + '/' + c.total })
+      ]));
+    });
+    if (Object.keys(by).some(function (k) { return by[k].unreached; })) {
+      d.append(card, el('p', { class: 'tiny muted', style: 'margin:6px 0 0' },
+        'The paler part of a bar is questions you never reached before time was called.'));
+    }
+    return card;
   }
 
   function compositesCard(sc) {
@@ -206,22 +379,63 @@
 
   // ---------------- per-question review ----------------
 
+  var reviewFilter = 'wrong';
+
   function reviewView(attemptId, opts) {
     opts = opts || {};
     var att = A.state.attempt(attemptId);
     if (!att) return el('p', { class: 'muted' }, 'That attempt could not be found.');
     var results = att.per_item_results || [];
-    var missed = results.filter(function (r) { return !r.correct; });
     var box = el('div');
 
+    // A question never reached has nothing to review, so it is counted and
+    // then kept out of the list rather than shown as a blank card.
+    var reachable = results.filter(function (r) { return !r.notReached && r.template_id; });
+    var slowCut = medianSeconds(reachable) * 1.5;
+
+    var FILTERS = [
+      ['wrong', 'Wrong', function (r) { return !r.correct; }],
+      ['flagged', 'Flagged', function (r) { return r.flagged; }],
+      ['slow', 'Slow', function (r) { return r.seconds && r.seconds >= slowCut; }],
+      ['all', 'All', function () { return true; }]
+    ];
+    if (opts.print) reviewFilter = 'wrong';
+    var active = FILTERS.filter(function (f) { return f[0] === reviewFilter; })[0] || FILTERS[0];
+    var missed = reachable.filter(active[2]);
+
     if (!opts.print) {
-      d.append(box, el('div', { class: 'card tight row between' }, [
-        el('span', [el('strong', missed.length + ' missed'), el('span', { class: 'muted' }, ' of ' + results.length)]),
+      var bar = el('div', { class: 'card tight' });
+      d.append(bar, el('div', { class: 'row between' }, [
+        el('span', [el('strong', missed.length + ' shown'), el('span', { class: 'muted' }, ' of ' + reachable.length)]),
         el('a', { class: 'btn ghost small', href: '#/misssheet/' + attemptId }, 'Print')
       ]));
+      var tabs = el('div', { class: 'row', style: 'margin-top:8px' });
+      FILTERS.forEach(function (f) {
+        var n = reachable.filter(f[2]).length;
+        d.append(tabs, el('button', {
+          class: 'btn small' + (f[0] === reviewFilter ? '' : ' ghost'),
+          type: 'button',
+          onclick: function () {
+            reviewFilter = f[0];
+            var main = d.$('#main');
+            d.clear(main);
+            d.append(main, reviewView(attemptId, opts));
+          }
+        }, f[1] + ' ' + n));
+      });
+      d.append(bar, tabs);
+      d.append(box, bar);
+
+      var unreached = results.filter(function (r) { return r.notReached; }).length;
+      if (unreached) {
+        d.append(box, el('p', { class: 'banner warn' },
+          unreached + ' question' + (unreached === 1 ? ' was' : 's were') + ' never reached before ' +
+          'time was called. They counted as wrong, but there is nothing to review.'));
+      }
     }
     if (!missed.length) {
-      d.append(box, el('p', { class: 'banner good' }, 'Nothing missed in this attempt.'));
+      d.append(box, el('p', { class: 'banner good' },
+        reviewFilter === 'wrong' ? 'Nothing missed in this attempt.' : 'Nothing matches that filter.'));
       return box;
     }
 
@@ -302,6 +516,13 @@
       d.append(node, el('p', { class: 'tiny muted', style: 'margin-top:8px', text: 'Lesson: ' + lesson.title }));
     }
     return node;
+  }
+
+  function medianSeconds(rows) {
+    var a = rows.map(function (r) { return r.seconds || 0; })
+      .filter(function (x) { return x > 0; })
+      .sort(function (x, y) { return x - y; });
+    return a.length ? a[Math.floor(a.length / 2)] : 45;
   }
 
   // Every wrong option, with the error pattern the template named for it.
@@ -466,6 +687,7 @@
   }
 
   A.report = {
+    workOnList: workOnList, subtestBars: subtestBars,
     scoreReport: scoreReport, reviewView: reviewView, analysisView: analysisView,
     missSheet: missSheet, progressCard: progressCard, heatmapCard: heatmapCard
   };

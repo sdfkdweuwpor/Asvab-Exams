@@ -33,6 +33,7 @@ var PRECACHE = [
   './js/core/state.js',
   './js/core/exam.js',
   './js/core/analytics.js',
+  './js/core/workon.js',
   './js/app/dom.js',
   './js/app/runner.js',
   './js/app/report.js',

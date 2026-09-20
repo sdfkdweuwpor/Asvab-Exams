@@ -7,6 +7,8 @@
   'use strict';
   DATA = DATA || { config: { subtests: [] }, formats: { profiles: [] }, templates: [], banks: {}, passages: [], lessons: [] };
   DATA.formats = DATA.formats || { profiles: [], default: null };
+  DATA.scoring = DATA.scoring || {};
+  DATA.composites = DATA.composites || { groups: [] };
 
   var byId = {};
   DATA.templates.forEach(function (t) { byId[t.id] = t; });
@@ -36,6 +38,8 @@
     raw: DATA,
     config: DATA.config,
     formats: DATA.formats,
+    scoringConfig: DATA.scoring,
+    compositeGroups: DATA.composites.groups || [],
     profiles: DATA.formats.profiles || [],
     profile: function (id) { return profileById[id] || profileById[DATA.formats.default] || null; },
     defaultProfileId: DATA.formats.default,

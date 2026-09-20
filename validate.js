@@ -804,6 +804,79 @@ head('Repetition across sittings');
     : fail('repeat', 'a question repeated inside one sitting');
 }
 
+// ----------------------------------------------------------- work-on ranking
+head('Work On ranking');
+{
+  const bankdata = require('./js/core/bankdata.js');
+  bankdata.ensure(null, () => { });
+  const workon = require('./js/core/workon.js');
+
+  // A fixed history, so the ranking can be checked for determinism.
+  const day = n => new Date(Date.UTC(2026, 0, 20 - n)).toISOString();
+  const rows = [];
+  for (let i = 0; i < 20; i++) rows.push({ subtest: 'AR', topic: 'rate_time_distance', correct: i < 6, seconds: 50, date: day(3) });
+  for (let i = 0; i < 14; i++) rows.push({ subtest: 'MK', topic: 'linear_equations', correct: i < 11, seconds: 60, date: day(5) });
+  for (let i = 0; i < 16; i++) rows.push({ subtest: 'WK', topic: 'synonyms_isolation', correct: i < 15, seconds: 20, date: day(1) });
+  for (let i = 0; i < 16; i++) rows.push({ subtest: 'WK', topic: 'synonyms_isolation', correct: i < 15, seconds: 20, date: day(6) });
+  for (let i = 0; i < 2; i++) rows.push({ subtest: 'PC', topic: 'inference', correct: false, seconds: 80, date: day(1) });
+
+  // Part 9: deterministic given a fixed response history.
+  const a = workon.workOn(rows, { limit: 8 }).map(c => c.key + ':' + c.rank.toFixed(6)).join('|');
+  const b = workon.workOn(rows.slice(), { limit: 8 }).map(c => c.key + ':' + c.rank.toFixed(6)).join('|');
+  a === b ? pass('workon', 'ranking is deterministic for a fixed history')
+    : fail('workon', 'ranking changed between identical runs');
+
+  /* The prior is the whole point: on raw accuracy 0-of-2 reads as 0% and would
+     outrank 6-of-20 at 30% as the worse topic, which is nonsense on two
+     answers. The prior pulls the tiny sample toward the middle so it cannot. */
+  const small = workon.posterior(0, 2).mean;
+  const large = workon.posterior(6, 20).mean;
+  small >= large
+    ? pass('workon', 'the prior lifts 0-of-2 to ' + (small * 100).toFixed(0) +
+           '%, at or above 6-of-20 at ' + (large * 100).toFixed(0) + '%, so two answers cannot outrank twenty')
+    : fail('workon', 'the prior left 0-of-2 (' + (small * 100).toFixed(0) +
+           '%) below 6-of-20 (' + (large * 100).toFixed(0) + '%)');
+
+  // And the damping must be much stronger on the small sample than the large.
+  const pullSmall = Math.abs(small - 0.0);
+  const pullLarge = Math.abs(large - 0.30);
+  pullSmall > pullLarge * 3
+    ? pass('workon', 'the prior moves a 2-answer topic ' + (pullSmall * 100).toFixed(0) +
+           ' points but a 20-answer topic only ' + (pullLarge * 100).toFixed(0))
+    : fail('workon', 'the prior damped both samples about equally');
+
+  // Confidence band must shrink as evidence accumulates.
+  const wide = workon.posterior(1, 2), narrow = workon.posterior(20, 40);
+  (wide.hi - wide.lo) > (narrow.hi - narrow.lo)
+    ? pass('workon', 'confidence band narrows with sample size')
+    : fail('workon', 'confidence band did not narrow');
+
+  // Mastery gate: 85% over 12+ questions spanning 2+ sessions.
+  const all = workon.analyse(rows);
+  const wkCell = all.filter(c => c.key === 'WK.synonyms_isolation')[0];
+  wkCell && wkCell.mastered
+    ? pass('workon', 'mastery gate passes 30/32 across ' + wkCell.sessions + ' sessions')
+    : fail('workon', 'mastery gate did not pass a clearly mastered topic');
+
+  const oneSession = rows.filter(r => r.topic !== 'synonyms_isolation')
+    .concat(new Array(20).fill(0).map(() => ({ subtest: 'WK', topic: 'words_in_context', correct: true, seconds: 20, date: day(1) })));
+  const single = workon.analyse(oneSession).filter(c => c.key === 'WK.words_in_context')[0];
+  single && !single.mastered
+    ? pass('workon', '20/20 in a single session does not count as mastered')
+    : fail('workon', 'mastery gate ignored the two-session requirement');
+
+  // Every ranked topic must reach a lesson or be explicitly lesson-less.
+  let bad = 0;
+  all.forEach(c => { if (c.lesson && !data.lesson(c.lesson)) bad++; });
+  bad === 0 ? pass('workon', 'every ranked topic resolves to a real lesson')
+    : fail('workon', bad + ' ranked topic(s) point at a missing lesson');
+
+  // Leverage must be zero outside the AFQT subtests and positive inside.
+  const arCell = all.filter(c => c.subtest === 'AR')[0];
+  arCell && arCell.leverage > 0 ? pass('workon', 'a weak AFQT topic carries leverage (+' + Math.round(arCell.leverage) + ')')
+    : fail('workon', 'a weak AR topic scored no leverage');
+}
+
 // ---------------------------------------------------------------- summary
 console.log('\n' + '-'.repeat(64));
 console.log(failures === 0

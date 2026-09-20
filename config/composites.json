@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "note": "Line-score composites, declared rather than coded, so a branch can be added without touching JavaScript. Terms are subtest codes, VE for the derived verbal score, and AS for Auto and Shop pooled. A composite is only computed when every term it names is available.",
+  "groups": [
+    {
+      "branch": "Air Force",
+      "id": "mage",
+      "label": "MAGE",
+      "note": "The four Air Force aptitude composites. Shown with a confidence band, because each rests on a small number of questions.",
+      "composites": [
+        { "code": "M", "label": "Mechanical",     "terms": ["AR", "VE", "VE", "MC", "AS"], "formula": "AR + 2VE + MC + AS" },
+        { "code": "A", "label": "Administrative", "terms": ["VE", "MK"],                   "formula": "VE + MK" },
+        { "code": "G", "label": "General",        "terms": ["VE", "AR"],                   "formula": "VE + AR" },
+        { "code": "E", "label": "Electronic",     "terms": ["GS", "AR", "MK", "EI"],       "formula": "GS + AR + MK + EI" }
+      ]
+    },
+    {
+      "branch": "Army",
+      "id": "army",
+      "label": "Army line scores",
+      "composites": [
+        { "code": "CL", "label": "Clerical",             "terms": ["VE", "AR", "MK"],             "formula": "VE + AR + MK" },
+        { "code": "CO", "label": "Combat",               "terms": ["VE", "AS", "MC"],             "formula": "VE + AS + MC" },
+        { "code": "EL", "label": "Electronics",          "terms": ["GS", "AR", "MK", "EI"],       "formula": "GS + AR + MK + EI" },
+        { "code": "GM", "label": "General Maintenance",  "terms": ["GS", "AS", "MK", "EI"],       "formula": "GS + AS + MK + EI" },
+        { "code": "GT", "label": "General Technical",    "terms": ["VE", "AR"],                   "formula": "VE + AR" },
+        { "code": "MM", "label": "Mechanical Maintenance","terms": ["AS", "MC", "EI"],            "formula": "AS + MC + EI" },
+        { "code": "OF", "label": "Operators and Food",   "terms": ["VE", "AS", "MC"],             "formula": "VE + AS + MC" },
+        { "code": "SC", "label": "Surveillance",         "terms": ["VE", "AR", "AS", "MC"],       "formula": "VE + AR + AS + MC" },
+        { "code": "ST", "label": "Skilled Technical",    "terms": ["GS", "VE", "MK", "MC"],       "formula": "GS + VE + MK + MC" }
+      ]
+    },
+    {
+      "branch": "Navy and Coast Guard",
+      "id": "navy",
+      "label": "Navy line scores",
+      "composites": [
+        { "code": "GT",  "label": "General Technical",   "terms": ["VE", "AR"],                   "formula": "VE + AR" },
+        { "code": "EL",  "label": "Electronics",         "terms": ["AR", "MK", "EI", "GS"],       "formula": "AR + MK + EI + GS" },
+        { "code": "BEE", "label": "Basic Electricity",   "terms": ["VE", "AR", "MK", "GS"],       "formula": "VE + AR + MK + GS" },
+        { "code": "ENG", "label": "Engineering",         "terms": ["AS", "MK"],                   "formula": "AS + MK" },
+        { "code": "MEC", "label": "Mechanical",          "terms": ["AR", "MC", "AS"],             "formula": "AR + MC + AS" },
+        { "code": "NUC", "label": "Nuclear Field",       "terms": ["VE", "AR", "MK", "MC"],       "formula": "VE + AR + MK + MC" },
+        { "code": "OPS", "label": "Operations",          "terms": ["VE", "AR", "MK", "AO"],       "formula": "VE + AR + MK + AO" }
+      ]
+    },
+    {
+      "branch": "Marine Corps",
+      "id": "marines",
+      "label": "Marine Corps line scores",
+      "composites": [
+        { "code": "GT", "label": "General Technical", "terms": ["VE", "AR"],             "formula": "VE + AR" },
+        { "code": "EL", "label": "Electronics",       "terms": ["GS", "AR", "MK", "EI"], "formula": "GS + AR + MK + EI" },
+        { "code": "MM", "label": "Mechanical Maintenance", "terms": ["AR", "AS", "MC", "EI"], "formula": "AR + AS + MC + EI" },
+        { "code": "CL", "label": "Clerical",          "terms": ["VE", "MK"],             "formula": "VE + MK" }
+      ]
+    }
+  ]
+}

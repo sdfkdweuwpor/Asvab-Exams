@@ -198,6 +198,31 @@
       ]));
     }
 
+    // Memorisation and pool depth: with a fixed bank, recognising a question is
+    // not the same as knowing the material, and the pool eventually runs thin.
+    if (A.state.seenList().length > 40) {
+      var ids = {};
+      A.state.seenList().forEach(function (r) { if (r.template_id) ids[r.template_id] = true; });
+      var memo = A.state.memorizedCount(Object.keys(ids));
+      var health = [];
+      A.bankdata.codes().forEach(function (c) {
+        if (A.bankdata.isLoaded(c)) health.push(A.exam.poolHealth(c));
+      });
+      var thin = health.filter(function (h) { return h.examsLeft < 2; });
+      if (memo || thin.length) {
+        d.append(box, el('div', { class: 'card stack' }, [
+          el('strong', 'Bank health'),
+          memo ? el('p', { class: 'small', style: 'margin:0' },
+            memo + ' item' + (memo === 1 ? '' : 's') + ' you may be recognising rather than ' +
+            'solving. They are pushed down the draw order, not removed.') : null,
+          thin.length ? el('p', { class: 'small', style: 'margin:0' },
+            'Running low on unseen questions in ' +
+            thin.map(function (h) { return h.code + ' (' + h.unseen + ')'; }).join(', ') +
+            '. Repeats become unavoidable there.') : null
+        ]));
+      }
+    }
+
     if (attempts.length) {
       var last = attempts[attempts.length - 1];
       d.append(box, el('a', { class: 'card tight', href: '#/report/' + last.id, style: 'display:block;text-decoration:none;color:inherit' }, [
@@ -368,6 +393,14 @@
     A.bankdata.ensure(Object.keys(need), function () {
       var ex = A.exam.buildExam(profileId, Date.now(), { mode: mode || 'simulation' });
       if (!ex) { d.toast('Could not build that exam.'); return; }
+      A.runner.begin(ex, {});
+    });
+  }
+
+  function drillTopic(subtest, topic, n) {
+    A.bankdata.ensure([subtest], function () {
+      var ex = A.exam.drill([{ subtest: subtest, topic: topic }], n || 10);
+      if (!ex.totalItems) { d.toast('No unseen questions left for that topic.'); return; }
       A.runner.begin(ex, {});
     });
   }
@@ -586,6 +619,36 @@
     ]));
 
     d.append(box, el('div', { class: 'card stack' }, [
+      el('strong', 'Your target'),
+      el('p', { class: 'small muted', style: 'margin:0' },
+        'The AFQT score you are aiming for. Results are shown against it.'),
+      el('div', { class: 'row' }, [
+        el('input', {
+          type: 'number', min: '1', max: '99', value: st.targetAfqt || '',
+          placeholder: 'e.g. 50', 'aria-label': 'Target AFQT',
+          style: 'width:120px;min-height:44px;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit',
+          onchange: function (e) {
+            var v = parseInt(e.target.value, 10);
+            A.state.setSetting('targetAfqt', (v >= 1 && v <= 99) ? v : null);
+            d.toast(v ? 'Target set to ' + v : 'Target cleared');
+          }
+        })
+      ]),
+      el('p', { class: 'small muted', style: 'margin:8px 0 0' }, 'Your education credential:'),
+      el('div', { class: 'row' }, [['diploma', 'High-school diploma'], ['ged', 'GED']].map(function (pair) {
+        return el('button', {
+          class: 'btn small' + ((st.credential || 'diploma') === pair[0] ? '' : ' ghost'),
+          type: 'button',
+          onclick: function () { A.state.setSetting('credential', pair[0]); render(); }
+        }, pair[1]);
+      })),
+      el('p', { class: 'tiny muted', style: 'margin:0' },
+        'This changes which minimum each branch is shown against. The GED minimums ' +
+        'are much higher — the Air Force asks 65 rather than 36 — so the distinction ' +
+        'is not cosmetic.')
+    ]));
+
+    d.append(box, el('div', { class: 'card stack' }, [
       el('strong', 'Keyboard'),
       el('p', { class: 'small muted', style: 'margin:0' },
         '1–4 or A–D picks an answer, Enter moves on, F flags a question where the ' +
@@ -668,7 +731,11 @@
   }
 
   A.router = { go: go, render: render, path: path };
-  A.app = { startDrillFrom: startDrillFrom, startReview: startReview, startSimulation: startSimulation };
+  A.app = {
+    startDrillFrom: startDrillFrom, startReview: startReview,
+    startSimulation: startSimulation, startProfile: startProfile,
+    drillTopic: drillTopic
+  };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
