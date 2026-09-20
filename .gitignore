@@ -1,3 +1,7 @@
 node_modules/
 .DS_Store
 *.log
+
+# Source PDF is pulled in for extraction only; the app never ships it.
+source/*.pdf
+data/review_needed.json

@@ -1,0 +1,97 @@
+# Topic tagging rules. Editable by hand; scripts/tag_review.py appends here.
+#
+# The topic IDs below are EXACTLY the 64 already declared in
+# config/test-config.json and already carried by the 64 lessons in
+# lessons/lessons.json. Do not invent new IDs without adding a lesson or
+# accepting the topic into the "uncovered" list in the coverage report --
+# a tag with no lesson behind it makes "Open lesson" a dead end.
+#
+# Matching: case-insensitive regex against stem + options. First subtest is
+# fixed by extraction; only that subtest's rules are considered. An item may
+# take several topics; the first match orders them.
+
+version: 1
+
+AR:
+  rate_time_distance:   ['\bmph\b', 'miles per hour', '\bspeed\b', 'how (far|long|fast)', 'travel(s|led|ing)?\b', '\bdistance\b']
+  percentages_discount: ['%', 'percent', 'discount', 'sale price', 'markup', 'marked down', 'tax\b', 'tip\b']
+  ratio_proportion:     ['\bratio\b', 'proportion', 'for every', '\bscale\b', '\d\s*:\s*\d']
+  simple_interest:      ['interest', 'principal', 'per annum', 'annual rate', 'invested']
+  work_rate:            ['how long (will|would) it take', 'working together', 'rate of work', 'jobs? in']
+  averages:             ['\baverage\b', '\bmean\b', 'median', 'per day on average']
+  unit_conversion:      ['convert', 'how many (inches|feet|yards|ounces|pounds|quarts|gallons|centimet|met|kilo)', 'equivalent to']
+  basic_probability:    ['probability', 'chance', 'likelihood', 'at random', 'odds of']
+  cost_profit:          ['profit', 'revenue', 'total cost', 'each costs?', 'per item', 'wholesale', 'retail']
+
+MK:
+  exponents_roots:      ['\^', 'squared', 'cubed', 'square root', '√', 'exponent', 'to the power']
+  factoring:            ['factor', 'expand', 'simplify.*\(.*\)', '\(x\s*[\+\-]', 'trinomial', 'binomial']
+  linear_equations:     ['solve for', 'value of x', '\bx\s*=', 'equation', 'if\s+\d*x']
+  inequalities:         ['<', '>', '≤', '≥', 'at least', 'at most', 'inequality', 'greater than', 'less than']
+  area_perimeter_volume: ['\barea\b', 'perimeter', '\bvolume\b', 'circumference', 'surface area', 'cubic', 'square (feet|inches|yards|met)']
+  angles_triangles:     ['angle', 'triangle', 'degrees', 'hypotenuse', 'right triangle', 'isosceles', 'parallel lines']
+  sequences:            ['sequence', 'next number', 'pattern', 'arithmetic progression', 'series']
+  fractions_decimals:   ['fraction', 'decimal', '\d+/\d+', 'numerator', 'denominator', 'lowest terms']
+  order_of_operations:  ['order of operations', 'parenthes', 'expression equals', 'evaluate']
+
+WK:
+  synonyms_isolation:   ['most nearly means', 'means most nearly', 'closest in meaning', 'is a synonym']
+  words_in_context:     ['in the sentence', 'as used (in|above)', 'the underlined word', 'in this context']
+  roots_prefixes_suffixes: ['prefix', 'suffix', 'root word', 'derived from', 'origin of the word']
+
+PC:
+  main_idea:            ['main idea', 'best title', 'primarily about', 'central (idea|point)', 'mainly discusses']
+  specific_detail:      ['according to the passage', 'the passage states', 'which of the following is (true|mentioned)']
+  inference:            ['can be inferred', 'suggests that', 'implies', 'most likely', 'the author would probably']
+  vocabulary_in_context: ['as used in the passage', 'the word .* in the passage means', 'in line \d']
+  author_purpose:       ["author'?s purpose", 'the author wrote', 'in order to (show|explain|persuade)', 'tone of the passage']
+
+GS:
+  life_science:         ['cell', 'organism', 'dna', 'blood', 'muscle', 'bone', 'plant', 'photosynthes', 'bacteria', 'ecosystem', 'digest', 'heart', 'lung', 'species', 'enzyme', 'chromosome']
+  earth_space_science:  ['planet', 'solar system', 'earth', 'atmosphere', 'weather', 'rock', 'erosion', 'tectonic', 'moon', 'star', 'galaxy', 'ocean', 'climate', 'mineral']
+  chemistry_basics:     ['atom', 'molecul', 'element', 'compound', 'periodic table', 'chemical', 'acid', 'base\b', 'ph\b', 'electron', 'proton', 'neutron', 'isotope', 'bond']
+  physics_basics:       ['velocity', 'acceleration', 'gravity', 'newton', 'energy', 'wave', 'light', 'sound', 'heat', 'temperature', 'mass\b', 'momentum', 'friction']
+
+EI:
+  ohms_law:             ["ohm'?s law", '\bohm', 'voltage', '\bvolt', '\bamp', 'current', 'resistance', 'watt', 'power.*circuit']
+  series_parallel:      ['in series', 'in parallel', 'series circuit', 'parallel circuit', 'total resistance']
+  components:           ['capacitor', 'resistor', 'transformer', 'inductor', 'diode', 'transistor', 'relay', 'solenoid']
+  ac_dc:                ['alternating current', 'direct current', '\bac\b', '\bdc\b', 'rectif', 'invert']
+  frequency_wavelength: ['frequency', 'hertz', '\bhz\b', 'wavelength', 'amplitude', 'oscillat']
+  conductors_insulators: ['conductor', 'insulator', 'semiconductor', 'copper wire', 'ground(ing|ed)?\b', 'resistivity']
+  circuit_symbols:      ['schematic', 'symbol', 'circuit diagram', 'represented by']
+  electrical_safety:    ['fuse', 'circuit breaker', 'shock', 'short circuit', 'overload', 'safety']
+
+AI:
+  engine_operation:     ['four[- ]stroke', 'combustion', 'piston', 'cylinder', 'crankshaft', 'camshaft', 'compression stroke', 'intake stroke']
+  ignition:             ['spark plug', 'ignition', 'distributor', 'coil', 'timing']
+  fuel_system:          ['carburetor', 'fuel inject', 'fuel pump', 'fuel filter', 'gasoline', 'octane']
+  cooling:              ['radiator', 'coolant', 'thermostat', 'antifreeze', 'water pump', 'overheat']
+  brakes:               ['brake', 'caliper', 'rotor', 'brake pad', 'master cylinder', 'abs\b']
+  transmission:         ['transmission', 'clutch', 'gearbox', 'differential', 'driveshaft', 'torque converter', 'axle']
+  auto_electrical:      ['alternator', 'battery', 'starter', 'voltage regulator', 'headlight', 'charging system']
+  diagnostics:          ['symptom', 'likely cause', 'diagnos', 'troubleshoot', 'what would cause', 'indicates a problem']
+
+SI:
+  hand_tools:           ['screwdriver', 'pliers', 'wrench', 'hammer', 'chisel', 'hacksaw', 'mallet', 'awl', 'handsaw']
+  power_tools:          ['drill', 'lathe', 'router', 'grinder', 'circular saw', 'band saw', 'sander', 'power tool']
+  fasteners:            ['screw', 'nail', 'bolt', 'nut\b', 'washer', 'rivet', 'anchor', 'dowel', 'thread']
+  materials:            ['plywood', 'lumber', 'hardwood', 'softwood', 'sheet metal', 'alloy', 'grain of the wood']
+  measuring:            ['caliper', 'micrometer', 'level\b', 'square\b', 'tape measure', 'plumb', 'gauge', 'measur']
+  wood_metalworking:    ['solder', 'weld', 'braze', 'joint', 'dovetail', 'mortise', 'tenon', 'miter', 'plane\b', 'file\b', 'tap and die']
+
+MC:
+  levers:               ['lever', 'fulcrum', 'seesaw', 'pry bar', 'first[- ]class lever']
+  pulleys:              ['pulley', 'block and tackle', 'sheave', 'hoist']
+  gears:                ['gear', 'sprocket', 'cog', 'teeth', 'gear ratio', 'driven gear']
+  mechanical_advantage: ['mechanical advantage', 'effort', 'inclined plane', 'wedge', 'screw jack', 'ramp']
+  force_pressure:       ['force', 'pressure', 'psi\b', 'newton', 'load', 'weight of']
+  hydraulics:           ['hydraulic', 'piston', 'fluid', 'pneumatic', 'cylinder.*fluid', 'pascal']
+  springs:              ['spring', 'compress', 'tension', 'elastic', 'coil']
+  friction:             ['friction', 'lubricat', 'slippery', 'rough surface', 'traction']
+  center_of_gravity:    ['center of gravity', 'balance', 'tip over', 'stable', 'topple', 'fulcrum point']
+  work_energy:          ['work done', 'energy', 'joule', 'horsepower', 'potential energy', 'kinetic']
+
+AO:
+  connection_problems:  ['touch', 'connect', 'attach', 'the dot', 'point a', 'point b', 'left box']
+  shape_assembly:       ['assembl', 'pieces', 'put together', 'fit together', 'which figure']
