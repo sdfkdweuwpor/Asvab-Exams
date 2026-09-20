@@ -5,13 +5,11 @@
   else { root.ASVAB = root.ASVAB || {}; root.ASVAB.data = factory(root.ASVAB_DATA); }
 })(typeof self !== 'undefined' ? self : this, function (DATA) {
   'use strict';
-  DATA = DATA || { config: { subtests: [] }, formats: { profiles: [] }, templates: [], banks: {}, passages: [], lessons: [] };
+  DATA = DATA || { config: { subtests: [] }, formats: { profiles: [] }, lessons: [] };
   DATA.formats = DATA.formats || { profiles: [], default: null };
   DATA.scoring = DATA.scoring || {};
   DATA.composites = DATA.composites || { groups: [] };
 
-  var byId = {};
-  DATA.templates.forEach(function (t) { byId[t.id] = t; });
   var lessonById = {};
   DATA.lessons.forEach(function (l) { lessonById[l.id] = l; });
   var subtestByCode = {};
@@ -29,9 +27,6 @@
     return s ? s.name : code;
   }
 
-  function templatesFor(code) {
-    return DATA.templates.filter(function (t) { return t.subtest === code; });
-  }
   function topicsFor(code) { return (DATA.config.topics || {})[code] || []; }
 
   return {
@@ -45,15 +40,10 @@
     defaultProfileId: DATA.formats.default,
     poolsFor: poolsFor,
     sectionName: sectionName,
-    templates: DATA.templates,
-    banks: DATA.banks,
-    passages: DATA.passages,
     lessons: DATA.lessons,
-    template: function (id) { return byId[id]; },
     lesson: function (id) { return lessonById[id]; },
     subtest: function (code) { return subtestByCode[code]; },
     subtests: DATA.config.subtests,
-    templatesFor: templatesFor,
     topicsFor: topicsFor,
     // A subtest's composite memberships, so items inherit them automatically.
     compositesFor: function (code) { return (subtestByCode[code] || {}).composites || []; }

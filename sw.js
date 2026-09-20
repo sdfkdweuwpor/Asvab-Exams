@@ -10,7 +10,7 @@
    CACHE bumps whenever the shell or the content bundle changes; validate.js
    checks that PRECACHE still matches what is actually in the repository. */
 
-var CACHE = 'asvab-practice-v2';
+var CACHE = 'asvab-practice-v3';
 
 var PRECACHE = [
   './',
@@ -20,16 +20,10 @@ var PRECACHE = [
   './data/bundle.js',
   './data/questions.manifest.js',
   './js/core/rng.js',
-  './js/core/expr.js',
-  './js/core/figures.js',
-  './js/core/engine.js',
   './js/core/data.js',
   './js/core/bankdata.js',
   './js/core/items.js',
   './js/core/variants.js',
-  './js/core/bank.js',
-  './js/core/passage.js',
-  './js/core/ao.js',
   './js/core/scoring.js',
   './js/core/state.js',
   './js/core/exam.js',

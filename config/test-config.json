@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "note": "Per-subtest item counts and time limits, mirroring the CAT-ASVAB structure. Adjust seconds here to retune pacing; nothing else reads hard-coded times. `sources` lists which generators feed each subtest.",
+  "note": "Per-subtest metadata: display name, official order, composite membership, and the default pacing that per-question targets and pool-health estimates derive from. The shape of an actual exam comes from config/exam_formats.json, not from here.",
   "total_minutes": 154,
   "subtests": [
     {
@@ -11,9 +11,6 @@
       "order": 1,
       "composites": [
         "E"
-      ],
-      "sources": [
-        "bank"
       ]
     },
     {
@@ -27,9 +24,6 @@
         "M",
         "G",
         "E"
-      ],
-      "sources": [
-        "template"
       ]
     },
     {
@@ -43,9 +37,6 @@
         "M",
         "A",
         "G"
-      ],
-      "sources": [
-        "bank"
       ]
     },
     {
@@ -59,9 +50,6 @@
         "M",
         "A",
         "G"
-      ],
-      "sources": [
-        "passage"
       ]
     },
     {
@@ -74,9 +62,6 @@
         "AFQT",
         "A",
         "E"
-      ],
-      "sources": [
-        "template"
       ]
     },
     {
@@ -87,10 +72,6 @@
       "order": 6,
       "composites": [
         "E"
-      ],
-      "sources": [
-        "template",
-        "bank"
       ]
     },
     {
@@ -101,9 +82,6 @@
       "order": 7,
       "composites": [
         "M"
-      ],
-      "sources": [
-        "bank"
       ]
     },
     {
@@ -114,9 +92,6 @@
       "order": 8,
       "composites": [
         "M"
-      ],
-      "sources": [
-        "bank"
       ]
     },
     {
@@ -127,9 +102,6 @@
       "order": 9,
       "composites": [
         "M"
-      ],
-      "sources": [
-        "template"
       ]
     },
     {
@@ -138,10 +110,7 @@
       "items": 16,
       "seconds": 960,
       "order": 10,
-      "composites": [],
-      "sources": [
-        "procedural"
-      ]
+      "composites": []
     }
   ],
   "composites": {
