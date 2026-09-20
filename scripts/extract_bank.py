@@ -358,10 +358,19 @@ def group_passages(records):
     import difflib
 
     def split_stem(stem):
+        """Passage, then the question line. The question often wraps, leaving a
+        final line that is just the answer blank, so pull preceding lines in
+        until the question actually reads as one."""
         lines = [l for l in (stem or '').split('\n') if l.strip()]
         if len(lines) < 2:
             return '', stem or ''
-        return '\n'.join(lines[:-1]).strip(), lines[-1].strip()
+        take = 1
+        while take < len(lines) - 1:
+            tail = ' '.join(lines[-take:]).strip()
+            if len(re.sub(r'[_\s\.]', '', tail)) >= 12:
+                break
+            take += 1
+        return '\n'.join(lines[:-take]).strip(), ' '.join(lines[-take:]).strip()
 
     pc = [r for r in records if r['subtest'] == 'PC']
     pc.sort(key=lambda r: r['source_number'])
@@ -404,8 +413,12 @@ def tag(rec, rules):
     lookup = 'AI' if sub == 'AS' else sub
     # A PC stem is mostly passage prose, which swamps the signal. What the item
     # actually tests is in its question line, so tag on that plus the options.
-    if sub == 'PC' and rec.get('_question_line'):
-        text = rec['_question_line'] + ' ' + ' '.join(str(v) for v in rec['options'].values())
+    if sub == 'PC':
+        # Isolating the question line exactly is unreliable -- it wraps, and it
+        # can trail passage prose. The last few hundred characters always hold
+        # it, and are still short enough not to drown the signal in passage.
+        stem = rec['stem'] or ''
+        text = stem[-260:] + ' ' + ' '.join(str(v) for v in rec['options'].values())
     else:
         text = (rec['stem'] or '') + ' ' + ' '.join(str(v) for v in rec['options'].values())
     hits = []

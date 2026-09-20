@@ -1,0 +1,863 @@
+{
+ "version": 1,
+ "note": "Topic IDs match config/test-config.json and lessons/lessons.json 1:1. gaps[] lists content the bank carries that no lesson teaches.",
+ "subtests": {
+  "AI": {
+   "topics": {
+    "engine_operation": {
+     "lesson": "ai_engine_operation",
+     "title": "How a Four-Stroke Engine Works",
+     "questions": 29,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.31,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "ignition": {
+     "lesson": "ai_ignition",
+     "title": "The Ignition System",
+     "questions": 18,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.28,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "fuel_system": {
+     "lesson": "ai_fuel_system",
+     "title": "The Fuel System",
+     "questions": 12,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.33,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "cooling": {
+     "lesson": "ai_cooling",
+     "title": "The Cooling System",
+     "questions": 11,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.55,
+     "difficulty_spread": [
+      1,
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "brakes": {
+     "lesson": "ai_brakes",
+     "title": "Brakes",
+     "questions": 16,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.25,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "transmission": {
+     "lesson": "ai_transmission",
+     "title": "Transmission and Driveline",
+     "questions": 18,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.22,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "auto_electrical": {
+     "lesson": "ai_auto_electrical",
+     "title": "The Charging and Starting System",
+     "questions": 19,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.32,
+     "difficulty_spread": [
+      1,
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "diagnostics": {
+     "lesson": "ai_diagnostics",
+     "title": "Reading Symptoms",
+     "questions": 30,
+     "tag_fallbacks": 23,
+     "difficulty_mean": 1.4,
+     "difficulty_spread": [
+      1,
+      2,
+      3
+     ],
+     "subtopics": []
+    }
+   },
+   "gaps": [
+    {
+     "proposed_topic": "tires_wheels",
+     "lesson": null,
+     "why": "Tire designation codes (205/55 R 15, G78-15), wheel balance and alignment. Currently tagged diagnostics. No lesson covers tires."
+    }
+   ]
+  },
+  "AO": {
+   "topics": {
+    "connection_problems": {
+     "lesson": "ao_connection_problems",
+     "title": "Connection Problems",
+     "questions": 20,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 2.0,
+     "difficulty_spread": [
+      2
+     ],
+     "subtopics": []
+    },
+    "shape_assembly": {
+     "lesson": "ao_shape_assembly",
+     "title": "Shape Assembly Problems",
+     "questions": 148,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.66,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    }
+   },
+   "gaps": []
+  },
+  "AR": {
+   "topics": {
+    "rate_time_distance": {
+     "lesson": "ar_rate_time_distance",
+     "title": "Rate, Time and Distance",
+     "questions": 54,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 2.15,
+     "difficulty_spread": [
+      1,
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "percentages_discount": {
+     "lesson": "ar_percentages_discount",
+     "title": "Percentages and Discounts",
+     "questions": 73,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.99,
+     "difficulty_spread": [
+      1,
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "ratio_proportion": {
+     "lesson": "ar_ratio_proportion",
+     "title": "Ratios and Proportions",
+     "questions": 31,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 2.13,
+     "difficulty_spread": [
+      1,
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "simple_interest": {
+     "lesson": "ar_simple_interest",
+     "title": "Simple Interest",
+     "questions": 7,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 2.14,
+     "difficulty_spread": [
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "work_rate": {
+     "lesson": "ar_work_rate",
+     "title": "Work and Rate Problems",
+     "questions": 28,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 2.14,
+     "difficulty_spread": [
+      1,
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "averages": {
+     "lesson": "ar_averages",
+     "title": "Averages",
+     "questions": 18,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 2.11,
+     "difficulty_spread": [
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "unit_conversion": {
+     "lesson": "ar_unit_conversion",
+     "title": "Unit Conversion",
+     "questions": 42,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 2.05,
+     "difficulty_spread": [
+      1,
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "basic_probability": {
+     "lesson": "ar_basic_probability",
+     "title": "Basic Probability",
+     "questions": 3,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 2.33,
+     "difficulty_spread": [
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "cost_profit": {
+     "lesson": "ar_cost_profit",
+     "title": "Cost, Revenue and Profit",
+     "questions": 84,
+     "tag_fallbacks": 64,
+     "difficulty_mean": 2.01,
+     "difficulty_spread": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "subtopics": []
+    }
+   },
+   "gaps": [
+    {
+     "proposed_topic": "area_word_problems",
+     "lesson": null,
+     "why": "Carpeting, flooring and work-space problems: area arithmetic in an AR word problem. Currently tagged unit_conversion. MK teaches the geometry, but no lesson teaches it as an AR word problem."
+    }
+   ]
+  },
+  "EI": {
+   "topics": {
+    "ohms_law": {
+     "lesson": "ei_ohms_law",
+     "title": "Ohm's Law and Power",
+     "questions": 92,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.24,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "series_parallel": {
+     "lesson": "ei_series_parallel",
+     "title": "Series and Parallel Circuits",
+     "questions": 12,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.42,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "components": {
+     "lesson": "ei_components",
+     "title": "Components and Transformers",
+     "questions": 84,
+     "tag_fallbacks": 17,
+     "difficulty_mean": 1.25,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "ac_dc": {
+     "lesson": "ei_ac_dc",
+     "title": "Alternating and Direct Current",
+     "questions": 10,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.1,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "frequency_wavelength": {
+     "lesson": "ei_frequency_wavelength",
+     "title": "Frequency and Wavelength",
+     "questions": 21,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.1,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "conductors_insulators": {
+     "lesson": "ei_conductors_insulators",
+     "title": "Conductors and Insulators",
+     "questions": 39,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.13,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "circuit_symbols": {
+     "lesson": "ei_circuit_symbols",
+     "title": "Reading Schematic Symbols",
+     "questions": 21,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.19,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "electrical_safety": {
+     "lesson": "ei_electrical_safety",
+     "title": "Electrical Safety",
+     "questions": 14,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.29,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    }
+   },
+   "gaps": [
+    {
+     "proposed_topic": "digital_computer",
+     "lesson": null,
+     "why": "Memory cards, serial cables, connectors. Currently tagged components. No lesson covers digital or computer hardware."
+    }
+   ]
+  },
+  "GS": {
+   "topics": {
+    "life_science": {
+     "lesson": "gs_life_science",
+     "title": "Cells, Bodies and Ecosystems",
+     "questions": 107,
+     "tag_fallbacks": 28,
+     "difficulty_mean": 1.15,
+     "difficulty_spread": [
+      1,
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "earth_space_science": {
+     "lesson": "gs_earth_space_science",
+     "title": "Earth, Weather and Space",
+     "questions": 50,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.06,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "chemistry_basics": {
+     "lesson": "gs_chemistry_basics",
+     "title": "Basic Chemistry",
+     "questions": 42,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.07,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "physics_basics": {
+     "lesson": "gs_physics_basics",
+     "title": "Basic Physics",
+     "questions": 41,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.1,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    }
+   },
+   "gaps": []
+  },
+  "MC": {
+   "topics": {
+    "levers": {
+     "lesson": "mc_levers",
+     "title": "Levers",
+     "questions": 26,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.42,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "pulleys": {
+     "lesson": "mc_pulleys",
+     "title": "Pulleys",
+     "questions": 20,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.4,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "gears": {
+     "lesson": "mc_gears",
+     "title": "Gears",
+     "questions": 45,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.38,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "mechanical_advantage": {
+     "lesson": "mc_mechanical_advantage",
+     "title": "Mechanical Advantage",
+     "questions": 49,
+     "tag_fallbacks": 19,
+     "difficulty_mean": 1.45,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "force_pressure": {
+     "lesson": "mc_force_pressure",
+     "title": "Force and Pressure",
+     "questions": 64,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.52,
+     "difficulty_spread": [
+      1,
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "hydraulics": {
+     "lesson": "mc_hydraulics",
+     "title": "Hydraulics",
+     "questions": 22,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.5,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "springs": {
+     "lesson": "mc_springs",
+     "title": "Springs",
+     "questions": 17,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.24,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "friction": {
+     "lesson": "mc_friction",
+     "title": "Friction",
+     "questions": 19,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.32,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "center_of_gravity": {
+     "lesson": "mc_center_of_gravity",
+     "title": "Center of Gravity",
+     "questions": 6,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.33,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "work_energy": {
+     "lesson": "mc_work_energy",
+     "title": "Work, Energy and Power",
+     "questions": 15,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.27,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    }
+   },
+   "gaps": [
+    {
+     "proposed_topic": "thermal_properties",
+     "lesson": null,
+     "why": "Heat conduction and material properties (\"which tool feels hottest\"). Currently tagged force_pressure. No MC lesson covers thermal behaviour."
+    }
+   ]
+  },
+  "MK": {
+   "topics": {
+    "exponents_roots": {
+     "lesson": "mk_exponents_roots",
+     "title": "Exponents and Roots",
+     "questions": 39,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.97,
+     "difficulty_spread": [
+      1,
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "factoring": {
+     "lesson": "mk_factoring",
+     "title": "Factoring",
+     "questions": 15,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 2.13,
+     "difficulty_spread": [
+      1,
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "linear_equations": {
+     "lesson": "mk_linear_equations",
+     "title": "Linear Equations",
+     "questions": 42,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 2.33,
+     "difficulty_spread": [
+      1,
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "inequalities": {
+     "lesson": "mk_inequalities",
+     "title": "Inequalities",
+     "questions": 7,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.86,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "area_perimeter_volume": {
+     "lesson": "mk_area_perimeter_volume",
+     "title": "Area, Perimeter and Volume",
+     "questions": 33,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.64,
+     "difficulty_spread": [
+      1,
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "angles_triangles": {
+     "lesson": "mk_angles_triangles",
+     "title": "Angles and Triangles",
+     "questions": 24,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.29,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "sequences": {
+     "lesson": "mk_sequences",
+     "title": "Sequences",
+     "questions": 2,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 2.0,
+     "difficulty_spread": [
+      2
+     ],
+     "subtopics": []
+    },
+    "fractions_decimals": {
+     "lesson": "mk_fractions_decimals",
+     "title": "Fractions and Decimals",
+     "questions": 104,
+     "tag_fallbacks": 48,
+     "difficulty_mean": 1.75,
+     "difficulty_spread": [
+      1,
+      2,
+      3
+     ],
+     "subtopics": []
+    },
+    "order_of_operations": {
+     "lesson": "mk_order_of_operations",
+     "title": "Order of Operations",
+     "questions": 14,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 2.43,
+     "difficulty_spread": [
+      2,
+      3
+     ],
+     "subtopics": []
+    }
+   },
+   "gaps": []
+  },
+  "PC": {
+   "topics": {
+    "main_idea": {
+     "lesson": "pc_main_idea",
+     "title": "Finding the Main Idea",
+     "questions": 20,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 3.45,
+     "difficulty_spread": [
+      3,
+      4,
+      5
+     ],
+     "subtopics": []
+    },
+    "specific_detail": {
+     "lesson": "pc_specific_detail",
+     "title": "Answering Detail Questions",
+     "questions": 92,
+     "tag_fallbacks": 46,
+     "difficulty_mean": 3.07,
+     "difficulty_spread": [
+      2,
+      3,
+      4,
+      5
+     ],
+     "subtopics": []
+    },
+    "inference": {
+     "lesson": "pc_inference",
+     "title": "Drawing an Inference",
+     "questions": 31,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 3.29,
+     "difficulty_spread": [
+      2,
+      3,
+      4,
+      5
+     ],
+     "subtopics": []
+    },
+    "vocabulary_in_context": {
+     "lesson": "pc_vocabulary_in_context",
+     "title": "Vocabulary in Context",
+     "questions": 18,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 3.28,
+     "difficulty_spread": [
+      2,
+      3,
+      4,
+      5
+     ],
+     "subtopics": []
+    },
+    "author_purpose": {
+     "lesson": "pc_author_purpose",
+     "title": "Author's Purpose",
+     "questions": 0,
+     "tag_fallbacks": 0,
+     "difficulty_mean": null,
+     "difficulty_spread": [],
+     "subtopics": []
+    }
+   },
+   "gaps": []
+  },
+  "SI": {
+   "topics": {
+    "hand_tools": {
+     "lesson": "si_hand_tools",
+     "title": "Hand Tools",
+     "questions": 40,
+     "tag_fallbacks": 9,
+     "difficulty_mean": 1.23,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "power_tools": {
+     "lesson": "si_power_tools",
+     "title": "Power Tools",
+     "questions": 3,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.0,
+     "difficulty_spread": [
+      1
+     ],
+     "subtopics": []
+    },
+    "fasteners": {
+     "lesson": "si_fasteners",
+     "title": "Fasteners",
+     "questions": 31,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.26,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "materials": {
+     "lesson": "si_materials",
+     "title": "Materials",
+     "questions": 10,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.0,
+     "difficulty_spread": [
+      1
+     ],
+     "subtopics": []
+    },
+    "measuring": {
+     "lesson": "si_measuring",
+     "title": "Measuring Tools",
+     "questions": 17,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.29,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "wood_metalworking": {
+     "lesson": "si_wood_metalworking",
+     "title": "Joining and Working",
+     "questions": 17,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.29,
+     "difficulty_spread": [
+      1,
+      2,
+      3
+     ],
+     "subtopics": []
+    }
+   },
+   "gaps": []
+  },
+  "WK": {
+   "topics": {
+    "synonyms_isolation": {
+     "lesson": "wk_synonyms_isolation",
+     "title": "Synonyms Without Context",
+     "questions": 215,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.08,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "words_in_context": {
+     "lesson": "wk_words_in_context",
+     "title": "Words in Context",
+     "questions": 110,
+     "tag_fallbacks": 0,
+     "difficulty_mean": 1.1,
+     "difficulty_spread": [
+      1,
+      2
+     ],
+     "subtopics": []
+    },
+    "roots_prefixes_suffixes": {
+     "lesson": "wk_roots_prefixes_suffixes",
+     "title": "Roots, Prefixes and Suffixes",
+     "questions": 0,
+     "tag_fallbacks": 0,
+     "difficulty_mean": null,
+     "difficulty_spread": [],
+     "subtopics": []
+    }
+   },
+   "gaps": []
+  }
+ }
+}

@@ -93,6 +93,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "percentages_discount",
     "averages"
    ],
    "difficulty": 2,
@@ -142,12 +143,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 4,
    "excluded": false
   },
@@ -168,6 +167,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "unit_conversion",
     "cost_profit"
    ],
    "difficulty": 2,
@@ -216,8 +216,9 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "rate_time_distance",
-    "percentages_discount"
+    "percentages_discount",
+    "work_rate",
+    "rate_time_distance"
    ],
    "difficulty": 2,
    "flags": [],
@@ -241,7 +242,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "rate_time_distance"
+    "rate_time_distance",
+    "work_rate"
    ],
    "difficulty": 2,
    "flags": [],
@@ -265,12 +267,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "ratio_proportion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 6,
    "excluded": false
   },
@@ -291,12 +291,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "percentages_discount"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 7,
    "excluded": false
   },
@@ -317,8 +315,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "rate_time_distance",
-    "work_rate"
+    "work_rate",
+    "rate_time_distance"
    ],
    "difficulty": 2,
    "flags": [],
@@ -342,12 +340,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "ratio_proportion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 7,
    "excluded": false
   },
@@ -441,7 +437,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "rate_time_distance"
+    "rate_time_distance",
+    "work_rate"
    ],
    "difficulty": 2,
    "flags": [],
@@ -465,12 +462,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "work_rate"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 9,
    "excluded": false
   },
@@ -491,12 +486,11 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion",
+    "ratio_proportion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 9,
    "excluded": false
   },
@@ -566,6 +560,7 @@
    "passage_id": null,
    "topics": [
     "rate_time_distance",
+    "work_rate",
     "averages"
    ],
    "difficulty": 2,
@@ -590,12 +585,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 11,
    "excluded": false
   },
@@ -616,12 +609,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 11,
    "excluded": false
   },
@@ -642,7 +633,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "rate_time_distance"
+    "rate_time_distance",
+    "work_rate"
    ],
    "difficulty": 3,
    "flags": [],
@@ -740,7 +732,9 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "rate_time_distance"
+    "rate_time_distance",
+    "work_rate",
+    "unit_conversion"
    ],
    "difficulty": 2,
    "flags": [],
@@ -863,12 +857,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 15,
    "excluded": false
   },
@@ -989,8 +981,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "ratio_proportion",
-    "percentages_discount"
+    "percentages_discount",
+    "ratio_proportion"
    ],
    "difficulty": 2,
    "flags": [],
@@ -1014,12 +1006,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 17,
    "excluded": false
   },
@@ -1065,6 +1055,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "work_rate",
     "rate_time_distance"
    ],
    "difficulty": 2,
@@ -1336,9 +1327,9 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "unit_conversion",
     "rate_time_distance",
-    "percentages_discount",
-    "averages"
+    "percentages_discount"
    ],
    "difficulty": 2,
    "flags": [],
@@ -1564,12 +1555,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 25,
    "excluded": false
   },
@@ -1590,6 +1579,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "work_rate",
     "rate_time_distance"
    ],
    "difficulty": 2,
@@ -1865,12 +1855,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "ratio_proportion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 29,
    "excluded": false
   },
@@ -1992,12 +1980,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 31,
    "excluded": false
   },
@@ -2070,12 +2056,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 32,
    "excluded": false
   },
@@ -2120,12 +2104,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 33,
    "excluded": false
   },
@@ -2401,7 +2383,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "rate_time_distance"
+    "rate_time_distance",
+    "work_rate"
    ],
    "difficulty": 2,
    "flags": [],
@@ -2475,8 +2458,9 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "rate_time_distance",
-    "percentages_discount"
+    "percentages_discount",
+    "work_rate",
+    "rate_time_distance"
    ],
    "difficulty": 2,
    "flags": [],
@@ -2671,12 +2655,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 41,
    "excluded": false
   },
@@ -2697,7 +2679,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "rate_time_distance"
+    "rate_time_distance",
+    "work_rate"
    ],
    "difficulty": 3,
    "flags": [],
@@ -2747,7 +2730,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "unit_conversion"
+    "unit_conversion",
+    "percentages_discount"
    ],
    "difficulty": 2,
    "flags": [],
@@ -2847,12 +2831,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 43,
    "excluded": false
   },
@@ -3122,12 +3104,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 47,
    "excluded": false
   },
@@ -3350,6 +3330,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "percentages_discount",
     "averages"
    ],
    "difficulty": 2,
@@ -3374,6 +3355,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "unit_conversion",
     "cost_profit"
    ],
    "difficulty": 2,
@@ -3422,12 +3404,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "work_rate"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 52,
    "excluded": false
   },
@@ -3620,7 +3600,8 @@
    "passage_id": null,
    "topics": [
     "rate_time_distance",
-    "averages"
+    "work_rate",
+    "unit_conversion"
    ],
    "difficulty": 2,
    "flags": [],
@@ -3966,12 +3947,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 60,
    "excluded": false
   },
@@ -4016,12 +3995,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 61,
    "excluded": false
   },
@@ -4094,6 +4071,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "unit_conversion",
     "cost_profit"
    ],
    "difficulty": 2,
@@ -4120,7 +4098,7 @@
    "topics": [
     "rate_time_distance",
     "unit_conversion",
-    "averages"
+    "work_rate"
    ],
    "difficulty": 2,
    "flags": [],
@@ -4222,7 +4200,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "rate_time_distance"
+    "rate_time_distance",
+    "work_rate"
    ],
    "difficulty": 2,
    "flags": [],
@@ -4295,7 +4274,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "percentages_discount"
+    "percentages_discount",
+    "unit_conversion"
    ],
    "difficulty": 2,
    "flags": [],
@@ -4641,6 +4621,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "unit_conversion",
     "percentages_discount"
    ],
    "difficulty": 2,
@@ -4864,6 +4845,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "work_rate",
     "rate_time_distance"
    ],
    "difficulty": 2,
@@ -4987,12 +4969,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "ratio_proportion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 74,
    "excluded": false
   },
@@ -5111,12 +5091,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 75,
    "excluded": false
   },
@@ -5340,12 +5318,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 78,
    "excluded": false
   },
@@ -5489,12 +5465,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 79,
    "excluded": false
   },
@@ -5515,6 +5489,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "unit_conversion",
     "cost_profit"
    ],
    "difficulty": 2,
@@ -5587,7 +5562,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "rate_time_distance"
+    "rate_time_distance",
+    "work_rate"
    ],
    "difficulty": 3,
    "flags": [],
@@ -5637,12 +5613,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "percentages_discount"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 81,
    "excluded": false
   },
@@ -5785,6 +5759,7 @@
    "passage_id": null,
    "topics": [
     "rate_time_distance",
+    "work_rate",
     "averages"
    ],
    "difficulty": 2,
@@ -5809,6 +5784,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "work_rate",
     "rate_time_distance"
    ],
    "difficulty": 3,
@@ -5833,12 +5809,12 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion",
+    "ratio_proportion",
+    "percentages_discount"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 83,
    "excluded": false
   },
@@ -5859,6 +5835,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "percentages_discount",
     "cost_profit"
    ],
    "difficulty": 2,
@@ -5908,6 +5885,7 @@
    "passage_id": null,
    "topics": [
     "rate_time_distance",
+    "work_rate",
     "averages"
    ],
    "difficulty": 2,
@@ -5932,12 +5910,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "cost_profit"
+    "unit_conversion"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 84,
    "excluded": false
   },
@@ -5982,7 +5958,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "rate_time_distance"
+    "rate_time_distance",
+    "work_rate"
    ],
    "difficulty": 2,
    "flags": [],
@@ -6058,7 +6035,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "rate_time_distance"
+    "rate_time_distance",
+    "work_rate"
    ],
    "difficulty": 3,
    "flags": [],
@@ -6131,7 +6109,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "percentages_discount"
+    "percentages_discount",
+    "unit_conversion"
    ],
    "difficulty": 2,
    "flags": [],
@@ -6405,7 +6384,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "rate_time_distance"
+    "rate_time_distance",
+    "unit_conversion"
    ],
    "difficulty": 2,
    "flags": [],
@@ -6654,12 +6634,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "diagnostics"
+    "engine_operation"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 92,
    "excluded": false
   },
@@ -7098,7 +7076,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "transmission"
+    "transmission",
+    "diagnostics"
    ],
    "difficulty": 1,
    "flags": [],
@@ -7722,12 +7701,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "diagnostics"
+    "engine_operation"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 107,
    "excluded": false
   },
@@ -7921,9 +7898,7 @@
     "diagnostics"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 109,
    "excluded": false
   },
@@ -8344,12 +8319,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "diagnostics"
+    "engine_operation"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 114,
    "excluded": false
   },
@@ -10886,9 +10859,7 @@
     "diagnostics"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 141,
    "excluded": false
   },
@@ -11332,7 +11303,8 @@
    "passage_id": null,
    "topics": [
     "ignition",
-    "engine_operation"
+    "engine_operation",
+    "diagnostics"
    ],
    "difficulty": 2,
    "flags": [],
@@ -11432,7 +11404,8 @@
    "passage_id": null,
    "topics": [
     "cooling",
-    "ignition"
+    "ignition",
+    "diagnostics"
    ],
    "difficulty": 2,
    "flags": [],
@@ -11581,9 +11554,7 @@
     "components"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 150,
    "excluded": false
   },
@@ -11657,9 +11628,7 @@
     "components"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 151,
    "excluded": false
   },
@@ -11680,7 +11649,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "ohms_law"
+    "ohms_law",
+    "conductors_insulators"
    ],
    "difficulty": 1,
    "flags": [],
@@ -11752,12 +11722,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "components"
+    "frequency_wavelength"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 152,
    "excluded": false
   },
@@ -11779,7 +11747,8 @@
    "passage_id": null,
    "topics": [
     "ac_dc",
-    "ohms_law"
+    "ohms_law",
+    "components"
    ],
    "difficulty": 1,
    "flags": [],
@@ -11803,11 +11772,10 @@
    "figure": "assets/figures/q0475.jpg",
    "passage_id": null,
    "topics": [
-    "components"
+    "conductors_insulators"
    ],
    "difficulty": 1,
    "flags": [
-    "tag_fallback",
     "has_figure"
    ],
    "page": 152,
@@ -11857,12 +11825,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "components"
+    "conductors_insulators"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 154,
    "excluded": false
   },
@@ -11933,12 +11899,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "components"
+    "conductors_insulators"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 155,
    "excluded": false
   },
@@ -11983,12 +11947,11 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "components"
+    "electrical_safety",
+    "conductors_insulators"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 155,
    "excluded": false
   },
@@ -12057,7 +12020,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "ohms_law"
+    "ohms_law",
+    "conductors_insulators"
    ],
    "difficulty": 2,
    "flags": [],
@@ -12207,12 +12171,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "components"
+    "frequency_wavelength"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 158,
    "excluded": false
   },
@@ -12285,12 +12247,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "components"
+    "conductors_insulators"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 159,
    "excluded": false
   },
@@ -12557,12 +12517,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "components"
+    "conductors_insulators"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 163,
    "excluded": false
   },
@@ -12583,12 +12541,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "components"
+    "frequency_wavelength"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 164,
    "excluded": false
   },
@@ -12635,7 +12591,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "ohms_law"
+    "ohms_law",
+    "conductors_insulators"
    ],
    "difficulty": 1,
    "flags": [],
@@ -12736,12 +12693,11 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "frequency_wavelength",
     "components"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 166,
    "excluded": false
   },
@@ -12790,9 +12746,7 @@
     "components"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 166,
    "excluded": false
   },
@@ -12943,12 +12897,11 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "components"
+    "electrical_safety",
+    "conductors_insulators"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 168,
    "excluded": false
   },
@@ -12996,6 +12949,7 @@
    "passage_id": null,
    "topics": [
     "components",
+    "conductors_insulators",
     "circuit_symbols"
    ],
    "difficulty": 2,
@@ -13074,12 +13028,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "components"
+    "conductors_insulators"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 171,
    "excluded": false
   },
@@ -13304,9 +13256,7 @@
     "components"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 173,
    "excluded": false
   },
@@ -13530,7 +13480,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "ohms_law"
+    "ohms_law",
+    "components"
    ],
    "difficulty": 1,
    "flags": [],
@@ -14054,12 +14005,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "components"
+    "frequency_wavelength"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 186,
    "excluded": false
   },
@@ -14156,12 +14105,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "components"
+    "conductors_insulators"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 187,
    "excluded": false
   },
@@ -14183,7 +14130,8 @@
    "passage_id": null,
    "topics": [
     "ohms_law",
-    "series_parallel"
+    "series_parallel",
+    "components"
    ],
    "difficulty": 2,
    "flags": [],
@@ -14232,12 +14180,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "components"
+    "conductors_insulators"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 188,
    "excluded": false
   },
@@ -14258,7 +14204,8 @@
    "figure": "assets/figures/q0572.jpg",
    "passage_id": null,
    "topics": [
-    "ohms_law"
+    "ohms_law",
+    "components"
    ],
    "difficulty": 2,
    "flags": [
@@ -14311,7 +14258,8 @@
    "passage_id": null,
    "topics": [
     "ohms_law",
-    "series_parallel"
+    "series_parallel",
+    "components"
    ],
    "difficulty": 2,
    "flags": [],
@@ -14360,12 +14308,11 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "frequency_wavelength",
     "components"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 190,
    "excluded": false
   },
@@ -14512,7 +14459,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "ohms_law"
+    "ohms_law",
+    "conductors_insulators"
    ],
    "difficulty": 1,
    "flags": [],
@@ -14611,7 +14559,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "ohms_law"
+    "ohms_law",
+    "conductors_insulators"
    ],
    "difficulty": 1,
    "flags": [],
@@ -14979,7 +14928,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "ohms_law"
+    "ohms_law",
+    "components"
    ],
    "difficulty": 1,
    "flags": [],
@@ -15123,7 +15073,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "ohms_law"
+    "ohms_law",
+    "conductors_insulators"
    ],
    "difficulty": 1,
    "flags": [],
@@ -15147,12 +15098,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "components"
+    "conductors_insulators"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 197,
    "excluded": false
   },
@@ -15380,9 +15329,7 @@
     "components"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 199,
    "excluded": false
   },
@@ -15403,7 +15350,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "ohms_law"
+    "ohms_law",
+    "components"
    ],
    "difficulty": 1,
    "flags": [],
@@ -15535,8 +15483,8 @@
    "figure": "assets/figures/q0623.jpg",
    "passage_id": null,
    "topics": [
-    "electrical_safety",
     "components",
+    "electrical_safety",
     "circuit_symbols"
    ],
    "difficulty": 1,
@@ -15618,6 +15566,7 @@
    "figure": "assets/figures/q0626.jpg",
    "passage_id": null,
    "topics": [
+    "frequency_wavelength",
     "conductors_insulators",
     "circuit_symbols"
    ],
@@ -15771,12 +15720,11 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "components"
+    "electrical_safety",
+    "conductors_insulators"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 211,
    "excluded": false
   },
@@ -17392,7 +17340,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "life_science"
+    "life_science",
+    "chemistry_basics"
    ],
    "difficulty": 1,
    "flags": [],
@@ -17937,9 +17886,9 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "chemistry_basics",
     "life_science",
-    "physics_basics",
-    "chemistry_basics"
+    "physics_basics"
    ],
    "difficulty": 1,
    "flags": [],
@@ -18258,12 +18207,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "life_science"
+    "chemistry_basics"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 238,
    "excluded": false
   },
@@ -19433,8 +19380,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "life_science",
-    "chemistry_basics"
+    "chemistry_basics",
+    "life_science"
    ],
    "difficulty": 1,
    "flags": [],
@@ -21212,7 +21159,6 @@
    "passage_id": null,
    "topics": [
     "linear_equations",
-    "order_of_operations",
     "exponents_roots"
    ],
    "difficulty": 3,
@@ -21261,7 +21207,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -21383,7 +21328,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "factoring",
     "exponents_roots"
    ],
@@ -21409,7 +21353,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -21434,7 +21377,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -21583,7 +21526,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "linear_equations"
    ],
    "difficulty": 3,
@@ -21608,10 +21550,12 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
-   "flags": [],
+   "flags": [
+    "tag_fallback"
+   ],
    "page": 276,
    "excluded": false
   },
@@ -21632,8 +21576,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "fractions_decimals",
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [],
@@ -21657,7 +21600,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "linear_equations",
     "fractions_decimals"
    ],
@@ -21807,8 +21749,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "fractions_decimals",
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [],
@@ -21881,7 +21822,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -21907,7 +21848,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 1,
@@ -21932,7 +21872,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -21983,7 +21922,6 @@
    "passage_id": null,
    "topics": [
     "factoring",
-    "order_of_operations",
     "exponents_roots"
    ],
    "difficulty": 2,
@@ -22008,7 +21946,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "linear_equations"
    ],
    "difficulty": 3,
@@ -22057,7 +21994,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 3,
    "flags": [
@@ -22108,7 +22045,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -22184,7 +22121,7 @@
    "figure": "assets/figures/q0893.jpg",
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -22237,7 +22174,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "linear_equations",
     "exponents_roots"
    ],
@@ -22335,7 +22271,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -22385,7 +22321,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -22435,7 +22371,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -22461,7 +22397,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -22486,7 +22421,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "exponents_roots"
    ],
    "difficulty": 2,
@@ -22511,8 +22445,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "factoring",
-    "order_of_operations"
+    "factoring"
    ],
    "difficulty": 2,
    "flags": [],
@@ -22536,7 +22469,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "linear_equations",
     "factoring"
    ],
@@ -22586,7 +22518,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -22612,7 +22544,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "linear_equations",
     "exponents_roots"
    ],
@@ -22638,10 +22569,12 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
-   "flags": [],
+   "flags": [
+    "tag_fallback"
+   ],
    "page": 293,
    "excluded": false
   },
@@ -22810,8 +22743,7 @@
    "figure": "assets/figures/q0918.jpg",
    "passage_id": null,
    "topics": [
-    "angles_triangles",
-    "order_of_operations"
+    "angles_triangles"
    ],
    "difficulty": 1,
    "flags": [
@@ -22837,6 +22769,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "order_of_operations",
     "factoring"
    ],
    "difficulty": 3,
@@ -22909,7 +22842,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -22936,7 +22869,6 @@
    "passage_id": null,
    "topics": [
     "linear_equations",
-    "order_of_operations",
     "factoring"
    ],
    "difficulty": 3,
@@ -22961,7 +22893,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -22987,7 +22919,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "factoring",
     "exponents_roots"
    ],
@@ -23013,7 +22944,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "linear_equations"
    ],
    "difficulty": 3,
@@ -23038,7 +22968,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "factoring"
    ],
    "difficulty": 2,
@@ -23063,7 +22992,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "linear_equations"
    ],
    "difficulty": 3,
@@ -23160,7 +23088,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "linear_equations"
    ],
    "difficulty": 2,
@@ -23185,7 +23112,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -23260,7 +23187,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -23285,7 +23211,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -23311,7 +23237,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -23363,7 +23289,6 @@
    "passage_id": null,
    "topics": [
     "inequalities",
-    "order_of_operations",
     "linear_equations"
    ],
    "difficulty": 2,
@@ -23438,7 +23363,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "linear_equations",
     "exponents_roots"
    ],
@@ -23464,7 +23388,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -23489,7 +23412,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -23638,7 +23561,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "factoring"
    ],
    "difficulty": 1,
@@ -23663,7 +23585,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -23689,7 +23611,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -23715,7 +23637,6 @@
    "figure": "assets/figures/q0954.jpg",
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "exponents_roots"
    ],
    "difficulty": 2,
@@ -23742,7 +23663,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -23794,7 +23715,6 @@
    "passage_id": null,
    "topics": [
     "linear_equations",
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -23867,10 +23787,12 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
-   "flags": [],
+   "flags": [
+    "tag_fallback"
+   ],
    "page": 312,
    "excluded": false
   },
@@ -23915,7 +23837,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -23990,9 +23912,9 @@
    "figure": "assets/figures/q0965.jpg",
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals",
-    "exponents_roots"
+    "exponents_roots",
+    "area_perimeter_volume"
    ],
    "difficulty": 1,
    "flags": [
@@ -24018,7 +23940,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -24044,10 +23966,12 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 3,
-   "flags": [],
+   "flags": [
+    "tag_fallback"
+   ],
    "page": 315,
    "excluded": false
   },
@@ -24093,7 +24017,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -24119,8 +24043,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "fractions_decimals",
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [],
@@ -24144,7 +24067,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -24170,7 +24093,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -24344,7 +24267,6 @@
    "passage_id": null,
    "topics": [
     "linear_equations",
-    "order_of_operations",
     "exponents_roots"
    ],
    "difficulty": 3,
@@ -24394,7 +24316,7 @@
    "figure": "assets/figures/q0981.jpg",
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -24421,7 +24343,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -24545,7 +24466,6 @@
    "passage_id": null,
    "topics": [
     "area_perimeter_volume",
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -24572,7 +24492,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "linear_equations",
     "exponents_roots"
    ],
@@ -24623,7 +24542,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 3,
@@ -24648,7 +24566,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -24673,7 +24590,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -24700,7 +24617,6 @@
    "passage_id": null,
    "topics": [
     "area_perimeter_volume",
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -24751,7 +24667,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -24777,7 +24693,6 @@
    "figure": "assets/figures/q0996.jpg",
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals",
     "angles_triangles"
    ],
@@ -24805,7 +24720,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "factoring",
     "exponents_roots"
    ],
@@ -24831,7 +24745,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -24857,8 +24771,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "fractions_decimals",
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [],
@@ -24955,7 +24868,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -25030,7 +24943,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -25079,7 +24991,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -25105,7 +25017,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "linear_equations"
    ],
    "difficulty": 2,
@@ -25130,7 +25041,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -25204,7 +25115,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -25230,7 +25141,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -25255,10 +25165,12 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
-   "flags": [],
+   "flags": [
+    "tag_fallback"
+   ],
    "page": 336,
    "excluded": false
   },
@@ -25279,8 +25191,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "fractions_decimals",
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [],
@@ -25329,8 +25240,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "fractions_decimals",
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [],
@@ -25378,7 +25288,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -25454,7 +25364,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -25479,7 +25388,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -25508,9 +25417,7 @@
     "order_of_operations"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 338,
    "excluded": false
   },
@@ -25555,7 +25462,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "exponents_roots"
    ],
    "difficulty": 2,
@@ -25580,7 +25486,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -25605,7 +25510,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -25655,7 +25560,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -25681,7 +25586,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -25805,7 +25710,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 1,
@@ -25905,7 +25809,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "linear_equations"
    ],
    "difficulty": 2,
@@ -26002,7 +25905,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -26028,7 +25931,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "factoring"
    ],
    "difficulty": 2,
@@ -26079,7 +25981,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -26105,7 +26007,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -26207,7 +26109,7 @@
    "figure": "assets/figures/q1053.jpg",
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 1,
    "flags": [
@@ -26286,7 +26188,7 @@
    "figure": "assets/figures/q1056.jpg",
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -26551,7 +26453,7 @@
    "figure": "assets/figures/q1066.jpg",
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -26651,7 +26553,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "factoring",
     "exponents_roots"
    ],
@@ -26702,7 +26603,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -26753,7 +26653,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [
@@ -26779,8 +26679,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "fractions_decimals",
-    "order_of_operations"
+    "fractions_decimals"
    ],
    "difficulty": 2,
    "flags": [],
@@ -26852,7 +26751,6 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "order_of_operations",
     "fractions_decimals"
    ],
    "difficulty": 2,
@@ -26927,12 +26825,10 @@
    "figure": null,
    "passage_id": "PSG-001",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 363,
    "excluded": false
   },
@@ -26953,12 +26849,10 @@
    "figure": null,
    "passage_id": "PSG-002",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 363,
    "excluded": false
   },
@@ -26979,12 +26873,10 @@
    "figure": null,
    "passage_id": "PSG-003",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 363,
    "excluded": false
   },
@@ -27008,9 +26900,7 @@
     "main_idea"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 364,
    "excluded": false
   },
@@ -27035,8 +26925,7 @@
    ],
    "difficulty": 3,
    "flags": [
-    "explanation_may_belong_to_next",
-    "tag_fallback"
+    "explanation_may_belong_to_next"
    ],
    "page": 364,
    "excluded": false
@@ -27058,12 +26947,11 @@
    "figure": null,
    "passage_id": "PSG-006",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 2,
    "flags": [
-    "explanation_may_belong_to_next",
-    "tag_fallback"
+    "explanation_may_belong_to_next"
    ],
    "page": 365,
    "excluded": false
@@ -27088,9 +26976,7 @@
     "main_idea"
    ],
    "difficulty": 5,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 365,
    "excluded": false
   },
@@ -27111,12 +26997,10 @@
    "figure": null,
    "passage_id": "PSG-008",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 366,
    "excluded": false
   },
@@ -27137,12 +27021,10 @@
    "figure": null,
    "passage_id": "PSG-009",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 366,
    "excluded": false
   },
@@ -27163,12 +27045,10 @@
    "figure": null,
    "passage_id": "PSG-010",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 367,
    "excluded": false
   },
@@ -27189,12 +27069,11 @@
    "figure": null,
    "passage_id": "PSG-011",
    "topics": [
-    "main_idea"
+    "specific_detail",
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 367,
    "excluded": false
   },
@@ -27215,12 +27094,10 @@
    "figure": null,
    "passage_id": "PSG-011",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 368,
    "excluded": false
   },
@@ -27241,12 +27118,10 @@
    "figure": null,
    "passage_id": "PSG-012",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 368,
    "excluded": false
   },
@@ -27267,12 +27142,11 @@
    "figure": null,
    "passage_id": "PSG-012",
    "topics": [
-    "main_idea"
+    "specific_detail",
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 369,
    "excluded": false
   },
@@ -27293,12 +27167,10 @@
    "figure": null,
    "passage_id": "PSG-012",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 369,
    "excluded": false
   },
@@ -27319,12 +27191,10 @@
    "figure": null,
    "passage_id": "PSG-013",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 370,
    "excluded": false
   },
@@ -27345,12 +27215,10 @@
    "figure": null,
    "passage_id": "PSG-014",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 370,
    "excluded": false
   },
@@ -27371,12 +27239,10 @@
    "figure": null,
    "passage_id": "PSG-015",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 371,
    "excluded": false
   },
@@ -27397,12 +27263,10 @@
    "figure": null,
    "passage_id": "PSG-016",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 371,
    "excluded": false
   },
@@ -27423,12 +27287,10 @@
    "figure": null,
    "passage_id": "PSG-017",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 372,
    "excluded": false
   },
@@ -27449,12 +27311,10 @@
    "figure": null,
    "passage_id": "PSG-018",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 372,
    "excluded": false
   },
@@ -27475,12 +27335,10 @@
    "figure": null,
    "passage_id": "PSG-019",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 373,
    "excluded": false
   },
@@ -27501,12 +27359,10 @@
    "figure": null,
    "passage_id": "PSG-020",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 373,
    "excluded": false
   },
@@ -27530,9 +27386,7 @@
     "main_idea"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 373,
    "excluded": false
   },
@@ -27553,12 +27407,10 @@
    "figure": null,
    "passage_id": "PSG-022",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 374,
    "excluded": false
   },
@@ -27627,12 +27479,10 @@
    "figure": null,
    "passage_id": "PSG-024",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 375,
    "excluded": false
   },
@@ -27677,12 +27527,11 @@
    "figure": null,
    "passage_id": "PSG-024",
    "topics": [
-    "main_idea"
+    "specific_detail",
+    "inference"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 376,
    "excluded": false
   },
@@ -27727,12 +27576,10 @@
    "figure": null,
    "passage_id": "PSG-026",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 377,
    "excluded": false
   },
@@ -27753,12 +27600,10 @@
    "figure": null,
    "passage_id": "PSG-027",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 5,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 378,
    "excluded": false
   },
@@ -27779,12 +27624,11 @@
    "figure": null,
    "passage_id": "PSG-028",
    "topics": [
-    "main_idea"
+    "specific_detail",
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 378,
    "excluded": false
   },
@@ -27805,12 +27649,10 @@
    "figure": null,
    "passage_id": "PSG-029",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 379,
    "excluded": false
   },
@@ -27855,12 +27697,10 @@
    "figure": null,
    "passage_id": "PSG-031",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 379,
    "excluded": false
   },
@@ -27881,12 +27721,10 @@
    "figure": null,
    "passage_id": "PSG-032",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 5,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 380,
    "excluded": false
   },
@@ -27907,12 +27745,10 @@
    "figure": null,
    "passage_id": "PSG-032",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 5,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 380,
    "excluded": false
   },
@@ -27933,12 +27769,10 @@
    "figure": null,
    "passage_id": "PSG-033",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 381,
    "excluded": false
   },
@@ -27959,12 +27793,11 @@
    "figure": null,
    "passage_id": "PSG-033",
    "topics": [
-    "main_idea"
+    "specific_detail",
+    "inference"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 381,
    "excluded": false
   },
@@ -27985,12 +27818,11 @@
    "figure": null,
    "passage_id": "PSG-033",
    "topics": [
-    "main_idea"
+    "specific_detail",
+    "inference"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 382,
    "excluded": false
   },
@@ -28011,12 +27843,10 @@
    "figure": null,
    "passage_id": "PSG-034",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 383,
    "excluded": false
   },
@@ -28037,12 +27867,10 @@
    "figure": null,
    "passage_id": "PSG-034",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 383,
    "excluded": false
   },
@@ -28066,9 +27894,7 @@
     "main_idea"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 384,
    "excluded": false
   },
@@ -28089,12 +27915,10 @@
    "figure": null,
    "passage_id": "PSG-035",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 384,
    "excluded": false
   },
@@ -28115,7 +27939,7 @@
    "figure": null,
    "passage_id": "PSG-036",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
    "flags": [
@@ -28141,7 +27965,7 @@
    "figure": null,
    "passage_id": "PSG-037",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -28167,12 +27991,10 @@
    "figure": null,
    "passage_id": "PSG-038",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 385,
    "excluded": false
   },
@@ -28193,7 +28015,7 @@
    "figure": null,
    "passage_id": "PSG-039",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -28243,12 +28065,10 @@
    "figure": null,
    "passage_id": "PSG-041",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 387,
    "excluded": false
   },
@@ -28269,12 +28089,11 @@
    "figure": null,
    "passage_id": "PSG-041",
    "topics": [
-    "main_idea"
+    "specific_detail",
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 387,
    "excluded": false
   },
@@ -28295,12 +28114,10 @@
    "figure": null,
    "passage_id": "PSG-042",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 387,
    "excluded": false
   },
@@ -28321,12 +28138,10 @@
    "figure": null,
    "passage_id": "PSG-043",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 388,
    "excluded": false
   },
@@ -28347,12 +28162,11 @@
    "figure": null,
    "passage_id": "PSG-044",
    "topics": [
-    "main_idea"
+    "specific_detail",
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 388,
    "excluded": false
   },
@@ -28373,7 +28187,7 @@
    "figure": null,
    "passage_id": "PSG-045",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -28399,7 +28213,7 @@
    "figure": null,
    "passage_id": "PSG-045",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -28425,7 +28239,7 @@
    "figure": null,
    "passage_id": "PSG-046",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
    "flags": [
@@ -28451,12 +28265,10 @@
    "figure": null,
    "passage_id": "PSG-046",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 390,
    "excluded": false
   },
@@ -28477,12 +28289,10 @@
    "figure": null,
    "passage_id": "PSG-046",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 391,
    "excluded": false
   },
@@ -28503,7 +28313,7 @@
    "figure": null,
    "passage_id": "PSG-047",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
    "flags": [
@@ -28532,9 +28342,7 @@
     "main_idea"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 392,
    "excluded": false
   },
@@ -28555,7 +28363,7 @@
    "figure": null,
    "passage_id": "PSG-049",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
    "flags": [
@@ -28581,12 +28389,10 @@
    "figure": null,
    "passage_id": "PSG-050",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 393,
    "excluded": false
   },
@@ -28607,12 +28413,10 @@
    "figure": null,
    "passage_id": "PSG-051",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 393,
    "excluded": false
   },
@@ -28633,12 +28437,10 @@
    "figure": null,
    "passage_id": "PSG-052",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 394,
    "excluded": false
   },
@@ -28659,7 +28461,7 @@
    "figure": null,
    "passage_id": "PSG-053",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
    "flags": [
@@ -28685,7 +28487,7 @@
    "figure": null,
    "passage_id": "PSG-054",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
    "flags": [
@@ -28711,7 +28513,7 @@
    "figure": null,
    "passage_id": "PSG-055",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
    "flags": [
@@ -28737,7 +28539,7 @@
    "figure": null,
    "passage_id": "PSG-056",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
    "flags": [
@@ -28763,12 +28565,10 @@
    "figure": null,
    "passage_id": "PSG-057",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 396,
    "excluded": false
   },
@@ -28789,7 +28589,7 @@
    "figure": null,
    "passage_id": "PSG-058",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
    "flags": [
@@ -28815,7 +28615,7 @@
    "figure": null,
    "passage_id": "PSG-059",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
    "flags": [
@@ -28841,12 +28641,10 @@
    "figure": null,
    "passage_id": "PSG-060",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 397,
    "excluded": false
   },
@@ -28867,7 +28665,7 @@
    "figure": null,
    "passage_id": "PSG-061",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
    "flags": [
@@ -28893,7 +28691,8 @@
    "figure": null,
    "passage_id": "PSG-062",
    "topics": [
-    "main_idea"
+    "main_idea",
+    "inference"
    ],
    "difficulty": 3,
    "flags": [],
@@ -28917,12 +28716,10 @@
    "figure": null,
    "passage_id": "PSG-063",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 398,
    "excluded": false
   },
@@ -28943,7 +28740,7 @@
    "figure": null,
    "passage_id": "PSG-064",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -28993,7 +28790,7 @@
    "figure": null,
    "passage_id": "PSG-066",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
    "flags": [
@@ -29019,7 +28816,7 @@
    "figure": null,
    "passage_id": "PSG-067",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -29045,7 +28842,7 @@
    "figure": null,
    "passage_id": "PSG-068",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -29071,7 +28868,7 @@
    "figure": null,
    "passage_id": "PSG-069",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -29097,7 +28894,7 @@
    "figure": null,
    "passage_id": "PSG-070",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -29123,7 +28920,7 @@
    "figure": null,
    "passage_id": "PSG-071",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -29149,12 +28946,10 @@
    "figure": null,
    "passage_id": "PSG-072",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 401,
    "excluded": false
   },
@@ -29175,7 +28970,7 @@
    "figure": null,
    "passage_id": "PSG-073",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -29201,7 +28996,7 @@
    "figure": null,
    "passage_id": "PSG-074",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -29227,7 +29022,7 @@
    "figure": null,
    "passage_id": "PSG-075",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -29253,7 +29048,7 @@
    "figure": null,
    "passage_id": "PSG-076",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
    "flags": [
@@ -29279,12 +29074,10 @@
    "figure": null,
    "passage_id": "PSG-077",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 403,
    "excluded": false
   },
@@ -29305,7 +29098,7 @@
    "figure": null,
    "passage_id": "PSG-078",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -29331,7 +29124,7 @@
    "figure": null,
    "passage_id": "PSG-079",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -29405,12 +29198,10 @@
    "figure": null,
    "passage_id": "PSG-082",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 405,
    "excluded": false
   },
@@ -29479,12 +29270,10 @@
    "figure": null,
    "passage_id": "PSG-083",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 406,
    "excluded": false
   },
@@ -29505,7 +29294,7 @@
    "figure": null,
    "passage_id": "PSG-084",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
    "flags": [
@@ -29531,12 +29320,10 @@
    "figure": null,
    "passage_id": "PSG-085",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 406,
    "excluded": false
   },
@@ -29557,12 +29344,10 @@
    "figure": null,
    "passage_id": "PSG-086",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 407,
    "excluded": false
   },
@@ -29607,7 +29392,7 @@
    "figure": null,
    "passage_id": "PSG-087",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -29633,7 +29418,7 @@
    "figure": null,
    "passage_id": "PSG-088",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 2,
    "flags": [
@@ -29659,12 +29444,10 @@
    "figure": null,
    "passage_id": "PSG-089",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 408,
    "excluded": false
   },
@@ -29685,12 +29468,10 @@
    "figure": null,
    "passage_id": "PSG-090",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 408,
    "excluded": false
   },
@@ -29711,7 +29492,7 @@
    "figure": null,
    "passage_id": "PSG-091",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
    "flags": [
@@ -29737,12 +29518,10 @@
    "figure": null,
    "passage_id": "PSG-092",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 409,
    "excluded": false
   },
@@ -29763,12 +29542,10 @@
    "figure": null,
    "passage_id": "PSG-093",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 409,
    "excluded": false
   },
@@ -29789,7 +29566,7 @@
    "figure": null,
    "passage_id": "PSG-094",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
    "flags": [
@@ -29839,7 +29616,7 @@
    "figure": null,
    "passage_id": "PSG-096",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
    "flags": [
@@ -29865,12 +29642,10 @@
    "figure": null,
    "passage_id": "PSG-097",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 411,
    "excluded": false
   },
@@ -29891,12 +29666,10 @@
    "figure": null,
    "passage_id": "PSG-098",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 411,
    "excluded": false
   },
@@ -29917,7 +29690,7 @@
    "figure": null,
    "passage_id": "PSG-099",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
    "flags": [
@@ -29967,12 +29740,10 @@
    "figure": null,
    "passage_id": "PSG-101",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 412,
    "excluded": false
   },
@@ -29993,12 +29764,10 @@
    "figure": null,
    "passage_id": "PSG-102",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 412,
    "excluded": false
   },
@@ -30043,12 +29812,10 @@
    "figure": null,
    "passage_id": "PSG-104",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 5,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 413,
    "excluded": false
   },
@@ -30069,12 +29836,10 @@
    "figure": null,
    "passage_id": "PSG-105",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 413,
    "excluded": false
   },
@@ -30095,7 +29860,7 @@
    "figure": null,
    "passage_id": "PSG-106",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
    "flags": [
@@ -30145,12 +29910,10 @@
    "figure": null,
    "passage_id": "PSG-108",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 415,
    "excluded": false
   },
@@ -30171,12 +29934,10 @@
    "figure": null,
    "passage_id": "PSG-109",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 415,
    "excluded": false
   },
@@ -30197,12 +29958,10 @@
    "figure": null,
    "passage_id": "PSG-110",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 415,
    "excluded": false
   },
@@ -30247,7 +30006,7 @@
    "figure": null,
    "passage_id": "PSG-112",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
    "flags": [
@@ -30273,12 +30032,10 @@
    "figure": null,
    "passage_id": "PSG-113",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 416,
    "excluded": false
   },
@@ -30299,12 +30056,10 @@
    "figure": null,
    "passage_id": "PSG-114",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 417,
    "excluded": false
   },
@@ -30349,12 +30104,10 @@
    "figure": null,
    "passage_id": "PSG-116",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 417,
    "excluded": false
   },
@@ -30375,7 +30128,7 @@
    "figure": null,
    "passage_id": "PSG-117",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
    "flags": [
@@ -30401,12 +30154,10 @@
    "figure": null,
    "passage_id": "PSG-118",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 418,
    "excluded": false
   },
@@ -30451,7 +30202,7 @@
    "figure": null,
    "passage_id": "PSG-120",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
    "flags": [
@@ -30477,12 +30228,10 @@
    "figure": null,
    "passage_id": "PSG-121",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 419,
    "excluded": false
   },
@@ -30503,7 +30252,7 @@
    "figure": null,
    "passage_id": "PSG-122",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
    "flags": [
@@ -30553,12 +30302,10 @@
    "figure": null,
    "passage_id": "PSG-124",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 420,
    "excluded": false
   },
@@ -30579,12 +30326,10 @@
    "figure": null,
    "passage_id": "PSG-125",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 421,
    "excluded": false
   },
@@ -30605,7 +30350,7 @@
    "figure": null,
    "passage_id": "PSG-126",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
    "flags": [
@@ -30631,12 +30376,10 @@
    "figure": null,
    "passage_id": "PSG-127",
    "topics": [
-    "main_idea"
+    "inference"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 421,
    "excluded": false
   },
@@ -30657,7 +30400,7 @@
    "figure": null,
    "passage_id": "PSG-128",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
    "flags": [
@@ -30683,12 +30426,10 @@
    "figure": null,
    "passage_id": "PSG-129",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 3,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 422,
    "excluded": false
   },
@@ -30709,7 +30450,7 @@
    "figure": null,
    "passage_id": "PSG-130",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 3,
    "flags": [
@@ -30735,7 +30476,7 @@
    "figure": null,
    "passage_id": "PSG-131",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
    "flags": [
@@ -30761,7 +30502,7 @@
    "figure": null,
    "passage_id": "PSG-132",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 5,
    "flags": [
@@ -30787,12 +30528,10 @@
    "figure": null,
    "passage_id": "PSG-133",
    "topics": [
-    "main_idea"
+    "vocabulary_in_context"
    ],
    "difficulty": 4,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 424,
    "excluded": false
   },
@@ -30813,7 +30552,7 @@
    "figure": null,
    "passage_id": "PSG-134",
    "topics": [
-    "main_idea"
+    "specific_detail"
    ],
    "difficulty": 4,
    "flags": [
@@ -38689,11 +38428,10 @@
    "figure": "assets/figures/q1560.jpg",
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "force_pressure"
    ],
    "difficulty": 2,
    "flags": [
-    "tag_fallback",
     "has_figure"
    ],
    "page": 504,
@@ -38817,7 +38555,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "force_pressure"
+    "force_pressure",
+    "hydraulics"
    ],
    "difficulty": 2,
    "flags": [],
@@ -38939,7 +38678,8 @@
    "figure": "assets/figures/q1570.jpg",
    "passage_id": null,
    "topics": [
-    "levers"
+    "levers",
+    "force_pressure"
    ],
    "difficulty": 2,
    "flags": [
@@ -39043,11 +38783,10 @@
    "figure": "assets/figures/q1574.jpg",
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "hydraulics"
    ],
    "difficulty": 2,
    "flags": [
-    "tag_fallback",
     "has_figure"
    ],
    "page": 514,
@@ -39227,11 +38966,10 @@
    "figure": "assets/figures/q1581.jpg",
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "work_energy"
    ],
    "difficulty": 1,
    "flags": [
-    "tag_fallback",
     "has_figure"
    ],
    "page": 520,
@@ -39254,11 +38992,10 @@
    "figure": "assets/figures/q1582.jpg",
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "force_pressure"
    ],
    "difficulty": 1,
    "flags": [
-    "tag_fallback",
     "has_figure"
    ],
    "page": 520,
@@ -39333,11 +39070,10 @@
    "figure": "assets/figures/q1585.jpg",
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "gears"
    ],
    "difficulty": 2,
    "flags": [
-    "tag_fallback",
     "has_figure"
    ],
    "page": 523,
@@ -39713,11 +39449,10 @@
    "figure": "assets/figures/q1600.jpg",
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "hydraulics"
    ],
    "difficulty": 2,
    "flags": [
-    "tag_fallback",
     "has_figure"
    ],
    "page": 532,
@@ -39740,11 +39475,10 @@
    "figure": "assets/figures/q1601.jpg",
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "hydraulics"
    ],
    "difficulty": 2,
    "flags": [
-    "tag_fallback",
     "has_figure"
    ],
    "page": 533,
@@ -39819,11 +39553,10 @@
    "figure": "assets/figures/q1604.jpg",
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "hydraulics"
    ],
    "difficulty": 2,
    "flags": [
-    "tag_fallback",
     "has_figure"
    ],
    "page": 536,
@@ -39870,12 +39603,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "hydraulics"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 538,
    "excluded": false
   },
@@ -39972,12 +39703,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "gears"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 540,
    "excluded": false
   },
@@ -40255,12 +39984,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "gears"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 549,
    "excluded": false
   },
@@ -40388,11 +40115,10 @@
    "figure": "assets/figures/q1626.jpg",
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "hydraulics"
    ],
    "difficulty": 2,
    "flags": [
-    "tag_fallback",
     "has_figure"
    ],
    "page": 552,
@@ -40465,12 +40191,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "hydraulics"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 555,
    "excluded": false
   },
@@ -40515,11 +40239,11 @@
    "figure": "assets/figures/q1631.jpg",
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "gears",
+    "hydraulics"
    ],
    "difficulty": 2,
    "flags": [
-    "tag_fallback",
     "has_figure"
    ],
    "page": 555,
@@ -40542,11 +40266,10 @@
    "figure": "assets/figures/q1632.jpg",
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "hydraulics"
    ],
    "difficulty": 1,
    "flags": [
-    "tag_fallback",
     "has_figure"
    ],
    "page": 556,
@@ -40645,11 +40368,10 @@
    "figure": "assets/figures/q1636.jpg",
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "gears"
    ],
    "difficulty": 2,
    "flags": [
-    "tag_fallback",
     "has_figure"
    ],
    "page": 559,
@@ -40672,12 +40394,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "gears"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 560,
    "excluded": false
   },
@@ -40723,12 +40443,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "hydraulics"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 561,
    "excluded": false
   },
@@ -40828,7 +40546,8 @@
    "figure": "assets/figures/q1644.jpg",
    "passage_id": null,
    "topics": [
-    "pulleys"
+    "pulleys",
+    "gears"
    ],
    "difficulty": 1,
    "flags": [
@@ -40928,11 +40647,10 @@
    "figure": "assets/figures/q1648.jpg",
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "work_energy"
    ],
    "difficulty": 2,
    "flags": [
-    "tag_fallback",
     "has_figure"
    ],
    "page": 564,
@@ -41104,8 +40822,8 @@
    "passage_id": null,
    "topics": [
     "mechanical_advantage",
-    "force_pressure",
-    "center_of_gravity"
+    "gears",
+    "force_pressure"
    ],
    "difficulty": 1,
    "flags": [],
@@ -41153,12 +40871,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "gears"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 568,
    "excluded": false
   },
@@ -41205,6 +40921,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "work_energy",
     "force_pressure"
    ],
    "difficulty": 1,
@@ -41230,6 +40947,7 @@
    "passage_id": null,
    "topics": [
     "force_pressure",
+    "work_energy",
     "friction"
    ],
    "difficulty": 2,
@@ -41307,7 +41025,8 @@
    "figure": "assets/figures/q1663.jpg",
    "passage_id": null,
    "topics": [
-    "pulleys"
+    "pulleys",
+    "gears"
    ],
    "difficulty": 2,
    "flags": [
@@ -41333,7 +41052,8 @@
    "figure": "assets/figures/q1664.jpg",
    "passage_id": null,
    "topics": [
-    "pulleys"
+    "pulleys",
+    "gears"
    ],
    "difficulty": 1,
    "flags": [
@@ -41409,7 +41129,8 @@
    "figure": "assets/figures/q1667.jpg",
    "passage_id": null,
    "topics": [
-    "springs"
+    "springs",
+    "force_pressure"
    ],
    "difficulty": 2,
    "flags": [
@@ -41435,11 +41156,10 @@
    "figure": "assets/figures/q1668.jpg",
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "hydraulics"
    ],
    "difficulty": 1,
    "flags": [
-    "tag_fallback",
     "has_figure"
    ],
    "page": 575,
@@ -41567,11 +41287,10 @@
    "figure": "assets/figures/q1673.jpg",
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "hydraulics"
    ],
    "difficulty": 2,
    "flags": [
-    "tag_fallback",
     "has_figure"
    ],
    "page": 578,
@@ -41797,7 +41516,7 @@
    "topics": [
     "springs",
     "levers",
-    "friction"
+    "gears"
    ],
    "difficulty": 1,
    "flags": [],
@@ -41847,6 +41566,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "work_energy",
     "friction"
    ],
    "difficulty": 1,
@@ -41871,6 +41591,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "work_energy",
+    "gears",
     "friction"
    ],
    "difficulty": 1,
@@ -41895,12 +41617,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "hydraulics"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 584,
    "excluded": false
   },
@@ -41947,12 +41667,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "hydraulics"
    ],
    "difficulty": 1,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 584,
    "excluded": false
   },
@@ -41973,8 +41691,8 @@
    "figure": "assets/figures/q1689.jpg",
    "passage_id": null,
    "topics": [
-    "springs",
-    "force_pressure"
+    "force_pressure",
+    "springs"
    ],
    "difficulty": 2,
    "flags": [
@@ -42074,6 +41792,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "work_energy",
     "friction",
     "force_pressure"
    ],
@@ -42149,12 +41868,10 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "mechanical_advantage"
+    "force_pressure"
    ],
    "difficulty": 2,
-   "flags": [
-    "tag_fallback"
-   ],
+   "flags": [],
    "page": 587,
    "excluded": false
   },
@@ -42323,6 +42040,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "gears",
     "mechanical_advantage"
    ],
    "difficulty": 1,
@@ -42502,8 +42220,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "mechanical_advantage",
-    "force_pressure"
+    "force_pressure",
+    "mechanical_advantage"
    ],
    "difficulty": 1,
    "flags": [],
@@ -42527,8 +42245,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "mechanical_advantage",
-    "force_pressure"
+    "force_pressure",
+    "mechanical_advantage"
    ],
    "difficulty": 2,
    "flags": [],
@@ -42674,6 +42392,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "gears",
     "pulleys",
     "force_pressure"
    ],
@@ -42699,7 +42418,8 @@
    "figure": null,
    "passage_id": null,
    "topics": [
-    "pulleys"
+    "pulleys",
+    "gears"
    ],
    "difficulty": 1,
    "flags": [],
@@ -42797,6 +42517,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "work_energy",
     "gears"
    ],
    "difficulty": 1,
@@ -43051,6 +42772,7 @@
    "figure": null,
    "passage_id": null,
    "topics": [
+    "hydraulics",
     "force_pressure"
    ],
    "difficulty": 2,
@@ -43180,6 +42902,7 @@
    "figure": "assets/figures/q1737.jpg",
    "passage_id": null,
    "topics": [
+    "gears",
     "pulleys"
    ],
    "difficulty": 2,
@@ -43258,6 +42981,7 @@
    "figure": "assets/figures/q1740.jpg",
    "passage_id": null,
    "topics": [
+    "gears",
     "pulleys"
    ],
    "difficulty": 2,

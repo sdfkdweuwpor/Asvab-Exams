@@ -10,6 +10,10 @@ AI:
   - voltage regulator
   - headlight
   - charging system
+  - \bfuse\b
+  - \bwiring harness\b
+  - \bdashboard\b
+  - \bsensor\b
   brakes:
   - brake
   - caliper
@@ -31,6 +35,15 @@ AI:
   - troubleshoot
   - what would cause
   - indicates a problem
+  - \bvibrat
+  - \bnoise\b
+  - \bpull(s|ing)? to\b
+  - \bstall
+  - \bmisfire
+  - \bsmoke\b
+  - \bleak
+  - \bwarning light\b
+  - \bmost likely problem\b
   engine_operation:
   - four[- ]stroke
   - combustion
@@ -40,6 +53,13 @@ AI:
   - camshaft
   - compression stroke
   - intake stroke
+  - \btwo-cycle\b
+  - \bfour-cycle\b
+  - factory specification
+  - \brebuild
+  - \boverhaul\b
+  - \bdisplacement\b
+  - \brpm\b
   fuel_system:
   - carburetor
   - fuel inject
@@ -123,6 +143,13 @@ AR:
   - marked down
   - tax\b
   - tip\b
+  - \bnormally costs?\b
+  - \bon sale\b
+  - \breduced\b
+  - \bsavings?\b
+  - \boff\b.{0,12}(price|cost)
+  - \braise\b
+  - \bcommission\b
   rate_time_distance:
   - \bmph\b
   - miles per hour
@@ -146,6 +173,12 @@ AR:
   - twice as
   - three times as
   - as many
+  - one-(half|third|fourth|fifth|sixth|eighth)
+  - \bfraction of\b
+  - times as (many|much)
+  - \bper employee\b
+  - \bper person\b
+  - \beach of\b
   simple_interest:
   - interest
   - principal
@@ -156,11 +189,23 @@ AR:
   - convert
   - how many (inches|feet|yards|ounces|pounds|quarts|gallons|centimet|met|kilo)
   - equivalent to
+  - square (feet|foot|yards?|inches)
+  - \bgallons?\b
+  - \bounces?\b
+  - \bquarts?\b
+  - \bpints?\b
+  - \bcubic\b
+  - how many .{0,18}(feet|yards|inches|gallons)
   work_rate:
   - how long (will|would) it take
   - working together
   - rate of work
   - jobs? in
+  - \boverti?me\b
+  - \bhours? a week\b
+  - \b\d+-hour week\b
+  - \bper hour\b
+  - how long .{0,20}(take|finish|complete)
 EI:
   ac_dc:
   - alternating current
@@ -183,6 +228,14 @@ EI:
   - transistor
   - relay
   - solenoid
+  - electromagnetic
+  - \binduction\b
+  - \bcore\b
+  - \bmemory card\b
+  - \bcircuit board\b
+  - \bantenna\b
+  - \bbattery\b
+  - \bswitch\b
   conductors_insulators:
   - conductor
   - insulator
@@ -190,6 +243,13 @@ EI:
   - copper wire
   - ground(ing|ed)?\b
   - resistivity
+  - \bsplice\b
+  - \bwires?\b
+  - \bnumber-\d+ wire\b
+  - \bgauge\b
+  - \bcable\b
+  - \binsulated\b
+  - \bshielding\b
   electrical_safety:
   - fuse
   - circuit breaker
@@ -197,6 +257,10 @@ EI:
   - short circuit
   - overload
   - safety
+  - \bneutral\b
+  - \bgrounded?\b
+  - \bpolarit
+  - \bhot wire\b
   frequency_wavelength:
   - frequency
   - hertz
@@ -204,6 +268,12 @@ EI:
   - wavelength
   - amplitude
   - oscillat
+  - \bradio waves?\b
+  - \btravel\b
+  - \bsignal\b
+  - \bbroadcast\b
+  - \bmodulat
+  - \bband\b
   ohms_law:
   - ohm'?s law
   - \bohm
@@ -236,6 +306,14 @@ GS:
   - neutron
   - isotope
   - bond
+  - \bsolution\b
+  - \bmixture\b
+  - \bsolvent\b
+  - \breaction\b
+  - \bcatalyst\b
+  - \bmolecular\b
+  - \bvalence\b
+  - \bsalt\b
   earth_space_science:
   - planet
   - solar system
@@ -354,6 +432,14 @@ MC:
   - newton
   - load
   - weight of
+  - \bvolume\b
+  - \bbox(es)?\b
+  - \bbraced\b
+  - \bsupport(s|ed|ing)?\b
+  - \bstress\b
+  - \bstrain\b
+  - \bbeam\b
+  - \bcolumn\b
   friction:
   - friction
   - lubricat
@@ -367,6 +453,13 @@ MC:
   - teeth
   - gear ratio
   - driven gear
+  - \bwheels?\b
+  - revolve
+  - \brotat
+  - \bbelt\b
+  - \bpulley wheel\b
+  - \brpm\b
+  - turns? (faster|slower)
   hydraulics:
   - hydraulic
   - piston
@@ -374,6 +467,12 @@ MC:
   - pneumatic
   - cylinder.*fluid
   - pascal
+  - \bvalves?\b
+  - \btank\b
+  - \bpump\b
+  - \bsiphon\b
+  - \bpipe\b
+  - \bflow\b
   levers:
   - lever
   - fulcrum
@@ -405,6 +504,13 @@ MC:
   - horsepower
   - potential energy
   - kinetic
+  - traveling most (slowly|quickly)
+  - \bkinetic\b
+  - \bpotential\b
+  - \bswing
+  - \bpendulum\b
+  - \bmomentum\b
+  - \bvelocit
 MK:
   angles_triangles:
   - angle
@@ -472,13 +578,9 @@ MK:
   order_of_operations:
   - order of operations
   - parenthes
-  - expression equals
-  - evaluate
-  - \\d\\s*[×÷\\*/]\\s*\\d
-  - \\d\\s*[\\+\\-]\\s*\\d
-  - \d\s*[×÷*/]\s*\d
-  - \d\s*[+\-]\s*\d
-  - \bequals\b
+  - \bpemdas\b
+  - \d\s*[+\-×÷*/]\s*\d\s*[+\-×÷*/]\s*\d
+  - \(\s*\d[^)]*\)\s*[+\-×÷*/]
   sequences:
   - sequence
   - next number
@@ -491,26 +593,79 @@ PC:
   - the author wrote
   - in order to (show|explain|persuade)
   - tone of the passage
+  - author'?s (purpose|intent|attitude|tone)
+  - in order to (show|explain|persuade|describe)
+  - the author seems
   inference:
   - can be inferred
   - suggests that
   - implies
   - most likely
   - the author would probably
+  - reasonable to assume
+  - would agree that
+  - it can be concluded
+  - one can assume
+  - the author .{0,16}believes
+  - the author .{0,16}(feels|thinks)
+  - \bmust include\b
+  - \bbecause\b
+  - can be classified as
   main_idea:
   - main idea
   - best title
   - primarily about
   - central (idea|point)
   - mainly discusses
+  - (good|best) title
+  - main (point|idea|theme)
+  - best supports the statement
+  - this paragraph best supports
+  - the subject of this passage
+  - passage is (mainly|primarily)
+  - key .{0,16}principle
+  - best describes the passage
+  - title of this passage
+  - title .{0,14}should be
+  - this passage is about
   specific_detail:
   - according to the passage
   - the passage states
   - which of the following is (true|mentioned)
+  - according to (this|the above|the) passage
+  - the (above )?passage states
+  - passage indicates
+  - the author is speaking of
+  - the author describes
+  - according to the (author|paragraph)
+  - states that
+  - not supported by
+  - supported by the (above )?passage
+  - which of the following (statements|is)
+  - the passage (says|mentions|notes)
+  - allows you to\b
+  - is defined in
+  - best completes
+  - this story takes place
+  - takes place
+  - \bmotivated by\b
+  - \bis called\b
+  - divided .{0,16}because
+  - \bmajority of\b
+  - \bmost\b.{0,24}\bwere\b
   vocabulary_in_context:
   - as used in the passage
   - the word .* in the passage means
   - in line \d
+  - as used in (this|the) passage
+  - the word ["“]?\w+["”]? .{0,20}means
+  - \bin line \d
+  - the term .{0,20}(means|refers)
+  - is defined as
+  - defined as
+  - \bmeans\b
+  - \brefers to\b
+  - the word .{0,24}(in|means)
 SI:
   fasteners:
   - screw
@@ -549,6 +704,9 @@ SI:
   - plumb
   - gauge
   - measur
+  - \bspecification
+  - \btolerance\b
+  - \bdimension
   power_tools:
   - drill
   - lathe
@@ -595,8 +753,8 @@ _fallback:
   EI: components
   GS: life_science
   MC: mechanical_advantage
-  MK: order_of_operations
-  PC: main_idea
+  MK: fractions_decimals
+  PC: specific_detail
   SI: hand_tools
   WK: synonyms_isolation
 version: 1
