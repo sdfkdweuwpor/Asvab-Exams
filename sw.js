@@ -1,11 +1,16 @@
-/* Service worker: precache everything so the app installs to a phone and keeps
-   working with no connection. There is no backend, so once these files are
-   cached the app is complete offline -- questions are generated on device.
+/* Service worker: precache the shell so the app installs to a phone and keeps
+   working with no connection.
+
+   The question chunks under data/questions.*.js are deliberately NOT precached.
+   They are ~1.3MB in total and load on demand, so a first run does not pay for
+   ten subtests to answer fifteen questions. The fetch handler caches each one
+   the first time it is requested, which means a subtest works offline once it
+   has been used once. Figures under assets/figures/ behave the same way.
 
    CACHE bumps whenever the shell or the content bundle changes; validate.js
    checks that PRECACHE still matches what is actually in the repository. */
 
-var CACHE = 'asvab-practice-v1';
+var CACHE = 'asvab-practice-v2';
 
 var PRECACHE = [
   './',
@@ -13,11 +18,14 @@ var PRECACHE = [
   './styles.css',
   './manifest.json',
   './data/bundle.js',
+  './data/questions.manifest.js',
   './js/core/rng.js',
   './js/core/expr.js',
   './js/core/figures.js',
   './js/core/engine.js',
   './js/core/data.js',
+  './js/core/bankdata.js',
+  './js/core/items.js',
   './js/core/bank.js',
   './js/core/passage.js',
   './js/core/ao.js',

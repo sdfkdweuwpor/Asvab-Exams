@@ -225,11 +225,36 @@
       return box;
     }
 
+    // An attempt taken before the bank replaced the generated content names
+    // items that no longer exist. Its scores are still real and still shown --
+    // only the question text is gone, and saying so beats an empty page.
+    if (att.contentGeneration === 1) {
+      d.append(box, el('p', { class: 'banner info' },
+        'This attempt was taken with the previous question set. Your score and ' +
+        'topic breakdown are kept, but the questions themselves are no longer ' +
+        'available to review.'));
+      d.append(box, el('div', { class: 'card tight' }, [
+        el('strong', 'Topics missed'),
+        el('div', { class: 'row', style: 'margin-top:6px' },
+          missed.map(function (r) {
+            return el('span', { class: 'chip', text: A.analytics.topicLabel(r.topic || '?') });
+          }))
+      ]));
+      return box;
+    }
+
+    var shown = 0;
     missed.forEach(function (r, n) {
       var item = A.exam.rehydrate(r);
       if (!item) return;
+      shown++;
       d.append(box, missedItem(item, r, n + 1, opts));
     });
+    if (!shown) {
+      d.append(box, el('p', { class: 'banner info' },
+        'These questions could not be loaded. If you are offline, the subtest ' +
+        'they belong to may not be cached on this device yet.'));
+    }
     return box;
   }
 

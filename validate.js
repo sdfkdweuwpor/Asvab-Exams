@@ -502,6 +502,136 @@ head('Content depth');
   });
 }
 
+// ------------------------------------------------------------ question bank
+head('Question bank');
+{
+  const bankdata = require('./js/core/bankdata.js');
+  const itemsMod = require('./js/core/items.js');
+  bankdata.ensure(null, () => { });
+
+  const manifest = bankdata.manifest();
+  const all = [];
+  bankdata.codes().forEach(code => bankdata.forSubtest(code).forEach(r => all.push(r)));
+
+  all.length === manifest.total
+    ? pass('bank', all.length + ' questions across ' + bankdata.codes().length + ' subtests')
+    : fail('bank', 'loaded ' + all.length + ' questions but the manifest says ' + manifest.total);
+
+  // Part 9: every question needs a topic, a valid key and 2+ options.
+  let noTopic = 0, badKey = 0, fewOpts = 0, noLesson = 0;
+  const lessonIds = new Set(data.lessons.map(l => l.id));
+  all.forEach(r => {
+    if (!r.topics || !r.topics.length) { noTopic++; fail('bank', r.id + ' has no topic tag'); }
+    const opts = r.options || {};
+    if (Object.keys(opts).length < 2) { fewOpts++; fail('bank', r.id + ' has fewer than 2 options'); }
+    if (!r.answer || !(r.answer in opts)) { badKey++; fail('bank', r.id + ' answer "' + r.answer + '" is not one of its options'); }
+    const lid = itemsMod.lessonFor(r.subtest, (r.topics || [])[0]);
+    if (lid && !lessonIds.has(lid)) { noLesson++; fail('bank', r.id + ' maps to missing lesson "' + lid + '"'); }
+  });
+  if (!noTopic && !badKey && !fewOpts && !noLesson) {
+    pass('bank', 'every question has a topic, a valid key, 2+ options and a resolvable lesson');
+  }
+
+  // Every topic carrying questions must reach a lesson, or be a declared gap.
+  const taxonomy = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/taxonomy.json'), 'utf8'));
+  let unresolved = 0;
+  Object.entries(taxonomy.subtests).forEach(([sub, entry]) => {
+    Object.entries(entry.topics).forEach(([topic, t]) => {
+      if (t.questions > 0 && !t.lesson) {
+        unresolved++;
+        fail('bank', sub + '.' + topic + ' has ' + t.questions + ' questions but no lesson');
+      }
+    });
+  });
+  if (!unresolved) pass('bank', 'every topic with questions resolves to a lesson');
+
+  // The adapter has to produce the shape js/app/ consumes.
+  let rendered = 0;
+  all.forEach(r => {
+    const it = itemsMod.render(r, 0);
+    if (!it) { fail('bank', r.id + ' failed to render'); return; }
+    rendered++;
+    if (!it.stem) fail('bank', r.id + ' rendered with an empty stem');
+    if (it.options.filter(o => o.isCorrect).length !== 1) {
+      fail('bank', r.id + ' rendered with ' + it.options.filter(o => o.isCorrect).length + ' correct options');
+    }
+    if (it.options[it.correctIndex].key !== it.correctKey) fail('bank', r.id + ' correctKey and correctIndex disagree');
+    if (it.subtest === 'PC' && !it.passage) fail('bank', r.id + ' is a PC item with no passage');
+  });
+  pass('bank', rendered + ' items render into the runtime shape');
+
+  // Figures referenced must exist on disk.
+  let missingFigs = 0;
+  all.forEach(r => {
+    if (r.figure && !fs.existsSync(path.join(ROOT, r.figure))) {
+      missingFigs++; fail('bank', r.id + ' references missing figure ' + r.figure);
+    }
+  });
+  if (!missingFigs) pass('bank', all.filter(r => r.figure).length + ' figures all present on disk');
+}
+
+// --------------------------------------------------------- exam construction
+head('Exam construction');
+{
+  const bankdata = require('./js/core/bankdata.js');
+  bankdata.ensure(null, () => { });
+  const exam = require('./js/core/exam.js');
+
+  const sim = exam.fullSimulation(12345);
+  const want = data.config.subtests.reduce((a, s) => a + s.items, 0);
+  sim.totalItems === want
+    ? pass('exam', 'full simulation builds ' + want + ' items')
+    : fail('exam', 'full simulation built ' + sim.totalItems + ' items, config asks for ' + want);
+
+  // official subtest order
+  const order = sim.sections.map(s => s.code).join(',');
+  const expected = data.config.subtests.slice().sort((a, b) => a.order - b.order).map(s => s.code).join(',');
+  order === expected ? pass('exam', 'sections run in configured order: ' + order)
+    : fail('exam', 'section order is ' + order + ', expected ' + expected);
+
+  // per-section budgets
+  data.config.subtests.forEach(cfg => {
+    const sec = sim.sections.find(s => s.code === cfg.code);
+    if (!sec) return fail('exam', cfg.code + ' section missing from the simulation');
+    if (sec.items.length !== cfg.items) fail('exam', cfg.code + ' built ' + sec.items.length + ' items, config asks ' + cfg.items);
+    if (sec.seconds !== cfg.seconds) fail('exam', cfg.code + ' has ' + sec.seconds + 's, config says ' + cfg.seconds);
+  });
+
+  // Part 9: no repeat within an exam.
+  const ids = [];
+  sim.sections.forEach(s => s.items.forEach(i => ids.push(i.template_id)));
+  new Set(ids).size === ids.length
+    ? pass('exam', 'no question repeats within a sitting (' + ids.length + ' distinct)')
+    : fail('exam', 'a question repeated within one exam: ' + (ids.length - new Set(ids).size) + ' duplicate(s)');
+
+  // Ambiguous Auto/Shop items are P&P only and must not reach a CAT sitting.
+  const leaked = ids.filter(id => String(id).startsWith('AS-'));
+  leaked.length === 0 ? pass('exam', 'ambiguous Auto/Shop items stay out of a CAT sitting')
+    : fail('exam', leaked.length + ' ambiguous AS item(s) reached the simulation');
+
+  // refs must round-trip: item -> ref -> item
+  let round = 0;
+  sim.sections[0].items.forEach(it => {
+    const back = exam.rehydrate(exam.itemRef(it));
+    if (!back) return fail('exam', it.template_id + ' did not survive the ref round-trip');
+    if (back.stem !== it.stem || back.correctKey !== it.correctKey) {
+      fail('exam', it.template_id + ' changed across a ref round-trip');
+    }
+    round++;
+  });
+  pass('exam', round + ' items round-trip through itemRef/rehydrate unchanged');
+
+  // A ref from the retired generated layer must degrade, not throw.
+  const old = exam.rehydrate({ source: 'template', template_id: 'ar_rate_01', seed: 7 });
+  old === null ? pass('exam', 'a stale pre-migration ref resolves to null instead of throwing')
+    : fail('exam', 'a stale ref unexpectedly resolved');
+
+  const diag = exam.diagnostic(9);
+  const dwant = Object.values(data.config.diagnostic.spread).reduce((a, b) => a + b, 0);
+  diag.totalItems === dwant ? pass('exam', 'diagnostic builds ' + dwant + ' items')
+    : fail('exam', 'diagnostic built ' + diag.totalItems + ', expected ' + dwant);
+}
+
 // ---------------------------------------------------------------- summary
 console.log('\n' + '-'.repeat(64));
 console.log(failures === 0

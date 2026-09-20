@@ -45,10 +45,39 @@
       var r = routes[i];
 
       if (r.exam) {
-        if (!A.runner.current() && !A.runner.resume()) { go('#/', true); return; }
+        // Resuming reads item refs that name bank chunks which may not be
+        // loaded yet -- on a cold start after a refresh, none of them are.
+        if (!A.runner.current()) {
+          var saved = A.state.getSession();
+          if (!saved || saved.done) { go('#/', true); return; }
+          var need = sessionSubtests(saved);
+          if (need.some(function (c) { return !A.bankdata.isLoaded(c); })) {
+            d.clear(main);
+            d.append(main, el('p', { class: 'muted center', style: 'padding:32px' }, 'Loading your test…'));
+            A.bankdata.ensure(need, function () { render(); });
+            return;
+          }
+          if (!A.runner.resume()) { go('#/', true); return; }
+        }
         if (r.exam === 'break') A.runner.drawBreak(); else A.runner.draw();
         setTab(null);
         return;
+      }
+
+      // Report and review views rehydrate stored items, so the chunks holding
+      // them have to be present before the view draws.
+      if (/^\/(report|review|analysis|misssheet)\//.test(p)) {
+        var att = A.state.attempt(m[1]);
+        if (att) {
+          var want = attemptSubtests(att);
+          if (want.some(function (c) { return !A.bankdata.isLoaded(c); })) {
+            A.runner.exit();
+            d.clear(main);
+            d.append(main, el('p', { class: 'muted center', style: 'padding:32px' }, 'Loading…'));
+            A.bankdata.ensure(want, function () { render(); });
+            return;
+          }
+        }
       }
 
       A.runner.exit();
@@ -74,6 +103,21 @@
     go('#/', true);
   }
 
+  // Which bank chunks a stored session or attempt needs before it can render.
+  function sessionSubtests(sess) {
+    var out = {};
+    (sess.sections || []).forEach(function (sec) {
+      (sec.refs || []).forEach(function (r) { if (r.subtest) out[r.subtest] = true; });
+    });
+    return Object.keys(out);
+  }
+
+  function attemptSubtests(att) {
+    var out = {};
+    (att.per_item_results || []).forEach(function (r) { if (r.subtest) out[r.subtest] = true; });
+    return Object.keys(out);
+  }
+
   function setBack(target) {
     var b = $('#backBtn');
     b.hidden = !target;
@@ -94,6 +138,17 @@
     var diag = A.state.diagnostic();
     var attempts = A.state.attempts();
     var due = A.state.dueReviews();
+
+    (A.state.notices() || []).forEach(function (n) {
+      d.append(box, el('div', { class: 'card stack notice-card' }, [
+        el('strong', 'Your progress was carried over'),
+        el('p', { class: 'small muted', style: 'margin:0', text: n.text }),
+        el('button', {
+          class: 'btn ghost small', type: 'button',
+          onclick: function () { A.state.dismissNotice(n.id); render(); }
+        }, 'Got it')
+      ]));
+    });
 
     if (A.state.isVolatile()) {
       d.append(box, el('p', { class: 'banner warn' },
@@ -224,12 +279,17 @@
     A.data.subtests.forEach(function (s) {
       d.append(wrap, el('button', {
         class: 'subtest-row', type: 'button',
-        onclick: function () { A.runner.begin(A.exam.practice(s.code, s.items), { catRules: false }); }
+        onclick: function () {
+          A.bankdata.ensure([s.code], function () {
+            A.runner.begin(A.exam.practice(s.code, s.items), { catRules: false });
+          });
+        }
       }, [
         el('span', { class: 'code', text: s.code }),
         el('span', { class: 'grow' }, [
           el('div', { class: 'nm', text: s.name }),
-          el('div', { class: 'tiny muted', text: s.items + ' questions · ' + A.data.topicsFor(s.code).length + ' subtopics' })
+          el('div', { class: 'tiny muted', text: (A.bankdata.counts()[s.code] || 0) +
+            ' in the bank · ' + A.data.topicsFor(s.code).length + ' subtopics' })
         ]),
         el('span', { class: 'muted' }, '›')
       ]));
@@ -241,21 +301,27 @@
   // ---------------- launchers ----------------
 
   function startSimulation() {
-    d.toast('Building 145 questions…');
-    setTimeout(function () {
+    var n = A.data.config.subtests.reduce(function (a, s) { return a + s.items; }, 0);
+    d.toast('Building ' + n + ' questions…');
+    A.bankdata.ensure(null, function () {
       A.runner.begin(A.exam.fullSimulation(), { catRules: A.state.settings().catRules });
-    }, 30);
+    });
   }
   function startDiagnostic() {
     d.toast('Building your placement test…');
-    setTimeout(function () {
+    A.bankdata.ensure(null, function () {
       A.runner.begin(A.exam.diagnostic(), { catRules: false });
-    }, 30);
+    });
   }
   function startReview() {
-    var ex = A.exam.review();
-    if (!ex.totalItems) { d.toast('Nothing is due for review yet.'); return; }
-    A.runner.begin(ex, { catRules: false });
+    var due = A.state.dueReviews();
+    var need = {};
+    due.forEach(function (q) { if (q.subtest) need[q.subtest] = true; });
+    A.bankdata.ensure(Object.keys(need), function () {
+      var ex = A.exam.review();
+      if (!ex.totalItems) { d.toast('Nothing is due for review yet.'); return; }
+      A.runner.begin(ex, { catRules: false });
+    });
   }
   function startDrillFrom(attemptId) {
     var att = A.state.attempt(attemptId);
@@ -271,7 +337,10 @@
     }
     var weak = A.analytics.weakSpots(rows, { limit: 5 });
     if (!weak.length) { d.toast('No clear weak spots yet — take a longer test first.'); return; }
-    A.runner.begin(A.exam.drill(weak.map(function (w) { return { subtest: w.subtest, topic: w.topic }; })), { catRules: false });
+    var spots = weak.map(function (w) { return { subtest: w.subtest, topic: w.topic }; });
+    A.bankdata.ensure(spots.map(function (w) { return w.subtest; }), function () {
+      A.runner.begin(A.exam.drill(spots), { catRules: false });
+    });
   }
 
   // ---------------- progress ----------------
@@ -454,14 +523,29 @@
       el('p', { class: 'small muted', style: 'margin:0' },
         'Job cut scores are deliberately absent: they change and vary by contract. Take your real scores to a recruiter.')
     ]));
+    var counts = A.bankdata.counts();
     d.append(box, el('div', { class: 'card stack' }, [
       el('strong', 'Content'),
       el('p', { class: 'small muted', style: 'margin:0' },
-        A.data.templates.length + ' question templates, ' +
-        Object.keys(A.data.banks).reduce(function (a, k) { return a + A.data.banks[k].entries.length; }, 0) +
-        ' bank entries, ' + A.data.passages.length + ' reading passages and ' +
-        A.data.lessons.length + ' lessons. Every item is original, written to the published content ' +
-        'outline for each subtest. No real test questions appear anywhere in this app.')
+        A.bankdata.total() + ' questions across ' + Object.keys(counts).length +
+        ' subtests, and ' + A.data.lessons.length + ' lessons. Questions load a ' +
+        'subtest at a time, so the first test you take downloads only what it needs.'),
+      el('p', { class: 'small muted', style: 'margin:0' },
+        'Questions come from a published ASVAB practice question set, not from ' +
+        'the real exam — actual test items are protected and are not available ' +
+        'anywhere. Some carry no explanation, and a few have known defects in ' +
+        'the source; those are excluded.')
+    ]));
+
+    d.append(box, el('div', { class: 'card stack' }, [
+      el('strong', 'Pool health'),
+      el('p', { class: 'small muted', style: 'margin:0' },
+        'How many questions you have not yet seen in each subtest.'),
+      el('div', { class: 'row' }, Object.keys(counts).sort().map(function (code) {
+        if (!A.bankdata.isLoaded(code)) return null;
+        var h = A.exam.poolHealth(code);
+        return el('span', { class: 'chip', text: code + ' ' + h.unseen + '/' + h.total });
+      }))
     ]));
     return box;
   }

@@ -1,6 +1,7 @@
 {
  "version": 1,
- "total": 1893,
+ "total": 1884,
+ "extracted": 1893,
  "excluded": 9,
  "subtests": {
   "AI": {
@@ -62,7 +63,7 @@
   "PC": {
    "file": "data/questions.PC.js",
    "count": 152,
-   "bytes": 181597,
+   "bytes": 271202,
    "with_explanation": 89,
    "with_figure": 0
   },

@@ -373,3 +373,17 @@ textarea.io {
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
+
+
+/* Bank figures. The source images are 96 DPI JPEGs, so they are shown at or
+   below natural size -- scaling them up only makes the line art mushy. */
+.qfig {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 12px 0;
+  border-radius: 8px;
+  background: #fff;
+  padding: 6px;
+}
+.notice-card { border-left: 3px solid var(--accent, #4a9); }

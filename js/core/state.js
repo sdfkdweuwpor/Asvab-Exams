@@ -9,17 +9,19 @@
 
   var KEY = 'asvab.progress.v1';
   var SEEN_CAP = 6000;       // trimmed oldest-first; analytics never needs more
+  var VERSION = 2;           // 2: content moved from generated items to the fixed bank
 
   function blank() {
     return {
-      version: 1,
+      version: VERSION,
       created: new Date().toISOString(),
       settings: { catRules: false, theme: 'auto', scratchOpen: false },
       diagnostic: null,
       seen: [],
       attempts: [],
       queue: [],
-      session: null
+      session: null,
+      notices: []
     };
   }
 
@@ -56,15 +58,74 @@
     return cache;
   }
 
+  /* v1 -> v2. The question bank changed from generated items keyed by
+     (template_id, seed) to fixed items keyed by bank id, and the two id spaces
+     do not overlap. Nothing is deleted:
+
+     - `seen` rows are kept exactly as they are. Every row carries its own
+       subtest and topic, so heatmaps, weak spots, timing and the AFQT sample
+       size all still compute over the full history.
+     - Past attempts keep their scores, which were frozen at the time. They are
+       marked contentGeneration 1 so the review screen can say the question text
+       is no longer available instead of rendering an empty list.
+     - Queued reviews name items that no longer exist. They are dropped, but a
+       notice records how many, because silently emptying someone's review queue
+       is exactly the kind of thing the app should not do. */
   function migrate(s) {
     var base = blank();
     Object.keys(base).forEach(function (k) { if (s[k] === undefined) s[k] = base[k]; });
     s.settings = Object.assign({}, base.settings, s.settings || {});
+
+    if ((s.version || 1) < 2) {
+      var staleQueue = 0;
+      s.queue = (s.queue || []).filter(function (q) {
+        var live = q.source === 'pdf' || /^[A-Z]{2}-\d{4}$/.test(String(q.template_id || ''));
+        if (!live) staleQueue++;
+        return live;
+      });
+
+      var oldAttempts = 0;
+      (s.attempts || []).forEach(function (a) {
+        if (a.contentGeneration === undefined) {
+          var fromBank = (a.per_item_results || []).some(function (r) {
+            return r.source === 'pdf';
+          });
+          a.contentGeneration = fromBank ? 2 : 1;
+          if (a.contentGeneration === 1) oldAttempts++;
+        }
+      });
+
+      // An in-flight session cannot survive: its refs name generated items.
+      var hadSession = !!s.session;
+      if (hadSession) s.session = null;
+
+      if (staleQueue || oldAttempts || hadSession) {
+        s.notices = (s.notices || []).concat([{
+          id: 'migrate-v2', date: new Date().toISOString(),
+          text: 'The question bank was replaced with real exam-style questions. ' +
+                'Your ' + (s.seen || []).length + ' answered questions and ' +
+                (s.attempts || []).length + ' attempts are all kept. ' +
+                (oldAttempts ? oldAttempts + ' earlier attempt(s) keep their scores but ' +
+                  'can no longer show the question text. ' : '') +
+                (staleQueue ? staleQueue + ' review-queue item(s) were retired. ' : '') +
+                (hadSession ? 'A test that was in progress could not be carried over.' : '')
+        }]);
+      }
+      s.version = 2;
+    }
     return s;
+  }
+
+  function notices() { return load().notices || []; }
+  function dismissNotice(id) {
+    var s = load();
+    s.notices = (s.notices || []).filter(function (n) { return n.id !== id; });
+    save();
   }
 
   function save() {
     if (!cache) return false;
+    medianCache = null;
     if (cache.seen.length > SEEN_CAP) cache.seen = cache.seen.slice(cache.seen.length - SEEN_CAP);
     try {
       store.setItem(KEY, JSON.stringify(cache));
@@ -114,6 +175,48 @@
   function timesSeen(templateId) {
     var n = 0;
     load().seen.forEach(function (r) { if (r.t === templateId) n++; });
+    return n;
+  }
+
+  /* Median answering time per subtest, over answers that were actually worked.
+     Cached per load, because the selection pass asks for it once per candidate. */
+  var medianCache = null;
+  function medianSeconds(code) {
+    if (!medianCache) {
+      medianCache = {};
+      var bySub = {};
+      load().seen.forEach(function (r) {
+        if (!r.st || !r.sec) return;
+        (bySub[r.st] = bySub[r.st] || []).push(r.sec);
+      });
+      Object.keys(bySub).forEach(function (k) {
+        var a = bySub[k].sort(function (x, y) { return x - y; });
+        medianCache[k] = a[Math.floor(a.length / 2)];
+      });
+    }
+    return medianCache[code] || null;
+  }
+
+  /* A fixed bank means a question can be recognised rather than solved.
+     Answered right, three or more times, in under 40% of the student's own
+     median for that subtest is the signal. It deprioritises an item in exam
+     draws; it never removes it, because the pool is too small to discard from. */
+  function isLikelyMemorized(templateId) {
+    var rows = load().seen.filter(function (r) { return r.t === templateId; });
+    if (rows.length < 3) return false;
+    var code = rows[rows.length - 1].st;
+    var med = medianSeconds(code);
+    if (!med) return false;
+    var fast = 0;
+    for (var i = 0; i < rows.length; i++) {
+      if (rows[i].c && rows[i].sec && rows[i].sec < med * 0.4) fast++;
+    }
+    return fast >= 2;
+  }
+
+  function memorizedCount(ids) {
+    var n = 0;
+    (ids || []).forEach(function (id) { if (isLikelyMemorized(id)) n++; });
     return n;
   }
 
@@ -206,7 +309,8 @@
     return {
       format: 'asvab-practice-progress', version: 1,
       exported: new Date().toISOString(),
-      data: { created: s.created, settings: s.settings, diagnostic: s.diagnostic, seen: s.seen, attempts: s.attempts, queue: s.queue }
+      data: { created: s.created, settings: s.settings, diagnostic: s.diagnostic,
+              seen: s.seen, attempts: s.attempts, queue: s.queue, version: s.version }
     };
   }
 
@@ -286,6 +390,9 @@
   return {
     load: load, save: save, reset: reset, isVolatile: isVolatile,
     recordSeen: recordSeen, seenList: seenList, seedsUsed: seedsUsed, timesSeen: timesSeen,
+    isLikelyMemorized: isLikelyMemorized, memorizedCount: memorizedCount,
+    medianSeconds: medianSeconds, notices: notices, dismissNotice: dismissNotice,
+    VERSION: VERSION,
     recordAttempt: recordAttempt, attempts: attempts, attempt: attempt, afqtSampleSize: afqtSampleSize,
     scheduleReview: scheduleReview, advanceReview: advanceReview, dueReviews: dueReviews, queueSize: queueSize,
     saveSession: saveSession, getSession: getSession, clearSession: clearSession,

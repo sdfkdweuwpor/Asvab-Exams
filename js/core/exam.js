@@ -1,48 +1,77 @@
 /* Builds the item lists for every mode: diagnostic, full simulation, single
    subtest practice, targeted drills and the spaced-repetition review.
 
-   Selection leans on the `seen` table so repeat sittings draw fresh content,
-   and on per-subtest difficulty targets so a student who is struggling is not
-   handed the hardest items in the bank. */
+   Every item now comes from the fixed bank extracted from the source PDF, so
+   selection is about WHICH real question to show rather than what to generate.
+   Two consequences shape everything below: the pool is finite, so an exam must
+   never repeat an item and should prefer ones the student has not seen; and a
+   question is the same every time, so difficulty targeting matters more than it
+   did when a template could be reseeded.
+
+   The public surface is unchanged -- js/app/ calls exactly the same functions
+   with the same arguments as it did against the generated content. */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) {
-    module.exports = factory(require('./data.js'), require('./rng.js'), require('./engine.js'),
-      require('./bank.js'), require('./passage.js'), require('./ao.js'), require('./state.js'));
+    module.exports = factory(require('./data.js'), require('./rng.js'),
+      require('./bankdata.js'), require('./items.js'), require('./state.js'));
   } else {
     root.ASVAB = root.ASVAB || {};
-    root.ASVAB.exam = factory(root.ASVAB.data, root.ASVAB.rng, root.ASVAB.engine,
-      root.ASVAB.bank, root.ASVAB.passage, root.ASVAB.ao, root.ASVAB.state);
+    root.ASVAB.exam = factory(root.ASVAB.data, root.ASVAB.rng,
+      root.ASVAB.bankdata, root.ASVAB.items, root.ASVAB.state);
   }
-})(typeof self !== 'undefined' ? self : this, function (data, rng, engine, bankGen, passageGen, ao, state) {
+})(typeof self !== 'undefined' ? self : this, function (data, rng, bankdata, items, state) {
   'use strict';
 
-  function freshSeed(templateId, used, r) {
-    for (var i = 0; i < 40; i++) {
-      var s = r.int(1, 9999999);
-      if (!used[s]) { used[s] = true; return s; }
-    }
-    return r.int(1, 9999999);
+  // Items the keyword split could not call Auto or Shop. The CAT scores those
+  // as separate subtests, so an ambiguous item is only honest in P&P mode.
+  function drawable(code, opts) {
+    var list = bankdata.forSubtest(code) || [];
+    if (code === 'AS' && !(opts && opts.allowAmbiguous)) return [];
+    return list;
   }
 
-  /* Rank candidates: least-seen first, then closest to the difficulty target,
-     then a seeded jitter so equal candidates rotate between sittings. */
-  function rankCandidates(list, target, r, keyOf) {
+  function topicOf(rec) { return (rec.topics && rec.topics[0]) || 'general'; }
+
+  /* Difficulty target for a subtest, 1-5, from the student's recent accuracy.
+     Defaults to 3 -- the middle of the band -- with no history. */
+  function difficultyTarget(code) {
+    if (!state) return 3;
+    var rows = state.seenList().filter(function (r) { return r.subtest === code; });
+    if (rows.length < 5) return 3;
+    var recent = rows.slice(-40);
+    var acc = recent.filter(function (r) { return r.correct; }).length / recent.length;
+    if (acc >= 0.85) return 5;
+    if (acc >= 0.7) return 4;
+    if (acc >= 0.45) return 3;
+    if (acc >= 0.25) return 2;
+    return 1;
+  }
+
+  /* Rank candidates: unseen first, then least-seen, then closest to the
+     difficulty target, then a seeded jitter so equal candidates rotate.
+     Items the student looks to be recognising rather than solving sink to the
+     bottom without being removed -- the pool is too small to discard from. */
+  function rankCandidates(list, target, r) {
     return list.map(function (c, i) {
-      var seen = state ? state.timesSeen(keyOf(c)) : 0;
+      var seen = state ? state.timesSeen(c.id) : 0;
+      var memo = state && state.isLikelyMemorized ? state.isLikelyMemorized(c.id) : false;
       return {
-        item: c, seen: seen,
-        gap: Math.abs((c.difficulty || 2) - target),
-        jitter: rng.make(keyOf(c) + ':' + r.int(1, 1e6)).next()
+        item: c,
+        memo: memo ? 1 : 0,
+        seen: seen,
+        gap: Math.abs((c.difficulty || 3) - target),
+        jitter: rng.make(c.id + ':' + r.int(1, 1e6)).next()
       };
     }).sort(function (a, b) {
+      if (a.memo !== b.memo) return a.memo - b.memo;
       if (a.seen !== b.seen) return a.seen - b.seen;
       if (a.gap !== b.gap) return a.gap - b.gap;
       return a.jitter - b.jitter;
     }).map(function (x) { return x.item; });
   }
 
-  // Take `n` items while spreading them across topics before doubling up.
-  function spreadByTopic(ranked, n, topicOf) {
+  // Take `n` while spreading across topics before doubling up on one.
+  function spreadByTopic(ranked, n) {
     var byTopic = {}, order = [];
     ranked.forEach(function (c) {
       var t = topicOf(c);
@@ -62,125 +91,70 @@
     return out;
   }
 
-  /* Difficulty target for a subtest, 1-4, from the student's recent accuracy.
-     Defaults to 2 with no history, which is the middle of the band. */
-  function difficultyTarget(code) {
-    if (!state) return 2;
-    var rows = state.seenList().filter(function (r) { return r.subtest === code; });
-    if (rows.length < 5) return 2;
-    var recent = rows.slice(-40);
-    var acc = recent.filter(function (r) { return r.correct; }).length / recent.length;
-    if (acc >= 0.85) return 4;
-    if (acc >= 0.7) return 3;
-    if (acc >= 0.45) return 2;
-    return 1;
-  }
-
-  function buildTemplateItems(code, n, r, topicFilter) {
-    var pool = data.templatesFor(code).filter(function (t) {
-      return !topicFilter || topicFilter.indexOf(t.topic) >= 0;
-    });
-    if (!pool.length) return [];
-    var target = difficultyTarget(code);
-    var ranked = rankCandidates(pool, target, r, function (t) { return t.id; });
-    var chosen = spreadByTopic(ranked, n, function (t) { return t.topic; });
-    // If the subtest has fewer templates than items, cycle -- different seeds
-    // still give genuinely different questions.
-    var out = [];
-    for (var i = 0; i < n; i++) {
-      var tpl = chosen[i % Math.max(chosen.length, 1)] || ranked[i % ranked.length];
-      var used = state ? state.seedsUsed(tpl.id) : {};
-      try { out.push(engine.renderTemplate(tpl, freshSeed(tpl.id, used, r))); }
-      catch (e) { /* a template that cannot render is skipped, never shown broken */ }
-    }
-    return out;
-  }
-
-  function buildBankItems(code, n, r, topicFilter) {
-    var b = data.banks[code];
-    if (!b || !b.entries.length) return [];
-    var pool = b.entries.filter(function (e) {
-      return !topicFilter || topicFilter.indexOf(e.topic) >= 0;
-    });
-    if (!pool.length) return [];
-    var target = difficultyTarget(code);
-    var ranked = rankCandidates(pool, target, r, function (e) { return e.id; });
-    var chosen = spreadByTopic(ranked, n, function (e) { return e.topic; });
-    var out = [];
-    for (var i = 0; i < n && i < chosen.length; i++) {
-      var e = chosen[i];
-      var used = state ? state.seedsUsed(e.id) : {};
-      try { out.push(bankGen.render(e, b.entries, freshSeed(e.id, used, r))); } catch (err) { }
-    }
-    return out;
-  }
-
-  function buildPassageItems(n, r, typeFilter) {
-    var ranked = rankCandidates(data.passages, difficultyTarget('PC'), r, function (p) { return p.id; });
-    var out = [];
-    for (var i = 0; i < ranked.length && out.length < n; i++) {
-      var p = ranked[i];
-      var want = Math.min(n - out.length, 3);
-      var items;
-      try { items = passageGen.render(p, r.int(1, 9999999), want); } catch (e) { continue; }
-      if (typeFilter) items = items.filter(function (it) { return typeFilter.indexOf(it.topic) >= 0; });
-      out = out.concat(items.slice(0, n - out.length));
-    }
-    return out;
-  }
-
-  function buildAOItems(n, r) {
-    var out = [];
-    for (var i = 0; i < n; i++) {
-      // alternate the two problem kinds so a section always shows both
-      out.push(ao.render(r.int(1, 9999999), i % 2 === 0 ? 'connection' : 'assembly'));
-    }
-    return out;
-  }
-
-  // One subtest's worth of items, drawing from whichever sources it declares.
-  function buildSection(code, n, r, filters) {
+  /* One subtest's worth of items. `used` carries ids already drawn elsewhere in
+     this exam, which is what keeps a question from appearing twice in a sitting
+     now that the pool is finite. */
+  function buildSection(code, n, r, filters, used) {
     filters = filters || {};
-    var cfg = data.subtest(code);
-    if (!cfg) return [];
-    var sources = cfg.sources || [];
-    var items = [];
+    used = used || {};
+    var pool = drawable(code, filters).filter(function (rec) {
+      if (used[rec.id]) return false;
+      if (filters.topics && filters.topics.length) {
+        var ts = rec.topics || [];
+        for (var i = 0; i < ts.length; i++) if (filters.topics.indexOf(ts[i]) >= 0) return true;
+        return false;
+      }
+      return true;
+    });
+    if (!pool.length) return [];
 
-    if (sources.indexOf('procedural') >= 0) items = items.concat(buildAOItems(n, r));
-    if (sources.indexOf('passage') >= 0) items = items.concat(buildPassageItems(n - items.length, r, filters.topics));
+    var ranked = rankCandidates(pool, filters.difficulty || difficultyTarget(code), r);
+    var chosen = spreadByTopic(ranked, n);
 
-    // A subtest with both templates and a bank splits the count between them
-    // in proportion to how much content each side holds.
-    var hasT = sources.indexOf('template') >= 0, hasB = sources.indexOf('bank') >= 0;
-    if (hasT && hasB) {
-      var tN = data.templatesFor(code).length;
-      var bN = ((data.banks[code] || {}).entries || []).length;
-      var remaining = n - items.length;
-      var fromT = Math.max(1, Math.round(remaining * (tN / Math.max(1, tN + bN))));
-      items = items.concat(buildTemplateItems(code, fromT, r, filters.topics));
-      items = items.concat(buildBankItems(code, n - items.length, r, filters.topics));
-    } else if (hasT) {
-      items = items.concat(buildTemplateItems(code, n - items.length, r, filters.topics));
-    } else if (hasB) {
-      items = items.concat(buildBankItems(code, n - items.length, r, filters.topics));
+    var out = [];
+    for (var i = 0; i < chosen.length && out.length < n; i++) {
+      var it = items.render(chosen[i], 0);
+      if (!it) continue;
+      used[chosen[i].id] = true;
+      out.push(it);
     }
+    return out;
+  }
 
-    // Top up from any source if a filter left the section short.
-    if (items.length < n && !filters.topics) {
-      if (hasT) items = items.concat(buildTemplateItems(code, n - items.length, r));
-      if (items.length < n && hasB) items = items.concat(buildBankItems(code, n - items.length, r));
-    }
-    return r.shuffle(items).slice(0, n);
+  // Paragraph Comprehension reads better when a passage's questions sit
+  // together, so the student reads it once rather than three times.
+  function groupByPassage(list) {
+    var order = [], byId = {};
+    list.forEach(function (it) {
+      var key = it.passage_id || it.template_id;
+      if (!byId[key]) { byId[key] = []; order.push(key); }
+      byId[key].push(it);
+    });
+    var out = [];
+    order.forEach(function (k) { out = out.concat(byId[k]); });
+    return out;
+  }
+
+  function sectionItems(code, n, r, filters, used) {
+    var list = buildSection(code, n, r, filters, used);
+    return code === 'PC' ? groupByPassage(list) : list;
   }
 
   // ---------------- modes ----------------
 
+  function orderedSubtests() {
+    return data.subtests.slice().sort(function (a, b) { return a.order - b.order; });
+  }
+
   function fullSimulation(seed) {
     var r = rng.make('sim:' + (seed || Date.now()));
-    var sections = data.subtests.slice().sort(function (a, b) { return a.order - b.order; })
-      .map(function (s) {
-        return { code: s.code, name: s.name, seconds: s.seconds, items: buildSection(s.code, s.items, r) };
-      });
+    var used = {};
+    var sections = orderedSubtests().map(function (s) {
+      return {
+        code: s.code, name: s.name, seconds: s.seconds,
+        items: sectionItems(s.code, s.items, r, null, used)
+      };
+    });
     return {
       mode: 'simulation', created: new Date().toISOString(),
       sections: sections,
@@ -192,25 +166,25 @@
   function diagnostic(seed) {
     var r = rng.make('diag:' + (seed || Date.now()));
     var spread = data.config.diagnostic.spread;
-    var items = [];
-    data.subtests.slice().sort(function (a, b) { return a.order - b.order; }).forEach(function (s) {
-      items = items.concat(buildSection(s.code, spread[s.code] || 0, r));
+    var used = {}, list = [];
+    orderedSubtests().forEach(function (s) {
+      list = list.concat(sectionItems(s.code, spread[s.code] || 0, r, null, used));
     });
     return {
       mode: 'diagnostic', created: new Date().toISOString(),
-      sections: [{ code: 'MIX', name: 'Placement Test', seconds: data.config.diagnostic.seconds, items: items }],
-      totalItems: items.length, totalSeconds: data.config.diagnostic.seconds
+      sections: [{ code: 'MIX', name: 'Placement Test', seconds: data.config.diagnostic.seconds, items: list }],
+      totalItems: list.length, totalSeconds: data.config.diagnostic.seconds
     };
   }
 
   function practice(code, n, seed) {
     var r = rng.make('prac:' + code + ':' + (seed || Date.now()));
-    var cfg = data.subtest(code);
-    var items = buildSection(code, n || cfg.items, r);
+    var cfg = data.subtest(code) || { name: code, items: 15 };
+    var list = sectionItems(code, n || cfg.items, r, { allowAmbiguous: code === 'AS' }, {});
     return {
       mode: 'practice', created: new Date().toISOString(), subtest: code,
-      sections: [{ code: code, name: cfg.name, seconds: null, items: items }],
-      totalItems: items.length, totalSeconds: null
+      sections: [{ code: code, name: cfg.name, seconds: null, items: list }],
+      totalItems: list.length, totalSeconds: null
     };
   }
 
@@ -222,98 +196,95 @@
     if (!weakSpots || !weakSpots.length) return practice('AR', n, seed);
 
     var perSpot = Math.max(1, Math.floor(n / weakSpots.length));
-    var items = [];
+    var used = {}, list = [];
     weakSpots.forEach(function (w) {
-      if (items.length >= n) return;
-      items = items.concat(buildSection(w.subtest, Math.min(perSpot, n - items.length), r, { topics: [w.topic] }));
+      if (list.length >= n) return;
+      list = list.concat(buildSection(w.subtest, Math.min(perSpot, n - list.length), r,
+        { topics: [w.topic] }, used));
     });
     // Short? Widen to the whole of the weakest subtest.
     var guard = 0;
-    while (items.length < n && guard++ < 6) {
-      var more = buildSection(weakSpots[0].subtest, n - items.length, r);
+    while (list.length < n && guard++ < 6) {
+      var more = buildSection(weakSpots[0].subtest, n - list.length, r, null, used);
       if (!more.length) break;
-      items = items.concat(more);
+      list = list.concat(more);
     }
     return {
       mode: 'drill', created: new Date().toISOString(),
       focus: weakSpots.slice(0, 4),
-      sections: [{ code: 'DRILL', name: 'Targeted Drill', seconds: null, items: r.shuffle(items).slice(0, n) }],
-      totalItems: Math.min(items.length, n), totalSeconds: null
+      sections: [{ code: 'DRILL', name: 'Targeted Drill', seconds: null, items: list.slice(0, n) }],
+      totalItems: Math.min(list.length, n), totalSeconds: null
     };
   }
 
-  /* Items due for spaced repetition. Each is re-rendered with a NEW seed, so
-     the concept comes back with different numbers rather than as a memory test. */
+  /* Items due for spaced repetition. A fixed bank brings back the SAME question
+     rather than the same concept with new numbers, so review leans on the
+     memorisation signal to tell recall apart from recognition. */
   function review(seed) {
     var r = rng.make('review:' + (seed || Date.now()));
     var due = state ? state.dueReviews() : [];
-    var items = [];
+    var list = [];
     due.forEach(function (q) {
-      var it = renderOne(q, r);
-      if (it) items.push(it);
+      var it = renderAt(q, 0);
+      if (it) list.push(it);
     });
     return {
       mode: 'review', created: new Date().toISOString(),
-      sections: [{ code: 'REVIEW', name: 'Spaced Review', seconds: null, items: items }],
-      totalItems: items.length, totalSeconds: null
+      sections: [{ code: 'REVIEW', name: 'Spaced Review', seconds: null, items: list }],
+      totalItems: list.length, totalSeconds: null
     };
   }
 
-  /* Re-render a stored reference with its ORIGINAL seed. Rendering is
-     deterministic, so a session can be persisted as a short list of refs and
-     rebuilt byte-identically after a refresh, rather than storing whole items
-     (AO figures alone would be megabytes). */
-  function rehydrate(ref) { return renderAt(ref, ref.seed); }
+  /* A session persists as a short list of refs and rebuilds from the bank, so a
+     refresh returns to the same question without holding whole items -- the
+     figures alone would be megabytes in localStorage. */
+  function rehydrate(ref) { return renderAt(ref, ref.seed || 0); }
 
   function itemRef(item) {
     return {
-      source: item.source, template_id: item.template_id, seed: item.seed,
+      source: item.source, template_id: item.template_id, seed: item.seed || 0,
       subtest: item.subtest, topic: item.topic,
       passage_id: item.passage_id || null, target_seconds: item.target_seconds
     };
   }
 
-  // Re-render any item reference with a fresh seed.
-  function renderOne(ref, r) {
-    r = r || rng.make('one:' + Date.now());
-    return renderAt(ref, r.int(1, 9999999));
-  }
-
   function renderAt(ref, seed) {
+    if (!ref || !ref.template_id) return null;
+    // A ref written by the previous generated content layer names a template
+    // that no longer exists. It resolves to null, and every caller already
+    // guards, so old history degrades rather than throwing.
     try {
-      if (ref.source === 'template') {
-        var tpl = data.template(ref.template_id);
-        return tpl ? engine.renderTemplate(tpl, seed) : null;
-      }
-      if (ref.source === 'procedural') {
-        return ao.render(seed, ref.template_id === 'AO_connection' ? 'connection' : 'assembly');
-      }
-      if (ref.source === 'passage') {
-        var pid = ref.passage_id || String(ref.template_id).split('/')[0];
-        var qid = String(ref.template_id).split('/')[1];
-        var psg = data.passages.filter(function (p) { return p.id === pid; })[0];
-        if (!psg) return null;
-        var q = psg.questions.filter(function (x) { return x.id === qid; })[0] || psg.questions[0];
-        return passageGen.renderQuestion(psg, q, seed);
-      }
-      // bank
-      var b = data.banks[ref.subtest];
-      if (!b) return null;
-      var e = b.entries.filter(function (x) { return x.id === ref.template_id; })[0];
-      return e ? bankGen.render(e, b.entries, seed) : null;
-    } catch (err) { return null; }
+      return items.render(bankdata.byId(ref.template_id), seed || 0);
+    } catch (e) { return null; }
   }
 
-  // Three practice items for a lesson, drawn live from its own subtopic.
+  function renderOne(ref) { return renderAt(ref, 0); }
+
+  // Practice items for a lesson, drawn from its own subtopic.
   function lessonPractice(lesson, n, seed) {
     var r = rng.make('lesson:' + lesson.id + ':' + (seed || Date.now()));
-    return buildSection(lesson.subtest, n || 3, r, { topics: [lesson.topic] });
+    return buildSection(lesson.subtest, n || 3, r,
+      { topics: [lesson.topic], allowAmbiguous: true }, {});
+  }
+
+  // How many unseen items a subtest still holds, for the pool-health warnings.
+  function poolHealth(code) {
+    var list = drawable(code, { allowAmbiguous: true });
+    var unseen = 0;
+    for (var i = 0; i < list.length; i++) {
+      if (!state || state.timesSeen(list[i].id) === 0) unseen++;
+    }
+    var cfg = data.subtest(code);
+    var per = (cfg && cfg.items) || 15;
+    return { code: code, total: list.length, unseen: unseen, perExam: per,
+             examsLeft: Math.floor(unseen / Math.max(per, 1)) };
   }
 
   return {
     fullSimulation: fullSimulation, diagnostic: diagnostic, practice: practice,
     drill: drill, review: review, renderOne: renderOne, rehydrate: rehydrate,
     itemRef: itemRef, lessonPractice: lessonPractice,
-    buildSection: buildSection, difficultyTarget: difficultyTarget
+    buildSection: sectionItems, difficultyTarget: difficultyTarget,
+    poolHealth: poolHealth
   };
 });
