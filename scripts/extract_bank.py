@@ -15,7 +15,7 @@ import json
 import os
 import re
 import sys
-from collections import Counter, OrderedDict
+from collections import Counter, OrderedDict, defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_PDF = os.path.join(ROOT, 'source', 'asvab-source.pdf')
@@ -45,7 +45,13 @@ RE_OPTION = re.compile(r'^\s*([A-D])\s*[\.\)]\s+(.*)$')
 RE_ANSWER = re.compile(r'^\s*Answer\(?s?\)?\s*:\s*(.+?)\s*$', re.I)
 RE_EXPLANATION = re.compile(r'^\s*Explanation\s*:?\s*(.*)$', re.I)
 
-# Section headings, in PDF order. Matched loosely against a whole line.
+# Section headings, in PDF order. Only the "Section N: <name>" form is
+# authoritative -- page 3 is a table of contents listing all nine, and a stem
+# like "The purpose of mechanical comprehension is ___" also matches a bare
+# name. Note the source mislabels Mathematical Knowledge as "Section 4"
+# (General Science is also 4), so the NAME decides, never the number.
+RE_SECTION_HEAD = re.compile(r'^\s*Section\s+\d+\s*:\s*(.+?)\s*$', re.I)
+
 SECTIONS = [
     ('AR', re.compile(r'arithmetic\s+reasoning', re.I)),
     ('AS', re.compile(r'auto\s*(and|&)?\s*shop\s+information', re.I)),
@@ -65,6 +71,10 @@ AUTO_TERMS = [
     'distributor', 'clutch', 'differential', 'ignition', 'cylinder', 'valve',
     'fuel injector', 'coolant', 'odometer', 'tachometer', 'axle', 'catalytic',
     'oil pan', 'timing belt', 'starter motor', 'battery', 'spark', 'gasket',
+    'two-cycle', 'two cycle', 'four-cycle', 'oil pressure', 'engine oil',
+    'tire', 'steering', 'suspension', 'shock absorber', 'antifreeze',
+    'fuel pump', 'throttle', 'manifold', 'torque converter', 'drive belt',
+    'headlight', 'windshield', 'vehicle', 'automobile', 'car ', 'truck',
 ]
 SHOP_TERMS = [
     'chisel', 'plane', 'miter', 'lathe', 'solder', 'rivet', 'wrench',
@@ -72,6 +82,10 @@ SHOP_TERMS = [
     'sandpaper', 'vise', 'clamp', 'drill bit', 'router', 'awl', 'mallet',
     'dovetail', 'plywood', 'tenon', 'mortise', 'level', 'square', 'caliper',
     'saw', 'hammer', 'anvil', 'grinder', 'tap and die', 'lumber',
+    'rebar', 'washer', 'bolt', 'nut ', 'screw', 'nail', 'sheet metal',
+    'micrometer', 'sandpaper', 'wood', 'metalwork', 'workbench', 'bench',
+    'blade', 'bit ', 'gauge', 'measur', 'weld', 'braze', 'concrete',
+    'masonry', 'trowel', 'putty', 'adhesive', 'glue', 'joint', 'plumb',
 ]
 
 # ------------------------------------------------------------- figure detection
@@ -253,6 +267,351 @@ def classify_auto_shop(text):
     return 'AS'
 
 
+
+# --------------------------------------------------------------- figures
+# Figures live as embedded rasters (96 DPI JPEGs). Extracting the embedded
+# bitmap beats re-rendering the page region: rendering would resample a 96 DPI
+# source and lose detail rather than gain it.
+
+FOOTER_Y = 700.0   # below this is the page rule and number box, never a figure
+
+
+def question_anchors(doc):
+    """{page_index: [(y_top, source_number), ...]} for every QUESTION marker."""
+    anchors = {}
+    for i in range(doc.page_count):
+        page = doc[i]
+        found = []
+        for inst in page.search_for('QUESTION:'):
+            if inst.y0 > FOOTER_Y:
+                continue
+            line = page.get_text('text', clip=fitz.Rect(
+                inst.x0 - 2, inst.y0 - 2, page.rect.x1, inst.y1 + 2))
+            m = re.search(r'QUESTION\s*:?\s*(\d+)', line)
+            if m:
+                found.append((inst.y0, int(m.group(1))))
+        if found:
+            anchors[i] = sorted(found)
+    return anchors
+
+
+def extract_figures(doc, records):
+    """Attach each embedded image to the question whose vertical span holds it."""
+    anchors = question_anchors(doc)
+    by_number = {r['source_number']: r for r in records}
+    os.makedirs(FIG_DIR, exist_ok=True)
+
+    # Which question is live at the top of each page (a record can span pages).
+    live_at_top = {}
+    current = None
+    for i in range(doc.page_count):
+        live_at_top[i] = current
+        for _, num in anchors.get(i, []):
+            current = num
+
+    saved = 0
+    for i in range(doc.page_count):
+        page = doc[i]
+        marks = anchors.get(i, [])
+        for img in page.get_images(full=True):
+            xref = img[0]
+            rects = page.get_image_rects(xref)
+            if not rects:
+                continue
+            r = rects[0]
+            if r.y0 > FOOTER_Y or r.width < 40 or r.height < 20:
+                continue
+            owner = live_at_top.get(i)
+            for y, num in marks:
+                if y <= r.y0:
+                    owner = num
+            rec = by_number.get(owner)
+            if rec is None:
+                continue
+            try:
+                info = doc.extract_image(xref)
+            except Exception:
+                continue
+            # Write the embedded bytes untouched. These are JPEGs of line art:
+            # re-encoding to PNG cannot undo the existing lossy artefacts and
+            # roughly triples the size, which the offline cache pays for.
+            ext = info['ext'] if info['ext'] in ('jpeg', 'jpg', 'png', 'gif') else 'png'
+            ext = 'jpg' if ext == 'jpeg' else ext
+            name = 'q%04d.%s' % (rec['source_number'], ext)
+            if rec.get('figure'):                       # second image for one item
+                rec['_fign'] = rec.get('_fign', 1) + 1
+                name = 'q%04d_%d.%s' % (rec['source_number'], rec['_fign'], ext)
+            dest = os.path.join(FIG_DIR, name)
+            with open(dest, 'wb') as f:
+                f.write(info['image'])
+            if not rec.get('figure'):
+                rec['figure'] = 'assets/figures/' + name
+            saved += 1
+    return saved
+
+
+# ------------------------------------------------------------- PC passages
+
+def group_passages(records):
+    """Consecutive PC questions repeating the same passage share a passage_id.
+    The passage is the stem minus its trailing question line."""
+    import difflib
+
+    def split_stem(stem):
+        lines = [l for l in (stem or '').split('\n') if l.strip()]
+        if len(lines) < 2:
+            return '', stem or ''
+        return '\n'.join(lines[:-1]).strip(), lines[-1].strip()
+
+    pc = [r for r in records if r['subtest'] == 'PC']
+    pc.sort(key=lambda r: r['source_number'])
+    gid = 0
+    prev_body, prev_id = None, None
+    for r in pc:
+        body, question = split_stem(r['stem'])
+        r['_passage'] = body
+        r['_question_line'] = question
+        if prev_body and body and difflib.SequenceMatcher(
+                None, prev_body[:300], body[:300]).ratio() > 0.85:
+            r['passage_id'] = prev_id
+        else:
+            gid += 1
+            prev_id = 'PSG-%03d' % gid
+            r['passage_id'] = prev_id
+        prev_body = body or prev_body
+    sizes = Counter(r['passage_id'] for r in pc)
+    return sum(1 for v in sizes.values() if v > 1), gid
+
+
+# ----------------------------------------------------------------- tagging
+
+def load_tag_rules():
+    import yaml
+    path = os.path.join(OUT_DIR, 'tag_rules.yaml')
+    with open(path) as f:
+        raw = yaml.safe_load(f)
+    out = {'_fallback': raw.get('_fallback', {})}
+    for sub, topics in raw.items():
+        if sub in ('version', '_fallback'):
+            continue
+        out[sub] = [(t, [re.compile(p, re.I) for p in pats])
+                    for t, pats in topics.items()]
+    return out
+
+
+def tag(rec, rules):
+    sub = rec['subtest']
+    lookup = 'AI' if sub == 'AS' else sub
+    # A PC stem is mostly passage prose, which swamps the signal. What the item
+    # actually tests is in its question line, so tag on that plus the options.
+    if sub == 'PC' and rec.get('_question_line'):
+        text = rec['_question_line'] + ' ' + ' '.join(str(v) for v in rec['options'].values())
+    else:
+        text = (rec['stem'] or '') + ' ' + ' '.join(str(v) for v in rec['options'].values())
+    hits = []
+    for topic, pats in rules.get(lookup, []):
+        score = sum(1 for p in pats if p.search(text))
+        if score:
+            hits.append((score, topic))
+    if not hits and sub == 'AS':
+        for topic, pats in rules.get('SI', []):
+            score = sum(1 for p in pats if p.search(text))
+            if score:
+                hits.append((score, topic))
+    hits.sort(reverse=True)
+    topics = [t for _, t in hits[:3]]
+    if not topics:
+        # A WK item that is a bare word is a synonym question; one embedded in a
+        # sentence is testing the word in context.
+        if sub == 'WK':
+            return ['words_in_context'] if len((rec['stem'] or '').split()) > 4 \
+                else ['synonyms_isolation']
+        fb = (rules.get('_fallback') or {}).get(sub)
+        if fb:
+            rec['flags'].append('tag_fallback')
+            return [fb]
+    return topics
+
+
+# -------------------------------------------------------------- difficulty
+
+def difficulty(rec):
+    """1-5 bootstrap. Refined later from real response data."""
+    stem = rec['stem'] or ''
+    d = 2
+    words = len(stem.split())
+    if words > 55:
+        d += 1
+    if words > 110:
+        d += 1
+    steps = len(re.findall(r'[\+\-\*/=×÷]', stem))
+    if steps >= 4:
+        d += 1
+    if re.search(r'\bEXCEPT\b|\bNOT\b|least likely', stem):
+        d += 1
+    if words < 18 and steps == 0:
+        d -= 1
+    return max(1, min(5, d))
+
+
+# ------------------------------------------------------- explanation shift
+
+def flag_explanation_shift(records):
+    """The source misattaches some explanations to the previous question.
+    Signal: the explanation's wording matches the NEXT question's options far
+    better than its own. Flagged, never silently repaired."""
+    STOP = set('the a an of to in is are and or for on with that this it its by as be '
+               'from at which was were will would can could not no so if then than '
+               'you your they their what how many much more most some all any'.split())
+
+    def toks(t):
+        return set(w for w in re.findall(r"[a-z']{3,}", (t or '').lower()) if w not in STOP)
+
+    def optset(r):
+        return toks(' '.join(str(v) for v in r['options'].values()))
+
+    def score(a, b):
+        return len(a & b) / len(b) if a and b else 0.0
+
+    ordered = sorted(records, key=lambda r: r['source_number'])
+    n = 0
+    for i, r in enumerate(ordered):
+        e = r.get('explanation') or ''
+        if len(e) < 40 or i + 1 >= len(ordered):
+            continue
+        et = toks(e)
+        own, nxt = score(et, optset(r)), score(et, optset(ordered[i + 1]))
+        if nxt >= own + 0.15 and nxt >= 0.3:
+            r['flags'].append('explanation_may_belong_to_next')
+            n += 1
+    return n
+
+
+# ---------------------------------------------------------------- assemble
+
+def build(doc):
+    raw = parse(doc, verbose=False)
+    records = []
+    for r in raw:
+        parts = split_record(r)
+        sec = r['section']
+        stem, options = parts['stem'], parts['options']
+        flags = []
+
+        # Options rendered as pictures come through as bare "A." with no text.
+        if len(options) < 4:
+            if re.search(r'^\s*[A-D]\s*\.\s*$', stem or '', re.M):
+                flags.append('image_options_unextractable')
+
+        ans = (parts['answer_raw'] or '').strip()
+        letters = re.findall(r'[A-D]', ans.upper())
+        if len(letters) > 1:
+            flags.append('multi_answer')
+
+        subtest = sec
+        if sec == 'AS':
+            subtest = classify_auto_shop(
+                (stem or '') + ' ' + ' '.join(str(v) for v in options.values()))
+
+        records.append({
+            'id': None,
+            'source_number': r['source_number'],
+            'subtest': subtest,
+            'stem': stem,
+            'options': dict(options),
+            'answer': letters[0] if letters else None,
+            'answer_raw': ans,
+            'explanation': parts['explanation'],
+            'figure': None,
+            'passage_id': None,
+            'topics': [],
+            'difficulty': 2,
+            'flags': flags,
+            'page': r['page'],
+        })
+
+    nfig = extract_figures(doc, records)
+    shared, npsg = group_passages(records)
+    nshift = flag_explanation_shift(records)
+
+    rules = load_tag_rules()
+    for rec in records:
+        rec['topics'] = tag(rec, rules)
+        rec['difficulty'] = difficulty(rec)
+        if rec['figure']:
+            rec['flags'].append('has_figure')
+        if not rec['topics']:
+            rec['flags'].append('untagged')
+        rec.pop('_fign', None)
+        rec.pop('_passage', None)
+        rec.pop('_question_line', None)
+
+    # An item the source cannot supply intact is marked rather than dropped:
+    # questions.json keeps the full record for audit, the per-subtest chunks the
+    # app loads leave it out.
+    for rec in records:
+        bad = []
+        if not (rec['stem'] or '').strip():
+            bad.append('no_stem')
+        if len(rec['options']) < 2:
+            bad.append('no_options')
+        if not rec['answer']:
+            bad.append('no_answer_key')
+        # Only meaningful in a maths stem: "xx" there is a lost exponent, but
+        # in PC prose a doubled letter is just a word.
+        if rec['subtest'] in ('AR', 'MK') and re.search(r'\b([a-z])\1\b', rec['stem'] or ''):
+            bad.append('lost_exponent_notation')
+        if bad:
+            rec['excluded'] = True
+            rec['flags'].extend(bad)
+        else:
+            rec['excluded'] = False
+
+    # stable per-subtest ids in source order
+    counters = Counter()
+    for rec in sorted(records, key=lambda r: r['source_number']):
+        counters[rec['subtest']] += 1
+        rec['id'] = '%s-%04d' % (rec['subtest'], counters[rec['subtest']])
+
+    return records, {'figures': nfig, 'passage_sets': npsg,
+                     'shared_passages': shared, 'explanation_shift': nshift}
+
+
+def write_outputs(records):
+    os.makedirs(OUT_DIR, exist_ok=True)
+    ordered = sorted(records, key=lambda r: r['source_number'])
+    with open(os.path.join(OUT_DIR, 'questions.json'), 'w') as f:
+        json.dump({'version': 1, 'source': 'source/asvab-source.pdf',
+                   'count': len(ordered), 'questions': ordered}, f, indent=1)
+
+    by_sub = defaultdict(list)
+    for r in ordered:
+        if not r.get('excluded'):
+            by_sub[r['subtest']].append(r)
+    manifest = {'version': 1, 'total': len(ordered),
+                'excluded': sum(1 for r in ordered if r.get('excluded')),
+                'subtests': {}}
+    for code, group in sorted(by_sub.items()):
+        # .js not .json: fetch() cannot read file:// URLs, and index.html must
+        # keep working when double-clicked. See MIGRATION.md 7.3.
+        path = os.path.join(OUT_DIR, 'questions.%s.js' % code)
+        with open(path, 'w') as f:
+            f.write('/* GENERATED by scripts/extract_bank.py -- do not edit. */\n')
+            f.write('(function (root) {\n  root.ASVAB_BANK = root.ASVAB_BANK || {};\n')
+            f.write('  root.ASVAB_BANK[%s] = %s;\n' % (json.dumps(code), json.dumps(group)))
+            f.write('})(typeof self !== "undefined" ? self : this);\n')
+        manifest['subtests'][code] = {
+            'file': 'data/questions.%s.js' % code,
+            'count': len(group),
+            'bytes': os.path.getsize(path),
+            'with_explanation': sum(1 for r in group if (r['explanation'] or '').strip()),
+            'with_figure': sum(1 for r in group if r['figure']),
+        }
+    with open(os.path.join(OUT_DIR, 'questions.manifest.json'), 'w') as f:
+        json.dump(manifest, f, indent=1)
+    return manifest
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--pdf', default=DEFAULT_PDF)
@@ -262,7 +621,7 @@ def main():
 
     if not os.path.exists(args.pdf):
         sys.exit('source PDF not found: %s\n'
-                 'Push it to the repo (see MIGRATION.md §8) or pass --pdf.' % args.pdf)
+                 'Push it to the repo (see MIGRATION.md) or pass --pdf.' % args.pdf)
 
     doc = fitz.open(args.pdf)
 
@@ -270,17 +629,25 @@ def main():
         probe(doc, args.probe)
         return
 
-    records = parse(doc)
-    if not records:
-        sys.exit('No QUESTION: markers matched. Run --probe 12 and adjust '
-                 'RE_QUESTION / FURNITURE to the real layout before retrying.')
+    records, stats = build(doc)
+    manifest = write_outputs(records)
 
-    by_section = Counter(r['section'] for r in records)
-    print('\nrecords per PDF section:')
-    for k, v in by_section.items():
-        print('  %-6s %d' % (k, v))
-    print('\nSplitting and figure extraction are wired in the next pass, once '
-          '--probe has confirmed the layout against the real file.')
+    nex = sum(1 for r in records if r.get('excluded'))
+    print('extracted %d questions (%d excluded as unusable, %d served)'
+          % (len(records), nex, len(records) - nex))
+    print('  figures saved      : %d' % stats['figures'])
+    print('  PC passage sets    : %d (%d questions share one)'
+          % (stats['passage_sets'], stats['shared_passages']))
+    print('  explanation shift  : %d flagged' % stats['explanation_shift'])
+    print()
+    print('%-5s %6s %8s %8s %9s' % ('sub', 'n', 'expl', 'figure', 'KB'))
+    print('-' * 40)
+    for code, m in sorted(manifest['subtests'].items()):
+        print('%-5s %6d %8d %8d %9.1f'
+              % (code, m['count'], m['with_explanation'], m['with_figure'],
+                 m['bytes'] / 1024.0))
+    print('-' * 40)
+    print('%-5s %6d' % ('ALL', manifest['total']))
 
 
 if __name__ == '__main__':

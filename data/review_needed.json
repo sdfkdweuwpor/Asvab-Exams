@@ -1,0 +1,72 @@
+{
+  "generated": "scripts/validate_bank.py",
+  "count": 12,
+  "items": [
+    {
+      "kind": "missing_source_number",
+      "source_number": 1637
+    },
+    {
+      "kind": "lost_exponent",
+      "id": "MK-0015",
+      "stem": "If x = 2, then xx \u00d7 x = __________."
+    },
+    {
+      "kind": "lost_radical",
+      "id": "MK-0017",
+      "stem": "49 \u00d7 64 = __________."
+    },
+    {
+      "kind": "lost_exponent",
+      "id": "MK-0089",
+      "stem": "If x = 2, then xx \u00d7 xx = __________."
+    },
+    {
+      "kind": "lost_exponent",
+      "id": "MK-0181",
+      "stem": "If x = 3, then xx \u00d7 x = __________."
+    },
+    {
+      "kind": "option_length",
+      "id": "SI-0077",
+      "correct_len": 34,
+      "longest_other": 13
+    },
+    {
+      "kind": "option_length",
+      "id": "AI-0086",
+      "correct_len": 152,
+      "longest_other": 77
+    },
+    {
+      "kind": "option_length",
+      "id": "EI-0074",
+      "correct_len": 54,
+      "longest_other": 27
+    },
+    {
+      "kind": "option_length",
+      "id": "PC-0012",
+      "correct_len": 97,
+      "longest_other": 46
+    },
+    {
+      "kind": "option_length",
+      "id": "PC-0126",
+      "correct_len": 101,
+      "longest_other": 55
+    },
+    {
+      "kind": "option_length",
+      "id": "MC-0111",
+      "correct_len": 60,
+      "longest_other": 18
+    },
+    {
+      "kind": "option_length",
+      "id": "MC-0147",
+      "correct_len": 111,
+      "longest_other": 58
+    }
+  ]
+}

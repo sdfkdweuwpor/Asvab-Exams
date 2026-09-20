@@ -78,15 +78,31 @@ def as_expr(text):
 # deliberately narrow: a solver that guesses produces false mismatches, which is
 # worse than no coverage because it buries the real wrong keys.
 
+def _single_rate(stem):
+    """Reject tiered pricing: "$4.75 per mile for the first 25 miles and then
+    $5.25 per mile over 25" is not one multiplication, and treating it as one
+    produces a false mismatch on a perfectly good key."""
+    if len(re.findall(r'\$\s*\d', stem)) > 1:
+        return False
+    if re.search(r'\bfirst\b|\bover\b|\badditional\b|\beach mile after\b|\bthen\b',
+                 stem, re.I):
+        return False
+    return True
+
+
 def solve_percent_of(stem):
     m = re.search(r'what\s+is\s+(\d+\.?\d*)\s*%\s+of\s+\$?(\d+\.?\d*)', stem, re.I)
     if m:
         return float(m.group(1)) / 100.0 * float(m.group(2))
+    m = re.search(r'(\d+\.?\d*)\s*%\s+of\s+\$?([\d,]+\.?\d*)\s*(?:is|=)', stem, re.I)
+    if m:
+        return float(m.group(1)) / 100.0 * float(m.group(2).replace(',', ''))
     return None
 
 
 def solve_unit_cost(stem):
-    """'N units at $X per unit' / 'N miles, charge is $X per mile'."""
+    if not _single_rate(stem):
+        return None
     m = re.search(r'(\d+\.?\d*)\s*(?:miles|items|units|pounds|hours|gallons|feet)\b'
                   r'[^.]{0,60}?\$\s*(\d+\.?\d*)\s*(?:per|a|each)\b', stem, re.I)
     if m:
@@ -94,9 +110,48 @@ def solve_unit_cost(stem):
     return None
 
 
+def solve_rect_area(stem):
+    """"How many square feet ... 12-foot x 12-foot room" -> 144.
+
+    Refuses any stem that asks for a COST rather than an area. "$8 per square
+    foot ... 12 x 16 patio" wants 192 x 8, and answering 192 accuses a correct
+    key of being wrong."""
+    if re.search(r'\$|\bcost\b|\bcharges?\b|\bprice\b|how much will', stem, re.I):
+        return None
+    if not re.search(r'how many square|\barea\b', stem, re.I):
+        return None
+    if not re.search(r'square\s+(feet|foot|yards?|inches|meters?)', stem, re.I):
+        return None
+    m = re.search(r'(\d+\.?\d*)\s*-?\s*(?:foot|feet|yard|inch|meter)\s*'
+                  r'[x\u00d7*]\s*(\d+\.?\d*)\s*-?\s*(?:foot|feet|yard|inch|meter)', stem, re.I)
+    if m:
+        return float(m.group(1)) * float(m.group(2))
+    return None
+
+
+def solve_power_or_root(stem):
+    m = re.search(r'\bthe\s+(square|cube)\s+of\s+(\d+\.?\d*)', stem, re.I)
+    if m:
+        return float(m.group(2)) ** (2 if m.group(1).lower() == 'square' else 3)
+    m = re.search(r'\bsquare\s+root\s+of\s+(\d+\.?\d*)', stem, re.I)
+    if m:
+        return float(m.group(1)) ** 0.5
+    ORD = {'second': 2, 'third': 3, 'fourth': 4, 'fifth': 5, 'sixth': 6}
+    m = re.search(r'\b(second|third|fourth|fifth|sixth)\s+root\s+of\s+(\d+\.?\d*)', stem, re.I)
+    if m:
+        return float(m.group(2)) ** (1.0 / ORD[m.group(1).lower()])
+    return None
+
+
 def solve_linear_equation(stem):
-    """'if 3x + 5 = 20, what is x' -> solve."""
-    m = re.search(r'([0-9xXyY\+\-\*/\^\(\)\s\.]+=[0-9xXyY\+\-\*/\^\(\)\s\.]+)', stem)
+    """Solve for an unknown. Deliberately refuses a stem of the form
+    "If x = 2, then <expr>", which assigns the variable rather than asking for
+    it -- reading that as an equation returns the assignment and libels the key."""
+    if re.search(r'\bif\s+[a-z]\s*=\s*-?\d', stem, re.I):
+        return None
+    if not re.search(r'solve|value of|what is\s+[a-z]\b|find\s+[a-z]\b', stem, re.I):
+        return None
+    m = re.search(r'([0-9xXyYnN\+\-\*/\^\(\)\s\.]+=[0-9xXyYnN\+\-\*/\^\(\)\s\.]+)', stem)
     if not m:
         return None
     eq = m.group(1).strip()
@@ -122,20 +177,21 @@ def solve_linear_equation(stem):
 
 
 def solve_bare_arithmetic(stem):
-    """'What is 12 x 3.5?' / '18 + 7 - 4 ='."""
-    m = re.search(r'(?:what\s+is|compute|calculate|equals?)\s*:?\s*'
-                  r'([0-9\.\,\s\+\-\*/×÷\(\)\^]+?)\s*[\?=]', stem, re.I)
+    """"2.5 x 33 = ___" or "What is 18 + 7?". Refuses anything carrying a
+    variable, a second clause, or units that change the meaning."""
+    if re.search(r'[a-wyz]\s*[\u00d7x*/]|\bper\b|\bof\b', stem, re.I):
+        return None
+    m = re.search(r'^\s*([0-9\.\,\s\+\-\*/\u00d7\u00f7\(\)]+?)\s*=\s*_+', stem)
     if not m:
-        m = re.search(r'^([0-9\.\,\s\+\-\*/×÷\(\)\^]+?)\s*=\s*\?', stem.strip())
+        m = re.search(r'(?:what\s+is|compute|calculate)\s*:?\s*'
+                      r'([0-9\.\,\s\+\-\*/\u00d7\u00f7\(\)]+?)\s*[\?=]', stem, re.I)
     if not m:
         return None
-    t = m.group(1).replace('×', '*').replace('÷', '/').replace('^', '**')
-    t = t.replace(',', '').strip()
+    t = m.group(1).replace('\u00d7', '*').replace('\u00f7', '/').replace(',', '').strip()
     if not re.search(r'[\+\-\*/]', t):
         return None
     try:
-        v = sympify(t, rational=True)
-        return float(v)
+        return float(sympify(t, rational=True))
     except Exception:
         return None
 
@@ -143,6 +199,8 @@ def solve_bare_arithmetic(stem):
 NUMERIC_SOLVERS = [
     ('percent_of', solve_percent_of),
     ('unit_cost', solve_unit_cost),
+    ('rect_area', solve_rect_area),
+    ('power_or_root', solve_power_or_root),
     ('bare_arithmetic', solve_bare_arithmetic),
     ('linear_equation', solve_linear_equation),
 ]
@@ -167,6 +225,9 @@ def _resolve_item(q):
     if q.get('subtest') not in ('AR', 'MK'):
         return 'skipped', None
     stem = q.get('stem') or ''
+    # A stem the source corrupted cannot arbitrate its own key.
+    if q.get('subtest') in ('AR', 'MK') and re.search(r'\b([a-z])\1\b', stem):
+        return 'unverifiable', 'stem lost its exponent notation'
     keyed = (q.get('options') or {}).get(q.get('answer'))
     if keyed is None:
         return 'unverifiable', 'no keyed option'
@@ -197,8 +258,13 @@ def _resolve_item(q):
 # ------------------------------------------------------------------ structural
 
 def check_structure(items):
+    """Problems on items the extractor already excluded are expected -- they are
+    why it excluded them. Only a problem on an item the app will actually serve
+    is a build failure."""
     problems = []
     for q in items:
+        if q.get('excluded'):
+            continue
         qid = q.get('id', '<no id>')
         if not (q.get('stem') or '').strip():
             problems.append((qid, 'missing stem'))
@@ -217,16 +283,49 @@ def check_structure(items):
 
 
 def check_duplicates(items):
+    """Two items are duplicates only if stem AND options AND figure all match.
+    Stem alone is wrong here: every Assembling Objects item carries the same
+    boilerplate sentence, and several EI items share "The symbol above is a/an"
+    while showing different symbols. Those are distinct questions."""
     seen, dupes = {}, []
     for q in items:
-        k = norm_stem(q.get('stem'))
-        if not k:
+        opts = '|'.join('%s=%s' % (k, norm_stem(str(v)))
+                        for k, v in sorted((q.get('options') or {}).items()))
+        k = norm_stem(q.get('stem')) + '||' + opts + '||' + str(q.get('figure') or '')
+        if not norm_stem(q.get('stem')) and not opts:
             continue
         if k in seen:
             dupes.append((seen[k], q.get('id'), k[:70]))
         else:
             seen[k] = q.get('id')
     return dupes
+
+
+def check_lost_math_notation(items):
+    """The source PDF renders no superscript or radical glyph anywhere: it drops
+    them or substitutes a base character. So "49 x 64 = 56" is really
+    sqrt(49) x sqrt(64), and "xx" is x-squared or x-cubed with the exponent gone.
+    These stems are unusable as extracted -- flagged, never guessed at."""
+    flagged = []
+    for q in items:
+        if q.get('subtest') not in ('AR', 'MK'):
+            continue
+        stem = q.get('stem') or ''
+        keyed = to_number((q.get('options') or {}).get(q.get('answer')))
+        # doubled variable: x-squared and x-cubed both extract as "xx"
+        if re.search(r'\b([a-z])\1\b', stem):
+            q['_notation_lost'] = True
+            flagged.append((q.get('id'), 'lost_exponent', stem[:60]))
+            continue
+        if keyed is None:
+            continue
+        m = re.match(r'^\s*(\d+)\s*[\u00d7x*]\s*(\d+)\s*=\s*_+', stem)
+        if m:
+            a, b = float(m.group(1)), float(m.group(2))
+            if abs(a * b - keyed) > 0.01 and abs(a ** 0.5 * b ** 0.5 - keyed) <= 0.01:
+                flagged.append((q.get('id'), 'lost_radical', stem[:60]))
+                q['_notation_lost'] = True
+    return flagged
 
 
 def check_option_balance(items):
@@ -309,6 +408,9 @@ def main():
     # ---- structural
     print('\n[structure]')
     problems = check_structure(items)
+    nex = sum(1 for q in items if q.get('excluded'))
+    print('  served items         : %d' % (len(items) - nex))
+    print('  excluded as unusable : %d (kept in questions.json, not served)' % nex)
     print('  hard problems        : %d' % len(problems))
     for qid, msg in problems[:15]:
         print('    %-12s %s' % (qid, msg))
@@ -334,11 +436,18 @@ def main():
     for a, b, s in dupes:
         review.append({'kind': 'duplicate_stem', 'kept': a, 'dropped': b, 'stem': s})
 
+    # Lost-notation detection runs first so the re-solve can stand down on any
+    # stem the source mangled.
+    check_lost_math_notation(items)
+
     # ---- independent re-solve
     print('\n[independent re-solve: AR and MK]')
     verdicts = Counter()
     by_solver = Counter()
     for q in items:
+        if q.get('_notation_lost'):
+            verdicts['unverifiable'] += 1
+            continue
         v, detail = resolve_item(q)
         verdicts[v] += 1
         if v == 'agree':
@@ -358,6 +467,15 @@ def main():
               % (100.0 * (verdicts['agree'] + verdicts['disagree']) / mathitems))
     if by_solver:
         print('  by solver            : %s' % dict(by_solver))
+
+    # ---- lost math notation
+    print('\n[lost math notation in source]')
+    lost = check_lost_math_notation(items)
+    print('  corrupted stems      : %d' % len(lost))
+    for qid, kind, stem in lost[:8]:
+        print('    %-12s %-14s %s' % (qid, kind, ' '.join(stem.split())[:46]))
+    for qid, kind, stem in lost:
+        review.append({'kind': kind, 'id': qid, 'stem': stem})
 
     # ---- option balance
     print('\n[option length balance]')
