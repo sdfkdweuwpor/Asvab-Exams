@@ -307,7 +307,7 @@
   function exportObject() {
     var s = load();
     return {
-      format: 'asvab-practice-progress', version: 1,
+      format: 'asvab-practice-progress', version: VERSION,
       exported: new Date().toISOString(),
       data: { created: s.created, settings: s.settings, diagnostic: s.diagnostic,
               seen: s.seen, attempts: s.attempts, queue: s.queue, version: s.version }
@@ -379,6 +379,19 @@
     });
 
     if (payload.diagnostic && !s.diagnostic) s.diagnostic = payload.diagnostic;
+
+    /* Settings travel with the history, since a target AFQT and a credential
+       are part of what the student set up rather than incidental state. Local
+       values win, so importing a backup never silently changes the settings on
+       the device doing the importing. */
+    if (payload.settings) {
+      var base = blank().settings;
+      Object.keys(payload.settings).forEach(function (k) {
+        var isDefault = s.settings[k] === undefined ||
+          JSON.stringify(s.settings[k]) === JSON.stringify(base[k]);
+        if (isDefault && payload.settings[k] !== undefined) s.settings[k] = payload.settings[k];
+      });
+    }
     s.attempts.sort(function (a, b) { return new Date(a.date) - new Date(b.date); });
     s.seen.sort(function (a, b) { return new Date(a.d) - new Date(b.d); });
     save();
