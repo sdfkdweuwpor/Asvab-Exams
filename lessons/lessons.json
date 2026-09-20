@@ -1,0 +1,1668 @@
+{
+  "lessons": [
+    {
+      "id": "ai_auto_electrical",
+      "subtest": "AI",
+      "topic": "auto_electrical",
+      "title": "The Charging and Starting System",
+      "concept": "The battery supplies the heavy current to crank the engine. Once running, the belt-driven alternator powers the vehicle and recharges the battery, with a voltage regulator keeping the charge within safe limits. Fuses protect circuits by failing before the wiring does.",
+      "examples": [
+        {
+          "problem": "A car starts fine but the lights dim as it runs. Likely cause?",
+          "steps": [
+            "Starting means the battery is delivering current.",
+            "Dimming while running means charging is failing.",
+            "Suspect the alternator or its regulator."
+          ]
+        },
+        {
+          "problem": "A single loud click and no cranking suggests what?",
+          "steps": [
+            "The click means the starter solenoid engaged.",
+            "No rotation means current is not reaching or turning the motor.",
+            "A flat battery or a failed starter fits."
+          ]
+        }
+      ],
+      "trap": "Blaming the battery for every electrical fault. If the problem appears only while running, the charging system is the suspect."
+    },
+    {
+      "id": "ai_brakes",
+      "subtest": "AI",
+      "topic": "brakes",
+      "title": "Brakes",
+      "concept": "The pedal acts on the master cylinder, which pressurises brake fluid to every wheel. In a disc brake a caliper clamps pads against a rotor. Pads are the sacrificial wear item. ABS pulses pressure so the wheels keep turning and steering control is retained, and overheated brakes lose power through fade.",
+      "examples": [
+        {
+          "problem": "Why does ABS help in an emergency stop?",
+          "steps": [
+            "A locked wheel skids and cannot be steered.",
+            "ABS releases and reapplies pressure rapidly.",
+            "The wheels keep rolling, so the driver keeps steering control."
+          ]
+        },
+        {
+          "problem": "A car pulls to one side only when braking. Likely cause?",
+          "steps": [
+            "Pulling only under braking points at the brakes.",
+            "Uneven clamping force makes one side grip harder.",
+            "A sticking caliper on one side fits."
+          ]
+        }
+      ],
+      "trap": "Assuming ABS shortens every stopping distance. Its purpose is retaining control, and on loose gravel it can lengthen the stop."
+    },
+    {
+      "id": "ai_cooling",
+      "subtest": "AI",
+      "topic": "cooling",
+      "title": "The Cooling System",
+      "concept": "The water pump circulates coolant, the thermostat holds the engine at working temperature by blocking flow until it warms, the radiator sheds heat to the air, and the cap raises system pressure so the coolant boils at a higher temperature. A fan supplies airflow when road speed cannot.",
+      "examples": [
+        {
+          "problem": "Why does raising the pressure help the cooling system?",
+          "steps": [
+            "Higher pressure raises the boiling point of the coolant.",
+            "Coolant that does not boil keeps carrying heat away.",
+            "So the engine can run hotter without losing cooling."
+          ]
+        },
+        {
+          "problem": "An engine overheats in traffic but is fine on the highway. Likely cause?",
+          "steps": [
+            "At speed, airflow through the radiator comes from motion.",
+            "In traffic, only the fan provides airflow.",
+            "A failed cooling fan fits the pattern exactly."
+          ]
+        }
+      ],
+      "trap": "Blaming the radiator for every overheat. Match the symptom to the condition: in traffic points to the fan, all the time points to flow or coolant."
+    },
+    {
+      "id": "ai_diagnostics",
+      "subtest": "AI",
+      "topic": "diagnostics",
+      "title": "Reading Symptoms",
+      "concept": "Exhaust colour is the quickest guide: BLUE means burning oil, WHITE means coolant entering the cylinders, BLACK means too much fuel. Noise that tracks ENGINE speed comes from the engine and its accessories; noise that tracks ROAD speed comes from the wheels, tyres or driveline.",
+      "examples": [
+        {
+          "problem": "Persistent white smoke with a sweet smell. Likely cause?",
+          "steps": [
+            "White smoke that does not clear is coolant, not condensation.",
+            "Coolant reaching the cylinders means an internal leak.",
+            "A failed head gasket is the usual cause."
+          ]
+        },
+        {
+          "problem": "A squeal that rises and falls with engine speed. Likely cause?",
+          "steps": [
+            "Tracking engine speed rules out wheels and tyres.",
+            "Belt-driven accessories turn with the engine.",
+            "A loose or glazed drive belt fits."
+          ]
+        }
+      ],
+      "trap": "Confusing white exhaust smoke with normal condensation. Condensation clears once the engine warms; a coolant leak does not."
+    },
+    {
+      "id": "ai_engine_operation",
+      "subtest": "AI",
+      "topic": "engine_operation",
+      "title": "How a Four-Stroke Engine Works",
+      "concept": "The cycle runs intake, compression, power, exhaust, and takes TWO crankshaft revolutions. Only the power stroke produces work; the other three consume it, which is what the flywheel smooths over. The crankshaft turns reciprocating motion into rotation and the camshaft times the valves.",
+      "examples": [
+        {
+          "problem": "Which stroke has both valves closed and the piston rising?",
+          "steps": [
+            "Intake needs the intake valve open; exhaust needs the exhaust valve open.",
+            "Power has both closed but the piston moving DOWN.",
+            "Both closed with the piston rising is compression."
+          ]
+        },
+        {
+          "problem": "How many camshaft turns happen per four-stroke cycle?",
+          "steps": [
+            "The cycle takes two crankshaft revolutions.",
+            "The camshaft turns at half crankshaft speed.",
+            "So the camshaft turns once per cycle."
+          ]
+        }
+      ],
+      "trap": "Mixing up compression and power. Both have the valves shut; the difference is which way the piston is travelling."
+    },
+    {
+      "id": "ai_fuel_system",
+      "subtest": "AI",
+      "topic": "fuel_system",
+      "title": "The Fuel System",
+      "concept": "A pump moves fuel from the tank, a filter removes contaminants, and injectors spray a metered, atomised charge into the intake or cylinder. The throttle controls AIR, and the system then matches fuel to it. Older engines used a carburettor, which relied on airflow through a venturi rather than electronics.",
+      "examples": [
+        {
+          "problem": "What does pressing the accelerator actually control?",
+          "steps": [
+            "The pedal opens the throttle plate.",
+            "That admits more air to the engine.",
+            "The system then adds fuel to match, so air is what you control directly."
+          ]
+        },
+        {
+          "problem": "What are the symptoms of a clogged fuel filter?",
+          "steps": [
+            "Restricted flow starves the engine of fuel.",
+            "The shortfall shows up most when demand is high.",
+            "Hesitation and loss of power under load are typical."
+          ]
+        }
+      ],
+      "trap": "Thinking the pedal meters fuel directly. On a modern engine it controls airflow, and fuel follows."
+    },
+    {
+      "id": "ai_ignition",
+      "subtest": "AI",
+      "topic": "ignition",
+      "title": "The Ignition System",
+      "concept": "The coil is a transformer that turns twelve volts into tens of thousands, enough to jump the spark plug gap. The plug makes the spark; the coil makes the voltage. Older systems used a distributor to route the spark in firing order, while modern ones use crankshaft position sensors to time it.",
+      "examples": [
+        {
+          "problem": "Why does the ignition system need such high voltage?",
+          "steps": [
+            "The spark must jump an air gap at the plug.",
+            "Compressed air-fuel mixture resists that jump strongly.",
+            "Tens of thousands of volts are needed to arc across it."
+          ]
+        },
+        {
+          "problem": "What does a distributor do?",
+          "steps": [
+            "It receives high voltage from the coil.",
+            "A rotor turns inside it, contacting each terminal in turn.",
+            "It routes the spark to each cylinder in the firing order."
+          ]
+        }
+      ],
+      "trap": "Crediting the spark plug with producing the voltage. The plug only provides the gap; the coil raises the voltage."
+    },
+    {
+      "id": "ai_transmission",
+      "subtest": "AI",
+      "topic": "transmission",
+      "title": "Transmission and Driveline",
+      "concept": "A manual gearbox uses a clutch to disconnect the engine; an automatic uses a torque converter, a fluid coupling that also multiplies torque. Synchronisers match speeds so gears engage smoothly. The driveshaft carries power back, and the differential lets the driven wheels turn at different speeds in a corner.",
+      "examples": [
+        {
+          "problem": "Why is a differential necessary?",
+          "steps": [
+            "In a turn the outside wheel travels further than the inside wheel.",
+            "Locked together, one wheel would have to skid.",
+            "The differential lets them turn at different speeds."
+          ]
+        },
+        {
+          "problem": "Grinding when shifting a manual gearbox suggests what?",
+          "steps": [
+            "Gears must match speed before engaging.",
+            "Synchronisers do that matching.",
+            "Worn synchronisers let the gears clash."
+          ]
+        }
+      ],
+      "trap": "Confusing clutch and torque converter. A clutch is a mechanical friction disc; a torque converter uses fluid and belongs to automatics."
+    },
+    {
+      "id": "ao_connection_problems",
+      "subtest": "AO",
+      "topic": "connection_problems",
+      "title": "Connection Problems",
+      "concept": "You are shown two shapes, each with a marked point, and must pick the choice that joins those exact points. Work from the DOTS, not the overall picture. Note where each dot sits on its own shape, a specific corner or the middle of a particular edge, then check that the line lands on the same two places after the shapes are rotated.",
+      "examples": [
+        {
+          "problem": "How do you rule out choices quickly?",
+          "steps": [
+            "Shapes in the choices are rotated, so position on the page means nothing.",
+            "Find each dot's location relative to its own shape's features.",
+            "Reject any choice where the line meets a different corner or edge."
+          ]
+        },
+        {
+          "problem": "Two choices both look plausible. What next?",
+          "steps": [
+            "Check the shapes themselves, not just the line.",
+            "Look for a shape that has been mirrored rather than rotated.",
+            "A reflection is a different shape and is always wrong."
+          ]
+        }
+      ],
+      "trap": "Judging by where the line sits on the page. The shapes are rotated deliberately, so only the dot's position on its own shape matters."
+    },
+    {
+      "id": "ao_shape_assembly",
+      "subtest": "AO",
+      "topic": "shape_assembly",
+      "title": "Shape Assembly Problems",
+      "concept": "You are given a set of pieces and must choose the figure they make with no gaps, overlaps or leftovers. Count the pieces first: any choice with a different number is out immediately. Then match the largest piece's longest edge to an edge of the finished figure, and check that the internal dividing lines meet the outline where the piece edges would.",
+      "examples": [
+        {
+          "problem": "What is the fastest first check?",
+          "steps": [
+            "Count the pieces supplied in the question.",
+            "Count the sections in each answer choice.",
+            "Eliminate every choice whose count does not match."
+          ]
+        },
+        {
+          "problem": "Two choices have the right count. How do you decide?",
+          "steps": [
+            "Find the biggest piece and its longest straight edge.",
+            "Look for that edge in each remaining figure.",
+            "Reject the one whose dividing lines meet the outline in the wrong places."
+          ]
+        }
+      ],
+      "trap": "Matching on overall outline alone. Distractors usually share the outline and differ only in how it is divided."
+    },
+    {
+      "id": "ar_averages",
+      "subtest": "AR",
+      "topic": "averages",
+      "title": "Averages",
+      "concept": "Average = sum / count. The most useful move is the reverse: sum = average x count. Once you have the total, a missing value is just the total minus everything you already know.",
+      "examples": [
+        {
+          "problem": "Find the average of 12, 18, 24 and 26.",
+          "steps": [
+            "Sum = 12 + 18 + 24 + 26 = 80.",
+            "Count = 4.",
+            "Average = 80 / 4 = 20."
+          ]
+        },
+        {
+          "problem": "Four scores average 85. Three of them are 80, 88 and 90. Find the fourth.",
+          "steps": [
+            "Total = 85 x 4 = 340.",
+            "Known three = 80 + 88 + 90 = 258.",
+            "Fourth = 340 - 258 = 82."
+          ]
+        }
+      ],
+      "trap": "Dividing by the wrong count. Recount the values, and remember that a value of zero still counts as one of them."
+    },
+    {
+      "id": "ar_basic_probability",
+      "subtest": "AR",
+      "topic": "basic_probability",
+      "title": "Basic Probability",
+      "concept": "Probability = favourable outcomes / TOTAL outcomes. The denominator is always the total, so add every group together first. The word NOT signals the complement: work out the straightforward probability and subtract it from 1, or from 100 percent.",
+      "examples": [
+        {
+          "problem": "A bin has 4 red and 16 blue. P(red)?",
+          "steps": [
+            "Total = 4 + 16 = 20.",
+            "P(red) = 4 / 20 = 0.20.",
+            "= 20%."
+          ]
+        },
+        {
+          "problem": "Same bin. P(not red)?",
+          "steps": [
+            "P(red) = 20%.",
+            "Complement: 100% - 20%.",
+            "P(not red) = 80%."
+          ]
+        }
+      ],
+      "trap": "Dividing by the other group rather than the total. If your probability exceeds 100%, that is exactly what happened."
+    },
+    {
+      "id": "ar_cost_profit",
+      "subtest": "AR",
+      "topic": "cost_profit",
+      "title": "Cost, Revenue and Profit",
+      "concept": "Profit = revenue - cost. Work out the profit on ONE unit first, then multiply by the number sold. Markup is calculated on the COST; discount is calculated on the LIST price. Check which of the two the question names.",
+      "examples": [
+        {
+          "problem": "Buy at $6, sell at $10, sell 40 units. Total profit?",
+          "steps": [
+            "Profit per unit = 10 - 6 = $4.",
+            "40 units x $4.",
+            "Total profit = $160."
+          ]
+        },
+        {
+          "problem": "An item costs $80 and is marked up 25%. Selling price?",
+          "steps": [
+            "Markup = 25/100 x 80 = $20.",
+            "Selling price = 80 + 20.",
+            "= $100."
+          ]
+        }
+      ],
+      "trap": "Giving total revenue instead of profit. Revenue is what comes in; profit is what is left after the cost."
+    },
+    {
+      "id": "ar_percentages_discount",
+      "subtest": "AR",
+      "topic": "percentages_discount",
+      "title": "Percentages and Discounts",
+      "concept": "A percent is a fraction of 100. To take p percent of a number, multiply by p/100. 'Percent off' asks for what you pay, so subtract the discount, or multiply by (100 - p)/100 in one step. Percent CHANGE always divides the change by the ORIGINAL value.",
+      "examples": [
+        {
+          "problem": "A $80 jacket is 25% off. What is the sale price?",
+          "steps": [
+            "Discount = 25/100 x 80 = $20.",
+            "Sale price = 80 - 20 = $60.",
+            "Or in one step: 80 x 0.75 = $60."
+          ]
+        },
+        {
+          "problem": "A price rises from $50 to $60. What is the percent increase?",
+          "steps": [
+            "Change = 60 - 50 = $10.",
+            "Divide by the ORIGINAL: 10 / 50 = 0.20.",
+            "0.20 = 20% increase."
+          ]
+        }
+      ],
+      "trap": "Dividing by the new value instead of the original when finding percent change, and giving the discount amount when the question asked for the price paid."
+    },
+    {
+      "id": "ar_rate_time_distance",
+      "subtest": "AR",
+      "topic": "rate_time_distance",
+      "title": "Rate, Time and Distance",
+      "concept": "Distance = rate x time. Rearranged, rate = distance / time and time = distance / rate. Write down which two of the three you were given before you touch the numbers, and keep the units consistent: miles with hours gives miles per hour.",
+      "examples": [
+        {
+          "problem": "A truck travels at 45 mph for 6 hours. How far does it go?",
+          "steps": [
+            "Given: rate 45, time 6. Missing: distance.",
+            "d = r x t = 45 x 6.",
+            "d = 270 miles."
+          ]
+        },
+        {
+          "problem": "A train covers 312 miles at 52 mph. How long does the trip take?",
+          "steps": [
+            "Given: distance 312, rate 52. Missing: time.",
+            "t = d / r = 312 / 52.",
+            "t = 6 hours."
+          ]
+        }
+      ],
+      "trap": "Multiplying when you should divide. If the question asks 'how long' or 'how fast', you are dividing. Only 'how far' multiplies."
+    },
+    {
+      "id": "ar_ratio_proportion",
+      "subtest": "AR",
+      "topic": "ratio_proportion",
+      "title": "Ratios and Proportions",
+      "concept": "A ratio a:b means the total splits into a + b equal parts. Divide the total by the number of parts to size one part, then multiply by the share you want. A proportion scales a known pair to a new quantity: find the value of one unit first.",
+      "examples": [
+        {
+          "problem": "Split 96 items in the ratio 3:5. How many in the larger share?",
+          "steps": [
+            "Parts = 3 + 5 = 8.",
+            "One part = 96 / 8 = 12.",
+            "Larger share = 5 x 12 = 60."
+          ]
+        },
+        {
+          "problem": "If 4 filters cost $12, what do 15 cost?",
+          "steps": [
+            "One filter = 12 / 4 = $3.",
+            "15 filters = 15 x 3.",
+            "Total = $45."
+          ]
+        }
+      ],
+      "trap": "Dividing the total by one side of the ratio instead of by the sum of both sides."
+    },
+    {
+      "id": "ar_simple_interest",
+      "subtest": "AR",
+      "topic": "simple_interest",
+      "title": "Simple Interest",
+      "concept": "Simple interest is I = P x r x t, with the rate written as a decimal and the time in years. It never compounds. Read the question carefully: it may want the interest alone, or the total amount owed, which is P + I.",
+      "examples": [
+        {
+          "problem": "$2,000 at 5% simple interest for 3 years. How much interest?",
+          "steps": [
+            "r = 5/100 = 0.05.",
+            "I = 2000 x 0.05 x 3.",
+            "I = $300."
+          ]
+        },
+        {
+          "problem": "$1,500 earned $180 interest over 2 years. What was the rate?",
+          "steps": [
+            "Rearrange: r = I / (P x t).",
+            "r = 180 / (1500 x 2) = 180 / 3000 = 0.06.",
+            "r = 6% per year."
+          ]
+        }
+      ],
+      "trap": "Forgetting to divide by the time when solving for the rate, and giving the interest when the question asked for the total owed."
+    },
+    {
+      "id": "ar_unit_conversion",
+      "subtest": "AR",
+      "topic": "unit_conversion",
+      "title": "Unit Conversion",
+      "concept": "Convert one step at a time and write the unit after every number. Common chains: 1 yard = 3 feet, 1 foot = 12 inches, 1 pound = 16 ounces, 1 gallon = 4 quarts, 1 hour = 60 minutes. Do the counting first and convert once at the end where you can.",
+      "examples": [
+        {
+          "problem": "Convert 4 yards and 2 feet to inches.",
+          "steps": [
+            "4 yards = 4 x 3 = 12 feet.",
+            "12 + 2 = 14 feet total.",
+            "14 x 12 = 168 inches."
+          ]
+        },
+        {
+          "problem": "Six boxes weigh 5 pounds each. Total in ounces?",
+          "steps": [
+            "Total pounds = 6 x 5 = 30.",
+            "1 pound = 16 ounces.",
+            "30 x 16 = 480 ounces."
+          ]
+        }
+      ],
+      "trap": "Skipping a step, such as converting yards straight to inches with the wrong factor. Go through feet."
+    },
+    {
+      "id": "ar_work_rate",
+      "subtest": "AR",
+      "topic": "work_rate",
+      "title": "Work and Rate Problems",
+      "concept": "When two things work at the same time, their RATES add, not their times. Combined rate = rate A + rate B, and time = total work / combined rate. If the question names one worker, use that worker's own rate and time.",
+      "examples": [
+        {
+          "problem": "Machine A makes 30 parts/hr, B makes 50/hr. How long for 400 parts together?",
+          "steps": [
+            "Combined rate = 30 + 50 = 80 parts per hour.",
+            "Time = 400 / 80.",
+            "Time = 5 hours."
+          ]
+        },
+        {
+          "problem": "A works at 20 units/hr for 6 hours. How much did A do?",
+          "steps": [
+            "Use A's own rate and time.",
+            "Work = 20 x 6.",
+            "Work = 120 units."
+          ]
+        }
+      ],
+      "trap": "Adding or averaging the TIMES instead of the rates. Two workers never take the sum of their individual times."
+    },
+    {
+      "id": "ei_ac_dc",
+      "subtest": "EI",
+      "topic": "ac_dc",
+      "title": "Alternating and Direct Current",
+      "concept": "Direct current flows one way and comes from batteries and solar cells. Alternating current reverses direction repeatedly, at 60 hertz on United States mains. Transformers work only on AC, because they need a changing magnetic field. A rectifier converts AC to DC.",
+      "examples": [
+        {
+          "problem": "Why can a transformer not work on direct current?",
+          "steps": [
+            "A transformer needs a changing magnetic field to induce voltage.",
+            "Direct current is steady, so the field does not change.",
+            "No changing field means no output."
+          ]
+        },
+        {
+          "problem": "What converts alternating current to direct current?",
+          "steps": [
+            "The process is called rectification.",
+            "Diodes pass current in only one direction.",
+            "The component is a rectifier."
+          ]
+        }
+      ],
+      "trap": "Assuming a transformer works on anything. If a question mentions a battery and a transformer together, something is wrong."
+    },
+    {
+      "id": "ei_circuit_symbols",
+      "subtest": "EI",
+      "topic": "circuit_symbols",
+      "title": "Reading Schematic Symbols",
+      "concept": "A schematic shows connections, not physical layout. Alternating long and short parallel lines is a battery. A zigzag is a resistor. Two equal parallel plates is a capacitor. A coil is an inductor. A triangle against a bar is a diode, and the point shows the direction current may flow.",
+      "examples": [
+        {
+          "problem": "How do you tell a battery symbol from a capacitor symbol?",
+          "steps": [
+            "Both are drawn as parallel lines.",
+            "A battery alternates LONG and SHORT lines.",
+            "A capacitor uses two lines of EQUAL length."
+          ]
+        },
+        {
+          "problem": "Where is an ammeter placed in a circuit?",
+          "steps": [
+            "An ammeter measures current.",
+            "All the current must pass through it.",
+            "So it is wired in SERIES; a voltmeter goes in parallel."
+          ]
+        }
+      ],
+      "trap": "Confusing battery and capacitor symbols. Check whether the parallel lines are equal in length before deciding."
+    },
+    {
+      "id": "ei_components",
+      "subtest": "EI",
+      "topic": "components",
+      "title": "Components and Transformers",
+      "concept": "A resistor limits current, a capacitor stores energy in an electric field, an inductor stores it magnetically, a diode passes current one way, and a transistor amplifies or switches. Capacitors in PARALLEL add, the opposite of resistors. In a transformer, voltage follows the turns ratio: more turns means more volts.",
+      "examples": [
+        {
+          "problem": "Capacitors of 10, 20 and 30 microfarads in parallel. Total?",
+          "steps": [
+            "Capacitors in parallel add.",
+            "10 + 20 + 30.",
+            "Total = 60 microfarads."
+          ]
+        },
+        {
+          "problem": "A transformer has 600 primary turns, 100 secondary, 120 V in. Secondary voltage?",
+          "steps": [
+            "Turns ratio = 100 / 600 = 1/6.",
+            "120 x 1/6.",
+            "= 20 volts, a step down."
+          ]
+        }
+      ],
+      "trap": "Applying the resistor rules to capacitors. Capacitors behave the opposite way: parallel adds, series reduces."
+    },
+    {
+      "id": "ei_conductors_insulators",
+      "subtest": "EI",
+      "topic": "conductors_insulators",
+      "title": "Conductors and Insulators",
+      "concept": "Conductors let charge move freely: silver is best, copper is the practical choice for wiring, aluminium is lighter and cheaper. Insulators resist current and form the coverings: rubber, glass, plastic, dry wood and air. Semiconductors such as silicon sit between and make modern electronics possible.",
+      "examples": [
+        {
+          "problem": "Which conducts better, copper or silver?",
+          "steps": [
+            "Silver has the lowest resistance of any metal.",
+            "Copper is very close behind.",
+            "Silver conducts better, but copper is used because it costs far less."
+          ]
+        },
+        {
+          "problem": "What happens to a copper wire's resistance as it heats up?",
+          "steps": [
+            "Heat makes the metal's atoms vibrate more.",
+            "Vibrating atoms obstruct electron flow.",
+            "Resistance increases."
+          ]
+        }
+      ],
+      "trap": "Assuming the most common material is the best conductor. Copper is chosen for cost, not because it beats silver."
+    },
+    {
+      "id": "ei_electrical_safety",
+      "subtest": "EI",
+      "topic": "electrical_safety",
+      "title": "Electrical Safety",
+      "concept": "Disconnect and lock out the supply before any work begins. Fuses and breakers protect the WIRING from excess current, not people. Grounding protects people by giving fault current an easier path than the body. It is CURRENT through the body that injures, which is why ground fault protection is required in wet locations.",
+      "examples": [
+        {
+          "problem": "Why is a ground fault interrupter used in a bathroom?",
+          "steps": [
+            "Water lowers the body's resistance, so more current flows.",
+            "A GFCI compares outgoing and returning current.",
+            "Any difference means leakage, and it trips in milliseconds."
+          ]
+        },
+        {
+          "problem": "What does a fuse actually protect?",
+          "steps": [
+            "A fuse melts when current exceeds its rating.",
+            "That breaks the circuit before the wiring overheats.",
+            "It protects the wiring, not the person."
+          ]
+        }
+      ],
+      "trap": "Believing that voltage alone determines danger. Current through the body does the harm, and a fuse will not prevent a shock."
+    },
+    {
+      "id": "ei_frequency_wavelength",
+      "subtest": "EI",
+      "topic": "frequency_wavelength",
+      "title": "Frequency and Wavelength",
+      "concept": "Frequency is cycles per second, measured in hertz, and equals cycles divided by seconds. Wavelength = speed / frequency. For radio waves in megahertz a handy shortcut gives the wavelength in metres as 300 divided by the frequency. Frequency and wavelength always move in opposite directions.",
+      "examples": [
+        {
+          "problem": "A source completes 600 cycles in 4 seconds. Frequency?",
+          "steps": [
+            "Frequency is cycles per second.",
+            "600 / 4.",
+            "= 150 hertz."
+          ]
+        },
+        {
+          "problem": "A transmitter works at 150 MHz. Wavelength?",
+          "steps": [
+            "Use 300 / MHz for metres.",
+            "300 / 150.",
+            "= 2 metres."
+          ]
+        }
+      ],
+      "trap": "Multiplying frequency by the speed of light instead of dividing. Higher frequency must give a SHORTER wavelength."
+    },
+    {
+      "id": "ei_ohms_law",
+      "subtest": "EI",
+      "topic": "ohms_law",
+      "title": "Ohm's Law and Power",
+      "concept": "E = I x R links voltage, current and resistance. Cover the unknown in the E over I R triangle to see whether to multiply or divide: E = IR, I = E/R, R = E/I. Power is P = E x I. If the quantity you need is missing, find it with Ohm's law first.",
+      "examples": [
+        {
+          "problem": "A 6-ohm load draws 4 amperes. What voltage is across it?",
+          "steps": [
+            "Missing quantity is E.",
+            "E = I x R = 4 x 6.",
+            "E = 24 volts."
+          ]
+        },
+        {
+          "problem": "A 120-volt heater draws 10 amperes. What power does it use?",
+          "steps": [
+            "P = E x I.",
+            "120 x 10.",
+            "P = 1,200 watts."
+          ]
+        }
+      ],
+      "trap": "Dividing when you should multiply. Raising resistance must LOWER current; if your answer moves the other way, check the formula."
+    },
+    {
+      "id": "ei_series_parallel",
+      "subtest": "EI",
+      "topic": "series_parallel",
+      "title": "Series and Parallel Circuits",
+      "concept": "In SERIES the resistances add and the total is larger than any one of them; one current flows through everything. In PARALLEL the total is SMALLER than the smallest branch; for two resistors, R = (R1 x R2) / (R1 + R2). Work out the total resistance before applying Ohm's law.",
+      "examples": [
+        {
+          "problem": "Resistors of 4, 6 and 10 ohms in series. Total?",
+          "steps": [
+            "Series resistances add.",
+            "4 + 6 + 10.",
+            "Total = 20 ohms, larger than any single one."
+          ]
+        },
+        {
+          "problem": "Resistors of 12 and 6 ohms in parallel. Total?",
+          "steps": [
+            "Product = 12 x 6 = 72. Sum = 12 + 6 = 18.",
+            "72 / 18 = 4 ohms.",
+            "4 is smaller than 6, as parallel requires."
+          ]
+        }
+      ],
+      "trap": "Adding parallel resistances. Use the size check every time: parallel totals must come out below the smallest branch."
+    },
+    {
+      "id": "gs_chemistry_basics",
+      "subtest": "GS",
+      "topic": "chemistry_basics",
+      "title": "Basic Chemistry",
+      "concept": "An atom is the smallest unit of an element; atoms bonded together form a molecule. In a COMPOUND the elements are chemically combined and lose their own properties; in a MIXTURE they are merely together and can be separated physically. An ion is a charged atom; isotopes share an element but differ in neutrons. Phase changes: melting, freezing, evaporation, condensation and sublimation.",
+      "examples": [
+        {
+          "problem": "Is salt water a compound or a mixture?",
+          "steps": [
+            "The salt and the water keep their own properties.",
+            "Evaporating the water leaves the salt behind, a physical separation.",
+            "So it is a mixture, even though salt itself is a compound."
+          ]
+        },
+        {
+          "problem": "What is sublimation?",
+          "steps": [
+            "Most substances pass through a liquid stage when heated.",
+            "Sublimation skips that stage entirely.",
+            "It is a change straight from solid to gas, as with dry ice."
+          ]
+        }
+      ],
+      "trap": "Calling any combination a compound. If the parts can be separated by filtering, settling or evaporating, it is a mixture."
+    },
+    {
+      "id": "gs_earth_space_science",
+      "subtest": "GS",
+      "topic": "earth_space_science",
+      "title": "Earth, Weather and Space",
+      "concept": "The Earth's layers run crust, mantle, liquid outer core and solid inner core, with the lithosphere being the rigid crust plus upper mantle that forms the plates. Instruments match their prefixes: barometer for pressure, anemometer for wind, hygrometer for humidity, seismograph for earthquakes. Jupiter is the largest planet, Mercury the closest to the Sun.",
+      "examples": [
+        {
+          "problem": "Why is the Earth's outer core significant?",
+          "steps": [
+            "It is liquid iron and nickel, unlike the solid inner core.",
+            "Motion in a conducting liquid generates a magnetic field.",
+            "The outer core produces Earth's magnetic field."
+          ]
+        },
+        {
+          "problem": "Which instrument helps forecast a coming storm?",
+          "steps": [
+            "Storms are associated with falling air pressure.",
+            "A barometer measures atmospheric pressure.",
+            "A falling barometer signals approaching bad weather."
+          ]
+        }
+      ],
+      "trap": "Mixing up the instrument prefixes. Break the word apart: hygro means moisture, seismo means shaking, anemo means wind."
+    },
+    {
+      "id": "gs_life_science",
+      "subtest": "GS",
+      "topic": "life_science",
+      "title": "Cells, Bodies and Ecosystems",
+      "concept": "The mitochondrion releases energy, the ribosome builds proteins, the nucleus holds DNA, the chloroplast captures light, and the membrane controls what enters. Kidneys filter blood, the liver makes bile, the pancreas makes insulin, lungs exchange gases and the heart pumps. A gene codes for a trait; a chromosome is coiled DNA. Producers make food, decomposers recycle it.",
+      "examples": [
+        {
+          "problem": "Which structures do plant cells have that animal cells lack?",
+          "steps": [
+            "Animal cells have a membrane but no rigid outer layer.",
+            "Plants need structure and the ability to capture light.",
+            "Plant cells add a cell wall and chloroplasts."
+          ]
+        },
+        {
+          "problem": "What is the difference between a gene and a chromosome?",
+          "steps": [
+            "DNA carries the instructions for traits.",
+            "A gene is one stretch of DNA coding for a trait.",
+            "A chromosome is a whole coiled DNA molecule holding many genes."
+          ]
+        }
+      ],
+      "trap": "Confusing the nucleus with the mitochondrion. The nucleus is the control centre holding DNA; the mitochondrion supplies energy."
+    },
+    {
+      "id": "gs_physics_basics",
+      "subtest": "GS",
+      "topic": "physics_basics",
+      "title": "Basic Physics",
+      "concept": "Friction opposes sliding, gravity pulls masses together, inertia is resistance to a change in motion, and momentum is mass times velocity. Kinetic energy is energy of motion and potential energy is stored by position. Units: newton for force, joule for work and energy, watt for power, pascal for pressure, ampere for current.",
+      "examples": [
+        {
+          "problem": "Why is a heavy truck harder to stop than a car at the same speed?",
+          "steps": [
+            "Momentum is mass times velocity.",
+            "At equal speed, more mass means more momentum.",
+            "More momentum requires more force or more time to stop."
+          ]
+        },
+        {
+          "problem": "What is the difference between a joule and a watt?",
+          "steps": [
+            "A joule measures a total amount of work or energy.",
+            "A watt is one joule per second.",
+            "So a joule is a total and a watt is a rate."
+          ]
+        }
+      ],
+      "trap": "Treating energy and power as the same thing. Power always involves time; energy does not."
+    },
+    {
+      "id": "mc_center_of_gravity",
+      "subtest": "MC",
+      "topic": "center_of_gravity",
+      "title": "Center of Gravity",
+      "concept": "Multiply each weight by its distance from a chosen end, add the results, then divide by the TOTAL weight. The centre of gravity always sits closer to the heavier side, which is the check to run on every answer. A weight at distance zero still counts in the total.",
+      "examples": [
+        {
+          "problem": "A 10-ft bar with 40 lb at one end and 60 lb at the other. Balance point from the 40-lb end?",
+          "steps": [
+            "Total weight = 100 lb.",
+            "(60 x 10) / 100 = 600 / 100.",
+            "= 6 ft, nearer the heavy end, as expected."
+          ]
+        },
+        {
+          "problem": "Weights of 20 lb at 0 ft and 30 lb at 10 ft. Centre of gravity?",
+          "steps": [
+            "Moments = (20 x 0) + (30 x 10) = 300.",
+            "Total = 50 lb.",
+            "300 / 50 = 6 ft from the left."
+          ]
+        }
+      ],
+      "trap": "Leaving the weight at distance zero out of the total. It contributes nothing to the moments but everything to the denominator."
+    },
+    {
+      "id": "mc_force_pressure",
+      "subtest": "MC",
+      "topic": "force_pressure",
+      "title": "Force and Pressure",
+      "concept": "Pressure = force / area, and force = pressure x area. The same force on a smaller area gives a higher pressure. Watch for problems where a load is shared between several supports: divide by the number of supports first, then by each one's contact area.",
+      "examples": [
+        {
+          "problem": "A 600-lb force on 15 square inches. Pressure?",
+          "steps": [
+            "P = F / A.",
+            "600 / 15.",
+            "= 40 pounds per square inch."
+          ]
+        },
+        {
+          "problem": "A 1,200-lb machine on 4 feet, each 2 sq ft. Pressure per foot?",
+          "steps": [
+            "Each foot carries 1,200 / 4 = 300 lb.",
+            "Spread over 2 sq ft: 300 / 2.",
+            "= 150 pounds per square foot."
+          ]
+        }
+      ],
+      "trap": "Doing only one of the two divisions when a load is shared. Split between the supports first, then spread over the area."
+    },
+    {
+      "id": "mc_friction",
+      "subtest": "MC",
+      "topic": "friction",
+      "title": "Friction",
+      "concept": "Friction force = coefficient x normal force, and on level ground the normal force is the weight. The coefficient is a bare ratio with no units, usually between about 0.1 and 1.0. Friction depends on the surfaces and the load pressing them together, NOT on the contact area.",
+      "examples": [
+        {
+          "problem": "A 200-lb crate with a coefficient of 0.30. Force to start it sliding?",
+          "steps": [
+            "Friction = coefficient x weight.",
+            "0.30 x 200.",
+            "= 60 pounds."
+          ]
+        },
+        {
+          "problem": "It takes 45 lb to slide a 150-lb box. Coefficient?",
+          "steps": [
+            "Coefficient = friction / weight.",
+            "45 / 150.",
+            "= 0.30, with no units."
+          ]
+        }
+      ],
+      "trap": "Assuming a wider contact patch means more friction. Area does not enter the formula at all."
+    },
+    {
+      "id": "mc_gears",
+      "subtest": "MC",
+      "topic": "gears",
+      "title": "Gears",
+      "concept": "Meshed gears pass the same number of teeth, so speed x teeth is equal for both, and turns x teeth is equal too. A larger gear turns SLOWER and a smaller gear turns MORE times. Check the direction of your answer before doing the arithmetic.",
+      "examples": [
+        {
+          "problem": "A 20-tooth gear at 600 rpm drives an 80-tooth gear. Driven speed?",
+          "steps": [
+            "600 x 20 = 12,000.",
+            "12,000 / 80.",
+            "= 150 rpm, slower, as the bigger gear must be."
+          ]
+        },
+        {
+          "problem": "A 15-tooth gear meshes with a 45-tooth gear turning 4 times. Turns of the small gear?",
+          "steps": [
+            "4 x 45 = 180 teeth passed.",
+            "180 / 15.",
+            "= 12 turns, more than the large gear."
+          ]
+        }
+      ],
+      "trap": "Inverting the ratio and speeding up the larger gear. Bigger always means slower and fewer turns."
+    },
+    {
+      "id": "mc_hydraulics",
+      "subtest": "MC",
+      "topic": "hydraulics",
+      "title": "Hydraulics",
+      "concept": "Pressure is the same throughout a confined fluid, so a force on a small piston becomes a larger force on a big one in proportion to the areas. Find the pressure first, then multiply by the other area. Distance moves the opposite way: the big piston travels less, by the same ratio.",
+      "examples": [
+        {
+          "problem": "30 lb on a 2 sq in piston. Force on a 20 sq in piston?",
+          "steps": [
+            "Pressure = 30 / 2 = 15 psi.",
+            "Force = 15 x 20.",
+            "= 300 pounds."
+          ]
+        },
+        {
+          "problem": "The small piston moves 12 in. How far does the 20 sq in piston move?",
+          "steps": [
+            "Fluid volume is the same: 2 x 12 = 24 cubic inches.",
+            "24 / 20.",
+            "= 1.2 inches."
+          ]
+        }
+      ],
+      "trap": "Multiplying force AND distance. Whatever a machine multiplies in force it divides in distance."
+    },
+    {
+      "id": "mc_levers",
+      "subtest": "MC",
+      "topic": "levers",
+      "title": "Levers",
+      "concept": "A lever balances when the moments match: weight x distance is equal on both sides. A longer effort arm means less effort is needed, and the weight further from the fulcrum is always the lighter one. Effort x effort arm = load x load arm.",
+      "examples": [
+        {
+          "problem": "A 60-lb weight sits 3 ft from the fulcrum. What weight balances it at 2 ft?",
+          "steps": [
+            "Moment on the known side = 60 x 3 = 180 ft-lb.",
+            "Other side: W x 2 = 180.",
+            "W = 90 pounds."
+          ]
+        },
+        {
+          "problem": "A 200-lb load is 2 ft from the fulcrum, effort applied at 8 ft. Effort needed?",
+          "steps": [
+            "Load moment = 200 x 2 = 400 ft-lb.",
+            "400 / 8.",
+            "Effort = 50 pounds."
+          ]
+        }
+      ],
+      "trap": "Inverting the arms. If your effort comes out larger than the load while the effort arm is longer, you have them the wrong way round."
+    },
+    {
+      "id": "mc_mechanical_advantage",
+      "subtest": "MC",
+      "topic": "mechanical_advantage",
+      "title": "Mechanical Advantage",
+      "concept": "Mechanical advantage = load / effort, a plain ratio with no units. A useful machine gives a figure above 1. For a ramp it equals the slope length divided by the vertical rise. Mechanical advantage is also the distance you move divided by the distance the load moves.",
+      "examples": [
+        {
+          "problem": "A machine lifts 400 lb with 50 lb of effort. Mechanical advantage?",
+          "steps": [
+            "MA = load / effort.",
+            "400 / 50.",
+            "MA = 8."
+          ]
+        },
+        {
+          "problem": "A ramp is 18 ft long and rises 3 ft. Mechanical advantage?",
+          "steps": [
+            "MA = length / rise.",
+            "18 / 3.",
+            "MA = 6, so pushing takes a sixth of the weight."
+          ]
+        }
+      ],
+      "trap": "Inverting the ratio. Effort divided by load gives a number below 1, which would mean the machine made the job harder."
+    },
+    {
+      "id": "mc_pulleys",
+      "subtest": "MC",
+      "topic": "pulleys",
+      "title": "Pulleys",
+      "concept": "The mechanical advantage of a block and tackle equals the number of rope strands actually SUPPORTING the load. Effort = load / strands. What you gain in force you lose in distance: the rope must be pulled that many times further than the load rises.",
+      "examples": [
+        {
+          "problem": "A 300-lb load on a tackle with 3 supporting strands. Effort?",
+          "steps": [
+            "Mechanical advantage = 3.",
+            "300 / 3.",
+            "Effort = 100 pounds."
+          ]
+        },
+        {
+          "problem": "With 4 strands, 20 ft of rope is pulled. How far does the load rise?",
+          "steps": [
+            "Distance is divided by the same factor force is multiplied by.",
+            "20 / 4.",
+            "The load rises 5 feet."
+          ]
+        }
+      ],
+      "trap": "Counting every pulley instead of the strands that hold the load up. Count the rope segments running to the load."
+    },
+    {
+      "id": "mc_springs",
+      "subtest": "MC",
+      "topic": "springs",
+      "title": "Springs",
+      "concept": "Hooke's law: force = spring rate x stretch, so stretch = force / rate. A rate in pounds per inch converts between the two. Identical springs sharing a load equally each carry the total divided by their number, and each compresses the same amount.",
+      "examples": [
+        {
+          "problem": "A 20 lb/in spring under a 100-lb load. How far does it stretch?",
+          "steps": [
+            "Stretch = force / rate.",
+            "100 / 20.",
+            "= 5 inches."
+          ]
+        },
+        {
+          "problem": "A 240-lb load on 4 identical springs. Load on each?",
+          "steps": [
+            "Identical springs share equally.",
+            "240 / 4.",
+            "= 60 pounds each."
+          ]
+        }
+      ],
+      "trap": "Multiplying the load by the spring rate. Check the units: pounds divided by pounds-per-inch leaves inches."
+    },
+    {
+      "id": "mc_work_energy",
+      "subtest": "MC",
+      "topic": "work_energy",
+      "title": "Work, Energy and Power",
+      "concept": "Work = force x distance moved in the direction of the force. No movement means no work, however hard you push. Power is the RATE of doing work: power = work / time. If the question mentions seconds or minutes, it is asking about power, not work.",
+      "examples": [
+        {
+          "problem": "Lifting 150 lb through 8 ft. Work done?",
+          "steps": [
+            "Work = force x distance.",
+            "150 x 8.",
+            "= 1,200 foot-pounds."
+          ]
+        },
+        {
+          "problem": "900 foot-pounds of work in 6 seconds. Power?",
+          "steps": [
+            "Power = work / time.",
+            "900 / 6.",
+            "= 150 foot-pounds per second."
+          ]
+        }
+      ],
+      "trap": "Reporting work when the question asked for power. Look for a time in the problem; if there is one, divide by it."
+    },
+    {
+      "id": "mk_angles_triangles",
+      "subtest": "MK",
+      "topic": "angles_triangles",
+      "title": "Angles and Triangles",
+      "concept": "The three angles of any triangle add to 180 degrees. A straight line is 180, a full turn is 360, complementary angles total 90 and supplementary angles total 180. For a right triangle, a^2 + b^2 = c^2, where c is the hypotenuse and always the longest side.",
+      "examples": [
+        {
+          "problem": "Two angles are 55 and 65 degrees. Find the third.",
+          "steps": [
+            "Angles total 180.",
+            "55 + 65 = 120.",
+            "180 - 120 = 60 degrees."
+          ]
+        },
+        {
+          "problem": "A right triangle has legs 9 and 12. Find the hypotenuse.",
+          "steps": [
+            "9^2 + 12^2 = 81 + 144 = 225.",
+            "c = sqrt(225).",
+            "c = 15."
+          ]
+        }
+      ],
+      "trap": "Using 90 or 360 where 180 belongs, and treating a leg as the hypotenuse. The hypotenuse is opposite the right angle and is always longest."
+    },
+    {
+      "id": "mk_area_perimeter_volume",
+      "subtest": "MK",
+      "topic": "area_perimeter_volume",
+      "title": "Area, Perimeter and Volume",
+      "concept": "Perimeter is the distance around and uses length units. Area covers a surface and uses square units. Volume fills a space and uses cubic units. Rectangle: P = 2(l + w), A = lw. Triangle: A = bh/2. Box: V = lwh. Let the units in the answer tell you which formula you need.",
+      "examples": [
+        {
+          "problem": "A rectangle is 12 ft by 5 ft. Find the perimeter.",
+          "steps": [
+            "P = 2(l + w).",
+            "2(12 + 5) = 2 x 17.",
+            "P = 34 feet."
+          ]
+        },
+        {
+          "problem": "A triangle has base 10 in and height 6 in. Find the area.",
+          "steps": [
+            "A = base x height / 2.",
+            "10 x 6 = 60.",
+            "60 / 2 = 30 square inches."
+          ]
+        }
+      ],
+      "trap": "Forgetting the halving step on a triangle, and confusing perimeter with area. Check whether the answer should be in feet or square feet."
+    },
+    {
+      "id": "mk_exponents_roots",
+      "subtest": "MK",
+      "topic": "exponents_roots",
+      "title": "Exponents and Roots",
+      "concept": "Multiplying powers of the same base ADDS the exponents; dividing SUBTRACTS them; a power raised to a power MULTIPLIES them. The base never changes. A square root asks what number times itself gives the value under the sign.",
+      "examples": [
+        {
+          "problem": "Simplify x^3 x x^5.",
+          "steps": [
+            "Same base, multiplied, so add the exponents.",
+            "3 + 5 = 8.",
+            "Answer: x^8."
+          ]
+        },
+        {
+          "problem": "Evaluate sqrt(144) + 3^2.",
+          "steps": [
+            "sqrt(144) = 12, since 12 x 12 = 144.",
+            "3^2 = 9.",
+            "12 + 9 = 21."
+          ]
+        }
+      ],
+      "trap": "Multiplying the exponents when the bases are multiplied. x^3 x x^5 is x^8, not x^15."
+    },
+    {
+      "id": "mk_factoring",
+      "subtest": "MK",
+      "topic": "factoring",
+      "title": "Factoring",
+      "concept": "For x^2 + bx + c, find two numbers that MULTIPLY to c and ADD to b. Check both conditions before committing. A difference of two squares, a^2 - b^2, always factors as (a + b)(a - b), one plus and one minus.",
+      "examples": [
+        {
+          "problem": "Factor x^2 + 7x + 12.",
+          "steps": [
+            "Need a pair multiplying to 12 and adding to 7.",
+            "3 x 4 = 12 and 3 + 4 = 7.",
+            "Answer: (x + 3)(x + 4)."
+          ]
+        },
+        {
+          "problem": "Factor x^2 - 25.",
+          "steps": [
+            "Both terms are perfect squares with a minus between them.",
+            "sqrt(25) = 5.",
+            "Answer: (x + 5)(x - 5)."
+          ]
+        }
+      ],
+      "trap": "Finding a pair that satisfies only one condition. Always multiply your factors back out to check the middle term."
+    },
+    {
+      "id": "mk_fractions_decimals",
+      "subtest": "MK",
+      "topic": "fractions_decimals",
+      "title": "Fractions and Decimals",
+      "concept": "A fraction is a division: the top number goes inside. 'Of' means multiply, so 3/4 of 20 is 3/4 x 20. Divide by the bottom number to size one part, then multiply by the top. A proper fraction always converts to a decimal less than 1.",
+      "examples": [
+        {
+          "problem": "What is 3/8 of 64?",
+          "steps": [
+            "Divide by the bottom: 64 / 8 = 8.",
+            "Multiply by the top: 8 x 3.",
+            "= 24."
+          ]
+        },
+        {
+          "problem": "Write 3/4 as a decimal.",
+          "steps": [
+            "3/4 means 3 divided by 4.",
+            "3 / 4 = 0.75.",
+            "Check: 0.75 x 4 = 3."
+          ]
+        }
+      ],
+      "trap": "Dividing the wrong way round. If a proper fraction converts to a decimal above 1, you divided bottom by top."
+    },
+    {
+      "id": "mk_inequalities",
+      "subtest": "MK",
+      "topic": "inequalities",
+      "title": "Inequalities",
+      "concept": "Solve an inequality exactly as you would an equation, with ONE exception: multiplying or dividing both sides by a NEGATIVE number reverses the direction of the sign. Adding or subtracting a negative does not.",
+      "examples": [
+        {
+          "problem": "Solve 3x + 4 > 19.",
+          "steps": [
+            "Subtract 4: 3x > 15.",
+            "Divide by 3, which is positive, so the sign stays.",
+            "x > 5."
+          ]
+        },
+        {
+          "problem": "Solve 20 - 4x > 8.",
+          "steps": [
+            "Subtract 20: -4x > -12.",
+            "Divide by -4, which is negative, so FLIP the sign.",
+            "x < 3."
+          ]
+        }
+      ],
+      "trap": "Forgetting to flip the sign after dividing by a negative coefficient. Circle the negative before you divide."
+    },
+    {
+      "id": "mk_linear_equations",
+      "subtest": "MK",
+      "topic": "linear_equations",
+      "title": "Linear Equations",
+      "concept": "Undo operations in reverse order. Strip the added or subtracted constant first, then divide by the coefficient. With variables on both sides, gather the letters on one side and the numbers on the other, then divide once at the end.",
+      "examples": [
+        {
+          "problem": "Solve 4x + 7 = 31.",
+          "steps": [
+            "Subtract 7: 4x = 24.",
+            "Divide by 4: x = 6.",
+            "Check: 4(6) + 7 = 31."
+          ]
+        },
+        {
+          "problem": "Solve 7x + 5 = 3x + 21.",
+          "steps": [
+            "Variables left: 7x - 3x = 4x.",
+            "Numbers right: 21 - 5 = 16.",
+            "4x = 16, so x = 4."
+          ]
+        }
+      ],
+      "trap": "Dividing before removing the constant. In 4x + 7 = 31, dividing by 4 first gives x + 7/4, which makes the arithmetic much worse."
+    },
+    {
+      "id": "mk_order_of_operations",
+      "subtest": "MK",
+      "topic": "order_of_operations",
+      "title": "Order of Operations",
+      "concept": "Work through in order: Parentheses, Exponents, Multiplication and Division left to right, then Addition and Subtraction left to right. Multiplication does NOT outrank division, and addition does not outrank subtraction; equal ranks go left to right.",
+      "examples": [
+        {
+          "problem": "Evaluate 20 + 3 x 4^2 - 5.",
+          "steps": [
+            "Exponent first: 4^2 = 16.",
+            "Multiply: 3 x 16 = 48.",
+            "20 + 48 - 5 = 63."
+          ]
+        },
+        {
+          "problem": "Evaluate (8 + 4) x 6 / 3.",
+          "steps": [
+            "Parentheses: 8 + 4 = 12.",
+            "Left to right: 12 x 6 = 72.",
+            "72 / 3 = 24."
+          ]
+        }
+      ],
+      "trap": "Doing all multiplication before any division. In 12 x 6 / 3 you work left to right, not division last."
+    },
+    {
+      "id": "mk_sequences",
+      "subtest": "MK",
+      "topic": "sequences",
+      "title": "Sequences",
+      "concept": "Subtract each term from the one after it. A constant DIFFERENCE means an arithmetic sequence, so keep adding it. If the differences grow, divide instead: a constant RATIO means a geometric sequence, so keep multiplying.",
+      "examples": [
+        {
+          "problem": "Find the next term: 5, 12, 19, 26, ...",
+          "steps": [
+            "Differences: 12 - 5 = 7, 19 - 12 = 7.",
+            "Constant difference of 7, so add 7.",
+            "26 + 7 = 33."
+          ]
+        },
+        {
+          "problem": "Find the next term: 3, 6, 12, 24, ...",
+          "steps": [
+            "Differences grow, so try division: 6 / 3 = 2, 12 / 6 = 2.",
+            "Constant ratio of 2, so multiply by 2.",
+            "24 x 2 = 48."
+          ]
+        }
+      ],
+      "trap": "Assuming every sequence is arithmetic. If the gaps are getting bigger, test division before you guess."
+    },
+    {
+      "id": "pc_author_purpose",
+      "subtest": "PC",
+      "topic": "author_purpose",
+      "title": "Author's Purpose",
+      "concept": "Purpose questions ask what the writing DOES. Match the verb to the passage: explain, persuade, compare, describe, warn. A balanced account with no recommendation is explaining. Noting a difficulty or a temptation is not the same as criticising. Read the tone as well as the content.",
+      "examples": [
+        {
+          "problem": "A passage lays out costs and benefits and recommends nothing. Purpose?",
+          "steps": [
+            "No recommendation rules out persuading.",
+            "Both sides are given, so it is not a warning.",
+            "The purpose is to explain."
+          ]
+        },
+        {
+          "problem": "A passage says a job is hard to fund because the work is invisible. Is that criticism?",
+          "steps": [
+            "It states a reason, not a judgement on anyone.",
+            "No one is blamed and no action is urged.",
+            "It is explaining, not criticising."
+          ]
+        }
+      ],
+      "trap": "Choosing 'persuade' whenever a passage sounds positive. Persuasion needs a recommendation, not just an approving tone."
+    },
+    {
+      "id": "pc_inference",
+      "subtest": "PC",
+      "topic": "inference",
+      "title": "Drawing an Inference",
+      "concept": "An inference is ONE short step beyond what is stated, never a leap. If you cannot point to the sentence behind it, it is a guess. Useful signals: a stated rule implies what happens when it is broken; a named cause implies its effect; a comparison of difficulty implies which is better understood.",
+      "examples": [
+        {
+          "problem": "The passage says a rule prevents confusion. What can you infer about breaking it?",
+          "steps": [
+            "The rule exists to prevent a stated problem.",
+            "Removing the rule removes the protection.",
+            "Breaking it brings the confusion back."
+          ]
+        },
+        {
+          "problem": "An option sounds reasonable but the passage never mentions it. Correct?",
+          "steps": [
+            "Reasonableness is not the test.",
+            "An inference must rest on stated text.",
+            "If nothing in the passage supports it, reject it."
+          ]
+        }
+      ],
+      "trap": "Choosing an option that is plausible in the real world but unsupported by the passage. Stay inside the text."
+    },
+    {
+      "id": "pc_main_idea",
+      "subtest": "PC",
+      "topic": "main_idea",
+      "title": "Finding the Main Idea",
+      "concept": "The main idea is the one claim every sentence supports. Test each option by asking whether it covers the WHOLE passage: a true statement that appears in only one sentence is a detail, not the main idea. Watch for signal phrases such as 'the real significance', 'the main reason' or a closing sentence that sums up.",
+      "examples": [
+        {
+          "problem": "A passage describes how a kiln works, then warns against drying too fast. Main idea?",
+          "steps": [
+            "The mechanism alone leaves the warning unexplained.",
+            "The warning alone leaves the mechanism unexplained.",
+            "The main idea joins them: the kiln works, but only if used slowly."
+          ]
+        },
+        {
+          "problem": "Three options are true details and one is broader. Which do you pick?",
+          "steps": [
+            "Being true is not enough; every distractor is usually true.",
+            "Test coverage: does it account for the whole passage?",
+            "Pick the one the other sentences are evidence FOR."
+          ]
+        }
+      ],
+      "trap": "Choosing a true statement that covers only part of the passage. Truth is not the test; coverage is."
+    },
+    {
+      "id": "pc_specific_detail",
+      "subtest": "PC",
+      "topic": "specific_detail",
+      "title": "Answering Detail Questions",
+      "concept": "A detail question is answered by one specific sentence. Find it and read it exactly rather than relying on memory, because distractors are built from nearby sentences. Expect slight rewording: match the MEANING, not the exact words. Lists, numbers and named parts are the commonest targets.",
+      "examples": [
+        {
+          "problem": "A question asks why bearings are monitored. Where do you look?",
+          "steps": [
+            "Scan for the word 'bearing' in the passage.",
+            "Read the clause immediately after it.",
+            "That clause, usually starting with 'because', is the answer."
+          ]
+        },
+        {
+          "problem": "The passage says 'a loose mixture of sand and compost'. The option says 'sand and compost mixed loosely'. Is it right?",
+          "steps": [
+            "The wording differs from the passage.",
+            "The meaning is identical.",
+            "Yes, correct answers are usually reworded."
+          ]
+        }
+      ],
+      "trap": "Answering from memory after one read. Distractors are deliberately built from other sentences in the same passage."
+    },
+    {
+      "id": "pc_vocabulary_in_context",
+      "subtest": "PC",
+      "topic": "vocabulary_in_context",
+      "title": "Vocabulary in Context",
+      "concept": "The question asks what the word means HERE, not what it usually means. Common words often carry a figurative or trade-specific sense. Read the sentence before and after: writers usually explain the sense they intend. If the literal meaning is impossible in context, the answer is figurative.",
+      "examples": [
+        {
+          "problem": "A passage says noise can 'swamp' a signal. What does swamp mean?",
+          "steps": [
+            "The literal sense is boggy ground, impossible for a signal.",
+            "The sentence is about noise overpowering something weak.",
+            "Swamp means to overwhelm completely."
+          ]
+        },
+        {
+          "problem": "A passage calls timing 'unforgiving'. What does that mean?",
+          "steps": [
+            "The person sense, unwilling to pardon, cannot apply to timing.",
+            "The passage says slightly too hot or cool ruins the weld.",
+            "Unforgiving means allowing no margin for error."
+          ]
+        }
+      ],
+      "trap": "Picking the word's most familiar meaning without checking the sentence. The most common sense is usually a distractor."
+    },
+    {
+      "id": "si_fasteners",
+      "subtest": "SI",
+      "topic": "fasteners",
+      "title": "Fasteners",
+      "concept": "Coarse threads and a tapered point mean WOOD; uniform threads and a flat end mean METAL, used with a nut or a tapped hole. A rivet is permanent, set by deforming its tail. A lock washer resists vibration; a cotter pin passes through a hole and is bent to stop a nut turning.",
+      "examples": [
+        {
+          "problem": "Which fastener would you choose for a joint that must never be undone?",
+          "steps": [
+            "Screws and bolts are designed to be removable.",
+            "A rivet is set by upsetting its tail.",
+            "Use a rivet; removing it means drilling it out."
+          ]
+        },
+        {
+          "problem": "A nut keeps working loose on a vibrating machine. What helps?",
+          "steps": [
+            "Vibration gradually backs a plain nut off.",
+            "A split or toothed washer applies spring tension.",
+            "Fit a lock washer."
+          ]
+        }
+      ],
+      "trap": "Choosing a wood screw for metal. Coarse threads need fibrous material to bite into and will strip in a metal hole."
+    },
+    {
+      "id": "si_hand_tools",
+      "subtest": "SI",
+      "topic": "hand_tools",
+      "title": "Hand Tools",
+      "concept": "Saws are named for what they cut: hacksaw for metal, crosscut ACROSS the grain, rip saw ALONG the grain, coping saw for curves. Hammers follow their second face: a claw pulls nails, a ball peen shapes metal, a mallet's soft face avoids marking work. Wrenches trade grip for adjustability, and a socket grips a hex nut best.",
+      "examples": [
+        {
+          "problem": "Which saw would you use to cut a board to length?",
+          "steps": [
+            "Cutting to length means cutting across the grain.",
+            "Crosscut teeth are filed like small knives to sever fibres.",
+            "Use a crosscut saw."
+          ]
+        },
+        {
+          "problem": "Why use a mallet rather than a hammer on a chisel handle?",
+          "steps": [
+            "A steel face would split or mushroom the handle.",
+            "A mallet has a soft wooden or rubber face.",
+            "It drives the chisel without damaging it."
+          ]
+        }
+      ],
+      "trap": "Reaching for an adjustable wrench on a tight fastener. Its movable jaw slips and rounds the corners; a socket grips all six flats."
+    },
+    {
+      "id": "si_materials",
+      "subtest": "SI",
+      "topic": "materials",
+      "title": "Materials",
+      "concept": "Plywood is thin layers glued with ALTERNATING grain, which makes it strong and resistant to splitting; particleboard is chips bonded with resin and is weak at the edges. Hardwood comes from broadleaf trees, softwood from conifers. Galvanised steel carries a zinc coating that corrodes in place of the steel beneath.",
+      "examples": [
+        {
+          "problem": "Why is plywood stronger than a solid board of the same thickness?",
+          "steps": [
+            "A solid board splits easily along its grain.",
+            "Plywood alternates the grain direction in each layer.",
+            "No single direction of weakness runs through it."
+          ]
+        },
+        {
+          "problem": "How does galvanising protect steel?",
+          "steps": [
+            "Zinc is more reactive than steel.",
+            "It corrodes in preference to the steel underneath.",
+            "The coating is sacrificed to protect the metal."
+          ]
+        }
+      ],
+      "trap": "Assuming hardwood is always harder. The terms describe the tree type, and balsa is technically a hardwood."
+    },
+    {
+      "id": "si_measuring",
+      "subtest": "SI",
+      "topic": "measuring",
+      "title": "Measuring Tools",
+      "concept": "Pick the tool by the precision needed: a rule for rough work, a caliper for inside, outside and depth, a micrometer for thousandths of an inch, a feeler gauge for a narrow gap. A square checks right angles, a spirit level checks horizontal, and a plumb bob checks vertical using gravity.",
+      "examples": [
+        {
+          "problem": "You need a shaft diameter to the nearest thousandth. Which tool?",
+          "steps": [
+            "A rule cannot resolve thousandths.",
+            "A caliper is close but less precise.",
+            "Use a micrometer."
+          ]
+        },
+        {
+          "problem": "How do you check that a post is truly vertical?",
+          "steps": [
+            "A level checks horizontal surfaces.",
+            "Gravity gives a true vertical reference.",
+            "Hang a plumb bob beside the post."
+          ]
+        }
+      ],
+      "trap": "Using a caliper where a micrometer is required. A caliper is convenient but will not reliably resolve thousandths."
+    },
+    {
+      "id": "si_power_tools",
+      "subtest": "SI",
+      "topic": "power_tools",
+      "title": "Power Tools",
+      "concept": "Match the blade to the cut: a circular saw's disc makes straight cuts, a jigsaw's narrow reciprocating blade follows curves, a router shapes edges and grooves, a belt sander removes stock fast, and a drill press gives square, repeatable holes. An angle grinder cuts and grinds metal with an abrasive disc.",
+      "examples": [
+        {
+          "problem": "You need a curved cut in plywood. Which tool?",
+          "steps": [
+            "A circular saw's round blade cannot turn.",
+            "A narrow blade can steer through a curve.",
+            "Use a jigsaw."
+          ]
+        },
+        {
+          "problem": "Why use a drill press rather than a hand drill?",
+          "steps": [
+            "A hand drill can wander off square.",
+            "A press holds the bit perpendicular and controls depth.",
+            "It gives accurate, repeatable holes."
+          ]
+        }
+      ],
+      "trap": "Using a belt sander for finishing. It removes material very fast and will dish a surface if held in one place."
+    },
+    {
+      "id": "si_wood_metalworking",
+      "subtest": "SI",
+      "topic": "wood_metalworking",
+      "title": "Joining and Working",
+      "concept": "Welding melts the BASE metal; brazing and soldering melt only a filler, with brazing the hotter and stronger of the two. Tapping cuts internal threads, a die cuts external ones. Annealing softens metal by slow cooling. In wood, a mortise and tenon and a dovetail are strong joints; a butt joint is the simplest and weakest.",
+      "examples": [
+        {
+          "problem": "What is the difference between welding and brazing?",
+          "steps": [
+            "Welding melts the pieces being joined.",
+            "Brazing melts only a filler that flows between them.",
+            "The base metal stays solid in brazing."
+          ]
+        },
+        {
+          "problem": "Which joint would you choose for a drawer front?",
+          "steps": [
+            "A drawer front is repeatedly pulled outward.",
+            "Dovetails interlock and resist being pulled apart.",
+            "Use a dovetail."
+          ]
+        }
+      ],
+      "trap": "Treating soldering and welding as the same process. If the base metal never melts, it is not a weld."
+    },
+    {
+      "id": "wk_roots_prefixes_suffixes",
+      "subtest": "WK",
+      "topic": "roots_prefixes_suffixes",
+      "title": "Roots, Prefixes and Suffixes",
+      "concept": "Word parts carry meaning you can use on unfamiliar words. Direction and judgement prefixes: bene good, mal bad, anti against, sub under, trans across, circum around, re again or back. Endings name a category: -ology a study, -phobia a fear, -able capable of being, -less without.",
+      "examples": [
+        {
+          "problem": "What does 'circumnavigate' suggest?",
+          "steps": [
+            "'Circum-' means around.",
+            "'Navigate' means to travel or steer.",
+            "To circumnavigate is to travel all the way around."
+          ]
+        },
+        {
+          "problem": "What does 'malfunction' suggest?",
+          "steps": [
+            "'Mal-' means bad or badly.",
+            "'Function' means to work.",
+            "A malfunction is a failure to work properly."
+          ]
+        }
+      ],
+      "trap": "Trusting a word part that only looks familiar. 'Invaluable' does not mean 'not valuable'; check the whole word against the sentence."
+    },
+    {
+      "id": "wk_synonyms_isolation",
+      "subtest": "WK",
+      "topic": "synonyms_isolation",
+      "title": "Synonyms Without Context",
+      "concept": "With no sentence to help, work from what you do know. Break the word into parts you recognise, recall any phrase you have heard it in, and decide the DIRECTION first: does it mean more or less, better or worse? That alone eliminates half the options. Then pick the closest match, not merely a related word.",
+      "examples": [
+        {
+          "problem": "What does 'abate' most nearly mean?",
+          "steps": [
+            "You have heard 'the storm abated'.",
+            "A storm that abated got weaker, not stronger.",
+            "Direction is downward, so abate means to lessen."
+          ]
+        },
+        {
+          "problem": "What does 'augment' most nearly mean?",
+          "steps": [
+            "The same root gives 'augmentation', an addition.",
+            "Adding makes something bigger.",
+            "Augment means to increase."
+          ]
+        }
+      ],
+      "trap": "Choosing a word that merely belongs to the same topic. 'Related to storms' is not the same as 'means the same as'."
+    },
+    {
+      "id": "wk_words_in_context",
+      "subtest": "WK",
+      "topic": "words_in_context",
+      "title": "Words in Context",
+      "concept": "The sentence is doing work for you. Look for what the word CAUSES or RESULTS IN, and for clauses beginning 'so', 'because' or 'including', which often spell the meaning out. Cover the word, decide what you would put in the gap, then find the option closest to your own guess.",
+      "examples": [
+        {
+          "problem": "'Rations were meager, so the patrol went hungry.' What does meager mean?",
+          "steps": [
+            "The 'so' clause gives the result: they went hungry.",
+            "Rations that leave people hungry are insufficient.",
+            "Meager means scanty."
+          ]
+        },
+        {
+          "problem": "'Heavy rain abated shortly before the flight departed.' What does abated mean?",
+          "steps": [
+            "The flight was able to depart.",
+            "That means conditions improved, not worsened.",
+            "Abated means lessened."
+          ]
+        }
+      ],
+      "trap": "Ignoring the sentence and answering from the word's usual meaning. Context can select an unusual sense."
+    }
+  ]
+}

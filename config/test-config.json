@@ -1,0 +1,280 @@
+{
+  "version": 1,
+  "note": "Per-subtest item counts and time limits, mirroring the CAT-ASVAB structure. Adjust seconds here to retune pacing; nothing else reads hard-coded times. `sources` lists which generators feed each subtest.",
+  "total_minutes": 154,
+  "subtests": [
+    {
+      "code": "GS",
+      "name": "General Science",
+      "items": 16,
+      "seconds": 480,
+      "order": 1,
+      "composites": [
+        "E"
+      ],
+      "sources": [
+        "bank"
+      ]
+    },
+    {
+      "code": "AR",
+      "name": "Arithmetic Reasoning",
+      "items": 16,
+      "seconds": 2340,
+      "order": 2,
+      "composites": [
+        "AFQT",
+        "M",
+        "G",
+        "E"
+      ],
+      "sources": [
+        "template"
+      ]
+    },
+    {
+      "code": "WK",
+      "name": "Word Knowledge",
+      "items": 16,
+      "seconds": 480,
+      "order": 3,
+      "composites": [
+        "AFQT",
+        "M",
+        "A",
+        "G"
+      ],
+      "sources": [
+        "bank"
+      ]
+    },
+    {
+      "code": "PC",
+      "name": "Paragraph Comprehension",
+      "items": 11,
+      "seconds": 1320,
+      "order": 4,
+      "composites": [
+        "AFQT",
+        "M",
+        "A",
+        "G"
+      ],
+      "sources": [
+        "passage"
+      ]
+    },
+    {
+      "code": "MK",
+      "name": "Mathematics Knowledge",
+      "items": 16,
+      "seconds": 1200,
+      "order": 5,
+      "composites": [
+        "AFQT",
+        "A",
+        "E"
+      ],
+      "sources": [
+        "template"
+      ]
+    },
+    {
+      "code": "EI",
+      "name": "Electronics Information",
+      "items": 16,
+      "seconds": 480,
+      "order": 6,
+      "composites": [
+        "E"
+      ],
+      "sources": [
+        "template",
+        "bank"
+      ]
+    },
+    {
+      "code": "AI",
+      "name": "Auto Information",
+      "items": 11,
+      "seconds": 420,
+      "order": 7,
+      "composites": [
+        "M"
+      ],
+      "sources": [
+        "bank"
+      ]
+    },
+    {
+      "code": "SI",
+      "name": "Shop Information",
+      "items": 11,
+      "seconds": 360,
+      "order": 8,
+      "composites": [
+        "M"
+      ],
+      "sources": [
+        "bank"
+      ]
+    },
+    {
+      "code": "MC",
+      "name": "Mechanical Comprehension",
+      "items": 16,
+      "seconds": 1200,
+      "order": 9,
+      "composites": [
+        "M"
+      ],
+      "sources": [
+        "template"
+      ]
+    },
+    {
+      "code": "AO",
+      "name": "Assembling Objects",
+      "items": 16,
+      "seconds": 960,
+      "order": 10,
+      "composites": [],
+      "sources": [
+        "procedural"
+      ]
+    }
+  ],
+  "composites": {
+    "AFQT": {
+      "label": "AFQT",
+      "formula": "2VE + AR + MK",
+      "long": "Armed Forces Qualification Test"
+    },
+    "M": {
+      "label": "Mechanical",
+      "formula": "AR + 2VE + MC + AS"
+    },
+    "A": {
+      "label": "Administrative",
+      "formula": "VE + MK"
+    },
+    "G": {
+      "label": "General",
+      "formula": "VE + AR"
+    },
+    "E": {
+      "label": "Electronic",
+      "formula": "AR + MK + EI + GS"
+    }
+  },
+  "diagnostic": {
+    "items": 30,
+    "seconds": 1800,
+    "spread": {
+      "GS": 3,
+      "AR": 4,
+      "WK": 4,
+      "PC": 3,
+      "MK": 4,
+      "EI": 3,
+      "AI": 2,
+      "SI": 2,
+      "MC": 3,
+      "AO": 2
+    }
+  },
+  "drill": {
+    "items": 15
+  },
+  "spaced_repetition_days": [
+    3,
+    7,
+    14
+  ],
+  "topics": {
+    "AR": [
+      "rate_time_distance",
+      "percentages_discount",
+      "ratio_proportion",
+      "simple_interest",
+      "work_rate",
+      "averages",
+      "unit_conversion",
+      "basic_probability",
+      "cost_profit"
+    ],
+    "MK": [
+      "exponents_roots",
+      "factoring",
+      "linear_equations",
+      "inequalities",
+      "area_perimeter_volume",
+      "angles_triangles",
+      "sequences",
+      "fractions_decimals",
+      "order_of_operations"
+    ],
+    "WK": [
+      "synonyms_isolation",
+      "words_in_context",
+      "roots_prefixes_suffixes"
+    ],
+    "PC": [
+      "main_idea",
+      "specific_detail",
+      "inference",
+      "vocabulary_in_context",
+      "author_purpose"
+    ],
+    "GS": [
+      "life_science",
+      "earth_space_science",
+      "chemistry_basics",
+      "physics_basics"
+    ],
+    "EI": [
+      "ohms_law",
+      "series_parallel",
+      "components",
+      "ac_dc",
+      "frequency_wavelength",
+      "conductors_insulators",
+      "circuit_symbols",
+      "electrical_safety"
+    ],
+    "AI": [
+      "engine_operation",
+      "ignition",
+      "fuel_system",
+      "cooling",
+      "brakes",
+      "transmission",
+      "auto_electrical",
+      "diagnostics"
+    ],
+    "SI": [
+      "hand_tools",
+      "power_tools",
+      "fasteners",
+      "materials",
+      "measuring",
+      "wood_metalworking"
+    ],
+    "MC": [
+      "levers",
+      "pulleys",
+      "gears",
+      "mechanical_advantage",
+      "force_pressure",
+      "hydraulics",
+      "springs",
+      "friction",
+      "center_of_gravity",
+      "work_energy"
+    ],
+    "AO": [
+      "connection_problems",
+      "shape_assembly"
+    ]
+  }
+}

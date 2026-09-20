@@ -1,0 +1,1668 @@
+{
+  "subtest": "MC",
+  "templates": [
+    {
+      "id": "MC_levers_01",
+      "subtest": "MC",
+      "topic": "levers",
+      "difficulty": 2,
+      "format": "int",
+      "unit": "pounds",
+      "target_seconds": 50,
+      "lesson": "mc_levers",
+      "skins": [
+        {
+          "bar": "a steel pry bar",
+          "who": "a mechanic"
+        },
+        {
+          "bar": "a plank seesaw",
+          "who": "a groundskeeper"
+        },
+        {
+          "bar": "a balance beam",
+          "who": "a technician"
+        },
+        {
+          "bar": "a timber lever",
+          "who": "a rigger"
+        },
+        {
+          "bar": "a scale arm",
+          "who": "an inspector"
+        }
+      ],
+      "params": {
+        "w1": {
+          "min": 10,
+          "max": 120,
+          "step": 10
+        },
+        "w2": {
+          "min": 10,
+          "max": 120,
+          "step": 10
+        },
+        "d1": {
+          "min": 2,
+          "max": 9
+        }
+      },
+      "derived": {
+        "d2": "w1 * d1 / w2"
+      },
+      "constraints": [
+        "w1 != w2",
+        "d2 == round(d2, 0)",
+        "d2 >= 1",
+        "d2 <= 12"
+      ],
+      "figure": {
+        "kind": "lever",
+        "args": {
+          "d1": "d1",
+          "d2": "d2",
+          "left_label": "'known side",
+          "right_label": "'unknown side"
+        }
+      },
+      "stem": "{^who} balances {bar} on a fulcrum. A {w1}-pound weight sits {d1} feet from the fulcrum on one side. On the other side a weight sits {d2} feet from the fulcrum. How heavy is it?",
+      "answer": "w1 * d1 / d2",
+      "verify": "w2",
+      "distractors": [
+        {
+          "expr": "w1 * d2 / d1",
+          "error": "swapped the two distances in the moment equation"
+        },
+        {
+          "expr": "w1",
+          "error": "assumed equal weights, which only balances at equal distances"
+        },
+        {
+          "expr": "w1 * d1",
+          "error": "gave the moment in foot-pounds instead of a weight"
+        },
+        {
+          "expr": "w1 + d1 + d2",
+          "error": "added the quantities instead of using moments"
+        }
+      ],
+      "solution_steps": [
+        "A lever balances when the moments match: weight × distance is equal on both sides.",
+        "{w1} × {d1} = {=w1*d1} foot-pounds on the known side.",
+        "{=w1*d1} ÷ {d2} = {=w1*d1/d2} pounds on the other side."
+      ],
+      "recognition_cue": "Balance means weight × distance is the same both sides. The weight further from the fulcrum is always the lighter one."
+    },
+    {
+      "id": "MC_levers_02",
+      "subtest": "MC",
+      "topic": "levers",
+      "difficulty": 3,
+      "format": "int",
+      "unit": "pounds",
+      "target_seconds": 55,
+      "lesson": "mc_levers",
+      "skins": [
+        {
+          "tool": "a crowbar",
+          "loadname": "a crate",
+          "who": "a mechanic"
+        },
+        {
+          "tool": "a wrecking bar",
+          "loadname": "a stump",
+          "who": "a groundskeeper"
+        },
+        {
+          "tool": "a lever arm",
+          "loadname": "a machine base",
+          "who": "a millwright"
+        },
+        {
+          "tool": "a pry bar",
+          "loadname": "a concrete slab",
+          "who": "a labourer"
+        },
+        {
+          "tool": "a long handle",
+          "loadname": "a hatch cover",
+          "who": "a deck hand"
+        }
+      ],
+      "params": {
+        "effort": {
+          "min": 10,
+          "max": 90,
+          "step": 5
+        },
+        "earm": {
+          "min": 3,
+          "max": 12
+        },
+        "larm": {
+          "min": 1,
+          "max": 4
+        }
+      },
+      "derived": {
+        "load": "effort * earm / larm"
+      },
+      "constraints": [
+        "earm > larm",
+        "load == round(load, 0)",
+        "load <= 1200"
+      ],
+      "figure": {
+        "kind": "lever",
+        "args": {
+          "d1": "earm",
+          "d2": "larm",
+          "effort_label": "'Effort",
+          "load_label": "'Load"
+        }
+      },
+      "stem": "{^who} uses {tool} to lift {loadname}. The effort is applied {earm} feet from the fulcrum, and the load rests {larm} feet from the fulcrum on the other side. If it weighs {load} pounds, what effort force is needed?",
+      "answer": "load * larm / earm",
+      "verify": "effort",
+      "distractors": [
+        {
+          "expr": "load * earm / larm",
+          "error": "put the arms the wrong way round, multiplying the effort instead of reducing it"
+        },
+        {
+          "expr": "load",
+          "error": "ignored the lever entirely"
+        },
+        {
+          "expr": "load / (earm + larm)",
+          "error": "added the arms instead of using their ratio"
+        },
+        {
+          "expr": "load * larm",
+          "error": "gave a moment in foot-pounds rather than a force"
+        }
+      ],
+      "solution_steps": [
+        "Effort × effort arm = load × load arm.",
+        "Load side: {load} × {larm} = {=load*larm} foot-pounds.",
+        "{=load*larm} ÷ {earm} = {=load*larm/earm} pounds of effort. The long arm is what makes the job easier."
+      ],
+      "recognition_cue": "A longer effort arm means less effort. If your answer is bigger than the load, you have the arms inverted."
+    },
+    {
+      "id": "MC_pulleys_01",
+      "subtest": "MC",
+      "topic": "pulleys",
+      "difficulty": 2,
+      "format": "int",
+      "unit": "pounds",
+      "target_seconds": 45,
+      "lesson": "mc_pulleys",
+      "skins": [
+        {
+          "rig": "a block and tackle",
+          "who": "a dock crew"
+        },
+        {
+          "rig": "a hoist",
+          "who": "a garage"
+        },
+        {
+          "rig": "a lifting rig",
+          "who": "a stage crew"
+        },
+        {
+          "rig": "a tackle",
+          "who": "a sailing crew"
+        },
+        {
+          "rig": "a chain fall",
+          "who": "a shop"
+        }
+      ],
+      "params": {
+        "strands": {
+          "min": 2,
+          "max": 6
+        },
+        "effort": {
+          "min": 15,
+          "max": 150,
+          "step": 5
+        }
+      },
+      "derived": {
+        "load": "strands * effort"
+      },
+      "constraints": [
+        "load <= 900"
+      ],
+      "figure": {
+        "kind": "pulley",
+        "args": {
+          "strands": "strands"
+        }
+      },
+      "stem": "{^who} lifts a {load}-pound load with {rig} that has {strands} supporting strands of rope. Ignoring friction, how much force must be pulled on the free end?",
+      "answer": "load / strands",
+      "verify": "effort",
+      "distractors": [
+        {
+          "expr": "load * strands",
+          "error": "multiplied by the strand count instead of dividing by it"
+        },
+        {
+          "expr": "load",
+          "error": "ignored the mechanical advantage of the pulley system"
+        },
+        {
+          "expr": "load / (strands + 1)",
+          "error": "counted one supporting strand too many"
+        },
+        {
+          "expr": "load / 2",
+          "error": "assumed every pulley system halves the force"
+        }
+      ],
+      "solution_steps": [
+        "The mechanical advantage of a block and tackle equals the number of strands supporting the load: {strands}.",
+        "Effort = load ÷ mechanical advantage.",
+        "{load} ÷ {strands} = {=load/strands} pounds."
+      ],
+      "recognition_cue": "Count the rope segments actually holding the load up — that count is the mechanical advantage. The rope you pull only counts if it runs upward."
+    },
+    {
+      "id": "MC_pulleys_02",
+      "subtest": "MC",
+      "topic": "pulleys",
+      "difficulty": 3,
+      "format": "int",
+      "unit": "feet",
+      "target_seconds": 50,
+      "lesson": "mc_pulleys",
+      "skins": [
+        {
+          "rig": "a block and tackle",
+          "who": "a rigging crew"
+        },
+        {
+          "rig": "a hoist",
+          "who": "a mechanic"
+        },
+        {
+          "rig": "a lifting tackle",
+          "who": "a warehouse team"
+        },
+        {
+          "rig": "a gantry rig",
+          "who": "a yard crew"
+        },
+        {
+          "rig": "a chain hoist",
+          "who": "an installer"
+        }
+      ],
+      "params": {
+        "strands": {
+          "min": 2,
+          "max": 6
+        },
+        "lift": {
+          "min": 2,
+          "max": 12
+        }
+      },
+      "derived": {
+        "rope": "strands * lift"
+      },
+      "constraints": [
+        "rope <= 60"
+      ],
+      "figure": {
+        "kind": "pulley",
+        "args": {
+          "strands": "strands"
+        }
+      },
+      "stem": "{^who} uses {rig} with {strands} supporting strands. To raise the load, {rope} feet of rope is pulled through. How high does the load rise?",
+      "answer": "rope / strands",
+      "verify": "lift",
+      "distractors": [
+        {
+          "expr": "rope * strands",
+          "error": "multiplied instead of dividing by the strand count"
+        },
+        {
+          "expr": "rope",
+          "error": "assumed the load rises as far as the rope is pulled"
+        },
+        {
+          "expr": "rope / 2",
+          "error": "assumed every pulley system halves the distance"
+        },
+        {
+          "expr": "rope / (strands - 1)",
+          "error": "counted one supporting strand too few"
+        }
+      ],
+      "solution_steps": [
+        "A pulley trades distance for force: the rope moves further than the load, by exactly the mechanical advantage.",
+        "With {strands} supporting strands, the load rises {strands} times less than the rope travels.",
+        "{rope} ÷ {strands} = {=rope/strands} feet."
+      ],
+      "recognition_cue": "Whatever a machine gains in force it loses in distance. Divide the rope pulled by the strand count to get the lift."
+    },
+    {
+      "id": "MC_gears_01",
+      "subtest": "MC",
+      "topic": "gears",
+      "difficulty": 3,
+      "format": "int",
+      "unit": "rpm",
+      "target_seconds": 55,
+      "lesson": "mc_gears",
+      "skins": [
+        {
+          "machine": "a conveyor drive"
+        },
+        {
+          "machine": "a mixer gearbox"
+        },
+        {
+          "machine": "a winch drive"
+        },
+        {
+          "machine": "a lathe headstock"
+        },
+        {
+          "machine": "a pump drive"
+        }
+      ],
+      "params": {
+        "t1": {
+          "min": 10,
+          "max": 40,
+          "step": 2
+        },
+        "mult": {
+          "choices": [
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "rpm2": {
+          "min": 20,
+          "max": 300,
+          "step": 20
+        }
+      },
+      "derived": {
+        "t2": "t1 * mult",
+        "rpm1": "rpm2 * mult"
+      },
+      "constraints": [
+        "t2 <= 160",
+        "rpm1 <= 1500"
+      ],
+      "figure": {
+        "kind": "gears",
+        "args": {
+          "teeth1": "t1",
+          "teeth2": "t2"
+        }
+      },
+      "stem": "In {machine}, a drive gear with {t1} teeth turns at {rpm1} rpm and meshes with a driven gear of {t2} teeth. How fast does the driven gear turn?",
+      "answer": "rpm1 * t1 / t2",
+      "verify": "rpm2",
+      "distractors": [
+        {
+          "expr": "rpm1 * t2 / t1",
+          "error": "inverted the gear ratio, speeding the big gear up instead of slowing it"
+        },
+        {
+          "expr": "rpm1",
+          "error": "assumed meshed gears turn at the same speed"
+        },
+        {
+          "expr": "rpm1 * t1 / t2 / 2",
+          "error": "halved the correct speed"
+        },
+        {
+          "expr": "t2 / t1",
+          "error": "gave the gear ratio rather than a speed"
+        }
+      ],
+      "solution_steps": [
+        "Teeth in mesh move at the same rate, so speed × teeth is equal for both gears.",
+        "{rpm1} × {t1} = {=rpm1*t1}.",
+        "{=rpm1*t1} ÷ {t2} = {=rpm1*t1/t2} rpm. The bigger gear turns slower."
+      ],
+      "recognition_cue": "More teeth means slower. Check the direction of the answer before the arithmetic: driving a larger gear must reduce the speed."
+    },
+    {
+      "id": "MC_gears_02",
+      "subtest": "MC",
+      "topic": "gears",
+      "difficulty": 2,
+      "format": "int",
+      "unit": "turns",
+      "target_seconds": 50,
+      "lesson": "mc_gears",
+      "skins": [
+        {
+          "machine": "a hand-cranked winch"
+        },
+        {
+          "machine": "a clock train"
+        },
+        {
+          "machine": "a spindle drive"
+        },
+        {
+          "machine": "a reduction box"
+        },
+        {
+          "machine": "a crank assembly"
+        }
+      ],
+      "params": {
+        "small": {
+          "min": 8,
+          "max": 24,
+          "step": 2
+        },
+        "mult": {
+          "choices": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        },
+        "turnsbig": {
+          "min": 2,
+          "max": 12
+        }
+      },
+      "derived": {
+        "big": "small * mult",
+        "turnssmall": "turnsbig * mult"
+      },
+      "constraints": [
+        "big <= 120",
+        "turnssmall <= 72"
+      ],
+      "figure": {
+        "kind": "gears",
+        "args": {
+          "teeth1": "small",
+          "teeth2": "big",
+          "label1": "'small",
+          "label2": "'large"
+        }
+      },
+      "stem": "In {machine}, a {small}-tooth gear meshes with a {big}-tooth gear. How many turns does the small gear make while the large gear completes {turnsbig} turns?",
+      "answer": "turnsbig * big / small",
+      "verify": "turnssmall",
+      "distractors": [
+        {
+          "expr": "turnsbig * small / big",
+          "error": "inverted the ratio, giving fewer turns for the smaller gear"
+        },
+        {
+          "expr": "turnsbig",
+          "error": "assumed both gears make the same number of turns"
+        },
+        {
+          "expr": "big / small",
+          "error": "gave the gear ratio rather than a number of turns"
+        },
+        {
+          "expr": "turnsbig + big / small",
+          "error": "added the ratio instead of multiplying by it"
+        }
+      ],
+      "solution_steps": [
+        "The two gears pass the same number of teeth: turns × teeth is equal for both.",
+        "Large gear: {turnsbig} × {big} = {=turnsbig*big} teeth passed.",
+        "{=turnsbig*big} ÷ {small} = {=turnsbig*big/small} turns of the small gear."
+      ],
+      "recognition_cue": "The smaller gear always turns more times. Set turns × teeth equal on both sides and solve."
+    },
+    {
+      "id": "MC_mechanical_advantage_01",
+      "subtest": "MC",
+      "topic": "mechanical_advantage",
+      "difficulty": 2,
+      "format": "int",
+      "target_seconds": 45,
+      "lesson": "mc_mechanical_advantage",
+      "skins": [
+        {
+          "ramp": "a loading ramp",
+          "who": "a delivery crew"
+        },
+        {
+          "ramp": "a service ramp",
+          "who": "a garage"
+        },
+        {
+          "ramp": "a gangway",
+          "who": "a dock team"
+        },
+        {
+          "ramp": "an access ramp",
+          "who": "a contractor"
+        },
+        {
+          "ramp": "a trailer ramp",
+          "who": "a mover"
+        }
+      ],
+      "params": {
+        "rise": {
+          "min": 2,
+          "max": 9
+        },
+        "mult": {
+          "min": 2,
+          "max": 9
+        }
+      },
+      "derived": {
+        "run": "rise * mult"
+      },
+      "constraints": [
+        "run <= 60",
+        "mult >= 2"
+      ],
+      "figure": {
+        "kind": "incline",
+        "args": {
+          "rise": "rise",
+          "run": "run"
+        }
+      },
+      "stem": "{^who} sets up {ramp} {run} feet long that rises {rise} feet. What is its ideal mechanical advantage?",
+      "answer": "run / rise",
+      "verify": "1 / (rise / run)",
+      "distractors": [
+        {
+          "expr": "rise * run",
+          "error": "multiplied the dimensions instead of taking their ratio"
+        },
+        {
+          "expr": "run + rise",
+          "error": "added the dimensions instead of dividing"
+        },
+        {
+          "expr": "run / rise + 1",
+          "error": "arithmetic slip in the division"
+        },
+        {
+          "expr": "run - rise",
+          "error": "subtracted the height from the length"
+        }
+      ],
+      "solution_steps": [
+        "For a ramp, mechanical advantage = length along the slope ÷ vertical rise.",
+        "{run} ÷ {rise}.",
+        "The mechanical advantage is {=run/rise}, so the pushing force is {=run/rise} times smaller than the weight."
+      ],
+      "recognition_cue": "A longer, shallower ramp gives more advantage. Mechanical advantage is always the distance you move divided by the distance the load moves."
+    },
+    {
+      "id": "MC_mechanical_advantage_02",
+      "subtest": "MC",
+      "topic": "mechanical_advantage",
+      "difficulty": 2,
+      "format": "int",
+      "target_seconds": 40,
+      "lesson": "mc_mechanical_advantage",
+      "skins": [
+        {
+          "machine": "a jack"
+        },
+        {
+          "machine": "a winch"
+        },
+        {
+          "machine": "a lever system"
+        },
+        {
+          "machine": "a screw press"
+        },
+        {
+          "machine": "a come-along"
+        }
+      ],
+      "params": {
+        "effort": {
+          "min": 5,
+          "max": 80,
+          "step": 5
+        },
+        "ma": {
+          "min": 2,
+          "max": 12
+        }
+      },
+      "derived": {
+        "load": "effort * ma"
+      },
+      "constraints": [
+        "load <= 900"
+      ],
+      "stem": "{^machine} lifts a {load}-pound load when {effort} pounds of effort is applied. What is its mechanical advantage?",
+      "answer": "load / effort",
+      "verify": "ma",
+      "distractors": [
+        {
+          "expr": "load * effort",
+          "error": "multiplied the forces instead of taking their ratio"
+        },
+        {
+          "expr": "load - effort",
+          "error": "subtracted the effort from the load"
+        },
+        {
+          "expr": "effort / load * ma * ma",
+          "error": "inverted the ratio, dividing effort by load"
+        },
+        {
+          "expr": "load / effort + 2",
+          "error": "arithmetic slip in the division"
+        }
+      ],
+      "solution_steps": [
+        "Mechanical advantage = load ÷ effort.",
+        "{load} ÷ {effort}.",
+        "The mechanical advantage is {=load/effort}, meaning the machine multiplies your force {=load/effort} times."
+      ],
+      "recognition_cue": "Mechanical advantage is a plain ratio with no units. Load on top, effort underneath — a helpful machine always gives a number above 1."
+    },
+    {
+      "id": "MC_force_pressure_01",
+      "subtest": "MC",
+      "topic": "force_pressure",
+      "difficulty": 2,
+      "format": "int",
+      "unit": "pounds per square inch",
+      "target_seconds": 45,
+      "lesson": "mc_force_pressure",
+      "skins": [
+        {
+          "thing": "a hydraulic ram",
+          "place": "a press"
+        },
+        {
+          "thing": "a piston",
+          "place": "a cylinder"
+        },
+        {
+          "thing": "a clamp pad",
+          "place": "a fixture"
+        },
+        {
+          "thing": "a stamping die",
+          "place": "a press brake"
+        },
+        {
+          "thing": "a jack pad",
+          "place": "a lift"
+        }
+      ],
+      "params": {
+        "area": {
+          "min": 2,
+          "max": 30
+        },
+        "press": {
+          "min": 5,
+          "max": 120,
+          "step": 5
+        }
+      },
+      "derived": {
+        "force": "area * press"
+      },
+      "constraints": [
+        "force <= 3000"
+      ],
+      "stem": "{^thing} in {place} has a face area of {area} square inches and pushes with a force of {force} pounds. What pressure does it apply?",
+      "answer": "force / area",
+      "verify": "press",
+      "distractors": [
+        {
+          "expr": "force * area",
+          "error": "multiplied force by area instead of dividing"
+        },
+        {
+          "expr": "force - area",
+          "error": "subtracted the area from the force"
+        },
+        {
+          "expr": "force / area / 2",
+          "error": "halved the correct pressure"
+        },
+        {
+          "expr": "area",
+          "error": "gave the area rather than the pressure"
+        }
+      ],
+      "solution_steps": [
+        "Pressure = force ÷ area.",
+        "{force} pounds ÷ {area} square inches.",
+        "{force} ÷ {area} = {=force/area} pounds per square inch."
+      ],
+      "recognition_cue": "Pressure is force spread over an area. Squeeze the same force onto a smaller area and the pressure goes up."
+    },
+    {
+      "id": "MC_force_pressure_02",
+      "subtest": "MC",
+      "topic": "force_pressure",
+      "difficulty": 3,
+      "format": "int",
+      "unit": "pounds per square foot",
+      "target_seconds": 55,
+      "lesson": "mc_force_pressure",
+      "skins": [
+        {
+          "thing": "a machine base",
+          "place": "a shop floor"
+        },
+        {
+          "thing": "a storage crate",
+          "place": "a warehouse deck"
+        },
+        {
+          "thing": "a generator skid",
+          "place": "a concrete pad"
+        },
+        {
+          "thing": "a transformer",
+          "place": "a platform"
+        },
+        {
+          "thing": "a tool cabinet",
+          "place": "a mezzanine"
+        }
+      ],
+      "params": {
+        "feet": {
+          "choices": [
+            4
+          ]
+        },
+        "padarea": {
+          "min": 1,
+          "max": 6
+        },
+        "press": {
+          "min": 20,
+          "max": 200,
+          "step": 20
+        }
+      },
+      "derived": {
+        "weight": "feet * padarea * press"
+      },
+      "constraints": [
+        "weight <= 4000"
+      ],
+      "stem": "{^thing} weighing {weight} pounds rests on {place} on {feet} feet, each with a contact area of {padarea} square feet. What pressure does each foot put on the floor?",
+      "answer": "weight / feet / padarea",
+      "verify": "press",
+      "distractors": [
+        {
+          "expr": "weight / padarea",
+          "error": "divided by the pad area but forgot the load is shared between {feet} feet"
+        },
+        {
+          "expr": "weight / feet",
+          "error": "divided the weight between the feet but never divided by the contact area"
+        },
+        {
+          "expr": "weight",
+          "error": "gave the total weight rather than a pressure"
+        },
+        {
+          "expr": "weight / feet * padarea",
+          "error": "multiplied by the area instead of dividing by it"
+        }
+      ],
+      "solution_steps": [
+        "The weight is shared between {feet} feet: {weight} ÷ {feet} = {=weight/feet} pounds on each.",
+        "Each foot spreads that over {padarea} square feet.",
+        "{=weight/feet} ÷ {padarea} = {=weight/feet/padarea} pounds per square foot."
+      ],
+      "recognition_cue": "Two divisions, not one: split the load between the supports first, then spread each share over its own contact area."
+    },
+    {
+      "id": "MC_hydraulics_01",
+      "subtest": "MC",
+      "topic": "hydraulics",
+      "difficulty": 3,
+      "format": "int",
+      "unit": "pounds",
+      "target_seconds": 55,
+      "lesson": "mc_hydraulics",
+      "skins": [
+        {
+          "machine": "a hydraulic jack"
+        },
+        {
+          "machine": "a shop press"
+        },
+        {
+          "machine": "a bottle jack"
+        },
+        {
+          "machine": "a hydraulic lift"
+        },
+        {
+          "machine": "a baling press"
+        }
+      ],
+      "params": {
+        "f1": {
+          "min": 10,
+          "max": 120,
+          "step": 10
+        },
+        "a1": {
+          "min": 1,
+          "max": 6
+        },
+        "ratio": {
+          "min": 2,
+          "max": 12
+        }
+      },
+      "derived": {
+        "a2": "a1 * ratio"
+      },
+      "constraints": [
+        "a2 <= 60",
+        "f1 * ratio <= 1400"
+      ],
+      "figure": {
+        "kind": "hydraulic",
+        "args": {
+          "a1": "a1",
+          "a2": "a2"
+        }
+      },
+      "stem": "{^machine} has a small piston of {a1} square inches and a large piston of {a2} square inches. If {f1} pounds is applied to the small piston, what force does the large piston produce?",
+      "answer": "f1 * a2 / a1",
+      "verify": "f1 * ratio",
+      "distractors": [
+        {
+          "expr": "f1 * a1 / a2",
+          "error": "inverted the area ratio, reducing the force instead of multiplying it"
+        },
+        {
+          "expr": "f1",
+          "error": "assumed the force passes through unchanged"
+        },
+        {
+          "expr": "f1 + a2 - a1",
+          "error": "added the areas instead of using their ratio"
+        },
+        {
+          "expr": "f1 * a2",
+          "error": "multiplied by the large area but never divided by the small one"
+        }
+      ],
+      "solution_steps": [
+        "Pressure is the same throughout the fluid: P = {f1} ÷ {a1} = {=f1/a1} pounds per square inch.",
+        "That pressure acts on the whole large piston: F = P × area.",
+        "{=f1/a1} × {a2} = {=f1*a2/a1} pounds."
+      ],
+      "recognition_cue": "Same pressure, bigger area, bigger force. Work out the pressure first, then multiply by the other piston's area."
+    },
+    {
+      "id": "MC_hydraulics_02",
+      "subtest": "MC",
+      "topic": "hydraulics",
+      "difficulty": 3,
+      "format": "int",
+      "unit": "inches",
+      "target_seconds": 55,
+      "lesson": "mc_hydraulics",
+      "skins": [
+        {
+          "machine": "a hydraulic jack"
+        },
+        {
+          "machine": "a press ram"
+        },
+        {
+          "machine": "a lift cylinder"
+        },
+        {
+          "machine": "a clamping cylinder"
+        },
+        {
+          "machine": "a jacking system"
+        }
+      ],
+      "params": {
+        "a1": {
+          "min": 1,
+          "max": 5
+        },
+        "ratio": {
+          "min": 2,
+          "max": 8
+        },
+        "d2": {
+          "min": 1,
+          "max": 6
+        }
+      },
+      "derived": {
+        "a2": "a1 * ratio",
+        "d1": "d2 * ratio"
+      },
+      "constraints": [
+        "a2 <= 40",
+        "d1 <= 48"
+      ],
+      "figure": {
+        "kind": "hydraulic",
+        "args": {
+          "a1": "a1",
+          "a2": "a2"
+        }
+      },
+      "stem": "{^machine} has a small piston of {a1} square inches and a large piston of {a2} square inches. The small piston is pushed down {d1} inches. How far does the large piston rise?",
+      "answer": "d1 * a1 / a2",
+      "verify": "d2",
+      "distractors": [
+        {
+          "expr": "d1 * a2 / a1",
+          "error": "inverted the ratio, moving the large piston further than the small one"
+        },
+        {
+          "expr": "d1",
+          "error": "assumed both pistons move the same distance"
+        },
+        {
+          "expr": "d1 * a1",
+          "error": "multiplied by the small area but never divided by the large one"
+        },
+        {
+          "expr": "d1 / 2",
+          "error": "assumed the distance is always halved"
+        }
+      ],
+      "solution_steps": [
+        "The fluid moved is the same on both sides: area × distance is equal.",
+        "Small side: {a1} × {d1} = {=a1*d1} cubic inches of fluid.",
+        "{=a1*d1} ÷ {a2} = {=d1*a1/a2} inches of travel on the large piston."
+      ],
+      "recognition_cue": "Hydraulics multiply force and divide distance by the same ratio. The piston that produces the big force always moves the shorter way."
+    },
+    {
+      "id": "MC_springs_01",
+      "subtest": "MC",
+      "topic": "springs",
+      "difficulty": 2,
+      "format": "int",
+      "unit": "inches",
+      "target_seconds": 45,
+      "lesson": "mc_springs",
+      "skins": [
+        {
+          "thing": "a valve spring",
+          "place": "a test rig"
+        },
+        {
+          "thing": "a suspension spring",
+          "place": "a bench"
+        },
+        {
+          "thing": "a return spring",
+          "place": "a linkage"
+        },
+        {
+          "thing": "a scale spring",
+          "place": "a weighing device"
+        },
+        {
+          "thing": "a door spring",
+          "place": "a frame"
+        }
+      ],
+      "params": {
+        "k": {
+          "min": 4,
+          "max": 40,
+          "step": 2
+        },
+        "stretch": {
+          "min": 2,
+          "max": 10
+        }
+      },
+      "derived": {
+        "force": "k * stretch"
+      },
+      "constraints": [
+        "force <= 400"
+      ],
+      "figure": {
+        "kind": "spring",
+        "args": {
+          "load": "force",
+          "k": "k"
+        }
+      },
+      "stem": "{^thing} on {place} has a spring rate of {k} pounds per inch. How far does it stretch under a {force}-pound load?",
+      "answer": "force / k",
+      "verify": "stretch",
+      "distractors": [
+        {
+          "expr": "force * k",
+          "error": "multiplied instead of dividing by the spring rate"
+        },
+        {
+          "expr": "force - k",
+          "error": "subtracted the spring rate from the force"
+        },
+        {
+          "expr": "force / k / 2",
+          "error": "halved the correct stretch"
+        },
+        {
+          "expr": "k",
+          "error": "gave the spring rate rather than a distance"
+        }
+      ],
+      "solution_steps": [
+        "Hooke's law: force = spring rate × stretch, so stretch = force ÷ rate.",
+        "{force} pounds ÷ {k} pounds per inch.",
+        "{force} ÷ {k} = {=force/k} inches."
+      ],
+      "recognition_cue": "A spring rate in pounds per inch converts one to the other. Double the load and you double the stretch, as long as the spring is not overloaded."
+    },
+    {
+      "id": "MC_springs_02",
+      "subtest": "MC",
+      "topic": "springs",
+      "difficulty": 3,
+      "format": "int",
+      "unit": "pounds",
+      "target_seconds": 50,
+      "lesson": "mc_springs",
+      "skins": [
+        {
+          "thing": "a machine mount",
+          "place": "a shop floor"
+        },
+        {
+          "thing": "a seat frame",
+          "place": "a cab"
+        },
+        {
+          "thing": "a platform",
+          "place": "a test stand"
+        },
+        {
+          "thing": "a tray support",
+          "place": "an enclosure"
+        },
+        {
+          "thing": "a damper plate",
+          "place": "a housing"
+        }
+      ],
+      "params": {
+        "n": {
+          "min": 2,
+          "max": 6
+        },
+        "per": {
+          "min": 5,
+          "max": 90,
+          "step": 5
+        }
+      },
+      "derived": {
+        "load": "n * per"
+      },
+      "constraints": [
+        "load <= 540"
+      ],
+      "stem": "{^thing} on {place} is supported by {n} identical springs sharing the load equally. If the total load is {load} pounds, how much does each spring carry?",
+      "answer": "load / n",
+      "verify": "per",
+      "distractors": [
+        {
+          "expr": "load * n",
+          "error": "multiplied by the spring count instead of dividing"
+        },
+        {
+          "expr": "load",
+          "error": "assumed each spring carries the whole load"
+        },
+        {
+          "expr": "load / (n + 1)",
+          "error": "counted one spring too many"
+        },
+        {
+          "expr": "load / 2",
+          "error": "assumed the load always splits in half"
+        }
+      ],
+      "solution_steps": [
+        "Identical springs sharing a load equally each take the same share.",
+        "{load} pounds ÷ {n} springs.",
+        "{load} ÷ {n} = {=load/n} pounds per spring."
+      ],
+      "recognition_cue": "Springs side by side share the load and each compresses the same amount. More springs means less on each one."
+    },
+    {
+      "id": "MC_friction_01",
+      "subtest": "MC",
+      "topic": "friction",
+      "difficulty": 3,
+      "format": "int",
+      "unit": "pounds",
+      "target_seconds": 50,
+      "lesson": "mc_friction",
+      "skins": [
+        {
+          "thing": "a crate",
+          "surface": "a concrete floor"
+        },
+        {
+          "thing": "a toolbox",
+          "surface": "a steel deck"
+        },
+        {
+          "thing": "a pallet",
+          "surface": "a warehouse floor"
+        },
+        {
+          "thing": "a skid",
+          "surface": "a loading ramp"
+        },
+        {
+          "thing": "a machine base",
+          "surface": "a workshop floor"
+        }
+      ],
+      "params": {
+        "weight": {
+          "min": 40,
+          "max": 400,
+          "step": 20
+        },
+        "mu": {
+          "choices": [
+            10,
+            20,
+            25,
+            30,
+            40,
+            50,
+            60,
+            75
+          ]
+        }
+      },
+      "derived": {
+        "fric": "weight * mu / 100"
+      },
+      "constraints": [
+        "fric == round(fric, 0)",
+        "fric >= 8"
+      ],
+      "stem": "{^thing} weighing {weight} pounds sits on {surface}. The coefficient of friction between them is {=mu/100|decimal2}. What force is needed to just start it sliding?",
+      "answer": "weight * mu / 100",
+      "verify": "fric",
+      "distractors": [
+        {
+          "expr": "weight",
+          "error": "used the full weight, as if friction equalled the load"
+        },
+        {
+          "expr": "weight * 100 / mu",
+          "error": "divided by the coefficient instead of multiplying"
+        },
+        {
+          "expr": "weight + mu",
+          "error": "added the coefficient to the weight"
+        },
+        {
+          "expr": "weight * mu / 200",
+          "error": "halved the correct friction force"
+        }
+      ],
+      "solution_steps": [
+        "Friction force = coefficient × normal force. On level ground the normal force is the weight.",
+        "{=mu/100|decimal2} × {weight} pounds.",
+        "That gives {=weight*mu/100} pounds of friction to overcome."
+      ],
+      "recognition_cue": "Friction depends on the coefficient and the weight pressing down, never on how big the contact area is."
+    },
+    {
+      "id": "MC_friction_02",
+      "subtest": "MC",
+      "topic": "friction",
+      "difficulty": 3,
+      "format": "decimal2",
+      "target_seconds": 50,
+      "lesson": "mc_friction",
+      "skins": [
+        {
+          "thing": "a crate",
+          "surface": "a plywood deck"
+        },
+        {
+          "thing": "a drum",
+          "surface": "a painted floor"
+        },
+        {
+          "thing": "a case",
+          "surface": "a rubber mat"
+        },
+        {
+          "thing": "a block",
+          "surface": "a metal plate"
+        },
+        {
+          "thing": "a bin",
+          "surface": "a tiled floor"
+        }
+      ],
+      "params": {
+        "weight": {
+          "min": 40,
+          "max": 400,
+          "step": 20
+        },
+        "mu": {
+          "choices": [
+            10,
+            15,
+            20,
+            25,
+            30,
+            40,
+            50,
+            60,
+            75,
+            80
+          ]
+        }
+      },
+      "derived": {
+        "fric": "weight * mu / 100"
+      },
+      "constraints": [
+        "fric == round(fric, 0)",
+        "fric >= 8"
+      ],
+      "option_range": [
+        0,
+        2
+      ],
+      "stem": "It takes {fric} pounds of force to start {thing} weighing {weight} pounds sliding across {surface}. What is the coefficient of friction between them?",
+      "answer": "fric / weight",
+      "verify": "mu / 100",
+      "distractors": [
+        {
+          "expr": "weight / fric / 100",
+          "error": "divided the wrong way round, weight by force"
+        },
+        {
+          "expr": "fric / weight * 2",
+          "error": "doubled the correct coefficient"
+        },
+        {
+          "expr": "fric / weight / 2",
+          "error": "halved the correct coefficient"
+        },
+        {
+          "expr": "fric / weight + 0.1",
+          "error": "arithmetic slip in the division"
+        }
+      ],
+      "solution_steps": [
+        "Rearrange friction = coefficient × weight to get coefficient = friction ÷ weight.",
+        "{fric} pounds ÷ {weight} pounds. The pounds cancel, so the answer has no units.",
+        "{fric} ÷ {weight} = {=fric/weight|decimal2}."
+      ],
+      "recognition_cue": "A coefficient of friction is a bare ratio with no units, and for ordinary surfaces it lands between about 0.1 and 1.0."
+    },
+    {
+      "id": "MC_center_of_gravity_01",
+      "subtest": "MC",
+      "topic": "center_of_gravity",
+      "difficulty": 3,
+      "format": "int",
+      "unit": "feet",
+      "target_seconds": 60,
+      "lesson": "mc_center_of_gravity",
+      "skins": [
+        {
+          "bar": "a steel bar",
+          "who": "a rigger"
+        },
+        {
+          "bar": "a loading beam",
+          "who": "a crane operator"
+        },
+        {
+          "bar": "a plank",
+          "who": "a builder"
+        },
+        {
+          "bar": "a spreader bar",
+          "who": "a dock hand"
+        },
+        {
+          "bar": "a carry pole",
+          "who": "a work party"
+        }
+      ],
+      "params": {
+        "w1": {
+          "min": 10,
+          "max": 100,
+          "step": 10
+        },
+        "w2": {
+          "min": 10,
+          "max": 100,
+          "step": 10
+        },
+        "len": {
+          "min": 4,
+          "max": 20,
+          "step": 2
+        }
+      },
+      "derived": {
+        "cg": "w2 * len / (w1 + w2)"
+      },
+      "constraints": [
+        "w1 != w2",
+        "cg == round(cg, 0)",
+        "cg >= 1",
+        "cg <= len - 1"
+      ],
+      "stem": "{^who} has {bar} {len} feet long with a {w1}-pound weight at one end and a {w2}-pound weight at the other. Treating the bar itself as weightless, how far from the {w1}-pound end is the balance point?",
+      "answer": "w2 * len / (w1 + w2)",
+      "verify": "len - w1 * len / (w1 + w2)",
+      "distractors": [
+        {
+          "expr": "w1 * len / (w1 + w2)",
+          "error": "measured from the wrong end"
+        },
+        {
+          "expr": "len / 2",
+          "error": "put the balance point at the middle, which only holds for equal weights"
+        },
+        {
+          "expr": "w2 * len / w1",
+          "error": "divided by one weight instead of the total"
+        },
+        {
+          "expr": "w2 * len / (w1 + w2) + 1",
+          "error": "arithmetic slip in the division"
+        }
+      ],
+      "solution_steps": [
+        "The balance point sits closer to the heavier end. Total weight is {w1} + {w2} = {=w1+w2} pounds.",
+        "Distance from the {w1}-pound end = (other weight × length) ÷ total weight.",
+        "({w2} × {len}) ÷ {=w1+w2} = {=w2*len/(w1+w2)} feet."
+      ],
+      "recognition_cue": "The centre of gravity always sits nearer the heavier weight. Check your answer against that before moving on."
+    },
+    {
+      "id": "MC_center_of_gravity_02",
+      "subtest": "MC",
+      "topic": "center_of_gravity",
+      "difficulty": 4,
+      "format": "int",
+      "unit": "feet",
+      "target_seconds": 70,
+      "lesson": "mc_center_of_gravity",
+      "skins": [
+        {
+          "bar": "a loading rail",
+          "who": "a loadmaster"
+        },
+        {
+          "bar": "a trailer deck",
+          "who": "a hauler"
+        },
+        {
+          "bar": "a conveyor frame",
+          "who": "a plant engineer"
+        },
+        {
+          "bar": "a shelf rail",
+          "who": "a stock clerk"
+        },
+        {
+          "bar": "a support beam",
+          "who": "a site foreman"
+        }
+      ],
+      "params": {
+        "w1": {
+          "min": 10,
+          "max": 60,
+          "step": 10
+        },
+        "w2": {
+          "min": 10,
+          "max": 60,
+          "step": 10
+        },
+        "w3": {
+          "min": 10,
+          "max": 60,
+          "step": 10
+        },
+        "d2": {
+          "min": 2,
+          "max": 8
+        },
+        "gap": {
+          "min": 2,
+          "max": 8
+        }
+      },
+      "derived": {
+        "d3": "d2 + gap",
+        "cg": "(w2 * d2 + w3 * (d2 + gap)) / (w1 + w2 + w3)"
+      },
+      "constraints": [
+        "cg == round(cg, 0)",
+        "cg >= 1",
+        "cg < d2 + gap"
+      ],
+      "stem": "{^who} loads {bar} with three weights measured from the left end: {w1} pounds at 0 feet, {w2} pounds at {d2} feet and {w3} pounds at {d3} feet. Treating the rail as weightless, how far from the left end is the combined centre of gravity?",
+      "answer": "(w2 * d2 + w3 * d3) / (w1 + w2 + w3)",
+      "verify": "d3 - (w1 * d3 + w2 * (d3 - d2)) / (w1 + w2 + w3)",
+      "distractors": [
+        {
+          "expr": "(d2 + d3) / 2",
+          "error": "averaged the positions, ignoring how much each weight matters"
+        },
+        {
+          "expr": "(w2 * d2 + w3 * d3) / (w2 + w3)",
+          "error": "left the weight at 0 feet out of the total"
+        },
+        {
+          "expr": "d3 / 2",
+          "error": "put the centre of gravity at the midpoint of the loaded span"
+        },
+        {
+          "expr": "(w2 * d2 + w3 * d3) / (w1 + w2 + w3) + 1",
+          "error": "arithmetic slip in the division"
+        }
+      ],
+      "solution_steps": [
+        "Multiply each weight by its distance from the left end and add: ({w1} × 0) + ({w2} × {d2}) + ({w3} × {d3}) = {=w2*d2+w3*d3} foot-pounds.",
+        "Total weight = {w1} + {w2} + {w3} = {=w1+w2+w3} pounds.",
+        "{=w2*d2+w3*d3} ÷ {=w1+w2+w3} = {=(w2*d2+w3*d3)/(w1+w2+w3)} feet from the left end."
+      ],
+      "recognition_cue": "Add up weight × distance for every item, then divide by the total weight. A weight sitting at zero still counts in the denominator."
+    },
+    {
+      "id": "MC_work_energy_01",
+      "subtest": "MC",
+      "topic": "work_energy",
+      "difficulty": 2,
+      "format": "int",
+      "unit": "foot-pounds",
+      "target_seconds": 45,
+      "lesson": "mc_work_energy",
+      "skins": [
+        {
+          "who": "A mechanic",
+          "thing": "an engine block"
+        },
+        {
+          "who": "A stock clerk",
+          "thing": "a carton"
+        },
+        {
+          "who": "A deck hand",
+          "thing": "a coil of line"
+        },
+        {
+          "who": "A fitter",
+          "thing": "a length of pipe"
+        },
+        {
+          "who": "A loader",
+          "thing": "a sack of cement"
+        }
+      ],
+      "params": {
+        "force": {
+          "min": 10,
+          "max": 200,
+          "step": 10
+        },
+        "dist": {
+          "min": 2,
+          "max": 20
+        }
+      },
+      "constraints": [
+        "force * dist <= 3000"
+      ],
+      "stem": "{who} lifts {thing} weighing {force} pounds straight up through {dist} feet. How much work is done?",
+      "answer": "force * dist",
+      "verify": "force * (dist - 1) + force",
+      "distractors": [
+        {
+          "expr": "force + dist",
+          "error": "added force and distance instead of multiplying them"
+        },
+        {
+          "expr": "force / dist",
+          "error": "divided instead of multiplying"
+        },
+        {
+          "expr": "force * dist / 2",
+          "error": "halved the work for no reason in the problem"
+        },
+        {
+          "expr": "force * dist * 2",
+          "error": "doubled the work"
+        }
+      ],
+      "solution_steps": [
+        "Work = force × distance moved in the direction of the force.",
+        "{force} pounds × {dist} feet.",
+        "{force} × {dist} = {=force*dist} foot-pounds."
+      ],
+      "recognition_cue": "No movement means no work, however hard you push. Work only counts distance moved along the direction of the force."
+    },
+    {
+      "id": "MC_work_energy_02",
+      "subtest": "MC",
+      "topic": "work_energy",
+      "difficulty": 3,
+      "format": "int",
+      "unit": "foot-pounds per second",
+      "target_seconds": 55,
+      "lesson": "mc_work_energy",
+      "skins": [
+        {
+          "machine": "A winch"
+        },
+        {
+          "machine": "A hoist motor"
+        },
+        {
+          "machine": "A conveyor drive"
+        },
+        {
+          "machine": "A pump"
+        },
+        {
+          "machine": "An elevator motor"
+        }
+      ],
+      "params": {
+        "power": {
+          "min": 20,
+          "max": 400,
+          "step": 20
+        },
+        "secs": {
+          "min": 2,
+          "max": 12
+        }
+      },
+      "derived": {
+        "work": "power * secs"
+      },
+      "constraints": [
+        "work <= 4000"
+      ],
+      "stem": "{machine} does {work} foot-pounds of work in {secs} seconds. What is its power output?",
+      "answer": "work / secs",
+      "verify": "power",
+      "distractors": [
+        {
+          "expr": "work * secs",
+          "error": "multiplied by the time instead of dividing by it"
+        },
+        {
+          "expr": "work",
+          "error": "gave the work done rather than the rate of doing it"
+        },
+        {
+          "expr": "work / secs / 2",
+          "error": "halved the correct power"
+        },
+        {
+          "expr": "work - secs",
+          "error": "subtracted the time from the work"
+        }
+      ],
+      "solution_steps": [
+        "Power is the rate of doing work: power = work ÷ time.",
+        "{work} foot-pounds ÷ {secs} seconds.",
+        "{work} ÷ {secs} = {=work/secs} foot-pounds per second."
+      ],
+      "recognition_cue": "Work is a total; power is work per unit of time. If the question mentions seconds or minutes, it is asking about power."
+    }
+  ]
+}

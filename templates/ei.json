@@ -1,0 +1,277 @@
+{
+  "subtest": "EI",
+  "templates": [
+    {
+      "id": "EI_ohms_law_01", "subtest": "EI", "topic": "ohms_law", "difficulty": 2,
+      "format": "int", "unit": "volts", "target_seconds": 40, "lesson": "ei_ohms_law",
+      "skins": [
+        {"load": "a panel lamp", "place": "an instrument cluster"},
+        {"load": "a relay coil", "place": "a control box"},
+        {"load": "a heating element", "place": "a test bench"},
+        {"load": "a blower motor", "place": "a ventilation unit"},
+        {"load": "an indicator bulb", "place": "a switch panel"}
+      ],
+      "params": {"cur": {"min": 2, "max": 12}, "res": {"min": 3, "max": 40}},
+      "constraints": ["cur * res <= 240"],
+      "stem": "{^load} in {place} has a resistance of {res} ohms and draws {cur} amperes. What voltage is applied across it?",
+      "answer": "cur * res",
+      "verify": "res * cur",
+      "distractors": [
+        {"expr": "res / cur", "error": "divided resistance by current instead of multiplying"},
+        {"expr": "cur + res", "error": "added the two values instead of multiplying them"},
+        {"expr": "cur * res / 2", "error": "halved the result for no reason in the problem"},
+        {"expr": "cur * res + cur", "error": "arithmetic slip in the multiplication"}
+      ],
+      "solution_steps": [
+        "Ohm's law is E = I × R.",
+        "I is {cur} amperes and R is {res} ohms.",
+        "{cur} × {res} = {=cur*res} volts."
+      ],
+      "recognition_cue": "Two of {{volts, amps, ohms}} given and one missing means Ohm's law. Cover the unknown in the E / I R triangle to see whether to multiply or divide."
+    },
+    {
+      "id": "EI_ohms_law_02", "subtest": "EI", "topic": "ohms_law", "difficulty": 2,
+      "format": "int", "unit": "amperes", "target_seconds": 40, "lesson": "ei_ohms_law",
+      "skins": [
+        {"load": "a dome light", "place": "a vehicle"},
+        {"load": "a solenoid", "place": "a starter circuit"},
+        {"load": "a resistor", "place": "a test board"},
+        {"load": "a fan motor", "place": "an equipment rack"},
+        {"load": "a buzzer", "place": "an alarm panel"}
+      ],
+      "params": {"cur": {"min": 2, "max": 15}, "res": {"min": 2, "max": 30}},
+      "derived": {"volts": "cur * res"},
+      "constraints": ["volts <= 240", "cur != res"],
+      "stem": "{^load} in {place} is connected across {volts} volts and has a resistance of {res} ohms. How much current flows through it?",
+      "answer": "volts / res",
+      "verify": "cur",
+      "distractors": [
+        {"expr": "volts * res", "error": "multiplied instead of dividing"},
+        {"expr": "res / cur", "error": "divided the wrong way round"},
+        {"expr": "cur + 2", "error": "arithmetic slip in the division"},
+        {"expr": "volts - res", "error": "subtracted resistance from voltage, which mixes unrelated units"}
+      ],
+      "solution_steps": [
+        "Rearrange E = IR into I = E / R.",
+        "E is {volts} volts and R is {res} ohms.",
+        "{volts} ÷ {res} = {=volts/res} amperes."
+      ],
+      "recognition_cue": "Current is voltage divided by resistance. Raise the resistance and the current falls — if your answer moves the other way, you multiplied."
+    },
+    {
+      "id": "EI_ohms_law_03", "subtest": "EI", "topic": "ohms_law", "difficulty": 3,
+      "format": "int", "unit": "watts", "target_seconds": 45, "lesson": "ei_ohms_law",
+      "skins": [
+        {"load": "a soldering iron", "place": "a workbench"},
+        {"load": "a cabin heater", "place": "an aircraft"},
+        {"load": "a floodlight", "place": "a work site"},
+        {"load": "a water pump", "place": "a utility room"},
+        {"load": "a compressor motor", "place": "a shop"}
+      ],
+      "params": {"volts": {"min": 12, "max": 240, "step": 12}, "cur": {"min": 2, "max": 15}},
+      "constraints": ["volts * cur <= 2400"],
+      "stem": "{^load} on {place} runs on {volts} volts and draws {cur} amperes. How much power does it consume?",
+      "answer": "volts * cur",
+      "verify": "cur * volts",
+      "distractors": [
+        {"expr": "volts / cur", "error": "divided, which gives resistance rather than power"},
+        {"expr": "volts + cur", "error": "added volts and amps instead of multiplying"},
+        {"expr": "volts * cur * 2", "error": "doubled the correct power"},
+        {"expr": "cur * cur * volts", "error": "squared the current, which belongs in P = I²R, not P = EI"}
+      ],
+      "solution_steps": [
+        "Power is P = E × I.",
+        "E is {volts} volts and I is {cur} amperes.",
+        "{volts} × {cur} = {=volts*cur} watts."
+      ],
+      "recognition_cue": "Watts come from volts times amps. If the question gives resistance instead of one of those, find the missing one with Ohm's law first."
+    },
+    {
+      "id": "EI_series_parallel_01", "subtest": "EI", "topic": "series_parallel", "difficulty": 2,
+      "format": "int", "unit": "ohms", "target_seconds": 40, "lesson": "ei_series_parallel",
+      "skins": [
+        {"circuit": "a control circuit"}, {"circuit": "a lighting string"},
+        {"circuit": "a sensor loop"}, {"circuit": "a test circuit"},
+        {"circuit": "a heater string"}
+      ],
+      "params": {"r1": {"min": 2, "max": 40}, "r2": {"min": 2, "max": 40}, "r3": {"min": 2, "max": 40}},
+      "constraints": ["r1 != r2", "r2 != r3", "r1 + r2 + r3 <= 110"],
+      "figure": {"kind": "series_circuit", "args": {"volts": "volts", "values": ["r1", "r2", "r3"]}},
+      "derived": {"volts": "12"},
+      "stem": "Three resistors of {r1} ohms, {r2} ohms and {r3} ohms are wired in series in {circuit}. What is the total resistance?",
+      "answer": "r1 + r2 + r3",
+      "verify": "(r1 + r2) + r3",
+      "distractors": [
+        {"expr": "r1 * r2 * r3 / (r1 * r2)", "error": "used only one of the three resistors"},
+        {"expr": "(r1 + r2 + r3) / 3", "error": "averaged the resistors instead of adding them"},
+        {"expr": "r1 + r2", "error": "left one resistor out of the total"},
+        {"expr": "r1 + r2 + r3 + 10", "error": "arithmetic slip in the addition"}
+      ],
+      "solution_steps": [
+        "Resistances in series simply add up.",
+        "{r1} + {r2} + {r3}.",
+        "The total is {=r1+r2+r3} ohms, which is larger than any single resistor."
+      ],
+      "recognition_cue": "Series means one path: add the resistances. The total must always be BIGGER than the largest single resistor."
+    },
+    {
+      "id": "EI_series_parallel_02", "subtest": "EI", "topic": "series_parallel", "difficulty": 3,
+      "format": "int", "unit": "ohms", "target_seconds": 55, "lesson": "ei_series_parallel",
+      "skins": [
+        {"circuit": "a branch circuit"}, {"circuit": "a parallel lamp bank"},
+        {"circuit": "a load bank"}, {"circuit": "a distribution panel"},
+        {"circuit": "a dual-feed circuit"}
+      ],
+      "params": {"r1": {"min": 2, "max": 60}, "r2": {"min": 2, "max": 60}},
+      "constraints": ["r1 != r2", "(r1 * r2) % (r1 + r2) == 0", "r1 * r2 / (r1 + r2) >= 1"],
+      "figure": {"kind": "parallel_circuit", "args": {"volts": "volts", "values": ["r1", "r2"]}},
+      "derived": {"volts": "12"},
+      "stem": "Two resistors of {r1} ohms and {r2} ohms are wired in parallel in {circuit}. What is the total resistance?",
+      "answer": "r1 * r2 / (r1 + r2)",
+      "verify": "1 / (1/r1 + 1/r2)",
+      "distractors": [
+        {"expr": "r1 + r2", "error": "added them as if they were in series"},
+        {"expr": "(r1 + r2) / 2", "error": "averaged the two resistances"},
+        {"expr": "min(r1, r2)", "error": "assumed the total equals the smaller resistor"},
+        {"expr": "r1 * r2", "error": "multiplied but never divided by the sum"}
+      ],
+      "solution_steps": [
+        "For two resistors in parallel, R = (R1 × R2) / (R1 + R2).",
+        "Product: {r1} × {r2} = {=r1*r2}. Sum: {r1} + {r2} = {=r1+r2}.",
+        "{=r1*r2} ÷ {=r1+r2} = {=r1*r2/(r1+r2)} ohms, which is less than either resistor."
+      ],
+      "recognition_cue": "Parallel gives the current more paths, so the total resistance must be SMALLER than the smallest branch. If it is not, you added by mistake."
+    },
+    {
+      "id": "EI_series_parallel_03", "subtest": "EI", "topic": "series_parallel", "difficulty": 3,
+      "format": "int", "unit": "amperes", "target_seconds": 55, "lesson": "ei_series_parallel",
+      "skins": [
+        {"circuit": "a series control loop"}, {"circuit": "a string of heaters"},
+        {"circuit": "a signal circuit"}, {"circuit": "a relay chain"},
+        {"circuit": "a test string"}
+      ],
+      "params": {"r1": {"min": 2, "max": 30}, "r2": {"min": 2, "max": 30}, "cur": {"min": 1, "max": 9}},
+      "derived": {"rt": "r1 + r2", "volts": "cur * (r1 + r2)"},
+      "constraints": ["r1 != r2", "volts <= 480"],
+      "figure": {"kind": "series_circuit", "args": {"volts": "volts", "values": ["r1", "r2"]}},
+      "stem": "In {circuit}, a {volts}-volt supply feeds a {r1}-ohm and a {r2}-ohm resistor connected in series. How much current flows in the circuit?",
+      "answer": "volts / (r1 + r2)",
+      "verify": "cur",
+      "distractors": [
+        {"expr": "volts / r1", "error": "used only the first resistor instead of the series total"},
+        {"expr": "volts / r2", "error": "used only the second resistor instead of the series total"},
+        {"expr": "cur * 2", "error": "doubled the current"},
+        {"expr": "volts / (r1 * r2)", "error": "multiplied the resistors instead of adding them"}
+      ],
+      "solution_steps": [
+        "In series the resistances add: {r1} + {r2} = {=rt} ohms total.",
+        "Ohm's law gives I = E / R.",
+        "{volts} ÷ {=rt} = {=volts/rt} amperes. In a series circuit this same current flows through every component."
+      ],
+      "recognition_cue": "Find the total resistance BEFORE applying Ohm's law. In series there is one current, and it is the same everywhere in the loop."
+    },
+    {
+      "id": "EI_frequency_wavelength_01", "subtest": "EI", "topic": "frequency_wavelength", "difficulty": 3,
+      "format": "int", "unit": "meters", "target_seconds": 50, "lesson": "ei_frequency_wavelength",
+      "skins": [
+        {"gear": "a ground station"}, {"gear": "a handheld transceiver"},
+        {"gear": "a beacon"}, {"gear": "a base repeater"}, {"gear": "a mobile set"}
+      ],
+      "params": {"mhz": {"choices": [1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 25, 30, 50, 75, 100, 150, 300]}},
+      "constraints": ["300 % mhz == 0"],
+      "stem": "{^gear} transmits at {mhz} megahertz. Radio waves travel at about 300,000,000 meters per second. What is the approximate wavelength?",
+      "answer": "300 / mhz",
+      "verify": "300000000 / (mhz * 1000000)",
+      "distractors": [
+        {"expr": "mhz * 300", "error": "multiplied by the speed of light instead of dividing"},
+        {"expr": "300 / mhz / 2", "error": "halved the wavelength"},
+        {"expr": "300 / mhz * 2", "error": "doubled the wavelength"},
+        {"expr": "mhz", "error": "gave the frequency back rather than converting it to a length"}
+      ],
+      "solution_steps": [
+        "Wavelength = speed ÷ frequency.",
+        "{mhz} MHz is {=mhz*1000000} hertz, and the speed is 300,000,000 meters per second.",
+        "300,000,000 ÷ {=mhz*1000000} = {=300/mhz} meters. A useful shortcut is 300 ÷ MHz."
+      ],
+      "recognition_cue": "Wavelength and frequency move opposite ways. For megahertz the shortcut is 300 divided by the frequency, giving meters."
+    },
+    {
+      "id": "EI_frequency_wavelength_02", "subtest": "EI", "topic": "frequency_wavelength", "difficulty": 2,
+      "format": "int", "unit": "hertz", "target_seconds": 40, "lesson": "ei_frequency_wavelength",
+      "skins": [
+        {"gear": "an oscillator"}, {"gear": "a signal generator"},
+        {"gear": "a timing circuit"}, {"gear": "a pulse source"}, {"gear": "a test tone"}
+      ],
+      "params": {"cycles": {"min": 20, "max": 900, "step": 20}, "secs": {"min": 2, "max": 10}},
+      "constraints": ["cycles % secs == 0", "cycles / secs >= 5"],
+      "stem": "{^gear} completes {cycles} full cycles in {secs} seconds. What is its frequency?",
+      "answer": "cycles / secs",
+      "verify": "cycles * (1 / secs)",
+      "distractors": [
+        {"expr": "cycles * secs", "error": "multiplied instead of dividing"},
+        {"expr": "cycles", "error": "gave the number of cycles rather than cycles per second"},
+        {"expr": "cycles / secs / 2", "error": "halved the frequency"},
+        {"expr": "cycles / secs + secs", "error": "arithmetic slip in the division"}
+      ],
+      "solution_steps": [
+        "Frequency is cycles per second.",
+        "{cycles} cycles ÷ {secs} seconds.",
+        "{cycles} ÷ {secs} = {=cycles/secs} hertz."
+      ],
+      "recognition_cue": "Hertz means 'per second'. Divide the count of cycles by the number of seconds; the period is the reciprocal of that."
+    },
+    {
+      "id": "EI_components_01", "subtest": "EI", "topic": "components", "difficulty": 3,
+      "format": "int", "unit": "microfarads", "target_seconds": 45, "lesson": "ei_components",
+      "skins": [
+        {"circuit": "a filter network"}, {"circuit": "a smoothing stage"},
+        {"circuit": "a timing circuit"}, {"circuit": "a coupling network"},
+        {"circuit": "a power supply section"}
+      ],
+      "params": {"c1": {"min": 2, "max": 60, "step": 2}, "c2": {"min": 2, "max": 60, "step": 2}, "c3": {"min": 2, "max": 40, "step": 2}},
+      "constraints": ["c1 != c2", "c2 != c3", "c1 + c2 + c3 <= 150"],
+      "stem": "Capacitors of {c1}, {c2} and {c3} microfarads are connected in parallel in {circuit}. What is the total capacitance?",
+      "answer": "c1 + c2 + c3",
+      "verify": "(c1 + c3) + c2",
+      "distractors": [
+        {"expr": "(c1 + c2 + c3) / 3", "error": "averaged the capacitors instead of adding them"},
+        {"expr": "c1 * c2 / (c1 + c2)", "error": "used the series formula, which is the opposite rule for capacitors"},
+        {"expr": "max(max(c1, c2), c3)", "error": "assumed the largest capacitor sets the total"},
+        {"expr": "c1 + c2", "error": "left one capacitor out"}
+      ],
+      "solution_steps": [
+        "Capacitors in PARALLEL add, which is the reverse of the rule for resistors.",
+        "{c1} + {c2} + {c3}.",
+        "Total = {=c1+c2+c3} microfarads."
+      ],
+      "recognition_cue": "Capacitors behave backwards from resistors: parallel capacitors add, series capacitors combine like parallel resistors."
+    },
+    {
+      "id": "EI_components_02", "subtest": "EI", "topic": "components", "difficulty": 3,
+      "format": "int", "unit": "volts", "target_seconds": 50, "lesson": "ei_components",
+      "skins": [
+        {"gear": "a bench transformer"}, {"gear": "a doorbell transformer"},
+        {"gear": "a power supply transformer"}, {"gear": "an isolation transformer"},
+        {"gear": "a control transformer"}
+      ],
+      "params": {"vp": {"choices": [110, 120, 220, 240]}, "ratio": {"choices": [2, 3, 4, 5, 6, 10, 12]}},
+      "derived": {"np": "ratio * 100", "ns": "100"},
+      "constraints": ["vp % ratio == 0"],
+      "stem": "{^gear} has {np} turns on its primary winding and {ns} turns on its secondary. If {vp} volts is applied to the primary, what is the secondary voltage?",
+      "answer": "vp * ns / np",
+      "verify": "vp / ratio",
+      "distractors": [
+        {"expr": "vp * ratio", "error": "stepped the voltage up instead of down"},
+        {"expr": "vp", "error": "assumed the turns ratio leaves the voltage unchanged"},
+        {"expr": "vp * ns / np / 2", "error": "halved the correct secondary voltage"},
+        {"expr": "np / ns", "error": "gave the turns ratio rather than a voltage"}
+      ],
+      "solution_steps": [
+        "Voltage follows the turns ratio: Es / Ep = Ns / Np.",
+        "The ratio here is {ns} / {np} = 1 / {ratio}.",
+        "{vp} ÷ {ratio} = {=vp/ratio} volts. Fewer turns on the secondary means a step DOWN."
+      ],
+      "recognition_cue": "More turns means more volts. Compare the two winding counts first and decide step-up or step-down before doing any arithmetic."
+    }
+  ]
+}
