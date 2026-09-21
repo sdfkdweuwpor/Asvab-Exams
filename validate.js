@@ -147,17 +147,19 @@ head('App shell');
   // Every script index.html loads must exist, and the service worker must
   // precache exactly the files that are actually in the repository.
   const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-  const scripts = [...html.matchAll(/<script src="([^"]+)"/g)].map(m => m[1]);
+  // Asset URLs carry a ?v=<build> stamp; strip it to check the file on disk.
+  const bare = u => u.split('?')[0];
+  const scripts = [...html.matchAll(/<script src="([^"]+)"/g)].map(m => bare(m[1]));
   scripts.forEach(src => {
     if (!fs.existsSync(path.join(ROOT, src))) fail('shell', 'index.html loads missing script ' + src);
   });
-  const links = [...html.matchAll(/(?:href|src)="((?!https?:|#)[^"]+)"/g)].map(m => m[1]);
+  const links = [...html.matchAll(/(?:href|src)="((?!https?:|#)[^"]+)"/g)].map(m => bare(m[1]));
   links.forEach(href => {
     if (!fs.existsSync(path.join(ROOT, href))) fail('shell', 'index.html references missing file ' + href);
   });
 
   const sw = fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8');
-  const pre = [...sw.matchAll(/'\.\/([^']*)'/g)].map(m => m[1]).filter(x => x !== '');
+  const pre = [...sw.matchAll(/'\.\/([^']*)'/g)].map(m => bare(m[1])).filter(x => x !== '');
   pre.forEach(f => {
     if (!fs.existsSync(path.join(ROOT, f))) fail('shell', 'sw.js precaches missing file ' + f);
   });
@@ -166,6 +168,16 @@ head('App shell');
   scripts.concat(['styles.css', 'manifest.json']).forEach(f => {
     if (!pre.includes(f)) fail('shell', f + ' is loaded by the app but not precached by sw.js — it would break offline');
   });
+
+  // The build stamp in index.html and in sw.js must agree, or the page asks
+  // for URLs the worker never precached and every load goes to the network.
+  const htmlBuild = (html.match(/ASVAB_BUILD\s*=\s*"(\d+)"/) || [])[1];
+  const swBuild = (sw.match(/var BUILD = '(\d+)'/) || [])[1];
+  const stamped = [...html.matchAll(/(?:src|href)="[^"]+\?v=(\d+)"/g)].map(m => m[1]);
+  if (!htmlBuild || !swBuild) fail('shell', 'build stamp missing from index.html or sw.js');
+  else if (htmlBuild !== swBuild) fail('shell', 'build stamp mismatch: index.html ' + htmlBuild + ' vs sw.js ' + swBuild);
+  else if (stamped.some(v => v !== htmlBuild)) fail('shell', 'some asset URLs carry a stale ?v= stamp');
+  else pass('shell', 'build stamp ' + htmlBuild + ' consistent across ' + stamped.length + ' asset URLs and sw.js');
 
   const man = JSON.parse(fs.readFileSync(path.join(ROOT, 'manifest.json'), 'utf8'));
   ['name', 'short_name', 'start_url', 'display', 'icons'].forEach(k => {

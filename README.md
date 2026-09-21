@@ -179,6 +179,7 @@ npx http-server -p 8080 .       # or serve it
 
 node validate.js                # gate everything before committing
 node tools/bundle.js            # regenerate the bundle after editing config/ or lessons/
+node tools/stamp.js             # REQUIRED after changing any .js or .css
 
 # rebuild the bank from the source PDF (needs pymupdf, pdfplumber, sympy, pillow, pyyaml)
 python3 scripts/extract_bank.py --probe 12    # inspect layout first
@@ -189,6 +190,16 @@ python3 scripts/tag_review.py                 # clear tagging stragglers by hand
 ```
 
 Python runs **once at build time**. The app never needs it.
+
+### Why asset URLs carry `?v=<build>`
+
+A service worker that already holds `js/app/dom.js` will serve its copy
+forever, because nothing ever asks for that URL again — bumping the cache name
+does not help anyone still running the older worker. Asking for a *new* URL is
+the only thing that reliably gets an update through, so `tools/stamp.js` puts
+the commit count on every script and stylesheet and on the service worker's
+cache name. Run it after changing any `.js` or `.css`; `validate.js` fails if
+the stamps disagree.
 
 ### Why questions are `.js` and not `.json`
 

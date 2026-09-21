@@ -103,7 +103,10 @@
       if (pending[code]) { pending[code].push(done); return; }
       pending[code] = [done];
       var s = document.createElement('script');
-      s.src = 'data/questions.' + code + '.js';
+      // Same build stamp the page was served with, so a lazily loaded chunk
+      // cannot come back from an older cache than the code reading it.
+      var stamp = (root.ASVAB_BUILD ? '?v=' + root.ASVAB_BUILD : '');
+      s.src = 'data/questions.' + code + '.js' + stamp;
       s.async = true;
       var finish = function () {
         var waiting = pending[code] || [];

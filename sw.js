@@ -14,7 +14,15 @@
    CACHE bumps whenever the shell or the content bundle changes; validate.js
    checks that PRECACHE still matches what is actually in the repository. */
 
-var CACHE = 'asvab-practice-v4';
+var CACHE = 'asvab-practice-b19';
+
+/* Asset URLs carry ?v=<build>, and index.html is fetched network-first, so a
+   new build asks for URLs that are not in any previous cache. That is what
+   makes an update land even for someone still running an older worker, which a
+   cache name alone could never do: the old worker answers the old URL from its
+   cache forever, and the old URL is never requested again. */
+var BUILD = '19';
+var V = function (u) { return /\.(js|css)$/.test(u) ? u + '?v=' + BUILD : u; };
 
 var PRECACHE = [
   './',
@@ -53,7 +61,7 @@ self.addEventListener('install', function (e) {
       // individually: a missing optional icon must not leave the app uncached.
       .then(function (c) {
         return Promise.all(PRECACHE.map(function (url) {
-          return c.add(new Request(url, { cache: 'reload' })).catch(function () { });
+          return c.add(new Request(V(url), { cache: 'reload' })).catch(function () { });
         }));
       })
       .then(function () { return self.skipWaiting(); })
