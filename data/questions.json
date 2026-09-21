@@ -22530,10 +22530,12 @@
    ],
    "difficulty": 3,
    "flags": [
-    "tag_fallback"
+    "tag_fallback",
+    "symbol_lost_unanswerable"
    ],
    "page": 293,
-   "excluded": false
+   "excluded": true,
+   "key_error": "The radical is gone: \"(5 + x)2\" is the square root of (5+x) squared, per its own explanation. Options A and C are both \"5 - x\" and B and D are both \"5 + x\"."
   },
   {
    "id": "MK-0057",
@@ -22654,9 +22656,12 @@
     "area_perimeter_volume"
    ],
    "difficulty": 2,
-   "flags": [],
+   "flags": [
+    "symbol_lost_unanswerable"
+   ],
    "page": 294,
-   "excluded": false
+   "excluded": true,
+   "key_error": "Every option lost its pi and its exponent, leaving \"(102)\", \"(25)\", \"(5)\" and \"(102)(10)\" where the source meant pi(10 squared) and so on."
   },
   {
    "id": "MK-0062",
@@ -23302,9 +23307,12 @@
     "linear_equations"
    ],
    "difficulty": 3,
-   "flags": [],
+   "flags": [
+    "symbol_lost_unanswerable"
+   ],
    "page": 305,
-   "excluded": false
+   "excluded": true,
+   "key_error": "The inequality operator is gone from the stem (\"5 - 3x  14 + 6x\") and from two options, leaving A and B both reading \"x  -1\"."
   },
   {
    "id": "MK-0088",
@@ -23454,9 +23462,12 @@
     "linear_equations"
    ],
    "difficulty": 2,
-   "flags": [],
+   "flags": [
+    "symbol_lost_unanswerable"
+   ],
    "page": 307,
-   "excluded": false
+   "excluded": true,
+   "key_error": "The inequality operator is gone from the stem (\"If 2 + x  15\") and from two options, leaving C and D both reading \"x  13\"."
   },
   {
    "id": "MK-0094",

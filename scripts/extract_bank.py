@@ -327,6 +327,22 @@ def lost_notation(rec):
 # is the worst defect a fixed bank can carry -- it teaches the error to
 # everyone -- so these are excluded rather than shipped with a caveat.
 # Re-run scripts/verify_math.py to reproduce.
+# Items the source broke beyond repair by dropping a symbol. Unlike a lost
+# exponent, nothing here is recoverable: the operator that made the options
+# distinct is simply gone, so two options read identically and the question has
+# no single answer.
+BROKEN_SYMBOLS = {
+    'MK-0056': 'The radical is gone: "(5 + x)2" is the square root of (5+x) squared, '
+               'per its own explanation. Options A and C are both "5 - x" and B and D '
+               'are both "5 + x".',
+    'MK-0061': 'Every option lost its pi and its exponent, leaving "(102)", "(25)", '
+               '"(5)" and "(102)(10)" where the source meant pi(10 squared) and so on.',
+    'MK-0087': 'The inequality operator is gone from the stem ("5 - 3x  14 + 6x") and '
+               'from two options, leaving A and B both reading "x  -1".',
+    'MK-0093': 'The inequality operator is gone from the stem ("If 2 + x  15") and from '
+               'two options, leaving C and D both reading "x  13".',
+}
+
 WRONG_KEYS = {
     'MK-0053': 'Factor 9x^3 + 18x^2 - x - 2. Grouping gives 9x^2(x+2) - 1(x+2) '
                '= (9x^2 - 1)(x + 2), which is option A. The source keys C, '
@@ -767,13 +783,37 @@ def build(doc):
         counters[rec['subtest']] += 1
         rec['id'] = '%s-%04d' % (rec['subtest'], counters[rec['subtest']])
 
-    # Ids exist only now, so the verified-wrong keys are applied here.
+    # Ids exist only now, so the id-keyed exclusions are applied here.
     for rec in records:
         why = WRONG_KEYS.get(rec['id'])
         if why:
             rec['excluded'] = True
             rec['flags'].append('wrong_answer_key')
             rec['key_error'] = why
+        why = BROKEN_SYMBOLS.get(rec['id'])
+        if why:
+            rec['excluded'] = True
+            rec['flags'].append('symbol_lost_unanswerable')
+            rec['key_error'] = why
+
+    # General safety net for the same failure: if the keyed option is spelled
+    # exactly like another option, the item has two correct answers and cannot
+    # be scored, whatever caused it.
+    for rec in records:
+        if rec.get('excluded') or not rec.get('answer'):
+            continue
+        opts = rec.get('options') or {}
+        keyed = re.sub(r'\s+', ' ', str(opts.get(rec['answer'], ''))).strip().lower()
+        if not keyed:
+            continue
+        twins = [k for k, v in opts.items()
+                 if k != rec['answer'] and re.sub(r'\s+', ' ', str(v)).strip().lower() == keyed]
+        if twins:
+            rec['excluded'] = True
+            rec['flags'].append('duplicate_of_keyed_option')
+            rec['key_error'] = ('option %s is spelled exactly like the keyed option %s, '
+                                'so the item has two correct answers'
+                                % (','.join(twins), rec['answer']))
 
     return records, {'figures': nfig, 'passage_sets': npsg,
                      'shared_passages': shared, 'explanation_shift': nshift}

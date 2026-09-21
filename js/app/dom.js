@@ -71,6 +71,12 @@
       .replace(/([a-zA-Z])(\d{1,2})\b/g, '$1<sup>$2</sup>')   // x3  -> x³
       .replace(/\)(\d{1,2})\b/g, ')<sup>$1</sup>');           // (x2)3 -> (x²)³
     safe = mixedFractions(safe, opts);
+    /* Pi vanished too, leaving "Use 22/7 for the value of ." -- a sentence that
+       stops before its subject. Restored only in that exact shape, where the
+       missing symbol is named by the 22/7 beside it and cannot be anything
+       else. Items whose options lost their pi are not repairable this way and
+       are excluded at extraction instead. */
+    safe = safe.replace(/(value of)\s*([.,])/gi, '$1 \u03c0$2');
     return safe.replace(/\n/g, '<br>');
   }
 
