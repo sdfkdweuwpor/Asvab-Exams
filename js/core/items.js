@@ -111,6 +111,10 @@
       passage_title: null,
       passage_id: rec.passage_id || null,
       flags: rec.flags || [],
+      // Arithmetic Reasoning and Mathematics Knowledge render digits after a
+      // variable as exponents; every other subtest must not, because the same
+      // shape is a chemical subscript in General Science.
+      math: rec.subtest === 'MK' || rec.subtest === 'AR',
       source_number: rec.source_number
     };
   }

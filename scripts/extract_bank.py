@@ -323,6 +323,17 @@ def lost_notation(rec):
     return None
 
 
+# Answer keys proven wrong by symbolic re-solve and checked by hand. A bad key
+# is the worst defect a fixed bank can carry -- it teaches the error to
+# everyone -- so these are excluded rather than shipped with a caveat.
+# Re-run scripts/verify_math.py to reproduce.
+WRONG_KEYS = {
+    'MK-0053': 'Factor 9x^3 + 18x^2 - x - 2. Grouping gives 9x^2(x+2) - 1(x+2) '
+               '= (9x^2 - 1)(x + 2), which is option A. The source keys C, '
+               'which expands to 9x^3 - 9x^2 + 2x - 2 and is not the stem.',
+}
+
+
 def classify_auto_shop(text):
     t = text.lower()
     a = sum(1 for w in AUTO_TERMS if w in t)
@@ -755,6 +766,14 @@ def build(doc):
     for rec in sorted(records, key=lambda r: r['source_number']):
         counters[rec['subtest']] += 1
         rec['id'] = '%s-%04d' % (rec['subtest'], counters[rec['subtest']])
+
+    # Ids exist only now, so the verified-wrong keys are applied here.
+    for rec in records:
+        why = WRONG_KEYS.get(rec['id'])
+        if why:
+            rec['excluded'] = True
+            rec['flags'].append('wrong_answer_key')
+            rec['key_error'] = why
 
     return records, {'figures': nfig, 'passage_sets': npsg,
                      'shared_passages': shared, 'explanation_shift': nshift}

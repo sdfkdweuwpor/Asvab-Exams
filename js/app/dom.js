@@ -52,6 +52,59 @@
     return safe.replace(/\n/g, '<br>');
   }
 
+  /* The source PDF renders no superscript glyph anywhere, so "x cubed" arrives
+     as "x3" and "(x squared) cubed" as "(x2)3". Where the question is
+     unusable as printed -- "xx" is x-squared and x-cubed alike -- extraction
+     excludes it. This case is different: a variable cannot be followed by a
+     literal digit in standard notation, because a coefficient is written in
+     front (3x, never x3), so the digit can only be an exponent and the
+     original is recoverable exactly.
+
+     Applied at render time rather than baked into the bank, so data/questions
+     .json stays faithful to the source and this stays reviewable.
+
+     Maths subtests ONLY. In chemistry the same shape is a subscript -- H2O is
+     not H squared -- which is why this is not in richText. */
+  function mathText(s, opts) {
+    var safe = escapeHtml(s).replace(/&lt;b&gt;/g, '<b>').replace(/&lt;\/b&gt;/g, '</b>');
+    safe = safe
+      .replace(/([a-zA-Z])(\d{1,2})\b/g, '$1<sup>$2</sup>')   // x3  -> x³
+      .replace(/\)(\d{1,2})\b/g, ')<sup>$1</sup>');           // (x2)3 -> (x²)³
+    safe = mixedFractions(safe, opts);
+    return safe.replace(/\n/g, '<br>');
+  }
+
+  /* The source also lost the space inside mixed numbers, so twelve and a half
+     per cent prints as "121/2%", which reads as a hundred and twenty-one
+     halves. Restoring the space is not as safe as restoring an exponent,
+     because "13/16" is thirteen sixteenths in one question and one and three
+     sixteenths in another, so two guards apply.
+
+     First, only common mixed denominators with a proper numerator are touched,
+     which protects 22/7 for pi, 205/55 on a tyre, and 25/36 as a probability.
+     Second, an item whose options are ALL bare fractions is a question about
+     fractions -- "which of these is largest?" -- where every value is meant as
+     written, so nothing in it is split at all. */
+  var BARE_FRACTION = /^\s*\d+\s*\/\s*\d+\s*$/;
+  var SAFE_DEN = { 2: 1, 3: 1, 4: 1, 8: 1, 16: 1 };
+
+  function allOptionsAreBareFractions(opts) {
+    if (!opts || opts.length < 2) return false;
+    for (var i = 0; i < opts.length; i++) {
+      if (!BARE_FRACTION.test(String(opts[i].text === undefined ? opts[i] : opts[i].text))) return false;
+    }
+    return true;
+  }
+
+  function mixedFractions(text, opts) {
+    if (allOptionsAreBareFractions(opts)) return text;
+    return text.replace(/\b(\d+)(\d)\/(\d+)\b/g, function (whole, lead, num, den) {
+      var n = parseInt(num, 10), d = parseInt(den, 10);
+      if (!SAFE_DEN[d] || n >= d) return whole;
+      return lead + '\u2009' + num + '/' + den;     // thin space, not a full one
+    });
+  }
+
   function fmtClock(sec) {
     sec = Math.max(0, Math.round(sec));
     var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
@@ -100,7 +153,8 @@
 
   A.dom = {
     el: el, append: append, clear: clear, $: $, $$: $$,
-    escapeHtml: escapeHtml, richText: richText,
+    escapeHtml: escapeHtml, richText: richText, mathText: mathText,
+    mixedFractions: mixedFractions,
     fmtClock: fmtClock, fmtDuration: fmtDuration, fmtDate: fmtDate, pct: pct,
     toast: toast, accuracyColor: accuracyColor
   };

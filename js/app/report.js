@@ -487,7 +487,7 @@
       item.passage ? el('div', { class: 'passage' }, [
         item.passage_title ? el('h4', { text: item.passage_title }) : null, item.passage
       ]) : null,
-      el('p', { class: 'stem', html: d.richText(item.stem), style: 'font-size:1rem' }),
+      el('p', { class: 'stem', html: (item.math ? d.mathText(item.stem, item.options) : d.richText(item.stem)), style: 'font-size:1rem' }),
       item.figure ? el('div', { html: item.figure }) : null,
       el('div', { class: 'answer-line' }, [
         chosen ? el('span', { class: 'tag yours' }, 'You: ' + chosen.key) : el('span', { class: 'tag yours' }, 'No answer'),
@@ -529,10 +529,12 @@
     var list = el('div', { style: 'margin-top:6px' });
     item.options.forEach(function (o) {
       if (o.isCorrect) {
-        d.append(list, el('p', { class: 'why', html: '<b>' + o.key + ' (correct):</b> ' + (o.svg ? 'the figure shown above' : d.escapeHtml(o.text)) }));
+        d.append(list, el('p', { class: 'why', html: '<b>' + o.key + ' (correct):</b> ' +
+          (o.svg ? 'the figure shown above' : (item.math ? d.mathText(o.text, item.options) : d.escapeHtml(o.text))) }));
       } else {
-        var label = o.svg ? 'that figure' : '“' + o.text + '”';
-        d.append(list, el('p', { class: 'why muted', html: '<b>' + o.key + ':</b> ' + d.escapeHtml(label) +
+        var label = o.svg ? 'that figure'
+          : '\u201c' + (item.math ? d.mathText(o.text, item.options) : d.escapeHtml(o.text)) + '\u201d';
+        d.append(list, el('p', { class: 'why muted', html: '<b>' + o.key + ':</b> ' + label +
           (o.error ? ' — ' + d.escapeHtml(o.error) + '.' : '') }));
       }
     });

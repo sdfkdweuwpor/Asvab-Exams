@@ -22453,9 +22453,12 @@
     "factoring"
    ],
    "difficulty": 4,
-   "flags": [],
+   "flags": [
+    "wrong_answer_key"
+   ],
    "page": 292,
-   "excluded": false
+   "excluded": true,
+   "key_error": "Factor 9x^3 + 18x^2 - x - 2. Grouping gives 9x^2(x+2) - 1(x+2) = (9x^2 - 1)(x + 2), which is option A. The source keys C, which expands to 9x^3 - 9x^2 + 2x - 2 and is not the stem."
   },
   {
    "id": "MK-0054",

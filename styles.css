@@ -586,3 +586,13 @@ input[type="number"], input[type="search"] {
 #tabbar svg { width: 22px; height: 22px; }
 .icon-btn svg { width: 21px; height: 21px; }
 .btn svg, .ico svg { width: 19px; height: 19px; }
+
+/* Exponents restored at render time on the maths subtests (see dom.mathText).
+   Raised a little less than the browser default so a superscript does not
+   push the line box open and loosen the spacing between options. */
+sup {
+  font-size: .72em;
+  line-height: 0;
+  vertical-align: super;
+  font-variant-numeric: tabular-nums;
+}

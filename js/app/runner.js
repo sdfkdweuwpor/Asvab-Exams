@@ -427,7 +427,7 @@
       ]));
     }
 
-    d.append(main, el('p', { class: 'stem', html: d.richText(it.stem) }));
+    d.append(main, el('p', { class: 'stem', html: (it.math ? d.mathText(it.stem, it.options) : d.richText(it.stem)) }));
     if (it.figure) d.append(main, el('div', { html: it.figure }));
 
     var opts = el('ul', { class: 'opts' });
@@ -444,7 +444,7 @@
         onclick: function () { choose(i); }
       }, [
         el('span', { class: 'key', text: o.key }),
-        el('span', { class: 'body', html: o.svg ? o.svg : d.richText(o.text) })
+        el('span', { class: 'body', html: o.svg ? o.svg : (it.math ? d.mathText(o.text, it.options) : d.richText(o.text)) })
       ]);
       d.append(opts, el('li', null, btn));
     });
