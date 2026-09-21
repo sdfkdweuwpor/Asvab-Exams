@@ -1,5 +1,11 @@
-/* Post-exam analysis: topic heatmap, subtopic pattern detection, timing
-   forensics and confidence cross-tabs.
+/* Post-exam analysis: topic heatmap, subtopic pattern detection and timing
+   forensics.
+
+   There is no self-reported confidence here any more. Asking "were you sure?"
+   after every question is friction the real test does not have, and the answer
+   was never as good as the clock: an answer given in under eight seconds was a
+   guess whatever the student would have claimed. Guessing is inferred from
+   timing instead.
 
    The guiding rule is that one miss is not a weakness. Every accuracy figure
    carries the sample it rests on, and ranking uses a Wilson lower bound so a
@@ -39,13 +45,12 @@
       var key = r.subtest + '.' + r.topic;
       var c = cells[key] || (cells[key] = {
         subtest: r.subtest, topic: r.topic, key: key,
-        total: 0, correct: 0, seconds: 0, guesses: 0, confidentWrong: 0
+        total: 0, correct: 0, seconds: 0, guesses: 0
       });
       c.total++;
       if (r.correct) c.correct++;
       c.seconds += r.seconds || 0;
       if ((r.seconds || 0) <= GUESS_SECONDS) c.guesses++;
-      if (!r.correct && r.confidence === 'sure') c.confidentWrong++;
     });
 
     return Object.keys(cells).map(function (k) {
@@ -147,28 +152,6 @@
     };
   }
 
-  /* Confident-and-wrong is the most useful cell in this table: it marks the
-     places where the student does not know that they do not know. */
-  function confidenceBreakdown(rows) {
-    var cells = {
-      sure: { right: 0, wrong: 0 }, unsure: { right: 0, wrong: 0 }, guessed: { right: 0, wrong: 0 }
-    };
-    rows.forEach(function (r) {
-      var c = cells[r.confidence] || cells.unsure;
-      if (r.correct) c.right++; else c.wrong++;
-    });
-    var total = rows.length || 1;
-    return {
-      cells: cells,
-      confidentWrong: cells.sure.wrong,
-      confidentWrongPct: cells.sure.wrong / total,
-      luckyGuesses: cells.guessed.right,
-      // A well-calibrated student is nearly always right when they say "sure".
-      calibration: (cells.sure.right + cells.sure.wrong)
-        ? cells.sure.right / (cells.sure.right + cells.sure.wrong) : null
-    };
-  }
-
   // Score progression across attempts, for the history chart.
   function progression(attempts) {
     return attempts.filter(function (a) { return a.scores && a.scores.afqt; })
@@ -190,14 +173,13 @@
       strongSpots: strongSpots(rows),
       patterns: patterns(rows),
       timing: timing(rows),
-      confidence: confidenceBreakdown(rows),
       progression: progression(attempts || [])
     };
   }
 
   return {
     heatmap: heatmap, weakSpots: weakSpots, strongSpots: strongSpots,
-    patterns: patterns, timing: timing, confidenceBreakdown: confidenceBreakdown,
+    patterns: patterns, timing: timing,
     progression: progression, report: report, wilsonLower: wilsonLower,
     topicLabel: topicLabel, GUESS_SECONDS: GUESS_SECONDS, SINK_MULTIPLIER: SINK_MULTIPLIER
   };

@@ -481,7 +481,6 @@
         el('span', { class: 'chip', text: '#' + n }),
         el('span', { class: 'chip', text: item.subtest }),
         el('span', { class: 'chip', text: A.analytics.topicLabel(item.topic) }),
-        r.confidence === 'sure' ? el('span', { class: 'chip flagged', text: 'you were sure' }) : null,
         !r.answered ? el('span', { class: 'chip flagged', text: 'not answered' }) : null,
         r.seconds && r.seconds <= A.analytics.GUESS_SECONDS ? el('span', { class: 'chip flagged', text: r.seconds + 's — likely a guess' }) : null
       ]),
@@ -591,31 +590,6 @@
         d.pct(t.knowledgeAccuracy) + ' of the time. That is a pacing problem, not a knowledge gap.'));
     }
     d.append(box, tcard);
-
-    // ---- confidence ----
-    var c = rep.confidence;
-    var ccard = el('div', { class: 'card' }, [
-      el('strong', 'Confidence check'),
-      el('p', { class: 'muted small', style: 'margin:4px 0 10px' },
-        'Being wrong while sure is the most useful thing on this page: it marks what you did not know you did not know.')
-    ]);
-    d.append(ccard, el('table', { class: 'data' }, [
-      el('thead', null, el('tr', null, [el('th', ''), el('th', { class: 'num' }, 'Right'), el('th', { class: 'num' }, 'Wrong')])),
-      el('tbody', null, ['sure', 'unsure', 'guessed'].map(function (k) {
-        return el('tr', null, [
-          el('td', k.charAt(0).toUpperCase() + k.slice(1)),
-          el('td', { class: 'num' }, String(c.cells[k].right)),
-          el('td', { class: 'num', style: k === 'sure' && c.cells[k].wrong ? 'color:var(--bad);font-weight:650' : '' },
-            String(c.cells[k].wrong))
-        ]);
-      }))
-    ]));
-    if (c.confidentWrong) {
-      d.append(ccard, el('p', { class: 'banner warn', style: 'margin:10px 0 0' },
-        c.confidentWrong + ' question' + (c.confidentWrong === 1 ? '' : 's') +
-        ' you marked "sure" came out wrong. Those are the ones to read first in the review.'));
-    }
-    d.append(box, ccard);
 
     // ---- heatmap ----
     d.append(box, heatmapCard(rep.heatmap));

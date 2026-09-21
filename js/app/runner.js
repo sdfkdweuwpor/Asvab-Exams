@@ -219,7 +219,9 @@
       optKey: picked.key,
       correct: !!picked.isCorrect,
       seconds: secs,
-      confidence: (prev && prev.confidence) || null,
+      // Guessing is inferred from how long the answer took, not self-reported:
+      // a sub-8-second answer is a guess whatever the student would have said.
+      confidence: secs <= 8 ? 'guessed' : 'worked',
       flagged: !!(prev && prev.flagged)
     };
     A.state.saveSession(S);
@@ -228,15 +230,6 @@
       feedback = { index: optIndex, correct: !!picked.isCorrect };
       stopTicker();
     }
-    draw();
-  }
-
-  function setConfidence(level) {
-    if (isLocked()) return;
-    var k = key(S.si, S.ii);
-    var a = S.answers[k] || (S.answers[k] = { optIndex: null, correct: false, seconds: 0, flagged: false });
-    a.confidence = level;
-    A.state.saveSession(S);
     draw();
   }
 
@@ -347,7 +340,7 @@
           answered: !!(a && a.optIndex !== null && a.optIndex !== undefined),
           optIndex: a ? a.optIndex : null,
           correct: !!(a && a.correct),
-          confidence: (a && a.confidence) || 'unsure',
+          confidence: (a && a.confidence) || 'guessed',
           seconds: (a && a.seconds) || 0,
           flagged: !!(a && a.flagged),
           expired: !!(a && a.expired),
@@ -457,16 +450,6 @@
     });
     d.append(main, opts);
 
-    if (!locked) {
-      d.append(main, el('div', { class: 'conf', role: 'group', 'aria-label': 'How sure are you?' },
-        [['sure', 'Sure'], ['unsure', 'Unsure'], ['guessed', 'Guessed']].map(function (pair) {
-          return el('button', {
-            type: 'button', 'aria-pressed': a && a.confidence === pair[0] ? 'true' : 'false',
-            onclick: function () { setConfidence(pair[0]); }
-          }, pair[1]);
-        })));
-    }
-
     if (feedback) d.append(main, feedbackCard(it, feedback));
 
     drawFooter();
@@ -570,7 +553,7 @@
                   '<rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/>' +
                   '<rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>'
           }),
-          el('span', { class: 'sr-only' }, 'Question overview')
+          el('span', { class: 'btn-label' }, 'All')
         ]));
       }
     } else if (sec.seconds) {
@@ -590,7 +573,11 @@
       }
     }, last ? 'Finish' : 'Next'));
 
-    d.append(document.body, el('div', { class: 'examfoot' }, buttons));
+    // The bar spans the window so its background and border do, but the
+    // buttons inside are capped to the same measure as the questions above --
+    // on a desktop the old full-width row put Next about a foot from Back.
+    d.append(document.body, el('div', { class: 'examfoot' },
+      el('div', { class: 'examfoot-inner' }, buttons)));
   }
 
   function drawBreak() {
