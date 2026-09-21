@@ -576,3 +576,13 @@ input[type="number"], input[type="search"] {
 /* The tab bar reads better centred on a desktop too. */
 #tabbar { justify-content: center; }
 #tabbar a { max-width: 190px; }
+
+/* Belt and braces on icon sizing. The SVGs carry width and height attributes
+   so they render correctly with no stylesheet at all -- an unsized inline SVG
+   expands to fill its container, which turned the tab bar into half the
+   viewport when a stale stylesheet was served against fresh markup. These
+   rules cap them regardless. */
+#tabbar svg, .icon-btn svg, .btn svg, .ico svg { flex: none; }
+#tabbar svg { width: 22px; height: 22px; }
+.icon-btn svg { width: 21px; height: 21px; }
+.btn svg, .ico svg { width: 19px; height: 19px; }

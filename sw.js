@@ -1,6 +1,10 @@
 /* Service worker: precache the shell so the app installs to a phone and keeps
    working with no connection.
 
+   Bump CACHE whenever the shell changes. The fetch handler revalidates in the
+   background so a missed bump self-heals after one load rather than pinning
+   people to old files forever, but a bump still gets everyone current at once.
+
    The question chunks under data/questions.*.js are deliberately NOT precached.
    They are ~1.3MB in total and load on demand, so a first run does not pay for
    ten subtests to answer fifteen questions. The fetch handler caches each one
@@ -10,7 +14,7 @@
    CACHE bumps whenever the shell or the content bundle changes; validate.js
    checks that PRECACHE still matches what is actually in the repository. */
 
-var CACHE = 'asvab-practice-v3';
+var CACHE = 'asvab-practice-v4';
 
 var PRECACHE = [
   './',
@@ -79,7 +83,13 @@ self.addEventListener('fetch', function (e) {
      index.html#/lessons still open offline. */
   if (req.mode === 'navigate') {
     e.respondWith(
-      fetch(req).catch(function () {
+      fetch(req).then(function (res) {
+        if (res && res.ok) {
+          var copy = res.clone();
+          caches.open(CACHE).then(function (c) { c.put('./index.html', copy); });
+        }
+        return res;
+      }).catch(function () {
         return caches.match('./index.html').then(function (r) {
           return r || caches.match('./');
         });
@@ -88,19 +98,32 @@ self.addEventListener('fetch', function (e) {
     return;
   }
 
-  // Cache first: these assets are versioned by the cache name, never by URL.
+  /* Stale-while-revalidate, not cache-first.
+
+     Cache-first was here and it had a failure mode worth spelling out: the
+     cache is only replaced when CACHE changes, CACHE only changes when this
+     file changes, and this file does not change just because a stylesheet did.
+     Ship an edited styles.css without touching sw.js and every returning
+     visitor keeps the old one indefinitely -- which is exactly what happened,
+     pairing a fresh index.html against a stale stylesheet.
+
+     So: answer from cache immediately, which keeps the app instant and fully
+     offline, and revalidate in the background so the next load is current. A
+     change costs one stale load instead of never arriving. */
   e.respondWith(
     caches.match(req).then(function (hit) {
-      if (hit) return hit;
-      return fetch(req).then(function (res) {
+      var fresh = fetch(req).then(function (res) {
         if (res && res.ok && res.type === 'basic') {
           var copy = res.clone();
           caches.open(CACHE).then(function (c) { c.put(req, copy); });
         }
         return res;
       }).catch(function () {
-        return caches.match('./index.html');
+        // Offline: the cached copy is the answer, and for a navigation-ish
+        // request the shell is a better failure than nothing.
+        return hit || caches.match('./index.html');
       });
+      return hit || fresh;
     })
   );
 });

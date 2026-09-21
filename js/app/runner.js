@@ -546,7 +546,7 @@
         }, [
           el('span', {
             class: 'ico', 'aria-hidden': 'true',
-            html: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+            html: '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
                   'stroke-width="1.9" stroke-linejoin="round">' +
                   '<rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/>' +
                   '<rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/>' +
