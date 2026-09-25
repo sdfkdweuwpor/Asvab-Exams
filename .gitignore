@@ -1,3 +1,7 @@
 node_modules/
 .DS_Store
 *.log
+
+# Reference videos (large, third-party) stay local
+References/*
+!References/.gitkeep
