@@ -8,3 +8,4 @@ References/*
 # New Orleans edit: footage, music and renders stay local; only the edit script is tracked
 nola/*
 !nola/build.py
+!nola/build2.py
