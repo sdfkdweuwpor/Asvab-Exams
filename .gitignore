@@ -9,3 +9,4 @@ References/*
 nola/*
 !nola/build.py
 !nola/build2.py
+!nola/build3.py
