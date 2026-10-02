@@ -1,0 +1,6 @@
+{
+  "name": "task-bar",
+  "version": "0.1.0",
+  "description": "A task bar above the prompt listing the main thread and every subagent task, with the Claude model each one is running on",
+  "types": "./types/index.d.ts"
+}
