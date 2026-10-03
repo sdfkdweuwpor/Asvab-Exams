@@ -21,7 +21,8 @@
       attempts: [],
       queue: [],
       session: null,
-      notices: []
+      notices: [],
+      words: {}
     };
   }
 
@@ -295,6 +296,20 @@
   function getSession() { return load().session; }
   function clearSession() { load().session = null; save(); }
 
+  // ---------------- word mastery ----------------
+
+  /* Word Knowledge mastery records, keyed by bank id (see core/mastery.js).
+     Kept apart from `seen` on purpose: a self-graded flashcard, or a word asked
+     again until it is right, is study rather than a test answer, and counting
+     it would inflate the WK accuracy the AFQT estimate and Work On rest on. */
+  function wordRecords() { var s = load(); return s.words || (s.words = {}); }
+  function setWordRecord(id, rec) {
+    var w = wordRecords();
+    if (rec) w[id] = rec; else delete w[id];
+    save();
+  }
+  function resetWords() { load().words = {}; save(); }
+
   // ---------------- settings & diagnostic ----------------
 
   function settings() { return load().settings; }
@@ -310,7 +325,8 @@
       format: 'asvab-practice-progress', version: VERSION,
       exported: new Date().toISOString(),
       data: { created: s.created, settings: s.settings, diagnostic: s.diagnostic,
-              seen: s.seen, attempts: s.attempts, queue: s.queue, version: s.version }
+              seen: s.seen, attempts: s.attempts, queue: s.queue, words: s.words || {},
+              version: s.version }
     };
   }
 
@@ -355,7 +371,7 @@
   function importData(payload, mode) {
     var s = load();
     if (mode === 'replace') {
-      s.seen = []; s.attempts = []; s.queue = [];
+      s.seen = []; s.attempts = []; s.queue = []; s.words = {};
     }
     var before = { seen: s.seen.length, attempts: s.attempts.length };
 
@@ -376,6 +392,15 @@
     s.queue.forEach(function (q) { haveQ[q.template_id] = true; });
     (payload.queue || []).forEach(function (q) {
       if (q && q.template_id && !haveQ[q.template_id]) { s.queue.push(q); haveQ[q.template_id] = true; }
+    });
+
+    // Word records: whichever side answered a word more recently wins, so
+    // importing an older backup never rolls back newer progress.
+    s.words = s.words || {};
+    Object.keys(payload.words || {}).forEach(function (id) {
+      var theirs = payload.words[id], mine = s.words[id];
+      if (!theirs || !theirs.n) return;
+      if (!mine || new Date(theirs.l || 0) > new Date(mine.l || 0)) s.words[id] = theirs;
     });
 
     if (payload.diagnostic && !s.diagnostic) s.diagnostic = payload.diagnostic;
@@ -409,6 +434,7 @@
     recordAttempt: recordAttempt, attempts: attempts, attempt: attempt, afqtSampleSize: afqtSampleSize,
     scheduleReview: scheduleReview, advanceReview: advanceReview, dueReviews: dueReviews, queueSize: queueSize,
     saveSession: saveSession, getSession: getSession, clearSession: clearSession,
+    wordRecords: wordRecords, setWordRecord: setWordRecord, resetWords: resetWords,
     settings: settings, setSetting: setSetting, diagnostic: diagnostic, setDiagnostic: setDiagnostic,
     exportJSON: exportJSON, exportObject: exportObject, syncString: syncString,
     importJSON: importJSON, importSyncString: importSyncString,

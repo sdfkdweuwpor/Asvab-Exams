@@ -364,6 +364,22 @@ def check_explanations(items):
     return empty, thin, restates
 
 
+def check_wk_headwords(items):
+    """Every served WK item must name the word it tests, and that word must be
+    in its own stem -- the app bolds it there, and the Word Mastery lists are
+    built from it."""
+    bad = []
+    for q in items:
+        if q.get('subtest') != 'WK' or q.get('excluded'):
+            continue
+        w = q.get('headword')
+        if not w:
+            bad.append((q.get('id'), 'no headword'))
+        elif not re.search(r'\b%s\b' % re.escape(w), q.get('stem') or '', re.I):
+            bad.append((q.get('id'), 'headword %r not in stem' % w))
+    return bad
+
+
 def check_numbering(items):
     nums = [q.get('source_number') for q in items if q.get('source_number')]
     if not nums:
@@ -426,6 +442,13 @@ def main():
     for q in multi:
         review.append({'kind': 'multi_answer', 'id': q.get('id'),
                        'answer_raw': q.get('answer_raw')})
+
+    # ---- word knowledge headwords
+    wk_bad = check_wk_headwords(items)
+    print('  WK headword problems : %d' % len(wk_bad))
+    for qid, msg in wk_bad:
+        print('    %-12s %s' % (qid, msg))
+        review.append({'kind': 'wk_headword', 'id': qid, 'detail': msg})
 
     # ---- duplicates
     print('\n[duplicates]')

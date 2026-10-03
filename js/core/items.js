@@ -78,6 +78,17 @@
     return out;
   }
 
+  /* The word a WK item tests, in bold wherever it appears in the stem. The
+     source never marked it, so "The gold was kept in a secure vault." left the
+     reader to guess which word was meant. Done here rather than baked into the
+     bank, so data/questions.json stays the text as printed; richText lets <b>
+     through and nothing else. */
+  function markHeadword(stem, word) {
+    if (!word || !stem) return stem;
+    var safe = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return stem.replace(new RegExp('\\b(' + safe + ')\\b', 'gi'), '<b>$1</b>');
+  }
+
   function render(rec, seed) {
     if (!rec) return null;
     var options = buildOptions(rec);
@@ -98,7 +109,10 @@
       topic: topic,
       difficulty: rec.difficulty || 2,
       composites: compositesFor(rec.subtest),
-      stem: isPC ? (rec.question || rec.stem) : rec.stem,
+      stem: isPC ? (rec.question || rec.stem)
+        : rec.subtest === 'WK' ? markHeadword(rec.stem, rec.headword) : rec.stem,
+      headword: rec.headword || null,
+      relation: rec.relation || null,
       figure: figureHtml(rec),
       options: options,
       correctKey: options[correctIndex].key,
@@ -120,7 +134,7 @@
   }
 
   return {
-    render: render, lessonFor: lessonFor, targetSeconds: targetSeconds,
+    render: render, markHeadword: markHeadword, lessonFor: lessonFor, targetSeconds: targetSeconds,
     compositesFor: compositesFor, LETTERS: LETTERS
   };
 });

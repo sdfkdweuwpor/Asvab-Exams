@@ -692,6 +692,81 @@ def flag_explanation_shift(records):
 
 # ---------------------------------------------------------------- assemble
 
+# The word each Word Knowledge item tests. "Abate most nearly means" names it,
+# but an in-context item is a bare sentence -- "The gold was kept in a secure
+# vault." -- and the source marks the tested word with no underline, bold or
+# font change at all (checked in the PDF: plain ArialMT, no drawings). The
+# reader is left to guess between "kept" and "secure", and WK-0220 has two real
+# candidates. These were read off each item against its keyed answer, and the
+# build asserts every one appears in its own stem.
+WK_HEADWORDS = {
+    'WK-0001': 'secure', 'WK-0005': 'proficient', 'WK-0006': 'plenary',
+    'WK-0007': 'goad', 'WK-0008': 'headlong', 'WK-0012': 'unconscionable',
+    'WK-0013': 'reasoned', 'WK-0015': 'burnished', 'WK-0016': 'commodity',
+    'WK-0017': 'oblique', 'WK-0020': 'hemorrhage', 'WK-0021': 'garrison',
+    'WK-0026': 'succinct', 'WK-0027': 'demise', 'WK-0028': 'charisma',
+    'WK-0030': 'prevails', 'WK-0037': 'sturdy', 'WK-0039': 'brevity',
+    'WK-0041': 'facilitated', 'WK-0043': 'spectator', 'WK-0044': 'precocious',
+    'WK-0045': 'cited', 'WK-0049': 'subterfuge', 'WK-0050': 'transported',
+    'WK-0052': 'vassals', 'WK-0056': 'yearned', 'WK-0057': 'confiscated',
+    'WK-0060': 'fantastic', 'WK-0063': 'terminated', 'WK-0064': 'finite',
+    'WK-0066': 'fanatic', 'WK-0073': 'edible', 'WK-0074': 'philomath',
+    'WK-0076': 'proclivity', 'WK-0077': 'incoherent', 'WK-0078': 'mawkish',
+    'WK-0079': 'established', 'WK-0083': 'acute', 'WK-0085': 'inconsequential',
+    'WK-0087': 'amateur', 'WK-0088': 'ludic', 'WK-0089': 'crimson',
+    'WK-0091': 'exempt', 'WK-0092': 'eldritch', 'WK-0095': 'cursory',
+    'WK-0097': 'terse', 'WK-0098': 'dulcet', 'WK-0099': 'misdemeanor',
+    'WK-0101': 'concocted', 'WK-0102': 'chimera', 'WK-0103': 'former',
+    'WK-0105': 'strident', 'WK-0107': 'abhorrent', 'WK-0109': 'detritus',
+    'WK-0110': 'redoubt', 'WK-0111': 'ostracized', 'WK-0112': 'wayworn',
+    'WK-0113': 'potable', 'WK-0121': 'vapid', 'WK-0122': 'extraneous',
+    'WK-0123': 'solicitous', 'WK-0124': 'limpid', 'WK-0125': 'amity',
+    'WK-0126': 'cohort', 'WK-0137': 'acerbic', 'WK-0138': 'inexorable',
+    'WK-0139': 'hector', 'WK-0140': 'gauche', 'WK-0142': 'aberration',
+    'WK-0143': 'opponent', 'WK-0144': 'audacity', 'WK-0146': 'taciturn',
+    'WK-0147': 'epitome', 'WK-0148': 'rapport', 'WK-0149': 'guile',
+    'WK-0150': 'adversity', 'WK-0151': 'propriety', 'WK-0152': 'variable',
+    'WK-0154': 'obscurity', 'WK-0155': 'enigma', 'WK-0156': 'comprehension',
+    'WK-0158': 'catastrophe', 'WK-0159': 'foment', 'WK-0162': 'legacy',
+    'WK-0163': 'indispensable', 'WK-0164': 'lethargy', 'WK-0165': 'assuage',
+    'WK-0168': 'tedious', 'WK-0169': 'temperate', 'WK-0172': 'panacea',
+    'WK-0173': 'rejoinder', 'WK-0175': 'benevolent', 'WK-0176': 'poseur',
+    'WK-0177': 'pinnacle', 'WK-0179': 'pauper', 'WK-0180': 'punctual',
+    'WK-0183': 'brevity', 'WK-0186': 'sheen', 'WK-0188': 'cite',
+    'WK-0189': 'allay', 'WK-0190': 'vitality', 'WK-0192': 'deplore',
+    'WK-0195': 'copious', 'WK-0198': 'salient', 'WK-0202': 'diagnosis',
+    'WK-0203': 'quandary', 'WK-0205': 'encroach', 'WK-0208': 'meager',
+    'WK-0211': 'menial', 'WK-0214': 'archaic', 'WK-0216': 'intermittent',
+    'WK-0220': 'incredulous', 'WK-0221': 'unique', 'WK-0224': 'accountable',
+    'WK-0225': 'unanimously', 'WK-0230': 'nondescript', 'WK-0311': 'opulent',
+    'WK-0312': 'pensive', 'WK-0313': 'placate', 'WK-0314': 'rebuke',
+    'WK-0315': 'succinct', 'WK-0321': 'tangible', 'WK-0323': 'chronic',
+    'WK-0324': 'indefatigable', 'WK-0325': 'precocious',
+}
+
+RE_WK_OPPOSITE = re.compile(r"opposite in meaning to (?:the word\s+)?([A-Za-z-]+)", re.I)
+RE_WK_NEARLY = re.compile(
+    r"(?:^|\n|[.?!]\s+)(?:The word\s+|To\s+)?([A-Za-z-]+)\s+most nearly means?", re.I)
+
+
+def wk_headword(rec):
+    """(headword, relation) for a WK item, or (None, None)."""
+    stem = rec['stem'] or ''
+    m = RE_WK_OPPOSITE.search(stem)
+    if m:
+        return m.group(1).lower(), 'antonym'
+    m = RE_WK_NEARLY.search(stem)
+    if m:
+        return m.group(1).lower(), 'synonym'
+    word = WK_HEADWORDS.get(rec['id'])
+    if word:
+        if not re.search(r'\b%s\b' % re.escape(word), stem, re.I):
+            raise SystemExit('WK_HEADWORDS[%s] = %r does not appear in its stem'
+                             % (rec['id'], word))
+        return word, 'synonym'
+    return None, None
+
+
 def build(doc):
     raw = parse(doc, verbose=False)
     records = []
@@ -795,6 +870,10 @@ def build(doc):
             rec['excluded'] = True
             rec['flags'].append('symbol_lost_unanswerable')
             rec['key_error'] = why
+
+    for rec in records:
+        if rec['subtest'] == 'WK':
+            rec['headword'], rec['relation'] = wk_headword(rec)
 
     # General safety net for the same failure: if the keyed option is spelled
     # exactly like another option, the item has two correct answers and cannot

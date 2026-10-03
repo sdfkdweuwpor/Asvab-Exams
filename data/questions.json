@@ -30912,7 +30912,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 425,
-   "excluded": false
+   "excluded": false,
+   "headword": "secure",
+   "relation": "synonym"
   },
   {
    "id": "WK-0002",
@@ -30936,7 +30938,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 425,
-   "excluded": false
+   "excluded": false,
+   "headword": "assimilate",
+   "relation": "synonym"
   },
   {
    "id": "WK-0003",
@@ -30960,7 +30964,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 425,
-   "excluded": false
+   "excluded": false,
+   "headword": "theorize",
+   "relation": "synonym"
   },
   {
    "id": "WK-0004",
@@ -30984,7 +30990,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 425,
-   "excluded": false
+   "excluded": false,
+   "headword": "symmetrical",
+   "relation": "synonym"
   },
   {
    "id": "WK-0005",
@@ -31008,7 +31016,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 425,
-   "excluded": false
+   "excluded": false,
+   "headword": "proficient",
+   "relation": "synonym"
   },
   {
    "id": "WK-0006",
@@ -31032,7 +31042,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 426,
-   "excluded": false
+   "excluded": false,
+   "headword": "plenary",
+   "relation": "synonym"
   },
   {
    "id": "WK-0007",
@@ -31056,7 +31068,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 426,
-   "excluded": false
+   "excluded": false,
+   "headword": "goad",
+   "relation": "synonym"
   },
   {
    "id": "WK-0008",
@@ -31080,7 +31094,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 426,
-   "excluded": false
+   "excluded": false,
+   "headword": "headlong",
+   "relation": "synonym"
   },
   {
    "id": "WK-0009",
@@ -31104,7 +31120,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 426,
-   "excluded": false
+   "excluded": false,
+   "headword": "flagrant",
+   "relation": "synonym"
   },
   {
    "id": "WK-0010",
@@ -31128,7 +31146,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 427,
-   "excluded": false
+   "excluded": false,
+   "headword": "stimulate",
+   "relation": "antonym"
   },
   {
    "id": "WK-0011",
@@ -31152,7 +31172,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 427,
-   "excluded": false
+   "excluded": false,
+   "headword": "legacy",
+   "relation": "synonym"
   },
   {
    "id": "WK-0012",
@@ -31176,7 +31198,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 427,
-   "excluded": false
+   "excluded": false,
+   "headword": "unconscionable",
+   "relation": "synonym"
   },
   {
    "id": "WK-0013",
@@ -31200,7 +31224,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 427,
-   "excluded": false
+   "excluded": false,
+   "headword": "reasoned",
+   "relation": "synonym"
   },
   {
    "id": "WK-0014",
@@ -31224,7 +31250,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 427,
-   "excluded": false
+   "excluded": false,
+   "headword": "laudable",
+   "relation": "synonym"
   },
   {
    "id": "WK-0015",
@@ -31248,7 +31276,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 428,
-   "excluded": false
+   "excluded": false,
+   "headword": "burnished",
+   "relation": "synonym"
   },
   {
    "id": "WK-0016",
@@ -31272,7 +31302,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 428,
-   "excluded": false
+   "excluded": false,
+   "headword": "commodity",
+   "relation": "synonym"
   },
   {
    "id": "WK-0017",
@@ -31296,7 +31328,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 428,
-   "excluded": false
+   "excluded": false,
+   "headword": "oblique",
+   "relation": "synonym"
   },
   {
    "id": "WK-0018",
@@ -31320,7 +31354,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 428,
-   "excluded": false
+   "excluded": false,
+   "headword": "superfluous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0019",
@@ -31344,7 +31380,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 428,
-   "excluded": false
+   "excluded": false,
+   "headword": "hypocrisy",
+   "relation": "antonym"
   },
   {
    "id": "WK-0020",
@@ -31368,7 +31406,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 429,
-   "excluded": false
+   "excluded": false,
+   "headword": "hemorrhage",
+   "relation": "synonym"
   },
   {
    "id": "WK-0021",
@@ -31392,7 +31432,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 429,
-   "excluded": false
+   "excluded": false,
+   "headword": "garrison",
+   "relation": "synonym"
   },
   {
    "id": "WK-0022",
@@ -31416,7 +31458,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 429,
-   "excluded": false
+   "excluded": false,
+   "headword": "fiscal",
+   "relation": "synonym"
   },
   {
    "id": "WK-0023",
@@ -31440,7 +31484,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 429,
-   "excluded": false
+   "excluded": false,
+   "headword": "domicile",
+   "relation": "synonym"
   },
   {
    "id": "WK-0024",
@@ -31464,7 +31510,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 430,
-   "excluded": false
+   "excluded": false,
+   "headword": "abate",
+   "relation": "synonym"
   },
   {
    "id": "WK-0025",
@@ -31488,7 +31536,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 430,
-   "excluded": false
+   "excluded": false,
+   "headword": "commission",
+   "relation": "synonym"
   },
   {
    "id": "WK-0026",
@@ -31512,7 +31562,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 430,
-   "excluded": false
+   "excluded": false,
+   "headword": "succinct",
+   "relation": "synonym"
   },
   {
    "id": "WK-0027",
@@ -31536,7 +31588,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 430,
-   "excluded": false
+   "excluded": false,
+   "headword": "demise",
+   "relation": "synonym"
   },
   {
    "id": "WK-0028",
@@ -31560,7 +31614,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 430,
-   "excluded": false
+   "excluded": false,
+   "headword": "charisma",
+   "relation": "synonym"
   },
   {
    "id": "WK-0029",
@@ -31584,7 +31640,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 431,
-   "excluded": false
+   "excluded": false,
+   "headword": "burrow",
+   "relation": "synonym"
   },
   {
    "id": "WK-0030",
@@ -31608,7 +31666,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 431,
-   "excluded": false
+   "excluded": false,
+   "headword": "prevails",
+   "relation": "synonym"
   },
   {
    "id": "WK-0031",
@@ -31632,7 +31692,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 431,
-   "excluded": false
+   "excluded": false,
+   "headword": "contravene",
+   "relation": "synonym"
   },
   {
    "id": "WK-0032",
@@ -31656,7 +31718,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 431,
-   "excluded": false
+   "excluded": false,
+   "headword": "chasm",
+   "relation": "synonym"
   },
   {
    "id": "WK-0033",
@@ -31680,7 +31744,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 431,
-   "excluded": false
+   "excluded": false,
+   "headword": "fundamental",
+   "relation": "synonym"
   },
   {
    "id": "WK-0034",
@@ -31704,7 +31770,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 432,
-   "excluded": false
+   "excluded": false,
+   "headword": "susceptible",
+   "relation": "synonym"
   },
   {
    "id": "WK-0035",
@@ -31728,7 +31796,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 432,
-   "excluded": false
+   "excluded": false,
+   "headword": "emit",
+   "relation": "synonym"
   },
   {
    "id": "WK-0036",
@@ -31752,7 +31822,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 432,
-   "excluded": false
+   "excluded": false,
+   "headword": "ardent",
+   "relation": "synonym"
   },
   {
    "id": "WK-0037",
@@ -31776,7 +31848,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 432,
-   "excluded": false
+   "excluded": false,
+   "headword": "sturdy",
+   "relation": "synonym"
   },
   {
    "id": "WK-0038",
@@ -31800,7 +31874,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 433,
-   "excluded": false
+   "excluded": false,
+   "headword": "listless",
+   "relation": "synonym"
   },
   {
    "id": "WK-0039",
@@ -31824,7 +31900,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 433,
-   "excluded": false
+   "excluded": false,
+   "headword": "brevity",
+   "relation": "synonym"
   },
   {
    "id": "WK-0040",
@@ -31848,7 +31926,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 433,
-   "excluded": false
+   "excluded": false,
+   "headword": "pare",
+   "relation": "synonym"
   },
   {
    "id": "WK-0041",
@@ -31872,7 +31952,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 433,
-   "excluded": false
+   "excluded": false,
+   "headword": "facilitated",
+   "relation": "synonym"
   },
   {
    "id": "WK-0042",
@@ -31896,7 +31978,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 433,
-   "excluded": false
+   "excluded": false,
+   "headword": "perpetuate",
+   "relation": "antonym"
   },
   {
    "id": "WK-0043",
@@ -31920,7 +32004,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 434,
-   "excluded": false
+   "excluded": false,
+   "headword": "spectator",
+   "relation": "synonym"
   },
   {
    "id": "WK-0044",
@@ -31944,7 +32030,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 434,
-   "excluded": false
+   "excluded": false,
+   "headword": "precocious",
+   "relation": "synonym"
   },
   {
    "id": "WK-0045",
@@ -31968,7 +32056,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 434,
-   "excluded": false
+   "excluded": false,
+   "headword": "cited",
+   "relation": "synonym"
   },
   {
    "id": "WK-0046",
@@ -31992,7 +32082,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 434,
-   "excluded": false
+   "excluded": false,
+   "headword": "sentinel",
+   "relation": "antonym"
   },
   {
    "id": "WK-0047",
@@ -32016,7 +32108,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 434,
-   "excluded": false
+   "excluded": false,
+   "headword": "illustrious",
+   "relation": "synonym"
   },
   {
    "id": "WK-0048",
@@ -32040,7 +32134,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 435,
-   "excluded": false
+   "excluded": false,
+   "headword": "fallacious",
+   "relation": "synonym"
   },
   {
    "id": "WK-0049",
@@ -32064,7 +32160,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 435,
-   "excluded": false
+   "excluded": false,
+   "headword": "subterfuge",
+   "relation": "synonym"
   },
   {
    "id": "WK-0050",
@@ -32088,7 +32186,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 435,
-   "excluded": false
+   "excluded": false,
+   "headword": "transported",
+   "relation": "synonym"
   },
   {
    "id": "WK-0051",
@@ -32112,7 +32212,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 435,
-   "excluded": false
+   "excluded": false,
+   "headword": "rigid",
+   "relation": "synonym"
   },
   {
    "id": "WK-0052",
@@ -32136,7 +32238,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 436,
-   "excluded": false
+   "excluded": false,
+   "headword": "vassals",
+   "relation": "synonym"
   },
   {
    "id": "WK-0053",
@@ -32160,7 +32264,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 436,
-   "excluded": false
+   "excluded": false,
+   "headword": "deplore",
+   "relation": "synonym"
   },
   {
    "id": "WK-0054",
@@ -32184,7 +32290,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 436,
-   "excluded": false
+   "excluded": false,
+   "headword": "sparse",
+   "relation": "synonym"
   },
   {
    "id": "WK-0055",
@@ -32208,7 +32316,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 436,
-   "excluded": false
+   "excluded": false,
+   "headword": "weal",
+   "relation": "synonym"
   },
   {
    "id": "WK-0056",
@@ -32232,7 +32342,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 436,
-   "excluded": false
+   "excluded": false,
+   "headword": "yearned",
+   "relation": "synonym"
   },
   {
    "id": "WK-0057",
@@ -32256,7 +32368,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 437,
-   "excluded": false
+   "excluded": false,
+   "headword": "confiscated",
+   "relation": "synonym"
   },
   {
    "id": "WK-0058",
@@ -32280,7 +32394,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 437,
-   "excluded": false
+   "excluded": false,
+   "headword": "eloquent",
+   "relation": "synonym"
   },
   {
    "id": "WK-0059",
@@ -32304,7 +32420,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 437,
-   "excluded": false
+   "excluded": false,
+   "headword": "illusion",
+   "relation": "synonym"
   },
   {
    "id": "WK-0060",
@@ -32328,7 +32446,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 437,
-   "excluded": false
+   "excluded": false,
+   "headword": "fantastic",
+   "relation": "synonym"
   },
   {
    "id": "WK-0061",
@@ -32352,7 +32472,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 438,
-   "excluded": false
+   "excluded": false,
+   "headword": "enmity",
+   "relation": "synonym"
   },
   {
    "id": "WK-0062",
@@ -32376,7 +32498,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 438,
-   "excluded": false
+   "excluded": false,
+   "headword": "abridge",
+   "relation": "synonym"
   },
   {
    "id": "WK-0063",
@@ -32400,7 +32524,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 438,
-   "excluded": false
+   "excluded": false,
+   "headword": "terminated",
+   "relation": "synonym"
   },
   {
    "id": "WK-0064",
@@ -32424,7 +32550,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 438,
-   "excluded": false
+   "excluded": false,
+   "headword": "finite",
+   "relation": "synonym"
   },
   {
    "id": "WK-0065",
@@ -32448,7 +32576,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 438,
-   "excluded": false
+   "excluded": false,
+   "headword": "null",
+   "relation": "synonym"
   },
   {
    "id": "WK-0066",
@@ -32472,7 +32602,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 439,
-   "excluded": false
+   "excluded": false,
+   "headword": "fanatic",
+   "relation": "synonym"
   },
   {
    "id": "WK-0067",
@@ -32496,7 +32628,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 439,
-   "excluded": false
+   "excluded": false,
+   "headword": "impertinence",
+   "relation": "synonym"
   },
   {
    "id": "WK-0068",
@@ -32520,7 +32654,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 439,
-   "excluded": false
+   "excluded": false,
+   "headword": "accord",
+   "relation": "synonym"
   },
   {
    "id": "WK-0069",
@@ -32544,7 +32680,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 439,
-   "excluded": false
+   "excluded": false,
+   "headword": "ridicule",
+   "relation": "synonym"
   },
   {
    "id": "WK-0070",
@@ -32568,7 +32706,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 440,
-   "excluded": false
+   "excluded": false,
+   "headword": "pardon",
+   "relation": "synonym"
   },
   {
    "id": "WK-0071",
@@ -32592,7 +32732,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 440,
-   "excluded": false
+   "excluded": false,
+   "headword": "isochronous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0072",
@@ -32616,7 +32758,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 440,
-   "excluded": false
+   "excluded": false,
+   "headword": "lackadaisical",
+   "relation": "synonym"
   },
   {
    "id": "WK-0073",
@@ -32640,7 +32784,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 440,
-   "excluded": false
+   "excluded": false,
+   "headword": "edible",
+   "relation": "synonym"
   },
   {
    "id": "WK-0074",
@@ -32664,7 +32810,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 440,
-   "excluded": false
+   "excluded": false,
+   "headword": "philomath",
+   "relation": "synonym"
   },
   {
    "id": "WK-0075",
@@ -32688,7 +32836,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 441,
-   "excluded": false
+   "excluded": false,
+   "headword": "pretense",
+   "relation": "synonym"
   },
   {
    "id": "WK-0076",
@@ -32712,7 +32862,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 441,
-   "excluded": false
+   "excluded": false,
+   "headword": "proclivity",
+   "relation": "synonym"
   },
   {
    "id": "WK-0077",
@@ -32736,7 +32888,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 441,
-   "excluded": false
+   "excluded": false,
+   "headword": "incoherent",
+   "relation": "synonym"
   },
   {
    "id": "WK-0078",
@@ -32760,7 +32914,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 441,
-   "excluded": false
+   "excluded": false,
+   "headword": "mawkish",
+   "relation": "synonym"
   },
   {
    "id": "WK-0079",
@@ -32784,7 +32940,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 441,
-   "excluded": false
+   "excluded": false,
+   "headword": "established",
+   "relation": "synonym"
   },
   {
    "id": "WK-0080",
@@ -32808,7 +32966,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 442,
-   "excluded": false
+   "excluded": false,
+   "headword": "ephemeral",
+   "relation": "synonym"
   },
   {
    "id": "WK-0081",
@@ -32832,7 +32992,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 442,
-   "excluded": false
+   "excluded": false,
+   "headword": "avocation",
+   "relation": "synonym"
   },
   {
    "id": "WK-0082",
@@ -32856,7 +33018,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 442,
-   "excluded": false
+   "excluded": false,
+   "headword": "kvetch",
+   "relation": "synonym"
   },
   {
    "id": "WK-0083",
@@ -32880,7 +33044,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 442,
-   "excluded": false
+   "excluded": false,
+   "headword": "acute",
+   "relation": "synonym"
   },
   {
    "id": "WK-0084",
@@ -32904,7 +33070,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 443,
-   "excluded": false
+   "excluded": false,
+   "headword": "inamorata",
+   "relation": "synonym"
   },
   {
    "id": "WK-0085",
@@ -32928,7 +33096,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 443,
-   "excluded": false
+   "excluded": false,
+   "headword": "inconsequential",
+   "relation": "synonym"
   },
   {
    "id": "WK-0086",
@@ -32952,7 +33122,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 443,
-   "excluded": false
+   "excluded": false,
+   "headword": "debouch",
+   "relation": "synonym"
   },
   {
    "id": "WK-0087",
@@ -32976,7 +33148,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 443,
-   "excluded": false
+   "excluded": false,
+   "headword": "amateur",
+   "relation": "synonym"
   },
   {
    "id": "WK-0088",
@@ -33000,7 +33174,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 443,
-   "excluded": false
+   "excluded": false,
+   "headword": "ludic",
+   "relation": "synonym"
   },
   {
    "id": "WK-0089",
@@ -33024,7 +33200,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 444,
-   "excluded": false
+   "excluded": false,
+   "headword": "crimson",
+   "relation": "synonym"
   },
   {
    "id": "WK-0090",
@@ -33048,7 +33226,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 444,
-   "excluded": false
+   "excluded": false,
+   "headword": "benison",
+   "relation": "antonym"
   },
   {
    "id": "WK-0091",
@@ -33072,7 +33252,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 444,
-   "excluded": false
+   "excluded": false,
+   "headword": "exempt",
+   "relation": "synonym"
   },
   {
    "id": "WK-0092",
@@ -33096,7 +33278,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 444,
-   "excluded": false
+   "excluded": false,
+   "headword": "eldritch",
+   "relation": "synonym"
   },
   {
    "id": "WK-0093",
@@ -33120,7 +33304,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 444,
-   "excluded": false
+   "excluded": false,
+   "headword": "defective",
+   "relation": "synonym"
   },
   {
    "id": "WK-0094",
@@ -33144,7 +33330,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 445,
-   "excluded": false
+   "excluded": false,
+   "headword": "allot",
+   "relation": "synonym"
   },
   {
    "id": "WK-0095",
@@ -33168,7 +33356,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 445,
-   "excluded": false
+   "excluded": false,
+   "headword": "cursory",
+   "relation": "synonym"
   },
   {
    "id": "WK-0096",
@@ -33192,7 +33382,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 445,
-   "excluded": false
+   "excluded": false,
+   "headword": "arcanum",
+   "relation": "synonym"
   },
   {
    "id": "WK-0097",
@@ -33216,7 +33408,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 445,
-   "excluded": false
+   "excluded": false,
+   "headword": "terse",
+   "relation": "synonym"
   },
   {
    "id": "WK-0098",
@@ -33240,7 +33434,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 446,
-   "excluded": false
+   "excluded": false,
+   "headword": "dulcet",
+   "relation": "synonym"
   },
   {
    "id": "WK-0099",
@@ -33264,7 +33460,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 446,
-   "excluded": false
+   "excluded": false,
+   "headword": "misdemeanor",
+   "relation": "synonym"
   },
   {
    "id": "WK-0100",
@@ -33288,7 +33486,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 446,
-   "excluded": false
+   "excluded": false,
+   "headword": "embonpoint",
+   "relation": "synonym"
   },
   {
    "id": "WK-0101",
@@ -33312,7 +33512,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 446,
-   "excluded": false
+   "excluded": false,
+   "headword": "concocted",
+   "relation": "synonym"
   },
   {
    "id": "WK-0102",
@@ -33336,7 +33538,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 446,
-   "excluded": false
+   "excluded": false,
+   "headword": "chimera",
+   "relation": "synonym"
   },
   {
    "id": "WK-0103",
@@ -33360,7 +33564,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 447,
-   "excluded": false
+   "excluded": false,
+   "headword": "former",
+   "relation": "synonym"
   },
   {
    "id": "WK-0104",
@@ -33384,7 +33590,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 447,
-   "excluded": false
+   "excluded": false,
+   "headword": "mulct",
+   "relation": "synonym"
   },
   {
    "id": "WK-0105",
@@ -33408,7 +33616,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 447,
-   "excluded": false
+   "excluded": false,
+   "headword": "strident",
+   "relation": "synonym"
   },
   {
    "id": "WK-0106",
@@ -33432,7 +33642,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 447,
-   "excluded": false
+   "excluded": false,
+   "headword": "raffish",
+   "relation": "synonym"
   },
   {
    "id": "WK-0107",
@@ -33456,7 +33668,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 447,
-   "excluded": false
+   "excluded": false,
+   "headword": "abhorrent",
+   "relation": "synonym"
   },
   {
    "id": "WK-0108",
@@ -33480,7 +33694,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 448,
-   "excluded": false
+   "excluded": false,
+   "headword": "regale",
+   "relation": "synonym"
   },
   {
    "id": "WK-0109",
@@ -33504,7 +33720,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 448,
-   "excluded": false
+   "excluded": false,
+   "headword": "detritus",
+   "relation": "synonym"
   },
   {
    "id": "WK-0110",
@@ -33528,7 +33746,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 448,
-   "excluded": false
+   "excluded": false,
+   "headword": "redoubt",
+   "relation": "synonym"
   },
   {
    "id": "WK-0111",
@@ -33552,7 +33772,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 448,
-   "excluded": false
+   "excluded": false,
+   "headword": "ostracized",
+   "relation": "synonym"
   },
   {
    "id": "WK-0112",
@@ -33576,7 +33798,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 449,
-   "excluded": false
+   "excluded": false,
+   "headword": "wayworn",
+   "relation": "synonym"
   },
   {
    "id": "WK-0113",
@@ -33600,7 +33824,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 449,
-   "excluded": false
+   "excluded": false,
+   "headword": "potable",
+   "relation": "synonym"
   },
   {
    "id": "WK-0114",
@@ -33624,7 +33850,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 449,
-   "excluded": false
+   "excluded": false,
+   "headword": "umbrage",
+   "relation": "synonym"
   },
   {
    "id": "WK-0115",
@@ -33648,7 +33876,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 449,
-   "excluded": false
+   "excluded": false,
+   "headword": "vie",
+   "relation": "synonym"
   },
   {
    "id": "WK-0116",
@@ -33672,7 +33902,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 449,
-   "excluded": false
+   "excluded": false,
+   "headword": "sustenance",
+   "relation": "synonym"
   },
   {
    "id": "WK-0117",
@@ -33696,7 +33928,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 450,
-   "excluded": false
+   "excluded": false,
+   "headword": "revelation",
+   "relation": "synonym"
   },
   {
    "id": "WK-0118",
@@ -33720,7 +33954,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 450,
-   "excluded": false
+   "excluded": false,
+   "headword": "puerile",
+   "relation": "synonym"
   },
   {
    "id": "WK-0119",
@@ -33744,7 +33980,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 450,
-   "excluded": false
+   "excluded": false,
+   "headword": "nomic",
+   "relation": "synonym"
   },
   {
    "id": "WK-0120",
@@ -33768,7 +34006,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 450,
-   "excluded": false
+   "excluded": false,
+   "headword": "magnitude",
+   "relation": "synonym"
   },
   {
    "id": "WK-0121",
@@ -33792,7 +34032,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 451,
-   "excluded": false
+   "excluded": false,
+   "headword": "vapid",
+   "relation": "synonym"
   },
   {
    "id": "WK-0122",
@@ -33816,7 +34058,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 451,
-   "excluded": false
+   "excluded": false,
+   "headword": "extraneous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0123",
@@ -33840,7 +34084,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 451,
-   "excluded": false
+   "excluded": false,
+   "headword": "solicitous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0124",
@@ -33864,7 +34110,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 451,
-   "excluded": false
+   "excluded": false,
+   "headword": "limpid",
+   "relation": "synonym"
   },
   {
    "id": "WK-0125",
@@ -33888,7 +34136,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 451,
-   "excluded": false
+   "excluded": false,
+   "headword": "amity",
+   "relation": "synonym"
   },
   {
    "id": "WK-0126",
@@ -33912,7 +34162,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 452,
-   "excluded": false
+   "excluded": false,
+   "headword": "cohort",
+   "relation": "synonym"
   },
   {
    "id": "WK-0127",
@@ -33936,7 +34188,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 452,
-   "excluded": false
+   "excluded": false,
+   "headword": "lapse",
+   "relation": "synonym"
   },
   {
    "id": "WK-0128",
@@ -33960,7 +34214,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 452,
-   "excluded": false
+   "excluded": false,
+   "headword": "indigenous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0129",
@@ -33984,7 +34240,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 452,
-   "excluded": false
+   "excluded": false,
+   "headword": "illusive",
+   "relation": "synonym"
   },
   {
    "id": "WK-0130",
@@ -34008,7 +34266,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 452,
-   "excluded": false
+   "excluded": false,
+   "headword": "hesitant",
+   "relation": "synonym"
   },
   {
    "id": "WK-0131",
@@ -34032,7 +34292,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 453,
-   "excluded": false
+   "excluded": false,
+   "headword": "gravity",
+   "relation": "synonym"
   },
   {
    "id": "WK-0132",
@@ -34056,7 +34318,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 453,
-   "excluded": false
+   "excluded": false,
+   "headword": "fondle",
+   "relation": "synonym"
   },
   {
    "id": "WK-0133",
@@ -34080,7 +34344,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 453,
-   "excluded": false
+   "excluded": false,
+   "headword": "fete",
+   "relation": "synonym"
   },
   {
    "id": "WK-0134",
@@ -34104,7 +34370,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 453,
-   "excluded": false
+   "excluded": false,
+   "headword": "encore",
+   "relation": "synonym"
   },
   {
    "id": "WK-0135",
@@ -34128,7 +34396,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 454,
-   "excluded": false
+   "excluded": false,
+   "headword": "diverse",
+   "relation": "synonym"
   },
   {
    "id": "WK-0136",
@@ -34152,7 +34422,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 454,
-   "excluded": false
+   "excluded": false,
+   "headword": "detest",
+   "relation": "synonym"
   },
   {
    "id": "WK-0137",
@@ -34176,7 +34448,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 454,
-   "excluded": false
+   "excluded": false,
+   "headword": "acerbic",
+   "relation": "synonym"
   },
   {
    "id": "WK-0138",
@@ -34200,7 +34474,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 454,
-   "excluded": false
+   "excluded": false,
+   "headword": "inexorable",
+   "relation": "synonym"
   },
   {
    "id": "WK-0139",
@@ -34224,7 +34500,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 454,
-   "excluded": false
+   "excluded": false,
+   "headword": "hector",
+   "relation": "synonym"
   },
   {
    "id": "WK-0140",
@@ -34248,7 +34526,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 455,
-   "excluded": false
+   "excluded": false,
+   "headword": "gauche",
+   "relation": "synonym"
   },
   {
    "id": "WK-0141",
@@ -34272,7 +34552,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 455,
-   "excluded": false
+   "excluded": false,
+   "headword": "confident",
+   "relation": "synonym"
   },
   {
    "id": "WK-0142",
@@ -34296,7 +34578,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 455,
-   "excluded": false
+   "excluded": false,
+   "headword": "aberration",
+   "relation": "synonym"
   },
   {
    "id": "WK-0143",
@@ -34320,7 +34604,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 455,
-   "excluded": false
+   "excluded": false,
+   "headword": "opponent",
+   "relation": "synonym"
   },
   {
    "id": "WK-0144",
@@ -34344,7 +34630,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 456,
-   "excluded": false
+   "excluded": false,
+   "headword": "audacity",
+   "relation": "synonym"
   },
   {
    "id": "WK-0145",
@@ -34368,7 +34656,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 456,
-   "excluded": false
+   "excluded": false,
+   "headword": "propinquity",
+   "relation": "synonym"
   },
   {
    "id": "WK-0146",
@@ -34392,7 +34682,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 456,
-   "excluded": false
+   "excluded": false,
+   "headword": "taciturn",
+   "relation": "synonym"
   },
   {
    "id": "WK-0147",
@@ -34416,7 +34708,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 457,
-   "excluded": false
+   "excluded": false,
+   "headword": "epitome",
+   "relation": "synonym"
   },
   {
    "id": "WK-0148",
@@ -34440,7 +34734,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 457,
-   "excluded": false
+   "excluded": false,
+   "headword": "rapport",
+   "relation": "synonym"
   },
   {
    "id": "WK-0149",
@@ -34464,7 +34760,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 457,
-   "excluded": false
+   "excluded": false,
+   "headword": "guile",
+   "relation": "synonym"
   },
   {
    "id": "WK-0150",
@@ -34488,7 +34786,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 458,
-   "excluded": false
+   "excluded": false,
+   "headword": "adversity",
+   "relation": "synonym"
   },
   {
    "id": "WK-0151",
@@ -34512,7 +34812,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 458,
-   "excluded": false
+   "excluded": false,
+   "headword": "propriety",
+   "relation": "synonym"
   },
   {
    "id": "WK-0152",
@@ -34536,7 +34838,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 458,
-   "excluded": false
+   "excluded": false,
+   "headword": "variable",
+   "relation": "synonym"
   },
   {
    "id": "WK-0153",
@@ -34560,7 +34864,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 459,
-   "excluded": false
+   "excluded": false,
+   "headword": "latent",
+   "relation": "synonym"
   },
   {
    "id": "WK-0154",
@@ -34584,7 +34890,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 459,
-   "excluded": false
+   "excluded": false,
+   "headword": "obscurity",
+   "relation": "synonym"
   },
   {
    "id": "WK-0155",
@@ -34608,7 +34916,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 459,
-   "excluded": false
+   "excluded": false,
+   "headword": "enigma",
+   "relation": "synonym"
   },
   {
    "id": "WK-0156",
@@ -34632,7 +34942,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 459,
-   "excluded": false
+   "excluded": false,
+   "headword": "comprehension",
+   "relation": "synonym"
   },
   {
    "id": "WK-0157",
@@ -34656,7 +34968,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 460,
-   "excluded": false
+   "excluded": false,
+   "headword": "flaunt",
+   "relation": "synonym"
   },
   {
    "id": "WK-0158",
@@ -34680,7 +34994,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 460,
-   "excluded": false
+   "excluded": false,
+   "headword": "catastrophe",
+   "relation": "synonym"
   },
   {
    "id": "WK-0159",
@@ -34704,7 +35020,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 460,
-   "excluded": false
+   "excluded": false,
+   "headword": "foment",
+   "relation": "synonym"
   },
   {
    "id": "WK-0160",
@@ -34728,7 +35046,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 461,
-   "excluded": false
+   "excluded": false,
+   "headword": "insipid",
+   "relation": "synonym"
   },
   {
    "id": "WK-0161",
@@ -34752,7 +35072,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 461,
-   "excluded": false
+   "excluded": false,
+   "headword": "recalcitrant",
+   "relation": "synonym"
   },
   {
    "id": "WK-0162",
@@ -34776,7 +35098,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 461,
-   "excluded": false
+   "excluded": false,
+   "headword": "legacy",
+   "relation": "synonym"
   },
   {
    "id": "WK-0163",
@@ -34800,7 +35124,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 462,
-   "excluded": false
+   "excluded": false,
+   "headword": "indispensable",
+   "relation": "synonym"
   },
   {
    "id": "WK-0164",
@@ -34824,7 +35150,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 462,
-   "excluded": false
+   "excluded": false,
+   "headword": "lethargy",
+   "relation": "synonym"
   },
   {
    "id": "WK-0165",
@@ -34848,7 +35176,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 462,
-   "excluded": false
+   "excluded": false,
+   "headword": "assuage",
+   "relation": "synonym"
   },
   {
    "id": "WK-0166",
@@ -34872,7 +35202,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 463,
-   "excluded": false
+   "excluded": false,
+   "headword": "vacillate",
+   "relation": "synonym"
   },
   {
    "id": "WK-0167",
@@ -34896,7 +35228,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 463,
-   "excluded": false
+   "excluded": false,
+   "headword": "retract",
+   "relation": "synonym"
   },
   {
    "id": "WK-0168",
@@ -34920,7 +35254,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 463,
-   "excluded": false
+   "excluded": false,
+   "headword": "tedious",
+   "relation": "synonym"
   },
   {
    "id": "WK-0169",
@@ -34944,7 +35280,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 463,
-   "excluded": false
+   "excluded": false,
+   "headword": "temperate",
+   "relation": "synonym"
   },
   {
    "id": "WK-0170",
@@ -34968,7 +35306,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 464,
-   "excluded": false
+   "excluded": false,
+   "headword": "censure",
+   "relation": "synonym"
   },
   {
    "id": "WK-0171",
@@ -34992,7 +35332,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 464,
-   "excluded": false
+   "excluded": false,
+   "headword": "desecrate",
+   "relation": "synonym"
   },
   {
    "id": "WK-0172",
@@ -35016,7 +35358,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 464,
-   "excluded": false
+   "excluded": false,
+   "headword": "panacea",
+   "relation": "synonym"
   },
   {
    "id": "WK-0173",
@@ -35040,7 +35384,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 465,
-   "excluded": false
+   "excluded": false,
+   "headword": "rejoinder",
+   "relation": "synonym"
   },
   {
    "id": "WK-0174",
@@ -35064,7 +35410,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 465,
-   "excluded": false
+   "excluded": false,
+   "headword": "clandestine",
+   "relation": "synonym"
   },
   {
    "id": "WK-0175",
@@ -35088,7 +35436,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 465,
-   "excluded": false
+   "excluded": false,
+   "headword": "benevolent",
+   "relation": "synonym"
   },
   {
    "id": "WK-0176",
@@ -35112,7 +35462,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 466,
-   "excluded": false
+   "excluded": false,
+   "headword": "poseur",
+   "relation": "synonym"
   },
   {
    "id": "WK-0177",
@@ -35136,7 +35488,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 466,
-   "excluded": false
+   "excluded": false,
+   "headword": "pinnacle",
+   "relation": "synonym"
   },
   {
    "id": "WK-0178",
@@ -35160,7 +35514,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 466,
-   "excluded": false
+   "excluded": false,
+   "headword": "brawl",
+   "relation": "synonym"
   },
   {
    "id": "WK-0179",
@@ -35184,7 +35540,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 466,
-   "excluded": false
+   "excluded": false,
+   "headword": "pauper",
+   "relation": "synonym"
   },
   {
    "id": "WK-0180",
@@ -35208,7 +35566,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 467,
-   "excluded": false
+   "excluded": false,
+   "headword": "punctual",
+   "relation": "synonym"
   },
   {
    "id": "WK-0181",
@@ -35232,7 +35592,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 467,
-   "excluded": false
+   "excluded": false,
+   "headword": "segment",
+   "relation": "synonym"
   },
   {
    "id": "WK-0182",
@@ -35256,7 +35618,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 467,
-   "excluded": false
+   "excluded": false,
+   "headword": "revere",
+   "relation": "synonym"
   },
   {
    "id": "WK-0183",
@@ -35280,7 +35644,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 468,
-   "excluded": false
+   "excluded": false,
+   "headword": "brevity",
+   "relation": "synonym"
   },
   {
    "id": "WK-0184",
@@ -35304,7 +35670,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 468,
-   "excluded": false
+   "excluded": false,
+   "headword": "illogical",
+   "relation": "synonym"
   },
   {
    "id": "WK-0185",
@@ -35328,7 +35696,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 468,
-   "excluded": false
+   "excluded": false,
+   "headword": "excerpt",
+   "relation": "synonym"
   },
   {
    "id": "WK-0186",
@@ -35352,7 +35722,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 468,
-   "excluded": false
+   "excluded": false,
+   "headword": "sheen",
+   "relation": "synonym"
   },
   {
    "id": "WK-0187",
@@ -35376,7 +35748,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 469,
-   "excluded": false
+   "excluded": false,
+   "headword": "divulge",
+   "relation": "synonym"
   },
   {
    "id": "WK-0188",
@@ -35400,7 +35774,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 469,
-   "excluded": false
+   "excluded": false,
+   "headword": "cite",
+   "relation": "synonym"
   },
   {
    "id": "WK-0189",
@@ -35424,7 +35800,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 469,
-   "excluded": false
+   "excluded": false,
+   "headword": "allay",
+   "relation": "synonym"
   },
   {
    "id": "WK-0190",
@@ -35448,7 +35826,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 469,
-   "excluded": false
+   "excluded": false,
+   "headword": "vitality",
+   "relation": "synonym"
   },
   {
    "id": "WK-0191",
@@ -35472,7 +35852,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 470,
-   "excluded": false
+   "excluded": false,
+   "headword": "defer",
+   "relation": "synonym"
   },
   {
    "id": "WK-0192",
@@ -35496,7 +35878,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 470,
-   "excluded": false
+   "excluded": false,
+   "headword": "deplore",
+   "relation": "synonym"
   },
   {
    "id": "WK-0193",
@@ -35520,7 +35904,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 470,
-   "excluded": false
+   "excluded": false,
+   "headword": "concur",
+   "relation": "synonym"
   },
   {
    "id": "WK-0194",
@@ -35544,7 +35930,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 471,
-   "excluded": false
+   "excluded": false,
+   "headword": "refute",
+   "relation": "synonym"
   },
   {
    "id": "WK-0195",
@@ -35568,7 +35956,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 471,
-   "excluded": false
+   "excluded": false,
+   "headword": "copious",
+   "relation": "synonym"
   },
   {
    "id": "WK-0196",
@@ -35592,7 +35982,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 471,
-   "excluded": false
+   "excluded": false,
+   "headword": "credulous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0197",
@@ -35616,7 +36008,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 471,
-   "excluded": false
+   "excluded": false,
+   "headword": "random",
+   "relation": "synonym"
   },
   {
    "id": "WK-0198",
@@ -35640,7 +36034,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 472,
-   "excluded": false
+   "excluded": false,
+   "headword": "salient",
+   "relation": "synonym"
   },
   {
    "id": "WK-0199",
@@ -35664,7 +36060,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 472,
-   "excluded": false
+   "excluded": false,
+   "headword": "tangible",
+   "relation": "synonym"
   },
   {
    "id": "WK-0200",
@@ -35688,7 +36086,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 472,
-   "excluded": false
+   "excluded": false,
+   "headword": "residue",
+   "relation": "synonym"
   },
   {
    "id": "WK-0201",
@@ -35712,7 +36112,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 472,
-   "excluded": false
+   "excluded": false,
+   "headword": "catastrophe",
+   "relation": "synonym"
   },
   {
    "id": "WK-0202",
@@ -35736,7 +36138,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 473,
-   "excluded": false
+   "excluded": false,
+   "headword": "diagnosis",
+   "relation": "synonym"
   },
   {
    "id": "WK-0203",
@@ -35760,7 +36164,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 473,
-   "excluded": false
+   "excluded": false,
+   "headword": "quandary",
+   "relation": "synonym"
   },
   {
    "id": "WK-0204",
@@ -35784,7 +36190,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 473,
-   "excluded": false
+   "excluded": false,
+   "headword": "stilted",
+   "relation": "synonym"
   },
   {
    "id": "WK-0205",
@@ -35808,7 +36216,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 474,
-   "excluded": false
+   "excluded": false,
+   "headword": "encroach",
+   "relation": "synonym"
   },
   {
    "id": "WK-0206",
@@ -35832,7 +36242,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 474,
-   "excluded": false
+   "excluded": false,
+   "headword": "deter",
+   "relation": "synonym"
   },
   {
    "id": "WK-0207",
@@ -35856,7 +36268,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 474,
-   "excluded": false
+   "excluded": false,
+   "headword": "falter",
+   "relation": "synonym"
   },
   {
    "id": "WK-0208",
@@ -35880,7 +36294,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 474,
-   "excluded": false
+   "excluded": false,
+   "headword": "meager",
+   "relation": "synonym"
   },
   {
    "id": "WK-0209",
@@ -35904,7 +36320,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 475,
-   "excluded": false
+   "excluded": false,
+   "headword": "stifle",
+   "relation": "synonym"
   },
   {
    "id": "WK-0210",
@@ -35928,7 +36346,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 475,
-   "excluded": false
+   "excluded": false,
+   "headword": "dearth",
+   "relation": "synonym"
   },
   {
    "id": "WK-0211",
@@ -35952,7 +36372,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 475,
-   "excluded": false
+   "excluded": false,
+   "headword": "menial",
+   "relation": "synonym"
   },
   {
    "id": "WK-0212",
@@ -35976,7 +36398,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 476,
-   "excluded": false
+   "excluded": false,
+   "headword": "emulate",
+   "relation": "synonym"
   },
   {
    "id": "WK-0213",
@@ -36000,7 +36424,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 476,
-   "excluded": false
+   "excluded": false,
+   "headword": "scrupulous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0214",
@@ -36024,7 +36450,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 476,
-   "excluded": false
+   "excluded": false,
+   "headword": "archaic",
+   "relation": "synonym"
   },
   {
    "id": "WK-0215",
@@ -36048,7 +36476,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 476,
-   "excluded": false
+   "excluded": false,
+   "headword": "obstinate",
+   "relation": "synonym"
   },
   {
    "id": "WK-0216",
@@ -36072,7 +36502,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 477,
-   "excluded": false
+   "excluded": false,
+   "headword": "intermittent",
+   "relation": "synonym"
   },
   {
    "id": "WK-0217",
@@ -36096,7 +36528,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 477,
-   "excluded": false
+   "excluded": false,
+   "headword": "however",
+   "relation": "synonym"
   },
   {
    "id": "WK-0218",
@@ -36120,7 +36554,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 477,
-   "excluded": false
+   "excluded": false,
+   "headword": "negligible",
+   "relation": "synonym"
   },
   {
    "id": "WK-0219",
@@ -36144,7 +36580,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 477,
-   "excluded": false
+   "excluded": false,
+   "headword": "vigilant",
+   "relation": "synonym"
   },
   {
    "id": "WK-0220",
@@ -36168,7 +36606,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 478,
-   "excluded": false
+   "excluded": false,
+   "headword": "incredulous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0221",
@@ -36192,7 +36632,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 478,
-   "excluded": false
+   "excluded": false,
+   "headword": "unique",
+   "relation": "synonym"
   },
   {
    "id": "WK-0222",
@@ -36216,7 +36658,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 478,
-   "excluded": false
+   "excluded": false,
+   "headword": "ameliorate",
+   "relation": "synonym"
   },
   {
    "id": "WK-0223",
@@ -36240,7 +36684,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 479,
-   "excluded": false
+   "excluded": false,
+   "headword": "perseverance",
+   "relation": "synonym"
   },
   {
    "id": "WK-0224",
@@ -36264,7 +36710,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 479,
-   "excluded": false
+   "excluded": false,
+   "headword": "accountable",
+   "relation": "synonym"
   },
   {
    "id": "WK-0225",
@@ -36288,7 +36736,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 479,
-   "excluded": false
+   "excluded": false,
+   "headword": "unanimously",
+   "relation": "synonym"
   },
   {
    "id": "WK-0226",
@@ -36312,7 +36762,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 479,
-   "excluded": false
+   "excluded": false,
+   "headword": "contemptuous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0227",
@@ -36336,7 +36788,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 480,
-   "excluded": false
+   "excluded": false,
+   "headword": "deceive",
+   "relation": "synonym"
   },
   {
    "id": "WK-0228",
@@ -36360,7 +36814,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 480,
-   "excluded": false
+   "excluded": false,
+   "headword": "resigned",
+   "relation": "synonym"
   },
   {
    "id": "WK-0229",
@@ -36384,7 +36840,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 480,
-   "excluded": false
+   "excluded": false,
+   "headword": "philanthropy",
+   "relation": "synonym"
   },
   {
    "id": "WK-0230",
@@ -36408,7 +36866,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 480,
-   "excluded": false
+   "excluded": false,
+   "headword": "nondescript",
+   "relation": "synonym"
   },
   {
    "id": "WK-0231",
@@ -36432,7 +36892,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 481,
-   "excluded": false
+   "excluded": false,
+   "headword": "synthesize",
+   "relation": "synonym"
   },
   {
    "id": "WK-0232",
@@ -36456,7 +36918,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 481,
-   "excluded": false
+   "excluded": false,
+   "headword": "fragility",
+   "relation": "synonym"
   },
   {
    "id": "WK-0233",
@@ -36480,7 +36944,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 481,
-   "excluded": false
+   "excluded": false,
+   "headword": "dossier",
+   "relation": "synonym"
   },
   {
    "id": "WK-0234",
@@ -36504,7 +36970,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 481,
-   "excluded": false
+   "excluded": false,
+   "headword": "meticulous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0235",
@@ -36528,7 +36996,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 482,
-   "excluded": false
+   "excluded": false,
+   "headword": "vitalize",
+   "relation": "antonym"
   },
   {
    "id": "WK-0236",
@@ -36552,7 +37022,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 482,
-   "excluded": false
+   "excluded": false,
+   "headword": "sanctioned",
+   "relation": "synonym"
   },
   {
    "id": "WK-0237",
@@ -36576,7 +37048,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 482,
-   "excluded": false
+   "excluded": false,
+   "headword": "retract",
+   "relation": "synonym"
   },
   {
    "id": "WK-0238",
@@ -36600,7 +37074,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 482,
-   "excluded": false
+   "excluded": false,
+   "headword": "allusive",
+   "relation": "synonym"
   },
   {
    "id": "WK-0239",
@@ -36624,7 +37100,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 482,
-   "excluded": false
+   "excluded": false,
+   "headword": "bigotry",
+   "relation": "antonym"
   },
   {
    "id": "WK-0240",
@@ -36648,7 +37126,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 483,
-   "excluded": false
+   "excluded": false,
+   "headword": "advocacy",
+   "relation": "synonym"
   },
   {
    "id": "WK-0241",
@@ -36672,7 +37152,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 483,
-   "excluded": false
+   "excluded": false,
+   "headword": "adobe",
+   "relation": "synonym"
   },
   {
    "id": "WK-0242",
@@ -36696,7 +37178,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 483,
-   "excluded": false
+   "excluded": false,
+   "headword": "nullify",
+   "relation": "synonym"
   },
   {
    "id": "WK-0243",
@@ -36720,7 +37204,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 483,
-   "excluded": false
+   "excluded": false,
+   "headword": "restitution",
+   "relation": "synonym"
   },
   {
    "id": "WK-0244",
@@ -36744,7 +37230,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 484,
-   "excluded": false
+   "excluded": false,
+   "headword": "perforate",
+   "relation": "synonym"
   },
   {
    "id": "WK-0245",
@@ -36768,7 +37256,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 484,
-   "excluded": false
+   "excluded": false,
+   "headword": "demurral",
+   "relation": "synonym"
   },
   {
    "id": "WK-0246",
@@ -36792,7 +37282,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 484,
-   "excluded": false
+   "excluded": false,
+   "headword": "crevasse",
+   "relation": "synonym"
   },
   {
    "id": "WK-0247",
@@ -36816,7 +37308,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 484,
-   "excluded": false
+   "excluded": false,
+   "headword": "intrinsic",
+   "relation": "synonym"
   },
   {
    "id": "WK-0248",
@@ -36840,7 +37334,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 484,
-   "excluded": false
+   "excluded": false,
+   "headword": "predisposed",
+   "relation": "synonym"
   },
   {
    "id": "WK-0249",
@@ -36864,7 +37360,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 485,
-   "excluded": false
+   "excluded": false,
+   "headword": "insignia",
+   "relation": "synonym"
   },
   {
    "id": "WK-0250",
@@ -36888,7 +37386,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 485,
-   "excluded": false
+   "excluded": false,
+   "headword": "quiescence",
+   "relation": "synonym"
   },
   {
    "id": "WK-0251",
@@ -36912,7 +37412,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 485,
-   "excluded": false
+   "excluded": false,
+   "headword": "stalwart",
+   "relation": "synonym"
   },
   {
    "id": "WK-0252",
@@ -36936,7 +37438,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 485,
-   "excluded": false
+   "excluded": false,
+   "headword": "circumvent",
+   "relation": "synonym"
   },
   {
    "id": "WK-0253",
@@ -36960,7 +37464,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 486,
-   "excluded": false
+   "excluded": false,
+   "headword": "eminent",
+   "relation": "synonym"
   },
   {
    "id": "WK-0254",
@@ -36984,7 +37490,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 486,
-   "excluded": false
+   "excluded": false,
+   "headword": "pliable",
+   "relation": "synonym"
   },
   {
    "id": "WK-0255",
@@ -37008,7 +37516,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 486,
-   "excluded": false
+   "excluded": false,
+   "headword": "conversant",
+   "relation": "synonym"
   },
   {
    "id": "WK-0256",
@@ -37032,7 +37542,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 486,
-   "excluded": false
+   "excluded": false,
+   "headword": "clemency",
+   "relation": "synonym"
   },
   {
    "id": "WK-0257",
@@ -37056,7 +37568,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 486,
-   "excluded": false
+   "excluded": false,
+   "headword": "abundant",
+   "relation": "synonym"
   },
   {
    "id": "WK-0258",
@@ -37080,7 +37594,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 487,
-   "excluded": false
+   "excluded": false,
+   "headword": "purblindly",
+   "relation": "synonym"
   },
   {
    "id": "WK-0259",
@@ -37104,7 +37620,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 487,
-   "excluded": false
+   "excluded": false,
+   "headword": "contemplate",
+   "relation": "synonym"
   },
   {
    "id": "WK-0260",
@@ -37128,7 +37646,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 487,
-   "excluded": false
+   "excluded": false,
+   "headword": "luster",
+   "relation": "synonym"
   },
   {
    "id": "WK-0261",
@@ -37152,7 +37672,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 487,
-   "excluded": false
+   "excluded": false,
+   "headword": "amalgamation",
+   "relation": "synonym"
   },
   {
    "id": "WK-0262",
@@ -37176,7 +37698,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 488,
-   "excluded": false
+   "excluded": false,
+   "headword": "concoct",
+   "relation": "synonym"
   },
   {
    "id": "WK-0263",
@@ -37200,7 +37724,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 488,
-   "excluded": false
+   "excluded": false,
+   "headword": "savory",
+   "relation": "synonym"
   },
   {
    "id": "WK-0264",
@@ -37224,7 +37750,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 488,
-   "excluded": false
+   "excluded": false,
+   "headword": "bivouac",
+   "relation": "synonym"
   },
   {
    "id": "WK-0265",
@@ -37248,7 +37776,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 488,
-   "excluded": false
+   "excluded": false,
+   "headword": "terse",
+   "relation": "synonym"
   },
   {
    "id": "WK-0266",
@@ -37272,7 +37802,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 489,
-   "excluded": false
+   "excluded": false,
+   "headword": "dissolution",
+   "relation": "synonym"
   },
   {
    "id": "WK-0267",
@@ -37296,7 +37828,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 489,
-   "excluded": false
+   "excluded": false,
+   "headword": "commiserated",
+   "relation": "synonym"
   },
   {
    "id": "WK-0268",
@@ -37320,7 +37854,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 489,
-   "excluded": false
+   "excluded": false,
+   "headword": "staunch",
+   "relation": "synonym"
   },
   {
    "id": "WK-0269",
@@ -37344,7 +37880,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 489,
-   "excluded": false
+   "excluded": false,
+   "headword": "impediment",
+   "relation": "synonym"
   },
   {
    "id": "WK-0270",
@@ -37368,7 +37906,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 489,
-   "excluded": false
+   "excluded": false,
+   "headword": "commentator",
+   "relation": "synonym"
   },
   {
    "id": "WK-0271",
@@ -37392,7 +37932,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 490,
-   "excluded": false
+   "excluded": false,
+   "headword": "lounged",
+   "relation": "synonym"
   },
   {
    "id": "WK-0272",
@@ -37416,7 +37958,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 490,
-   "excluded": false
+   "excluded": false,
+   "headword": "concealed",
+   "relation": "synonym"
   },
   {
    "id": "WK-0273",
@@ -37440,7 +37984,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 490,
-   "excluded": false
+   "excluded": false,
+   "headword": "veracity",
+   "relation": "synonym"
   },
   {
    "id": "WK-0274",
@@ -37464,7 +38010,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 490,
-   "excluded": false
+   "excluded": false,
+   "headword": "horrendous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0275",
@@ -37488,7 +38036,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 491,
-   "excluded": false
+   "excluded": false,
+   "headword": "sorority",
+   "relation": "synonym"
   },
   {
    "id": "WK-0276",
@@ -37512,7 +38062,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 491,
-   "excluded": false
+   "excluded": false,
+   "headword": "naive",
+   "relation": "synonym"
   },
   {
    "id": "WK-0277",
@@ -37536,7 +38088,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 491,
-   "excluded": false
+   "excluded": false,
+   "headword": "sequester",
+   "relation": "synonym"
   },
   {
    "id": "WK-0278",
@@ -37560,7 +38114,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 491,
-   "excluded": false
+   "excluded": false,
+   "headword": "hankering",
+   "relation": "synonym"
   },
   {
    "id": "WK-0279",
@@ -37584,7 +38140,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 492,
-   "excluded": false
+   "excluded": false,
+   "headword": "commenced",
+   "relation": "synonym"
   },
   {
    "id": "WK-0280",
@@ -37608,7 +38166,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 492,
-   "excluded": false
+   "excluded": false,
+   "headword": "stogged",
+   "relation": "synonym"
   },
   {
    "id": "WK-0281",
@@ -37632,7 +38192,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 492,
-   "excluded": false
+   "excluded": false,
+   "headword": "bounteous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0282",
@@ -37656,7 +38218,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 492,
-   "excluded": false
+   "excluded": false,
+   "headword": "drudgery",
+   "relation": "synonym"
   },
   {
    "id": "WK-0283",
@@ -37680,7 +38244,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 493,
-   "excluded": false
+   "excluded": false,
+   "headword": "fecund",
+   "relation": "synonym"
   },
   {
    "id": "WK-0284",
@@ -37704,7 +38270,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 493,
-   "excluded": false
+   "excluded": false,
+   "headword": "verdant",
+   "relation": "synonym"
   },
   {
    "id": "WK-0285",
@@ -37728,7 +38296,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 493,
-   "excluded": false
+   "excluded": false,
+   "headword": "timorous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0286",
@@ -37752,7 +38322,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 493,
-   "excluded": false
+   "excluded": false,
+   "headword": "bloviate",
+   "relation": "synonym"
   },
   {
    "id": "WK-0287",
@@ -37776,7 +38348,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 493,
-   "excluded": false
+   "excluded": false,
+   "headword": "verisimilitude",
+   "relation": "synonym"
   },
   {
    "id": "WK-0288",
@@ -37800,7 +38374,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 494,
-   "excluded": false
+   "excluded": false,
+   "headword": "vacuous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0289",
@@ -37824,7 +38400,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 494,
-   "excluded": false
+   "excluded": false,
+   "headword": "tumescent",
+   "relation": "synonym"
   },
   {
    "id": "WK-0290",
@@ -37848,7 +38426,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 494,
-   "excluded": false
+   "excluded": false,
+   "headword": "venerable",
+   "relation": "antonym"
   },
   {
    "id": "WK-0291",
@@ -37872,7 +38452,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 494,
-   "excluded": false
+   "excluded": false,
+   "headword": "acquiescence",
+   "relation": "synonym"
   },
   {
    "id": "WK-0292",
@@ -37896,7 +38478,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 494,
-   "excluded": false
+   "excluded": false,
+   "headword": "effulgence",
+   "relation": "synonym"
   },
   {
    "id": "WK-0293",
@@ -37920,7 +38504,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 495,
-   "excluded": false
+   "excluded": false,
+   "headword": "fervor",
+   "relation": "antonym"
   },
   {
    "id": "WK-0294",
@@ -37944,7 +38530,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 495,
-   "excluded": false
+   "excluded": false,
+   "headword": "neophyte",
+   "relation": "synonym"
   },
   {
    "id": "WK-0295",
@@ -37968,7 +38556,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 495,
-   "excluded": false
+   "excluded": false,
+   "headword": "perjure",
+   "relation": "synonym"
   },
   {
    "id": "WK-0296",
@@ -37992,7 +38582,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 495,
-   "excluded": false
+   "excluded": false,
+   "headword": "ponderous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0297",
@@ -38016,7 +38608,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 496,
-   "excluded": false
+   "excluded": false,
+   "headword": "sapience",
+   "relation": "synonym"
   },
   {
    "id": "WK-0298",
@@ -38040,7 +38634,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 496,
-   "excluded": false
+   "excluded": false,
+   "headword": "tableau",
+   "relation": "synonym"
   },
   {
    "id": "WK-0299",
@@ -38064,7 +38660,9 @@
    "difficulty": 5,
    "flags": [],
    "page": 496,
-   "excluded": false
+   "excluded": false,
+   "headword": "valorous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0300",
@@ -38088,7 +38686,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 496,
-   "excluded": false
+   "excluded": false,
+   "headword": "winsome",
+   "relation": "synonym"
   },
   {
    "id": "WK-0301",
@@ -38112,7 +38712,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 496,
-   "excluded": false
+   "excluded": false,
+   "headword": "prosaic",
+   "relation": "synonym"
   },
   {
    "id": "WK-0302",
@@ -38136,7 +38738,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 497,
-   "excluded": false
+   "excluded": false,
+   "headword": "obtrude",
+   "relation": "synonym"
   },
   {
    "id": "WK-0303",
@@ -38160,7 +38764,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 497,
-   "excluded": false
+   "excluded": false,
+   "headword": "mollify",
+   "relation": "synonym"
   },
   {
    "id": "WK-0304",
@@ -38184,7 +38790,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 497,
-   "excluded": false
+   "excluded": false,
+   "headword": "viscous",
+   "relation": "synonym"
   },
   {
    "id": "WK-0305",
@@ -38208,7 +38816,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 497,
-   "excluded": false
+   "excluded": false,
+   "headword": "ensconce",
+   "relation": "synonym"
   },
   {
    "id": "WK-0306",
@@ -38232,7 +38842,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 498,
-   "excluded": false
+   "excluded": false,
+   "headword": "abate",
+   "relation": "synonym"
   },
   {
    "id": "WK-0307",
@@ -38256,7 +38868,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 498,
-   "excluded": false
+   "excluded": false,
+   "headword": "brevity",
+   "relation": "synonym"
   },
   {
    "id": "WK-0308",
@@ -38280,7 +38894,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 498,
-   "excluded": false
+   "excluded": false,
+   "headword": "culpable",
+   "relation": "synonym"
   },
   {
    "id": "WK-0309",
@@ -38304,7 +38920,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 498,
-   "excluded": false
+   "excluded": false,
+   "headword": "derelict",
+   "relation": "synonym"
   },
   {
    "id": "WK-0310",
@@ -38328,7 +38946,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 499,
-   "excluded": false
+   "excluded": false,
+   "headword": "gregarious",
+   "relation": "synonym"
   },
   {
    "id": "WK-0311",
@@ -38352,7 +38972,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 499,
-   "excluded": false
+   "excluded": false,
+   "headword": "opulent",
+   "relation": "synonym"
   },
   {
    "id": "WK-0312",
@@ -38376,7 +38998,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 499,
-   "excluded": false
+   "excluded": false,
+   "headword": "pensive",
+   "relation": "synonym"
   },
   {
    "id": "WK-0313",
@@ -38400,7 +39024,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 499,
-   "excluded": false
+   "excluded": false,
+   "headword": "placate",
+   "relation": "synonym"
   },
   {
    "id": "WK-0314",
@@ -38424,7 +39050,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 500,
-   "excluded": false
+   "excluded": false,
+   "headword": "rebuke",
+   "relation": "synonym"
   },
   {
    "id": "WK-0315",
@@ -38448,7 +39076,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 500,
-   "excluded": false
+   "excluded": false,
+   "headword": "succinct",
+   "relation": "synonym"
   },
   {
    "id": "WK-0316",
@@ -38472,7 +39102,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 500,
-   "excluded": false
+   "excluded": false,
+   "headword": "amicable",
+   "relation": "synonym"
   },
   {
    "id": "WK-0317",
@@ -38496,7 +39128,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 501,
-   "excluded": false
+   "excluded": false,
+   "headword": "mundane",
+   "relation": "synonym"
   },
   {
    "id": "WK-0318",
@@ -38520,7 +39154,9 @@
    "difficulty": 2,
    "flags": [],
    "page": 501,
-   "excluded": false
+   "excluded": false,
+   "headword": "parity",
+   "relation": "synonym"
   },
   {
    "id": "WK-0319",
@@ -38544,7 +39180,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 501,
-   "excluded": false
+   "excluded": false,
+   "headword": "placid",
+   "relation": "synonym"
   },
   {
    "id": "WK-0320",
@@ -38568,7 +39206,9 @@
    "difficulty": 1,
    "flags": [],
    "page": 501,
-   "excluded": false
+   "excluded": false,
+   "headword": "rescind",
+   "relation": "synonym"
   },
   {
    "id": "WK-0321",
@@ -38592,7 +39232,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 502,
-   "excluded": false
+   "excluded": false,
+   "headword": "tangible",
+   "relation": "synonym"
   },
   {
    "id": "WK-0322",
@@ -38616,7 +39258,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 502,
-   "excluded": false
+   "excluded": false,
+   "headword": "venerate",
+   "relation": "synonym"
   },
   {
    "id": "WK-0323",
@@ -38640,7 +39284,9 @@
    "difficulty": 4,
    "flags": [],
    "page": 502,
-   "excluded": false
+   "excluded": false,
+   "headword": "chronic",
+   "relation": "synonym"
   },
   {
    "id": "WK-0324",
@@ -38664,7 +39310,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 503,
-   "excluded": false
+   "excluded": false,
+   "headword": "indefatigable",
+   "relation": "synonym"
   },
   {
    "id": "WK-0325",
@@ -38688,7 +39336,9 @@
    "difficulty": 3,
    "flags": [],
    "page": 503,
-   "excluded": false
+   "excluded": false,
+   "headword": "precocious",
+   "relation": "synonym"
   },
   {
    "id": "MC-0001",

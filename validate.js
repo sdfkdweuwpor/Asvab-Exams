@@ -567,6 +567,77 @@ head('Work On ranking');
     : fail('workon', 'a weak AR topic scored no leverage');
 }
 
+// ------------------------------------------------------------ word mastery
+head('Word mastery');
+{
+  const M = require('./js/core/mastery.js');
+  const bankdata = require('./js/core/bankdata.js');
+  const itemsMod = require('./js/core/items.js');
+  bankdata.ensure(['WK'], () => { });
+  const wk = bankdata.forSubtest('WK');
+
+  // Every WK item names its word, and the stem shows it in bold.
+  let unmarked = 0;
+  wk.forEach(r => {
+    const it = itemsMod.render(r, 0);
+    if (!r.headword || it.stem.toLowerCase().indexOf('<b>' + r.headword.toLowerCase() + '</b>') < 0) {
+      unmarked++; fail('words', r.id + ' has no headword marked in its stem');
+    }
+  });
+  if (!unmarked) pass('words', wk.length + ' WK items name their word and show it in bold');
+
+  // Two right in a row masters; a miss resets the run.
+  let r = null;
+  r = M.apply(r, true);
+  const half = M.status(r);
+  r = M.apply(r, true);
+  const full = M.status(r);
+  r = M.apply(r, false);
+  const after = M.status(r);
+  half === 'learning' && full === 'mastered' && after === 'missed' && r.n === 3 && r.c === 2 && r.m === 1
+    ? pass('words', 'right, right masters a word; a miss sends it back to missed')
+    : fail('words', 'mastery transitions wrong: ' + [half, full, after].join(' -> '));
+  M.status(M.apply(M.apply(null, false), true)) === 'learning'
+    ? pass('words', 'a word missed then got right is halfway, not mastered')
+    : fail('words', 'a miss then a hit should not master a word');
+
+  // Rounds: missed first, then halfway, then new; mastered only on review.
+  const ids = ['a', 'b', 'c', 'd', 'e', 'f'];
+  const recs = {
+    a: { s: 2, n: 2, c: 2, m: 0 }, b: { s: 0, n: 1, c: 0, m: 1 },
+    c: { s: 1, n: 1, c: 1, m: 0 }, f: { s: 0, n: 3, c: 1, m: 2 }
+  };
+  const round = M.pickRound(ids, recs, 0, rng.make(5));
+  const rank = { missed: 0, learning: 1, 'new': 2 };
+  const ordered = round.every((id, i) => i === 0 || rank[M.status(recs[id])] >= rank[M.status(recs[round[i - 1]])]);
+  ordered && round.length === 5 && round.indexOf('a') < 0
+    ? pass('words', 'a round runs missed, then halfway, then new, and skips mastered words')
+    : fail('words', 'round order wrong: ' + round.join(','));
+  M.pickRound(ids, recs, 2, rng.make(5)).every(id => M.status(recs[id]) === 'missed')
+    ? pass('words', 'a short round is filled from missed words first')
+    : fail('words', 'a short round skipped missed words');
+  const rev = M.pickRound(ids, recs, 0, rng.make(5), { review: true });
+  rev.length === 1 && rev[0] === 'a' ? pass('words', 'a review round holds only mastered words')
+    : fail('words', 'review round held ' + rev.join(','));
+  M.reaskAt(0, 10) === 4 && M.reaskAt(8, 10) === 10
+    ? pass('words', 'a missed word comes back ' + M.REASK_GAP + ' cards later, or at the end')
+    : fail('words', 'reaskAt misplaces a missed word');
+
+  // Backups carry word progress, and an older backup never rolls it back.
+  const state = require('./js/core/state.js');
+  state.reset();
+  state.setWordRecord('WK-0001', { s: 2, n: 2, c: 2, m: 0, l: '2026-02-01T00:00:00Z' });
+  const exported = JSON.parse(state.exportJSON());
+  exported.data.words['WK-0001'] = { s: 0, n: 1, c: 0, m: 1, l: '2026-01-01T00:00:00Z' };
+  exported.data.words['WK-0002'] = { s: 1, n: 1, c: 1, m: 0, l: '2026-01-01T00:00:00Z' };
+  state.importJSON(JSON.stringify(exported), 'merge');
+  const w = state.wordRecords();
+  w['WK-0001'].s === 2 && w['WK-0002'] && w['WK-0002'].s === 1
+    ? pass('words', 'import merges word progress and keeps the newer record per word')
+    : fail('words', 'word progress import merge is wrong');
+  state.reset();
+}
+
 // ---------------------------------------------------------------- summary
 console.log('\n' + '-'.repeat(64));
 console.log(failures === 0

@@ -21,6 +21,8 @@
     { re: /^\/lesson\/(.+)$/, view: function (id) { return A.lessons.detail(id); }, title: 'Lesson', tab: '/lessons', back: '#/lessons' },
     { re: /^\/progress$/, view: progressView, title: 'Progress', tab: '/progress' },
     { re: /^\/data$/, view: dataView, title: 'Your data', tab: '/data' },
+    { re: /^\/words$/, view: function () { return A.words.dashboard(); }, title: 'Word mastery', tab: '/', back: '#/' },
+    { re: /^\/words\/play$/, view: function () { return A.words.play(); }, title: 'Word mastery', tab: null, back: '#/words' },
     { re: /^\/formats$/, view: formatsView, title: 'Exam format', tab: '/', back: '#/start' },
     { re: /^\/settings$/, view: settingsView, title: 'Settings', tab: '/', back: '#/' }
   ];
@@ -83,6 +85,7 @@
 
       A.runner.exit();
       document.body.classList.remove('in-exam');
+      document.body.classList.remove('in-words');
       d.clear(main);
       $('#topTitle').textContent = r.title;
       var backTo = typeof r.back === 'function' ? r.back(m[1]) : r.back;
@@ -198,6 +201,8 @@
       ]));
     }
 
+    d.append(box, wordsCard());
+
     // Memorisation and pool depth: with a fixed bank, recognising a question is
     // not the same as knowing the material, and the pool eventually runs thin.
     if (A.state.seenList().length > 40) {
@@ -255,6 +260,24 @@
     return box;
   }
 
+  // Entry to Word Knowledge mastery, with progress read from the stored
+  // records so the WK chunk does not have to load just to draw home.
+  function wordsCard() {
+    var total = A.bankdata.counts().WK || 0;
+    var done = A.words.masteredCount();
+    return el('a', { class: 'card tight wm-entry', href: '#/words' }, [
+      el('div', { class: 'row between' }, [
+        el('strong', 'Master the Word Knowledge words'),
+        el('span', { class: 'muted', text: '›' })
+      ]),
+      el('div', { class: 'tiny muted', style: 'margin-top:4px' },
+        done ? done + ' of ' + total + ' mastered · quiz or flashcards'
+             : 'All ' + total + ' words · quiz or flashcards, got it or missed it'),
+      el('div', { class: 'wm-bar thin' },
+        el('span', { class: 'seg-mastered', style: 'width:' + (total ? done / total * 100 : 0) + '%' }))
+    ]);
+  }
+
   // ---------------- start menu ----------------
 
   function currentProfile() {
@@ -305,6 +328,8 @@
           'Start weak-spot exam')
       ]));
     }
+
+    d.append(box, wordsCard());
 
     d.append(box, el('div', { class: 'card stack' }, [
       el('strong', 'Practice one subtest'),

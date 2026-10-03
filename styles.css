@@ -596,3 +596,85 @@ sup {
   vertical-align: super;
   font-variant-numeric: tabular-nums;
 }
+
+/* ---------- word mastery ---------- */
+
+body.in-words #tabbar { display: none; }
+body.in-words { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+
+.wm-eyebrow { text-transform: uppercase; letter-spacing: .07em; font-weight: 700; }
+.wm-score { margin: 4px 0 12px; }
+.wm-num {
+  font-size: 2.9rem; font-weight: 750; line-height: 1; color: var(--accent);
+  font-variant-numeric: tabular-nums; letter-spacing: -.03em;
+}
+.wm-of { font-size: 1rem; color: var(--ink-soft); font-weight: 600; }
+
+/* One bar, three segments: mastered, halfway, missed. What is left is unseen. */
+.wm-bar {
+  display: flex; height: 12px; border-radius: 999px; overflow: hidden;
+  background: var(--surface-3);
+}
+.wm-bar.thin { height: 6px; margin-top: 10px; }
+.wm-bar > span { display: block; height: 100%; }
+.seg-mastered { background: var(--good); }
+.seg-learning { background: var(--accent); }
+.seg-missed { background: var(--bad); }
+
+.wm-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; font-size: .8rem; color: var(--ink-soft); font-weight: 600; }
+.wm-legend > span { display: inline-flex; align-items: center; }
+.wm-dot { display: inline-block; flex: none; width: 9px; height: 9px; border-radius: 50%; margin-right: 7px; background: var(--line-strong); }
+.wm-dot.mastered { background: var(--good); }
+.wm-dot.learning { background: var(--accent); }
+.wm-dot.missed { background: var(--bad); }
+
+.wm-entry { display: block; text-decoration: none; color: inherit; }
+.wm-entry:hover { border-color: var(--line-strong); }
+
+/* Round size: a segmented control rather than four loose buttons. */
+.wm-sizes {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; padding: 4px;
+  background: var(--surface-3); border-radius: var(--radius); border: 1px solid var(--line);
+}
+.wm-size {
+  min-height: 40px; border: 0; border-radius: var(--radius-sm); background: transparent;
+  font: inherit; font-size: .9rem; font-weight: 650; color: var(--ink-soft); cursor: pointer;
+}
+.wm-size.on { background: var(--surface); color: var(--accent); box-shadow: var(--shadow); }
+.wm-size:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.wm-list { padding-top: 4px; padding-bottom: 4px; }
+.wm-row { display: flex; align-items: baseline; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.wm-row:last-child { border-bottom: 0; }
+.wm-row .wm-dot { align-self: center; }
+.wm-word { font-weight: 680; flex: 0 0 34%; min-width: 0; overflow-wrap: anywhere; }
+.wm-mean { color: var(--ink-soft); flex: 1; min-width: 0; }
+.wm-row .chip { flex: none; align-self: center; }
+.chip.missed { background: var(--bad-bg); color: var(--bad); border-color: var(--bad-line); }
+
+/* Play view */
+.wm-top { margin-bottom: 16px; }
+.wm-track { height: 5px; border-radius: 999px; background: var(--surface-3); overflow: hidden; margin-top: 8px; }
+.wm-track > span { display: block; height: 100%; background: var(--accent); transition: width .25s ease; }
+
+.wm-result { margin-top: 16px; border-left: 4px solid var(--good); }
+.wm-result.bad { border-left-color: var(--bad); }
+.wm-verdict { font-weight: 750; font-size: 1.05rem; color: var(--good); }
+.wm-result.bad .wm-verdict { color: var(--bad); }
+.wm-meaning { margin: 6px 0 0; font-size: 1.02rem; }
+.wm-expl { margin: 8px 0 0; }
+
+.flash { text-align: center; padding: 34px 20px 30px; }
+.flash-label {
+  font-size: .72rem; text-transform: uppercase; letter-spacing: .08em;
+  color: var(--ink-soft); font-weight: 700;
+}
+.flash-word { font-size: 2.3rem; font-weight: 750; letter-spacing: -.02em; margin: 6px 0 4px; overflow-wrap: anywhere; }
+.flash-context { color: var(--ink-soft); margin: 10px auto 0; max-width: 34em; }
+.flash-back { margin-top: 24px; padding-top: 20px; border-top: 1px dashed var(--line-strong); }
+.flash-answer { font-size: 1.55rem; font-weight: 700; color: var(--good); margin-top: 4px; }
+
+.btn.wm-got { background: var(--good); border-color: var(--good); box-shadow: 0 1px 2px rgba(20,108,67,.25); }
+.btn.wm-got:hover { background: #0f5a37; border-color: #0f5a37; }
+.btn.wm-miss { background: var(--surface); color: var(--bad); border-color: var(--bad-line); box-shadow: var(--shadow); }
+.btn.wm-miss:hover { background: var(--bad-bg); border-color: var(--bad); }

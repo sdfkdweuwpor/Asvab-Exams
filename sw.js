@@ -14,14 +14,14 @@
    CACHE bumps whenever the shell or the content bundle changes; validate.js
    checks that PRECACHE still matches what is actually in the repository. */
 
-var CACHE = 'asvab-practice-b19';
+var CACHE = 'asvab-practice-b20';
 
 /* Asset URLs carry ?v=<build>, and index.html is fetched network-first, so a
    new build asks for URLs that are not in any previous cache. That is what
    makes an update land even for someone still running an older worker, which a
    cache name alone could never do: the old worker answers the old URL from its
    cache forever, and the old URL is never requested again. */
-var BUILD = '19';
+var BUILD = '20';
 var V = function (u) { return /\.(js|css)$/.test(u) ? u + '?v=' + BUILD : u; };
 
 var PRECACHE = [
@@ -41,10 +41,12 @@ var PRECACHE = [
   './js/core/exam.js',
   './js/core/analytics.js',
   './js/core/workon.js',
+  './js/core/mastery.js',
   './js/app/dom.js',
   './js/app/runner.js',
   './js/app/report.js',
   './js/app/lessons.js',
+  './js/app/words.js',
   './js/app/app.js',
   './icons/icon.svg',
   './icons/icon-192.png',
